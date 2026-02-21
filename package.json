@@ -1,20 +1,20 @@
 {
-  "name": "nextjs-starter",
+  "name": "doctor-status-platform-webapp",
   "version": "1.0.0",
-  "description": "Next.js starter template with Tailwind CSS, TypeScript, ESLint, Prettier, and Husky",
+  "description": "Doctor Status Platform WebApp",
   "private": true,
   "author": {
     "name": "Himanshu Karnwal",
     "email": "himanshukar1810@gmail.com",
-    "github": "https://github.com/dev-himanshu-karnwal"
+    "github": "https://github.com/dev-himanshu-karnwal/doctor-status-platform-webapp"
   },
   "license": "UNLICENSED",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dev-himanshu-karnwal/next-starter.git"
+    "url": "https://github.com/dev-himanshu-karnwal/doctor-status-platform-webapp.git"
   },
   "engines": {
-    "node": ">=24.0.0",
+    "node": ">=20.0.0",
     "pnpm": ">=10.0.0"
   },
   "scripts": {
@@ -25,13 +25,16 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "postinstall": "husky install && pnpm setup",
     "prepare": "husky",
     "setup": "git config core.hooksPath .husky && echo '✅ Husky hooks configured!'"
   },
   "dependencies": {
     "next": "16.1.0",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "clsx": "^2",
+    "tailwind-merge": "^2"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
