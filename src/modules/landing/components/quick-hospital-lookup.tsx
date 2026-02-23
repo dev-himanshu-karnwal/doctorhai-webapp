@@ -17,7 +17,7 @@ export function QuickHospitalLookup({
   topDoctors,
 }: QuickHospitalLookupProps) {
   return (
-    <section className="rounded-2xl border border-gray-100 bg-sky-50/80 p-6">
+    <section className="col-span-9 rounded-2xl border border-gray-100 bg-sky-50/80 p-6 lg:col-span-3">
       <h2 className="mb-4 text-lg font-semibold text-gray-900">
         Quick Hospital Lookup
       </h2>
