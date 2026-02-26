@@ -1,24 +1,43 @@
-import { Button } from "@/components/ui/button";
 import { ROUTES } from "@/config/routes";
 import Link from "next/link";
+import Image from "next/image";
 
 export function Header() {
   return (
-    <header className="flex items-center justify-between px-6 py-4">
-      <Link href={ROUTES.home} className="flex items-center gap-2">
-        <span className="flex h-8 w-8 items-center justify-center rounded bg-teal-600 text-lg text-white">
-          +
-        </span>
-        <span className="text-xl font-semibold text-gray-900">DocStatus</span>
-      </Link>
-      <nav className="flex items-center gap-3">
-        <Button variant="secondary" href={ROUTES.login}>
-          Login
-        </Button>
-        <Button variant="primary" href={ROUTES.register}>
-          Register
-        </Button>
-      </nav>
-    </header>
+    <div className="w-full bg-[#F8FAFC] px-3 pt-4 pb-3 sm:px-4 sm:pt-6 sm:pb-4 md:px-8">
+      <header className="mx-auto max-w-7xl">
+        <div className="flex h-[60px] items-center justify-between rounded-full border border-gray-50 bg-white px-4 shadow-[0_8px_30px_rgb(0,0,0,0.04)] sm:h-[72px] sm:px-6">
+          <Link
+            href={ROUTES.home}
+            className="flex items-center transition-transform hover:scale-[1.02] active:scale-95"
+          >
+            <div className="relative h-8 w-[110px] sm:h-10 sm:w-[140px]">
+              <Image
+                src="/images/logo.png"
+                alt="DoctorHai Logo"
+                fill
+                className="object-contain object-left"
+                priority
+              />
+            </div>
+          </Link>
+
+          <nav className="flex items-center gap-4 sm:gap-8">
+            <Link
+              href={ROUTES.login}
+              className="text-[14px] font-bold text-[#1A2B3D] transition-colors hover:text-[#4DB6AC] sm:text-[15px]"
+            >
+              Login
+            </Link>
+            <Link
+              href={ROUTES.register}
+              className="flex h-9 items-center justify-center rounded-full bg-[#4DB6AC] px-5 text-[13px] font-bold text-white shadow-[0_4px_12px_rgba(77,182,172,0.3)] transition-all hover:bg-[#3DA59B] hover:shadow-[0_6px_16px_rgba(77,182,172,0.4)] active:scale-95 sm:h-11 sm:px-7 sm:text-[15px]"
+            >
+              Register
+            </Link>
+          </nav>
+        </div>
+      </header>
+    </div>
   );
 }

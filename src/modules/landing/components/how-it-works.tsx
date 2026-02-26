@@ -6,26 +6,91 @@ type HowItWorksProps = {
 
 export function HowItWorks({ steps }: HowItWorksProps) {
   return (
-    <section className="rounded-2xl border border-gray-100 bg-gray-50/50 p-8">
-      <p className="mb-1 text-xs font-semibold tracking-wide text-gray-500 uppercase">
-        Workflow
-      </p>
-      <h2 className="mb-2 text-3xl font-bold text-gray-900">How it works</h2>
-      <p className="mb-8 text-gray-600">
-        Simple for the hospital. Effortless for the patient.
-      </p>
-      <div className="grid gap-8 sm:grid-cols-3">
-        {steps.map((step) => (
-          <div key={step.id} className="flex flex-col gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-teal-100 text-teal-700">
-              {step.stepNumber}
-            </span>
-            <h3 className="text-lg font-semibold text-gray-900">
-              {step.title}
-            </h3>
-            <p className="text-sm text-gray-600">{step.description}</p>
-          </div>
-        ))}
+    <section className="flex flex-col gap-8 rounded-[24px] border border-[#F1F5F9] bg-white p-6 text-center shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] sm:rounded-[32px] sm:p-8 md:gap-12 md:rounded-[40px] md:p-12 lg:gap-[64px] lg:p-[64px]">
+      <div className="flex flex-col items-center justify-center gap-10 md:gap-14 lg:gap-[64px]">
+        <div className="flex max-w-[768px] flex-col gap-2 sm:gap-[8px]">
+          <p className="text-[12px] leading-[18px] font-bold tracking-[1px] text-[#4FB3AA] uppercase sm:text-[13px] sm:leading-[20px] md:text-[14px]">
+            Workflow
+          </p>
+          <h2 className="text-[28px] leading-[34px] font-bold tracking-tight text-[#2D3748] sm:text-[32px] sm:leading-[38px] md:text-[36px] md:leading-[40px]">
+            How it works
+          </h2>
+          <p className="pt-1 text-[15px] leading-[22px] font-medium text-[#718096] sm:pt-2 sm:text-[16px] sm:leading-[26px] md:pt-[7.5px] md:text-[18px] md:leading-[28px]">
+            Simple for the hospital. Effortless for the patient.
+          </p>
+        </div>
+
+        <div className="relative grid w-full grid-cols-1 gap-10 sm:grid-cols-3 sm:gap-8 md:gap-12 lg:gap-[32px]">
+          {/* Decorative Connecting Line (visible only on desktop) */}
+          <div className="absolute top-[40px] right-[15%] left-[15%] hidden h-[2px] w-[70%] border-t-2 border-dashed border-[#E2E8F0] sm:block lg:top-[60px]" />
+          {steps.map((step, index) => (
+            <div
+              key={step.id}
+              className="group relative flex flex-col items-center transition-all duration-300 hover:-translate-y-2"
+            >
+              {/* Icon Container */}
+              <div className="relative z-10 flex h-[80px] w-full items-center justify-center pb-4 sm:h-[100px] sm:pb-[16px] lg:h-[120px] lg:pb-[24px]">
+                {index === 0 && (
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#DDF2F8] shadow-[0_0_0_8px_white] transition-transform duration-300 group-hover:scale-110 group-hover:shadow-[0_10px_25px_-5px_rgba(79,179,170,0.2),0_0_0_8px_white] sm:h-20 sm:w-20 lg:h-[96px] lg:w-[96px]">
+                    <svg
+                      width="28"
+                      height="28"
+                      viewBox="0 0 26 32"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M11.7 31.5C11 31.5 10.3438 31.35 9.73125 31.05C9.11875 30.75 8.6 30.325 8.175 29.775L0 19.3875L0.7125 18.6375C1.2125 18.1125 1.8125 17.8 2.5125 17.7C3.2125 17.6 3.8625 17.7375 4.4625 18.1125L7.2375 19.8V7.5C7.2375 7.075 7.38125 6.71875 7.66875 6.43125C7.95625 6.14375 8.3125 6 8.7375 6C9.1625 6 9.525 6.14375 9.825 6.43125C10.125 6.71875 10.275 7.075 10.275 7.5V25.2L6.6375 22.95L10.5375 27.9375C10.6875 28.1125 10.8625 28.25 11.0625 28.35C11.2625 28.45 11.475 28.5 11.7 28.5H19.9875C20.8125 28.5 21.5188 28.2062 22.1063 27.6187C22.6938 27.0312 22.9875 26.325 22.9875 25.5V19.5C22.9875 19.075 22.8438 18.7188 22.5562 18.4312C22.2687 18.1437 21.9125 18 21.4875 18H13.275V15H21.4875C22.7375 15 23.8 15.4375 24.675 16.3125C25.55 17.1875 25.9875 18.25 25.9875 19.5V25.5C25.9875 27.15 25.4 28.5625 24.225 29.7375C23.05 30.9125 21.6375 31.5 19.9875 31.5H11.7ZM2.25 11.25C1.925 10.7 1.675 10.1062 1.5 9.46875C1.325 8.83125 1.2375 8.175 1.2375 7.5C1.2375 5.425 1.96875 3.65625 3.43125 2.19375C4.89375 0.73125 6.6625 0 8.7375 0C10.8125 0 12.5813 0.73125 14.0437 2.19375C15.5062 3.65625 16.2375 5.425 16.2375 7.5C16.2375 8.175 16.15 8.83125 15.975 9.46875C15.8 10.1062 15.55 10.7 15.225 11.25L12.6375 9.75C12.8375 9.4 12.9875 9.04375 13.0875 8.68125C13.1875 8.31875 13.2375 7.925 13.2375 7.5C13.2375 6.25 12.8 5.1875 11.925 4.3125C11.05 3.4375 9.9875 3 8.7375 3C7.4875 3 6.425 3.4375 5.55 4.3125C4.675 5.1875 4.2375 6.25 4.2375 7.5C4.2375 7.925 4.2875 8.31875 4.3875 8.68125C4.4875 9.04375 4.6375 9.4 4.8375 9.75L2.25 11.25Z"
+                        fill="#3B82F6"
+                      />
+                    </svg>
+                  </div>
+                )}
+                {index === 1 && (
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#E6F6F4] shadow-[0_0_0_8px_white] transition-transform duration-300 group-hover:scale-110 group-hover:shadow-[0_10px_25px_-5px_rgba(61,143,135,0.2),0_0_0_8px_white] sm:h-20 sm:w-20 lg:h-[96px] lg:w-[96px]">
+                    <svg
+                      width="28"
+                      height="28"
+                      viewBox="0 0 33 23"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M16.5 18C18.375 18 19.9688 17.3438 21.2812 16.0312C22.5938 14.7188 23.25 13.125 23.25 11.25C23.25 9.375 22.5938 7.78125 21.2812 6.46875C19.9688 5.15625 18.375 4.5 16.5 4.5C14.625 4.5 13.0312 5.15625 11.7188 6.46875C10.4062 7.78125 9.75 9.375 9.75 11.25C9.75 13.125 10.4062 14.7188 11.7188 16.0312C13.0312 17.3438 14.625 18 16.5 18ZM16.5 15.3C15.375 15.3 14.4188 14.9062 13.6313 14.1187C12.8438 13.3312 12.45 12.375 12.45 11.25C12.45 10.125 12.8438 9.16875 13.6313 8.38125C14.4188 7.59375 15.375 7.2 16.5 7.2C17.625 7.2 18.5812 7.59375 19.3687 8.38125C20.1562 9.16875 20.55 10.125 20.55 11.25C20.55 12.375 20.1562 13.3312 19.3687 14.1187C18.5812 14.9062 17.625 15.3 16.5 15.3ZM16.5 22.5C12.85 22.5 9.525 21.4813 6.525 19.4438C3.525 17.4062 1.35 14.675 0 11.25C1.35 7.825 3.525 5.09375 6.525 3.05625C9.525 1.01875 12.85 0 16.5 0C20.15 0 23.475 1.01875 26.475 3.05625C29.475 5.09375 31.65 7.825 33 11.25C31.65 14.675 29.475 17.4062 26.475 19.4438C23.475 21.4813 20.15 22.5 16.5 22.5ZM16.5 19.5C19.325 19.5 21.9188 18.7562 24.2812 17.2687C26.6437 15.7812 28.45 13.775 29.7 11.25C28.45 8.725 26.6437 6.71875 24.2812 5.23125C21.9188 3.74375 19.325 3 16.5 3C13.675 3 11.0813 3.74375 8.71875 5.23125C6.35625 6.71875 4.55 8.725 3.3 11.25C4.55 13.775 6.35625 15.7812 8.71875 17.2687C11.0813 18.7562 13.675 19.5 16.5 19.5Z"
+                        fill="#3D8F87"
+                      />
+                    </svg>
+                  </div>
+                )}
+                {index === 2 && (
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#E0BBE466] shadow-[0_0_0_8px_white] transition-transform duration-300 group-hover:scale-110 group-hover:shadow-[0_10px_25px_-5px_rgba(147,51,234,0.15),0_0_0_8px_white] sm:h-20 sm:w-20 lg:h-[96px] lg:w-[96px]">
+                    <svg
+                      width="28"
+                      height="28"
+                      viewBox="0 0 20 33"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M1.5 32.25L5.7 11.1L3 12.15V17.25H0V10.2L7.575 6.975C7.925 6.825 8.29375 6.7375 8.68125 6.7125C9.06875 6.6875 9.4375 6.7375 9.7875 6.8625C10.1375 6.9875 10.4688 7.1625 10.7812 7.3875C11.0938 7.6125 11.35 7.9 11.55 8.25L13.05 10.65C13.7 11.7 14.5813 12.5625 15.6938 13.2375C16.8062 13.9125 18.075 14.25 19.5 14.25V17.25C17.75 17.25 16.1875 16.8875 14.8125 16.1625C13.4375 15.4375 12.2625 14.5125 11.2875 13.3875L10.35 18L13.5 21V32.25H10.5V22.5L7.35 20.1L4.65 32.25H1.5ZM11.25 6C10.425 6 9.71875 5.70625 9.13125 5.11875C8.54375 4.53125 8.25 3.825 8.25 3C8.25 2.175 8.54375 1.46875 9.13125 0.88125C9.71875 0.29375 10.425 0 11.25 0C12.075 0 12.7812 0.29375 13.3687 0.88125C13.9562 1.46875 14.25 2.175 14.25 3C14.25 3.825 13.9562 4.53125 13.3687 5.11875C12.7812 5.70625 12.075 6 11.25 6Z"
+                        fill="#9333EA"
+                      />
+                    </svg>
+                  </div>
+                )}
+              </div>
+
+              <div className="flex max-w-[280px] flex-col items-center gap-1.5 sm:gap-2 lg:gap-[8px]">
+                <h3 className="text-[17px] leading-[24px] font-bold text-[#2D3748] transition-colors duration-300 group-hover:text-[#4FB3AA] sm:text-[18px] sm:leading-[26px] lg:text-[20px] lg:leading-[28px]">
+                  {step.stepNumber}. {step.title}
+                </h3>
+                <p className="text-[14px] leading-[20px] font-medium text-[#718096] sm:text-[15px] sm:leading-[22px] lg:text-[16px] lg:leading-[24px]">
+                  {step.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

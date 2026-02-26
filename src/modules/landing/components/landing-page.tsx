@@ -16,7 +16,7 @@ import { QuickHospitalLookup } from "./quick-hospital-lookup";
 export function LandingPage() {
   return (
     <div className="mx-auto max-w-7xl space-y-10 px-4 py-8">
-      <div className="grid gap-8 lg:grid-cols-[1fr_340px]">
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-9">
         <HeroSection />
         <QuickHospitalLookup
           departments={DUMMY_DEPARTMENTS}
