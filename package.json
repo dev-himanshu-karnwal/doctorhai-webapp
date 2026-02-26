@@ -25,9 +25,8 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "postinstall": "husky install && pnpm setup",
     "prepare": "husky",
-    "setup": "git config core.hooksPath .husky && echo '✅ Husky hooks configured!'"
+    "setup": "husky install && git config core.hooksPath .husky && echo '✅ Husky hooks configured!'"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
