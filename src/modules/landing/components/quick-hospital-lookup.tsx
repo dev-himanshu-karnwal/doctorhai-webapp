@@ -1,4 +1,4 @@
-import { StatusIndicator } from "@/components/ui/status-indicator";
+import Image from "next/image";
 import type {
   DepartmentCategory,
   DoctorEntry,
@@ -12,7 +12,6 @@ type QuickHospitalLookupProps = {
 };
 
 export function QuickHospitalLookup({
-  departments,
   topHospitals,
   topDoctors,
 }: QuickHospitalLookupProps) {
@@ -193,11 +192,13 @@ export function QuickHospitalLookup({
               className="group -mx-1 flex cursor-pointer flex-wrap items-center justify-between rounded-xl p-1 transition-all hover:bg-white/30 sm:flex-nowrap sm:rounded-2xl"
             >
               <div className="flex min-w-[70%] flex-1 items-center gap-2 sm:gap-3 md:gap-4">
-                <div className="h-[24px] w-[24px] shrink-0 overflow-hidden rounded-full border border-white shadow-[0_1px_2px_rgba(0,0,0,0.05)] transition-shadow group-hover:shadow-md sm:h-[28px] sm:w-[28px] md:h-[32px] md:w-[32px]">
-                  <img
-                    src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${doctor.name}`}
+                <div className="relative h-[24px] w-[24px] shrink-0 overflow-hidden rounded-full border border-white shadow-[0_1px_2px_rgba(0,0,0,0.05)] transition-shadow group-hover:shadow-md sm:h-[28px] sm:w-[28px] md:h-[32px] md:w-[32px]">
+                  <Image
+                    src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${doctor.name}&background=%23e0f2fe`}
                     alt={doctor.name}
-                    className="h-full w-full bg-sky-100 object-cover"
+                    fill
+                    className="bg-sky-100 object-cover"
+                    unoptimized
                   />
                 </div>
                 <div className="w-full min-w-0 flex-1 space-y-0.5 pr-1 sm:space-y-0">

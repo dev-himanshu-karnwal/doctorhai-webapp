@@ -49,92 +49,6 @@ function Divider() {
   return <div className="h-[1px] w-full bg-[#F1F5F9]" />;
 }
 
-// ─── Doctor Row ──────────────────────────────────────────────────────────────
-
-function DoctorRow({ doctor, isLast }: { doctor: Doctor; isLast: boolean }) {
-  const badge = getStatusBadge(doctor.status);
-  const dotCls = getStatusDotColor(doctor.status);
-  const specialtyCls = getSpecialtyCls(doctor.specialtyColor);
-
-  return (
-    <div
-      className={cn(
-        "flex items-center gap-4 py-[20px]",
-        !isLast && "border-b border-[#F1F5F9]"
-      )}
-    >
-      {/* Avatar with status dot */}
-      <div className="relative shrink-0">
-        <div
-          className="flex h-[52px] w-[52px] items-center justify-center rounded-full text-[15px] font-bold"
-          style={{
-            backgroundColor: doctor.avatarBg,
-            color: doctor.avatarTextColor,
-          }}
-        >
-          {doctor.initials}
-        </div>
-        <span
-          className={cn(
-            "absolute right-[1px] bottom-[1px] block h-[13px] w-[13px] rounded-full border-2 border-white",
-            dotCls
-          )}
-        />
-      </div>
-
-      {/* Info */}
-      <div className="flex flex-1 flex-col gap-[3px]">
-        <div className="flex items-center gap-[8px]">
-          <span className="text-[15px] leading-[22px] font-bold tracking-[0px] text-[#2D3748]">
-            {doctor.name}
-          </span>
-          <span
-            className={cn(
-              "rounded-[4px] px-[7px] py-[2px] text-[10px] font-bold tracking-[0.5px] uppercase",
-              specialtyCls
-            )}
-          >
-            {doctor.specialty}
-          </span>
-        </div>
-        <span className="text-[13px] leading-[18px] font-normal tracking-[0px] text-[#718096]">
-          {doctor.role} • {doctor.experience}
-        </span>
-        <div className="flex items-center gap-[5px]">
-          {/* Clock icon */}
-          <svg
-            width="12"
-            height="12"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="#94A3B8"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <circle cx="12" cy="12" r="10" />
-            <polyline points="12 6 12 12 16 14" />
-          </svg>
-          <span className="text-[12px] leading-[16px] font-normal tracking-[0px] text-[#94A3B8]">
-            {doctor.updatedAt}
-          </span>
-        </div>
-      </div>
-
-      {/* Status badge */}
-      <div
-        className={cn(
-          "flex shrink-0 items-center gap-[5px] rounded-full px-[12px] py-[5px] text-[12px] leading-[18px] font-semibold",
-          badge.cls
-        )}
-      >
-        <span className="text-[9px]">●</span>
-        <span>{badge.label}</span>
-      </div>
-    </div>
-  );
-}
-
 export function HospitalDetailPage() {
   const h = MOCK_HOSPITAL_DETAIL;
 
@@ -291,7 +205,7 @@ export function HospitalDetailPage() {
               {/* Today's Hours */}
               <div className="py-[14px]">
                 <p className="mb-[8px] text-[10px] font-bold tracking-[0.8px] text-[#94A3B8] uppercase">
-                  Today's Hours
+                  Today&apos;s Hours
                 </p>
                 <div className="flex items-center justify-between">
                   <span className="text-[15px] leading-[22px] font-bold text-[#2D3748]">

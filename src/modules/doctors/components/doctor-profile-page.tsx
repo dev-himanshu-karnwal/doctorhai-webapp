@@ -1,6 +1,6 @@
 import React from "react";
-import { cn } from "@/lib/cn";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 export function DoctorProfilePage() {
   return (
@@ -12,10 +12,12 @@ export function DoctorProfilePage() {
           <div className="w-full shrink-0 rounded-[20px] bg-white p-5 text-center shadow-[0_4px_24px_rgba(0,0,0,0.04)] sm:rounded-[32px] sm:p-8 lg:w-[320px]">
             <div className="relative mx-auto mb-5 h-[120px] w-[120px] sm:mb-6 sm:h-[140px] sm:w-[140px]">
               <div className="h-full w-full overflow-hidden rounded-full border-4 border-[#F8FAFC]">
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1559839734-2b71f1536783?auto=format&fit=crop&q=80&w=200&h=200"
                   alt="Dr. Sarah Jenkins"
-                  className="h-full w-full object-cover"
+                  fill
+                  className="object-cover"
+                  unoptimized
                 />
               </div>
             </div>
@@ -94,7 +96,7 @@ export function DoctorProfilePage() {
 
             <div className="mb-5 flex-1 rounded-[16px] border border-[#E7EDF3] bg-[#F6F7F8] p-[16px] sm:mb-8 sm:rounded-[24px]">
               <p className="mb-3 text-[11px] leading-[16px] font-bold tracking-[0.6px] text-[#4E7397] uppercase sm:mb-4 sm:text-[12px]">
-                ST. MARY'S GENERAL HOSPITAL
+                ST. MARY&apos;S GENERAL HOSPITAL
               </p>
               <div className="flex flex-col gap-[10px] sm:gap-[12px]">
                 {[

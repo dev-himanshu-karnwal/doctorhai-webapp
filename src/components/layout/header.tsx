@@ -1,7 +1,5 @@
-import { Button } from "@/components/ui/button";
 import { ROUTES } from "@/config/routes";
 import Link from "next/link";
-import { cn } from "@/lib/cn";
 import Image from "next/image";
 
 export function Header() {

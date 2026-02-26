@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { DoctorEntry } from "../types/landing.types";
 
 type DoctorStatusCardProps = {
@@ -149,11 +150,13 @@ export function DoctorStatusCard({ doctor }: DoctorStatusCardProps) {
       {/* Top Section */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <div className="h-14 w-14 overflow-hidden rounded-full ring-2 ring-[#F1F5F9] ring-offset-1">
-            <img
-              src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${doctor.name}`}
+          <div className="relative h-14 w-14 overflow-hidden rounded-full ring-2 ring-[#F1F5F9] ring-offset-1">
+            <Image
+              src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${doctor.name}&background=%23f0fdf4`}
               alt={doctor.name}
-              className="h-full w-full bg-teal-50 object-cover"
+              fill
+              className="bg-teal-50 object-cover"
+              unoptimized
             />
           </div>
           <div>

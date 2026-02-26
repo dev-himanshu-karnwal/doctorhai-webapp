@@ -4,7 +4,7 @@ type FeatureCardsProps = {
   cards: FeatureCardType[];
 };
 
-export function FeatureCards({ cards }: FeatureCardsProps) {
+export function FeatureCards({}: FeatureCardsProps) {
   return (
     <section className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3">
       {/* Card 1: Tired of Waiting? */}
