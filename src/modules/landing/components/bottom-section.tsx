@@ -1,21 +1,21 @@
 // Last Updated: 2026-02-24 12:12
 export function BottomSection() {
   return (
-    <section className="grid gap-12 py-16 lg:grid-cols-2">
+    <section className="grid gap-8 py-12 sm:gap-12 sm:py-16 lg:grid-cols-2">
       {/* Left Column: Dark Feature Card */}
-      <article className="flex flex-col justify-center rounded-[44px] bg-[#2D3748] px-[48px] pt-[60.63px] pb-[60.62px]">
-        <h2 className="mb-8 text-[30px] leading-[36px] font-bold tracking-tight text-white">
+      <article className="flex flex-col justify-center rounded-[32px] bg-[#2D3748] p-8 shadow-lg transition-all duration-300 sm:rounded-[40px] sm:p-10 sm:shadow-xl lg:rounded-[44px] lg:px-[48px] lg:py-[60px]">
+        <h2 className="mb-6 text-center text-[26px] leading-[32px] font-bold tracking-tight text-white sm:mb-8 sm:text-left sm:text-[30px] sm:leading-[36px]">
           Designed for Zero Training
         </h2>
-        <p className="mb-14 max-w-lg text-[18px] leading-[29.25px] font-normal text-[#9CA3AF]">
+        <p className="mb-10 max-w-lg text-center text-[16px] leading-[26px] font-normal text-[#9CA3AF] sm:mb-14 sm:text-left sm:text-[18px] sm:leading-[29.25px]">
           Doctors don&apos;t have time to learn complex software. Our
           &quot;Switchboard&quot; interface takes less than 2 seconds to update.
         </p>
 
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-4 sm:gap-5">
           {/* Feature 1: Lightning Fast (Gauge/Speedometer) */}
-          <div className="flex items-center gap-[16px] rounded-[32px] border border-white/10 bg-white/5 p-[16px] transition-all hover:bg-white/10">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-white/10 bg-[#4FB3AA33] shadow-lg">
+          <div className="group flex cursor-pointer flex-col items-center gap-4 rounded-[24px] border border-white/5 bg-white/5 p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 hover:shadow-xl sm:flex-row sm:items-center sm:gap-[16px] sm:rounded-[32px] sm:border-white/10 sm:p-[16px] sm:text-left">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-white/10 bg-[#4FB3AA33] shadow-lg transition-transform duration-300 group-hover:scale-110">
               <svg
                 width="20"
                 height="16"
@@ -40,8 +40,8 @@ export function BottomSection() {
           </div>
 
           {/* Feature 2: Any Device (Monitor + Phone) */}
-          <div className="flex items-center gap-[16px] rounded-[32px] border border-white/10 bg-white/5 p-[16px] transition-all hover:bg-white/10">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-white/10 bg-[#4FB3AA33] shadow-lg">
+          <div className="group flex cursor-pointer flex-col items-center gap-4 rounded-[24px] border border-white/5 bg-white/5 p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 hover:shadow-xl sm:flex-row sm:items-center sm:gap-[16px] sm:rounded-[32px] sm:border-white/10 sm:p-[16px] sm:text-left">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-white/10 bg-[#4FB3AA33] shadow-lg transition-transform duration-300 group-hover:scale-110">
               <svg
                 width="20"
                 height="16"
@@ -68,10 +68,10 @@ export function BottomSection() {
       </article>
 
       {/* Right Column: Mobile App Interface */}
-      <article className="flex min-h-[400px] items-center justify-center rounded-[40px] bg-[#CBEDEA] p-[32px]">
-        <div className="relative flex w-full max-w-[384px] flex-col gap-[32px] rounded-[48px] bg-white p-[24px] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.1)]">
+      <article className="flex min-h-[400px] w-full items-center justify-center rounded-[32px] bg-[#CBEDEA] p-6 transition-all duration-300 sm:rounded-[40px] sm:p-8 lg:p-[32px]">
+        <div className="relative flex w-full max-w-[384px] flex-col gap-6 rounded-[32px] bg-white p-5 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.1)] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl sm:gap-[32px] sm:rounded-[48px] sm:p-[24px] sm:shadow-[0_50px_100px_-20px_rgba(0,0,0,0.1)]">
           {/* Header */}
-          <div className="flex items-center justify-between border-b border-[#F1F5F9] pb-[16px]">
+          <div className="flex items-center justify-between border-b border-[#F1F5F9] pb-4 sm:pb-[16px]">
             <div className="flex items-center gap-4">
               <div className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-full border border-gray-50 bg-[#F8FAFC] shadow-inner">
                 <span className="text-xl font-black text-gray-200">S</span>
@@ -90,9 +90,9 @@ export function BottomSection() {
           </div>
 
           {/* Action Buttons Grid */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-3 sm:gap-4">
             {/* Available (Selected/Active) */}
-            <div className="flex h-[128px] w-[160px] flex-col items-center justify-center rounded-[32px] border-2 border-[#22C55E] bg-[#F0FDF4] px-[43.08px] shadow-[0_10px_25px_-5px_rgba(34,197,94,0.1)]">
+            <div className="group flex h-[100px] w-full cursor-pointer flex-col items-center justify-center rounded-[24px] border-2 border-[#22C55E] bg-[#F0FDF4] p-3 shadow-[0_10px_25px_-5px_rgba(34,197,94,0.1)] transition-all duration-200 hover:scale-[1.02] hover:bg-[#dcfce7] sm:h-[128px] sm:rounded-[32px] sm:p-4">
               <div className="flex h-[33px] w-[25px] items-center justify-center pb-[8px] text-[#22C55E]">
                 <svg
                   width="25"
@@ -113,7 +113,7 @@ export function BottomSection() {
             </div>
 
             {/* Busy */}
-            <div className="flex h-[128px] w-[160px] flex-col items-center justify-center rounded-[32px] border-2 border-transparent bg-[#F8FAFC] px-[59.3px]">
+            <div className="group flex h-[100px] w-full cursor-pointer flex-col items-center justify-center rounded-[24px] border-2 border-transparent bg-[#F8FAFC] p-3 transition-all duration-200 hover:scale-[1.02] hover:bg-[#F1F5F9] sm:h-[128px] sm:rounded-[32px] sm:p-4">
               <div className="flex h-[33px] w-[25px] items-center justify-center pb-[8px]">
                 <svg
                   width="25"
@@ -135,7 +135,7 @@ export function BottomSection() {
             </div>
 
             {/* On Break (Full width) */}
-            <div className="col-span-2 flex h-[128px] flex-col items-center justify-center rounded-[32px] border-2 border-transparent bg-[#F8FAFC] px-[131.58px]">
+            <div className="group col-span-2 flex h-[90px] w-full cursor-pointer flex-col items-center justify-center rounded-[24px] border-2 border-transparent bg-[#F8FAFC] p-3 transition-all duration-200 hover:scale-[1.02] hover:bg-[#F1F5F9] sm:h-[110px] sm:rounded-[32px] sm:p-4">
               <div className="flex h-[33px] w-[25px] items-center justify-center pb-[8px]">
                 <svg
                   width="32"

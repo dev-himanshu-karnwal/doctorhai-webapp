@@ -17,22 +17,22 @@ export function QuickHospitalLookup({
   topDoctors,
 }: QuickHospitalLookupProps) {
   return (
-    <section className="col-span-12 flex min-h-[646px] flex-col justify-between rounded-[40px] bg-[#DDF2F8] p-8 shadow-sm lg:col-span-3">
+    <section className="col-span-12 flex h-auto min-h-[auto] w-full flex-col justify-between rounded-[24px] bg-[#DDF2F8] p-4 shadow-sm transition-all duration-300 sm:rounded-[32px] sm:p-6 md:rounded-[40px] md:p-8 lg:col-span-3 xl:min-h-[646px]">
       {/* Header */}
-      <div className="space-y-1 pb-[16px]">
-        <h2 className="text-[20px] leading-[28px] font-bold text-[#2D3748]">
+      <div className="space-y-1 pb-3 sm:pb-4 md:pb-[16px]">
+        <h2 className="text-[16px] leading-[22px] font-bold text-[#2D3748] sm:text-[18px] sm:leading-[24px] md:text-[20px] md:leading-[28px]">
           Quick Hospital Lookup
         </h2>
-        <p className="text-[14px] leading-[20px] font-normal text-[#718096]">
+        <p className="text-[12px] leading-[16px] font-normal text-[#718096] sm:text-[13px] sm:leading-[18px] md:text-[14px] md:leading-[20px]">
           Jump to department listings
         </p>
       </div>
 
       {/* Departments Grid */}
-      <div className="grid grid-cols-2 gap-4 pb-[24px]">
+      <div className="grid grid-cols-2 gap-2 pb-4 sm:gap-3 sm:pb-6 md:gap-4 md:pb-[24px]">
         {/* General Physician */}
-        <button className="group flex h-[87px] w-full max-w-[156.67px] flex-col items-center justify-center gap-[8px] rounded-[32px] bg-white/70 p-[12px] shadow-sm backdrop-blur-[4px] transition-all hover:-translate-y-1 hover:shadow-md">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#E6F6F4] transition-colors group-hover:bg-[#cbefe9]">
+        <button className="group flex h-[70px] w-full flex-col items-center justify-center gap-[4px] rounded-[20px] bg-white/70 p-[8px] shadow-sm backdrop-blur-[4px] transition-all duration-300 hover:-translate-y-1 hover:bg-white/90 hover:shadow-md sm:h-[80px] sm:gap-[6px] sm:rounded-[24px] sm:p-[10px] md:h-[87px] md:gap-[8px] md:rounded-[32px] md:p-[12px]">
+          <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#E6F6F4] transition-colors group-hover:bg-[#cbefe9] sm:h-8 sm:w-8 md:h-10 md:w-10">
             <svg
               width="17"
               height="17"
@@ -46,14 +46,14 @@ export function QuickHospitalLookup({
               />
             </svg>
           </div>
-          <span className="text-[12px] leading-[15px] font-bold text-[#2D3748]">
+          <span className="px-1 text-center text-[10px] leading-[12px] font-bold text-[#2D3748] sm:text-[11px] sm:leading-[14px] md:text-[12px] md:leading-[15px]">
             General Physician
           </span>
         </button>
 
         {/* Cardiology */}
-        <button className="group flex h-[87px] w-full max-w-[156.67px] flex-col items-center justify-center gap-[8px] rounded-[32px] bg-white/70 p-[12px] shadow-sm backdrop-blur-[4px] transition-all hover:-translate-y-1 hover:shadow-md">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#DBEAFE] transition-colors group-hover:bg-[#c9e8f7]">
+        <button className="group flex h-[70px] w-full flex-col items-center justify-center gap-[4px] rounded-[20px] bg-white/70 p-[8px] shadow-sm backdrop-blur-[4px] transition-all duration-300 hover:-translate-y-1 hover:bg-white/90 hover:shadow-md sm:h-[80px] sm:gap-[6px] sm:rounded-[24px] sm:p-[10px] md:h-[87px] md:gap-[8px] md:rounded-[32px] md:p-[12px]">
+          <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#DBEAFE] transition-colors group-hover:bg-[#c9e8f7] sm:h-8 sm:w-8 md:h-10 md:w-10">
             <svg
               width="19"
               height="16"
@@ -67,14 +67,14 @@ export function QuickHospitalLookup({
               />
             </svg>
           </div>
-          <span className="text-[12px] leading-[15px] font-bold text-[#2D3748]">
+          <span className="px-1 text-center text-[10px] leading-[12px] font-bold text-[#2D3748] sm:text-[11px] sm:leading-[14px] md:text-[12px] md:leading-[15px]">
             Cardiology
           </span>
         </button>
 
         {/* Pediatrics */}
-        <button className="group flex h-[87px] w-full max-w-[156.67px] flex-col items-center justify-center gap-[8px] rounded-[32px] bg-white/70 p-[12px] shadow-sm backdrop-blur-[4px] transition-all hover:-translate-y-1 hover:shadow-md">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#F3E8FF] transition-colors group-hover:bg-[#ebd9f7]">
+        <button className="group flex h-[70px] w-full flex-col items-center justify-center gap-[4px] rounded-[20px] bg-white/70 p-[8px] shadow-sm backdrop-blur-[4px] transition-all duration-300 hover:-translate-y-1 hover:bg-white/90 hover:shadow-md sm:h-[80px] sm:gap-[6px] sm:rounded-[24px] sm:p-[10px] md:h-[87px] md:gap-[8px] md:rounded-[32px] md:p-[12px]">
+          <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#F3E8FF] transition-colors group-hover:bg-[#ebd9f7] sm:h-8 sm:w-8 md:h-10 md:w-10">
             <svg
               width="9"
               height="17"
@@ -88,14 +88,14 @@ export function QuickHospitalLookup({
               />
             </svg>
           </div>
-          <span className="text-[12px] leading-[15px] font-bold text-[#2D3748]">
+          <span className="px-1 text-center text-[10px] leading-[12px] font-bold text-[#2D3748] sm:text-[11px] sm:leading-[14px] md:text-[12px] md:leading-[15px]">
             Pediatrics
           </span>
         </button>
 
         {/* Neurology */}
-        <button className="group flex h-[87px] w-full max-w-[156.67px] flex-col items-center justify-center gap-[8px] rounded-[32px] bg-white/70 p-[12px] shadow-sm backdrop-blur-[4px] transition-all hover:-translate-y-1 hover:shadow-md">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#FEF9C3] transition-colors group-hover:bg-[#ffefc9]">
+        <button className="group flex h-[70px] w-full flex-col items-center justify-center gap-[4px] rounded-[20px] bg-white/70 p-[8px] shadow-sm backdrop-blur-[4px] transition-all duration-300 hover:-translate-y-1 hover:bg-white/90 hover:shadow-md sm:h-[80px] sm:gap-[6px] sm:rounded-[24px] sm:p-[10px] md:h-[87px] md:gap-[8px] md:rounded-[32px] md:p-[12px]">
+          <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#FEF9C3] transition-colors group-hover:bg-[#ffefc9] sm:h-8 sm:w-8 md:h-10 md:w-10">
             <svg
               width="15"
               height="15"
@@ -109,30 +109,30 @@ export function QuickHospitalLookup({
               />
             </svg>
           </div>
-          <span className="text-[12px] leading-[15px] font-bold text-[#2D3748]">
+          <span className="px-1 text-center text-[10px] leading-[12px] font-bold text-[#2D3748] sm:text-[11px] sm:leading-[14px] md:text-[12px] md:leading-[15px]">
             Neurology
           </span>
         </button>
       </div>
 
       {/* Top Hospitals */}
-      <div className="mb-[14px] flex flex-col gap-[12px] rounded-[32px] border border-white/40 bg-white/40 p-[16px]">
+      <div className="mb-3 flex flex-col gap-2 rounded-[20px] border border-white/40 bg-white/40 p-3 sm:mb-4 sm:gap-3 sm:rounded-[24px] sm:p-4 md:mb-[14px] md:gap-[12px] md:rounded-[32px] md:p-[16px]">
         <div className="flex items-center justify-between">
-          <h3 className="text-[12px] leading-[16px] font-bold tracking-[0.6px] text-[#718096] uppercase">
+          <h3 className="text-[10px] leading-[12px] font-bold tracking-[0.6px] text-[#718096] uppercase sm:text-[11px] sm:leading-[14px] md:text-[12px] md:leading-[16px]">
             Top Hospitals
           </h3>
-          <button className="text-[10px] leading-[15px] font-bold text-[#3D8F87] hover:underline">
+          <button className="text-[9px] leading-[12px] font-bold text-[#3D8F87] transition-colors hover:text-[#2c6e67] hover:underline sm:text-[10px] sm:leading-[14px] md:text-[11px] md:leading-[15px]">
             View All
           </button>
         </div>
-        <div className="space-y-4">
+        <div className="space-y-2 sm:space-y-3 md:space-y-4">
           {topHospitals.slice(0, 2).map((hospital) => (
             <div
               key={hospital.id}
-              className="group flex cursor-pointer items-center justify-between"
+              className="group -mx-1 flex cursor-pointer flex-wrap items-center justify-between rounded-xl p-1 transition-all hover:bg-white/30 sm:flex-nowrap sm:rounded-2xl"
             >
-              <div className="flex items-center gap-4">
-                <div className="flex h-[32px] w-[32px] shrink-0 items-center justify-center rounded-full bg-white shadow-[0_1px_2px_rgba(0,0,0,0.05)] transition-shadow">
+              <div className="flex min-w-[70%] flex-1 items-center gap-2 sm:gap-3 md:gap-4">
+                <div className="flex h-[24px] w-[24px] shrink-0 items-center justify-center rounded-full bg-white shadow-[0_1px_2px_rgba(0,0,0,0.05)] transition-shadow group-hover:shadow-md sm:h-[28px] sm:w-[28px] md:h-[32px] md:w-[32px]">
                   <svg
                     width="16"
                     height="16"
@@ -146,8 +146,8 @@ export function QuickHospitalLookup({
                     <line x1="8" y1="12" x2="16" y2="12" />
                   </svg>
                 </div>
-                <div className="space-y-0.5">
-                  <p className="text-[14px] leading-[20px] font-bold text-[#2D3748]">
+                <div className="w-full min-w-0 flex-1 space-y-0.5 pr-1 sm:space-y-0">
+                  <p className="truncate text-[12px] leading-[16px] font-bold text-[#2D3748] transition-colors group-hover:text-[#3D8F87] sm:text-[13px] sm:leading-[18px] md:text-[14px] md:leading-[20px]">
                     {hospital.name}
                   </p>
                   <div className="flex items-center gap-1">
@@ -165,9 +165,9 @@ export function QuickHospitalLookup({
                   </div>
                 </div>
               </div>
-              <div className="flex items-center gap-[4px] rounded-full bg-[#DCFCE7] px-[6px] py-[2px]">
-                <div className="h-[6px] w-[6px] rounded-full bg-[#22C55E]" />
-                <span className="text-[10px] leading-[15px] font-bold text-[#15803D]">
+              <div className="flex shrink-0 items-center gap-[2px] rounded-full bg-[#DCFCE7] px-[4px] py-[2px] transition-transform group-hover:scale-105 sm:gap-[3px] sm:px-[5px] sm:py-[2px] md:gap-[4px] md:px-[8px] md:py-[4px]">
+                <div className="h-[4px] w-[4px] animate-pulse rounded-full bg-[#22C55E] sm:h-[5px] sm:w-[5px] md:h-[6px] md:w-[6px]" />
+                <span className="text-[8px] leading-[10px] font-bold text-[#15803D] sm:text-[9px] sm:leading-[12px] md:text-[10px] md:leading-[15px]">
                   Live
                 </span>
               </div>
@@ -177,44 +177,43 @@ export function QuickHospitalLookup({
       </div>
 
       {/* Top Doctors */}
-      <div className="flex flex-col gap-[12px] rounded-[32px] border border-white/40 bg-white/40 p-[16px]">
+      <div className="flex flex-col gap-2 rounded-[20px] border border-white/40 bg-white/40 p-3 sm:gap-3 sm:rounded-[24px] sm:p-4 md:gap-[12px] md:rounded-[32px] md:p-[16px]">
         <div className="flex items-center justify-between">
-          <h3 className="text-[12px] leading-[16px] font-bold tracking-[0.6px] text-[#718096] uppercase">
+          <h3 className="text-[10px] leading-[12px] font-bold tracking-[0.6px] text-[#718096] uppercase sm:text-[11px] sm:leading-[14px] md:text-[12px] md:leading-[16px]">
             Top Doctors
           </h3>
-          <button className="text-[10px] leading-[15px] font-bold text-[#3D8F87] hover:underline">
+          <button className="text-[9px] leading-[12px] font-bold text-[#3D8F87] transition-colors hover:text-[#2c6e67] hover:underline sm:text-[10px] sm:leading-[14px] md:text-[11px] md:leading-[15px]">
             Find Doctor
           </button>
         </div>
-        <div className="space-y-4">
+        <div className="space-y-2 sm:space-y-3 md:space-y-4">
           {topDoctors.slice(0, 2).map((doctor, idx) => (
             <div
               key={doctor.id}
-              className="group flex cursor-pointer items-center justify-between"
+              className="group -mx-1 flex cursor-pointer flex-wrap items-center justify-between rounded-xl p-1 transition-all hover:bg-white/30 sm:flex-nowrap sm:rounded-2xl"
             >
-              <div className="flex items-center gap-4">
-                <div className="h-[32px] w-[32px] shrink-0 overflow-hidden rounded-full border border-white shadow-[0_1px_2px_rgba(0,0,0,0.05)]">
+              <div className="flex min-w-[70%] flex-1 items-center gap-2 sm:gap-3 md:gap-4">
+                <div className="h-[24px] w-[24px] shrink-0 overflow-hidden rounded-full border border-white shadow-[0_1px_2px_rgba(0,0,0,0.05)] transition-shadow group-hover:shadow-md sm:h-[28px] sm:w-[28px] md:h-[32px] md:w-[32px]">
                   <img
                     src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${doctor.name}`}
                     alt={doctor.name}
                     className="h-full w-full bg-sky-100 object-cover"
                   />
                 </div>
-                <div className="space-y-0.5">
-                  <p className="text-[14px] leading-[20px] font-bold text-[#2D3748]">
-                    {" "}
+                <div className="w-full min-w-0 flex-1 space-y-0.5 pr-1 sm:space-y-0">
+                  <p className="truncate text-[12px] leading-[16px] font-bold text-[#2D3748] transition-colors group-hover:text-[#3D8F87] sm:text-[13px] sm:leading-[18px] md:text-[14px] md:leading-[20px]">
                     {doctor.name}
                   </p>
-                  <p className="text-[10px] leading-[15px] font-normal text-[#718096]">
+                  <p className="truncate text-[8px] leading-[12px] font-normal text-[#718096] sm:text-[9px] sm:leading-[14px] md:text-[10px] md:leading-[15px]">
                     {doctor.specialty} • {12 - idx * 4} years exp.
                   </p>
                 </div>
               </div>
               <span
-                className={`text-[12px] font-bold ${
+                className={`shrink-0 text-[10px] font-bold transition-transform group-hover:scale-105 ${
                   idx === 0
-                    ? "rounded-full bg-[#F0FDF4] px-[6px] py-[2px] text-[10px] leading-[15px] font-bold text-[#2ECC71] text-[#16A34A]"
-                    : "rounded-full bg-[#FEF2F2] px-[6px] py-[2px] text-[10px] leading-[15px] font-bold text-[#B91C1C] text-[#EF4444]"
+                    ? "rounded-full bg-[#F0FDF4] px-[4px] py-[2px] text-[8px] leading-[10px] font-bold text-[#16A34A] sm:px-[5px] sm:py-[2px] sm:text-[9px] sm:leading-[12px] md:px-[8px] md:py-[4px] md:text-[10px] md:leading-[15px]"
+                    : "rounded-full bg-[#FEF2F2] px-[4px] py-[2px] text-[8px] leading-[10px] font-bold text-[#EF4444] sm:px-[5px] sm:py-[2px] sm:text-[9px] sm:leading-[12px] md:px-[8px] md:py-[4px] md:text-[10px] md:leading-[15px]"
                 }`}
               >
                 {idx === 0 ? "Available" : "Busy"}

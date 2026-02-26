@@ -6,14 +6,14 @@ import Image from "next/image";
 
 export function Header() {
   return (
-    <div className="w-full px-4 pt-6 md:px-8">
+    <div className="w-full bg-[#F8FAFC] px-3 pt-4 pb-3 sm:px-4 sm:pt-6 sm:pb-4 md:px-8">
       <header className="mx-auto max-w-7xl">
-        <div className="flex h-[72px] items-center justify-between rounded-full border border-gray-50 bg-white px-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+        <div className="flex h-[60px] items-center justify-between rounded-full border border-gray-50 bg-white px-4 shadow-[0_8px_30px_rgb(0,0,0,0.04)] sm:h-[72px] sm:px-6">
           <Link
             href={ROUTES.home}
             className="flex items-center transition-transform hover:scale-[1.02] active:scale-95"
           >
-            <div className="relative h-10 w-[140px]">
+            <div className="relative h-8 w-[110px] sm:h-10 sm:w-[140px]">
               <Image
                 src="/images/logo.png"
                 alt="DoctorHai Logo"
@@ -24,16 +24,16 @@ export function Header() {
             </div>
           </Link>
 
-          <nav className="flex items-center gap-8">
+          <nav className="flex items-center gap-4 sm:gap-8">
             <Link
               href={ROUTES.login}
-              className="text-[15px] font-bold text-[#1A2B3D] transition-colors hover:text-[#4DB6AC]"
+              className="text-[14px] font-bold text-[#1A2B3D] transition-colors hover:text-[#4DB6AC] sm:text-[15px]"
             >
               Login
             </Link>
             <Link
               href={ROUTES.register}
-              className="flex h-11 items-center justify-center rounded-full bg-[#4DB6AC] px-7 text-[15px] font-bold text-white shadow-[0_4px_12px_rgba(77,182,172,0.3)] transition-all hover:bg-[#3DA59B] hover:shadow-[0_6px_16px_rgba(77,182,172,0.4)] active:scale-95"
+              className="flex h-9 items-center justify-center rounded-full bg-[#4DB6AC] px-5 text-[13px] font-bold text-white shadow-[0_4px_12px_rgba(77,182,172,0.3)] transition-all hover:bg-[#3DA59B] hover:shadow-[0_6px_16px_rgba(77,182,172,0.4)] active:scale-95 sm:h-11 sm:px-7 sm:text-[15px]"
             >
               Register
             </Link>
