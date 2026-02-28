@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, type FieldErrors } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { loginSchema, LoginValues } from "../../schemas";
+import { loginSchema, type LoginValues } from "../../schemas";
 import { FormInput } from "../shared/form-input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -22,7 +22,11 @@ export function LoginForm() {
     reset,
   } = useForm<LoginValues>({
     resolver: zodResolver(loginSchema),
-    defaultValues: { loginType: "doctor", username: "", password: "" } as any,
+    defaultValues: {
+      loginType: "doctor",
+      username: "",
+      password: "",
+    } as LoginValues,
   });
 
   const handleToggle = (type: "doctor" | "hospital") => {
@@ -31,8 +35,14 @@ export function LoginForm() {
       loginType: type,
       ...(type === "doctor" ? { username: "" } : { email: "" }),
       password: "",
-    } as any);
+    } as LoginValues);
   };
+
+  const fieldErrors = errors as FieldErrors<{
+    username?: string;
+    email?: string;
+    password?: string;
+  }>;
 
   return (
     <div className="w-full">
@@ -45,28 +55,28 @@ export function LoginForm() {
         {loginType === "doctor" ? (
           <FormInput
             label="Username"
-            {...register("username" as any)}
+            {...register("username" as const)}
             placeholder="dr_arora12"
             icon={<Icons.User />}
-            error={(errors as any)?.username?.message}
+            error={fieldErrors.username?.message}
           />
         ) : (
           <FormInput
             label="Email Address"
-            {...register("email" as any)}
+            {...register("email" as const)}
             placeholder="admin@hospital.com"
             icon={<Icons.Email />}
-            error={(errors as any)?.email?.message}
+            error={fieldErrors.email?.message}
           />
         )}
 
         <FormInput
           label="Password"
-          {...register("password" as any)}
+          {...register("password" as const)}
           type="password"
           placeholder="••••••••"
           icon={<Icons.Lock />}
-          error={(errors as any)?.password?.message}
+          error={fieldErrors.password?.message}
         />
 
         <Button
@@ -79,7 +89,7 @@ export function LoginForm() {
         </Button>
 
         <div className="text-center text-[15px] font-medium text-[#64748B]">
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <Link
             href={`/register/${loginType}`}
             className="font-bold text-[#3D8F87] hover:underline"

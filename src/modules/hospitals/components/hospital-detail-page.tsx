@@ -1,8 +1,4 @@
-import {
-  Doctor,
-  DoctorStatus,
-  SpecialtyColor,
-} from "../types/hospital-detail.types";
+import { DoctorStatus, SpecialtyColor } from "../types/hospital-detail.types";
 import { MOCK_HOSPITAL_DETAIL } from "../data/mock-hospital-detail";
 import Link from "next/link";
 import { cn } from "@/lib/cn";
