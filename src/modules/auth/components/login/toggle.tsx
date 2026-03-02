@@ -2,8 +2,8 @@ import { cn } from "@/lib/cn";
 import { Button } from "@/components/ui/button";
 
 interface LoginToggleProps {
-  type: "doctor" | "hospital";
-  onChange: (type: "doctor" | "hospital") => void;
+  type: "username" | "email";
+  onChange: (type: "username" | "email") => void;
 }
 
 export function LoginToggle({ type, onChange }: LoginToggleProps) {
@@ -16,10 +16,10 @@ export function LoginToggle({ type, onChange }: LoginToggleProps) {
         <Button
           type="button"
           variant="ghost"
-          onClick={() => onChange("hospital")}
+          onClick={() => onChange("email")}
           className={cn(
             "h-auto flex-1 rounded-[18px] py-3 text-[15px] font-bold transition-all duration-300 hover:bg-transparent",
-            type === "hospital"
+            type === "email"
               ? "bg-white text-[#3D8F87] shadow-[0_4px_12px_rgba(0,0,0,0.08)] hover:bg-white"
               : "text-[#3D8F87]"
           )}
@@ -29,10 +29,10 @@ export function LoginToggle({ type, onChange }: LoginToggleProps) {
         <Button
           type="button"
           variant="ghost"
-          onClick={() => onChange("doctor")}
+          onClick={() => onChange("username")}
           className={cn(
             "h-auto flex-1 rounded-[18px] py-3 text-[15px] font-bold transition-all duration-300 hover:bg-transparent",
-            type === "doctor"
+            type === "username"
               ? "bg-white text-[#3D8F87] shadow-[0_4px_12px_rgba(0,0,0,0.08)] hover:bg-white"
               : "text-[#3D8F87]"
           )}
