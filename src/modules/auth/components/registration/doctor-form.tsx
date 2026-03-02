@@ -12,7 +12,7 @@ import { Icons } from "../shared/icons";
 import { RegistrationSuccessModal } from "./registration-success-modal";
 
 export function DoctorRegistrationForm() {
-  const [showSuccessModal, setShowSuccessModal] = useState(true);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const { mutate, isPending } = useRegister();
 
   const {

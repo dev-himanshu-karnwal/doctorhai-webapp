@@ -1,10 +1,3 @@
-export { LandingPage } from "./components/landing-page";
-export { HeroSection } from "./components/hero-section";
-export { QuickHospitalLookup } from "./components/quick-hospital-lookup";
-export { FeatureCards } from "./components/feature-cards";
-export { LiveDoctorAvailability } from "./components/live-doctor-availability";
-export { DoctorStatusCard } from "./components/doctor-status-card";
-export { HowItWorks } from "./components/how-it-works";
-export { BottomSection } from "./components/bottom-section";
-export * from "./types/landing.types";
-export * from "./data/landing-dummy-data";
+export * from "./components";
+export * from "./types";
+export * from "./data";
