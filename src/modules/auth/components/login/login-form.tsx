@@ -10,6 +10,7 @@ import Link from "next/link";
 import { useLogin } from "../../hooks";
 import { LoginToggle } from "./toggle";
 import { Icons } from "../shared/icons";
+import { useAuth } from "../../context";
 
 export function LoginForm() {
   const [loginType, setLoginType] = useState<"doctor" | "hospital">("doctor");
@@ -23,8 +24,8 @@ export function LoginForm() {
   } = useForm<LoginValues>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      loginType: "doctor",
-      username: "",
+      loginType: "hospital",
+      email: "",
       password: "",
     } as LoginValues,
   });
@@ -82,10 +83,11 @@ export function LoginForm() {
         <Button
           type="submit"
           disabled={isPending}
+          loading={isPending}
           className="group mt-6 h-[64px] w-full rounded-[18px] bg-[#3D8F87] text-[18px] font-bold text-white shadow-[0_4px_6px_-4px_rgba(79,179,170,0.3),0_10px_15px_-3px_rgba(79,179,170,0.3)] transition-all active:scale-[0.98]"
         >
-          <span>Sign In</span>
-          <Icons.Check />
+          <span>{isPending ? "Signing in..." : "Sign In"}</span>
+          {!isPending && <Icons.Check />}
         </Button>
 
         <div className="text-center text-[15px] font-medium text-[#64748B]">

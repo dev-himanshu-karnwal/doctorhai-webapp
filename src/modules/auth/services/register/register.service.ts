@@ -5,11 +5,22 @@ import { RegistrationValues } from "../../types/registration.types";
 export const registerService = {
   register: async (
     data: RegistrationValues
-  ): Promise<ApiResponse<LoginResponse>> => {
-    const response = await axiosInstance.post<ApiResponse<LoginResponse>>(
-      "/auth/register",
-      data
-    );
+  ): Promise<ApiResponse<{ auth: LoginResponse }>> => {
+    const { confirmPassword, ...payload } = data;
+
+    const response = await axiosInstance.post<
+      ApiResponse<{ auth: LoginResponse }>
+    >("/auth/register", payload);
+    return response.data;
+  },
+  checkUsername: async (
+    username: string
+  ): Promise<
+    ApiResponse<{ availability: { username: string; available: boolean } }>
+  > => {
+    const response = await axiosInstance.post<
+      ApiResponse<{ availability: { username: string; available: boolean } }>
+    >("/auth/check-username", { username });
     return response.data;
   },
 };

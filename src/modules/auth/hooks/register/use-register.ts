@@ -19,7 +19,7 @@ export function useRegister() {
   return useMutation({
     mutationFn: (data: RegistrationValues) => registerService.register(data),
     onSuccess: async (response) => {
-      const data = response.data;
+      const data = response.data.auth;
 
       // 1. Store token for immediate use by axios interceptors
       localStorage.setItem("token", data.accessToken);
@@ -39,8 +39,7 @@ export function useRegister() {
         toast.success("Registration successful! Welcome to DoctorHai.");
         router.push("/");
       } catch (error) {
-        console.error("Failed to fetch user after registration:", error);
-        toast.success("Registration successful! Please login to continue.");
+        toast.error("Failed to fetch user after registration");
         router.push("/login");
       } finally {
         setLoading(false);

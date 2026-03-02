@@ -6,14 +6,18 @@ import { doctorRegistrationSchema } from "../../schemas";
 import { DoctorRegistrationValues } from "../../types/registration.types";
 import { FormInput } from "../shared/form-input";
 import { Button } from "@/components/ui/button";
-import { useRegister } from "../../hooks";
+import { useRegister, useDebouncedUsernameCheck } from "../../hooks";
 import { Icons } from "../shared/icons";
 
 export function DoctorRegistrationForm() {
   const { mutate, isPending } = useRegister();
+
   const {
     register,
     handleSubmit,
+    watch,
+    setError,
+    clearErrors,
     formState: { errors },
   } = useForm<DoctorRegistrationValues>({
     resolver: zodResolver(doctorRegistrationSchema),
@@ -27,6 +31,13 @@ export function DoctorRegistrationForm() {
       confirmPassword: "",
     },
   });
+
+  const username = watch("username");
+  const { usernameStatus, usernameStatusIcon } = useDebouncedUsernameCheck(
+    username,
+    setError,
+    clearErrors
+  );
 
   return (
     <form
@@ -46,6 +57,10 @@ export function DoctorRegistrationForm() {
         placeholder="dr_arora12"
         icon={<Icons.Email />}
         error={errors.username?.message}
+        successMessage={
+          usernameStatus === "available" ? "Username is available" : undefined
+        }
+        rightElement={usernameStatusIcon}
       />
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
         <FormInput
@@ -84,10 +99,11 @@ export function DoctorRegistrationForm() {
       <Button
         type="submit"
         disabled={isPending}
+        loading={isPending}
         className="group mt-6 h-[64px] w-full rounded-[18px] bg-[#3D8F87] text-[18px] font-bold text-white shadow-[0_4px_6px_-4px_rgba(79,179,170,0.3),0_10px_15px_-3px_rgba(79,179,170,0.3)] transition-all active:scale-[0.98]"
       >
-        <span>Submit Request</span>
-        <Icons.Check />
+        <span>{isPending ? "Submitting..." : "Submit Request"}</span>
+        {!isPending && <Icons.Check />}
       </Button>
     </form>
   );
