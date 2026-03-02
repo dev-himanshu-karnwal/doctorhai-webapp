@@ -20,7 +20,6 @@ export function HospitalRegistrationForm() {
     defaultValues: {
       registrationType: "hospital",
       name: "",
-      contactPersonName: "",
       phone: "",
       email: "",
       password: "",
@@ -39,13 +38,6 @@ export function HospitalRegistrationForm() {
         placeholder="St. Mary's General Hospital"
         icon={<Icons.Hospital />}
         error={errors.name?.message}
-      />
-      <FormInput
-        label="Contact Person Name"
-        {...register("contactPersonName")}
-        placeholder="Dr. Sarah Smith"
-        icon={<Icons.User />}
-        error={errors.contactPersonName?.message}
       />
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
         <FormInput
@@ -84,10 +76,11 @@ export function HospitalRegistrationForm() {
       <Button
         type="submit"
         disabled={isPending}
+        loading={isPending}
         className="group mt-6 h-[64px] w-full rounded-[18px] bg-[#3D8F87] text-[18px] font-bold text-white shadow-[0_4px_6px_-4px_rgba(79,179,170,0.3),0_10px_15px_-3px_rgba(79,179,170,0.3)] transition-all active:scale-[0.98]"
       >
-        <span>Submit Request</span>
-        <Icons.Check />
+        <span>{isPending ? "Submitting..." : "Submit Request"}</span>
+        {!isPending && <Icons.Check />}
       </Button>
     </form>
   );

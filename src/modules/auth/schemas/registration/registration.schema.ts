@@ -15,7 +15,6 @@ export const baseRegistrationSchema = z
 
 export const hospitalRegistrationSchema = baseRegistrationSchema.extend({
   registrationType: z.literal("hospital"),
-  contactPersonName: z.string().min(2, "Contact person name is required"),
 });
 
 export const doctorRegistrationSchema = baseRegistrationSchema.extend({

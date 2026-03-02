@@ -46,11 +46,25 @@ const EyeOff = () => (
 interface FormInputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
   icon?: ReactNode;
+  rightElement?: ReactNode;
   error?: string;
+  successMessage?: string;
 }
 
 export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
-  ({ label, icon, error, type = "text", className, ...props }, ref) => {
+  (
+    {
+      label,
+      icon,
+      rightElement,
+      error,
+      successMessage,
+      type = "text",
+      className,
+      ...props
+    },
+    ref
+  ) => {
     const [show, setShow] = useState(false);
     const isPass = type === "password";
     return (
@@ -71,24 +85,41 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
               "h-[60px] rounded-[18px] border-[#F1F5F9] bg-[#F8FAFC] px-4 py-2 text-[16px] text-[#1E293B] placeholder:text-[#94A3B8] focus:border-[#3D8F87] focus:bg-white focus:ring-4 focus:ring-[#3D8F87]/5",
               icon && "pl-12",
               isPass && "pr-12",
-              error && "border-red-500 focus:border-red-500 focus:ring-red-500",
+              rightElement && "pr-12",
+              error &&
+                "border-red-400 focus:border-red-400 focus:ring-red-400/20",
+              successMessage &&
+                "border-emerald-400 focus:border-emerald-400 focus:ring-emerald-400/20",
               className
             )}
             {...props}
           />
-          {isPass && (
-            <Button
-              type="button"
-              variant="ghost"
-              onClick={() => setShow(!show)}
-              className="absolute top-1/2 right-2 h-9 w-9 -translate-y-1/2 p-0 text-[#94A3B8] hover:bg-transparent hover:text-[#3D8F87]"
-            >
-              {show ? <EyeOff /> : <Eye />}
-            </Button>
+          {rightElement ? (
+            <div className="absolute top-1/2 right-4 flex -translate-y-1/2 items-center justify-center">
+              {rightElement}
+            </div>
+          ) : (
+            isPass && (
+              <Button
+                type="button"
+                variant="ghost"
+                onClick={() => setShow(!show)}
+                className="absolute top-1/2 right-2 h-9 w-9 -translate-y-1/2 p-0 text-[#94A3B8] hover:bg-transparent hover:text-[#3D8F87]"
+              >
+                {show ? <EyeOff /> : <Eye />}
+              </Button>
+            )
           )}
         </div>
         {error && (
-          <p className="ml-1 text-[13px] font-medium text-red-500">{error}</p>
+          <p className="ml-1 text-[13px] font-medium text-red-500/90">
+            {error}
+          </p>
+        )}
+        {!error && successMessage && (
+          <p className="ml-1 text-[13px] font-medium text-emerald-500/90">
+            {successMessage}
+          </p>
         )}
       </div>
     );
