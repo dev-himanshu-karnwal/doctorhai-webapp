@@ -35,6 +35,7 @@ export function DoctorRegistrationForm() {
     },
   });
 
+  // eslint-disable-next-line react-hooks/incompatible-library
   const username = watch("username");
   const { usernameStatus, usernameStatusIcon } = useDebouncedUsernameCheck(
     username,

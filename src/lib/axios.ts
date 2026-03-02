@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, InternalAxiosRequestConfig } from "axios";
+import axios, { AxiosInstance } from "axios";
 
 const API_URL =
   `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1` ||

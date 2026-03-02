@@ -25,7 +25,7 @@ export function useRegister() {
 
         // 2. Update React Query cache
         queryClient.setQueryData(AUTH_KEYS.USER, user);
-      } catch (error) {
+      } catch {
         toast.error("Failed to fetch user after registration");
         router.push("/login");
       } finally {
