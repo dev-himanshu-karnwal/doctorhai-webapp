@@ -3,7 +3,9 @@ import { z } from "zod";
 export const baseRegistrationSchema = z
   .object({
     email: z.string().email("Invalid email address"),
-    phone: z.string().min(10, "Valid phone number is required"),
+    phone: z
+      .string()
+      .regex(/^\d{10}$/, "Phone number must be exactly 10 digits"),
     password: z.string().min(8, "Password must be at least 8 characters"),
     confirmPassword: z.string(),
     name: z.string().min(2, "Name is required"),

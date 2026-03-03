@@ -1,5 +1,5 @@
 import { DoctorStatusCard } from "./doctor-status-card";
-import type { DoctorEntry } from "../types/landing.types";
+import type { DoctorEntry } from "../../types";
 
 type LiveDoctorAvailabilityProps = {
   doctors: DoctorEntry[];

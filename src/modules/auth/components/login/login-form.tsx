@@ -10,10 +10,9 @@ import Link from "next/link";
 import { useLogin } from "../../hooks";
 import { LoginToggle } from "./toggle";
 import { Icons } from "../shared/icons";
-import { useAuth } from "../../context";
 
 export function LoginForm() {
-  const [loginType, setLoginType] = useState<"doctor" | "hospital">("doctor");
+  const [loginType, setLoginType] = useState<"username" | "email">("email");
   const { mutate, isPending } = useLogin();
 
   const {
@@ -24,17 +23,17 @@ export function LoginForm() {
   } = useForm<LoginValues>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      loginType: "hospital",
+      loginType: "email",
       email: "",
       password: "",
     } as LoginValues,
   });
 
-  const handleToggle = (type: "doctor" | "hospital") => {
+  const handleToggle = (type: "username" | "email") => {
     setLoginType(type);
     reset({
       loginType: type,
-      ...(type === "doctor" ? { username: "" } : { email: "" }),
+      ...(type === "username" ? { username: "" } : { email: "" }),
       password: "",
     } as LoginValues);
   };
@@ -53,7 +52,8 @@ export function LoginForm() {
         onSubmit={handleSubmit((data) => mutate(data))}
         className="w-full space-y-6"
       >
-        {loginType === "doctor" ? (
+        <input type="hidden" {...register("loginType")} value={loginType} />
+        {loginType === "username" ? (
           <FormInput
             label="Username"
             {...register("username" as const)}
@@ -93,10 +93,10 @@ export function LoginForm() {
         <div className="text-center text-[15px] font-medium text-[#64748B]">
           Don&apos;t have an account?{" "}
           <Link
-            href={`/register/${loginType}`}
+            href={`/register/${loginType === "username" ? "doctor" : "hospital"}`}
             className="font-bold text-[#3D8F87] hover:underline"
           >
-            Register as {loginType}
+            Register as {loginType === "username" ? "doctor" : "hospital"}
           </Link>
         </div>
       </form>

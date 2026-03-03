@@ -6,7 +6,8 @@ export const registerService = {
   register: async (
     data: RegistrationValues
   ): Promise<ApiResponse<{ auth: LoginResponse }>> => {
-    const { confirmPassword, ...payload } = data;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { confirmPassword: _confirmPassword, ...payload } = data;
 
     const response = await axiosInstance.post<
       ApiResponse<{ auth: LoginResponse }>
