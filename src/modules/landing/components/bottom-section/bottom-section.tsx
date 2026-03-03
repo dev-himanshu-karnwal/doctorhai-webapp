@@ -1,5 +1,4 @@
-import { BottomSectionFeatures } from "./bottom-section-features";
-import { BottomSectionMockup } from "./bottom-section-mockup";
+import { BottomSectionFeatures, BottomSectionMockup } from "./ui";
 
 export function BottomSection() {
   return (

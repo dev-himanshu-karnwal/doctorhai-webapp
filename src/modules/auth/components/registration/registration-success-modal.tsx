@@ -1,6 +1,6 @@
 "use client";
 
-import { Modal } from "@/components/models";
+import { Modal } from "@/components/modals";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { Icons } from "../shared/icons";
