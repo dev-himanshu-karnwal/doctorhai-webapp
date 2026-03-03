@@ -10,13 +10,10 @@ import { Button } from "@/components/ui/button";
 import { useRegister } from "../../hooks";
 import { Icons } from "../shared/icons";
 import { RegistrationSuccessModal } from "./registration-success-modal";
-import { useAuth } from "../../context";
 
 export function HospitalRegistrationForm() {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const { mutate, isPending } = useRegister();
-  const { user } = useAuth();
-  console.log(user);
   const {
     register,
     handleSubmit,

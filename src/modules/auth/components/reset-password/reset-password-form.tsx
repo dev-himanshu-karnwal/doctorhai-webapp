@@ -1,6 +1,6 @@
 "use client";
 
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormInput } from "../shared/form-input";
 import { Button } from "@/components/ui/button";
@@ -42,7 +42,7 @@ export function ResetPasswordForm() {
   const {
     register,
     handleSubmit,
-    watch,
+    control,
     formState: { errors },
   } = useForm<ResetPasswordValues>({
     resolver: zodResolver(resetPasswordSchema),
@@ -53,8 +53,16 @@ export function ResetPasswordForm() {
     },
   });
 
-  const watchedAccountId = watch("accountId");
-  const password = watch("newPassword") || "";
+  const watchedAccountId = useWatch({
+    control,
+    name: "accountId",
+  });
+
+  const password =
+    useWatch({
+      control,
+      name: "newPassword",
+    }) || "";
 
   const onSubmit = (data: ResetPasswordValues) => {
     mutate({
@@ -73,43 +81,41 @@ export function ResetPasswordForm() {
         <label className="text-[14px] font-bold text-[#1E293B]">
           Select Account to Reset
         </label>
-        <div className="scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent max-h-[300px] overflow-y-auto pr-2">
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-            {profiles.map((profile) => (
-              <label
-                key={profile.accountId}
-                className={`relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm transition-all hover:bg-gray-50 focus:outline-none ${
-                  watchedAccountId === profile.accountId
-                    ? "border-[#3D8F87] ring-1 ring-[#3D8F87]"
-                    : "border-gray-200"
-                }`}
-              >
-                <Input
-                  type="radio"
-                  value={profile.accountId}
-                  {...register("accountId")}
-                  className="sr-only"
-                />
-                <span className="flex flex-1">
-                  <span className="flex flex-col">
-                    <span className="block text-sm font-semibold text-gray-900 capitalize">
-                      {profile.type} Account
-                    </span>
-                    <span className="mt-1 flex items-center text-xs text-gray-500">
-                      {profile.name}
-                    </span>
+        <div className="grid grid-cols-1 items-stretch gap-4 sm:grid-cols-2 md:grid-cols-3">
+          {profiles.map((profile) => (
+            <label
+              key={profile.accountId}
+              className={`relative flex cursor-pointer flex-col rounded-xl border bg-white p-4 shadow-sm transition-all hover:bg-gray-50 focus:outline-none ${
+                watchedAccountId === profile.accountId
+                  ? "border-[#3D8F87] ring-1 ring-[#3D8F87]"
+                  : "border-gray-200"
+              }`}
+            >
+              <Input
+                type="radio"
+                value={profile.accountId}
+                {...register("accountId")}
+                className="sr-only"
+              />
+              <div className="flex flex-1 flex-col">
+                <div className="mb-2 flex items-center justify-between">
+                  <span className="block text-sm font-bold text-gray-900 capitalize">
+                    {profile.type}
                   </span>
+                  <Icons.CheckCircle
+                    className={`h-4 w-4 text-[#3D8F87] transition-opacity ${
+                      watchedAccountId === profile.accountId
+                        ? "opacity-100"
+                        : "opacity-0"
+                    }`}
+                  />
+                </div>
+                <span className="line-clamp-2 text-[12px] text-gray-500">
+                  {profile.name}
                 </span>
-                <Icons.CheckCircle
-                  className={`h-5 w-5 text-[#3D8F87] transition-opacity ${
-                    watchedAccountId === profile.accountId
-                      ? "opacity-100"
-                      : "opacity-0"
-                  }`}
-                />
-              </label>
-            ))}
-          </div>
+              </div>
+            </label>
+          ))}
         </div>
         {errors.accountId && (
           <p className="mt-1 text-xs text-red-600">
