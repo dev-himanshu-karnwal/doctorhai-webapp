@@ -28,7 +28,7 @@ export function RegistrationSuccessModal({
       </p>
       <Button
         onClick={() => router.push("/")}
-        className="h-[56px] w-full rounded-[14px] bg-[#4285F4] text-[16px] font-bold text-white shadow-[0_4px_12px_rgba(66,133,244,0.3)] transition-all hover:bg-[#3367D6] active:scale-[0.98]"
+        className="group mt-6 h-[64px] w-full rounded-[18px] bg-[#3D8F87] text-[18px] font-bold text-white shadow-[0_4px_6px_-4px_rgba(79,179,170,0.3),0_10px_15px_-3px_rgba(79,179,170,0.3)] transition-all active:scale-[0.98]"
       >
         Back to Home
       </Button>

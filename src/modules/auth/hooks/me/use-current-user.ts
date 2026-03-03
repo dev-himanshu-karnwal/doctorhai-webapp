@@ -11,6 +11,5 @@ export function useCurrentUser() {
     queryFn: meService.getCurrentUser,
     retry: false,
     staleTime: AUTH_CONFIG.STALE_TIME,
-    enabled: typeof window !== "undefined" && !!localStorage.getItem("token"),
   });
 }
