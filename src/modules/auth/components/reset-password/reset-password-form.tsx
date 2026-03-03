@@ -19,6 +19,7 @@ export function ResetPasswordForm() {
   const router = useRouter();
   const { mutate, isPending } = useResetPassword();
   const [profiles] = useState<ResetProfile[]>(() => {
+    if (typeof window === "undefined") return [];
     const stored = localStorage.getItem("resetProfiles");
     if (!stored) return [];
     try {
