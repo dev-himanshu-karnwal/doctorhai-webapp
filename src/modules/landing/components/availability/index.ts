@@ -1,2 +1,2 @@
 export * from "./live-doctor-availability";
-export * from "./doctor-status-card";
+export * from "./ui/doctor-status-card";

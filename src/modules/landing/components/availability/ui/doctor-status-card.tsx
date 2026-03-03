@@ -1,5 +1,5 @@
 import Image from "next/image";
-import type { DoctorEntry } from "../../types";
+import type { DoctorEntry } from "../../../types";
 
 type DoctorStatusCardProps = {
   doctor: DoctorEntry;

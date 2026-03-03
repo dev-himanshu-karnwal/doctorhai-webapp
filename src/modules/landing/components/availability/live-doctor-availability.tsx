@@ -1,4 +1,4 @@
-import { DoctorStatusCard } from "./doctor-status-card";
+import { DoctorStatusCard } from "./ui";
 import type { DoctorEntry } from "../../types";
 
 type LiveDoctorAvailabilityProps = {

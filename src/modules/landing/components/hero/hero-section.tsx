@@ -1,7 +1,5 @@
 import Image from "next/image";
-import { HeroSearchBar } from "./hero-search-bar";
-import { HeroActionButtons } from "./hero-action-buttons";
-import { HeroBadge } from "./hero-badge";
+import { HeroSearchBar, HeroActionButtons, HeroBadge } from "./ui";
 
 export function HeroSection() {
   return (

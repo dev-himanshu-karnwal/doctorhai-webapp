@@ -1,6 +1,4 @@
-import { WaitingCard } from "./waiting-card";
-import { CrowdedRoomsCard } from "./crowded-rooms-card";
-import { SimpleSolutionCard } from "./simple-solution-card";
+import { WaitingCard, CrowdedRoomsCard, SimpleSolutionCard } from "./ui";
 
 export function FeatureCards() {
   return (

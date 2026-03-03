@@ -1,4 +1,4 @@
-import type { DepartmentCategory } from "../../types";
+import type { DepartmentCategory } from "../../../types";
 import { Button } from "@/components/ui/button";
 
 type DepartmentsGridProps = {
