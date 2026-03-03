@@ -13,31 +13,26 @@ import {
 import { useResetPassword } from "../../hooks/reset-password";
 import { PasswordRequirements } from "../shared/password-requirements";
 import { useEffect, useState } from "react";
-import { Input } from "@/components/ui/input";
-
-type Profile = {
-  accountId: string;
-  type: string;
-  name: string;
-};
+import { ProfileAccountCard, type ResetProfile } from "./profile-account-card";
 
 export function ResetPasswordForm() {
   const router = useRouter();
   const { mutate, isPending } = useResetPassword();
-  const [profiles, setProfiles] = useState<Profile[]>([]);
+  const [profiles] = useState<ResetProfile[]>(() => {
+    const stored = localStorage.getItem("resetProfiles");
+    if (!stored) return [];
+    try {
+      return JSON.parse(stored);
+    } catch {
+      return [];
+    }
+  });
 
   useEffect(() => {
-    const storedProfiles = localStorage.getItem("resetProfiles");
-    if (storedProfiles) {
-      try {
-        setProfiles(JSON.parse(storedProfiles));
-      } catch {
-        console.error("Failed to parse reset profiles");
-      }
-    } else {
+    if (profiles.length === 0) {
       router.push("/forgot-password");
     }
-  }, [router]);
+  }, [profiles, router]);
 
   const {
     register,
@@ -83,38 +78,12 @@ export function ResetPasswordForm() {
         </label>
         <div className="grid grid-cols-1 items-stretch gap-4 sm:grid-cols-2 md:grid-cols-3">
           {profiles.map((profile) => (
-            <label
+            <ProfileAccountCard
               key={profile.accountId}
-              className={`relative flex cursor-pointer flex-col rounded-xl border bg-white p-4 shadow-sm transition-all hover:bg-gray-50 focus:outline-none ${
-                watchedAccountId === profile.accountId
-                  ? "border-[#3D8F87] ring-1 ring-[#3D8F87]"
-                  : "border-gray-200"
-              }`}
-            >
-              <Input
-                type="radio"
-                value={profile.accountId}
-                {...register("accountId")}
-                className="sr-only"
-              />
-              <div className="flex flex-1 flex-col">
-                <div className="mb-2 flex items-center justify-between">
-                  <span className="block text-sm font-bold text-gray-900 capitalize">
-                    {profile.type}
-                  </span>
-                  <Icons.CheckCircle
-                    className={`h-4 w-4 text-[#3D8F87] transition-opacity ${
-                      watchedAccountId === profile.accountId
-                        ? "opacity-100"
-                        : "opacity-0"
-                    }`}
-                  />
-                </div>
-                <span className="line-clamp-2 text-[12px] text-gray-500">
-                  {profile.name}
-                </span>
-              </div>
-            </label>
+              profile={profile}
+              isSelected={watchedAccountId === profile.accountId}
+              register={register}
+            />
           ))}
         </div>
         {errors.accountId && (
