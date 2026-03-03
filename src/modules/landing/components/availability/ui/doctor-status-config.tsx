@@ -1,4 +1,4 @@
-import type { DoctorEntry } from "../../types";
+import type { DoctorEntry } from "../../../types";
 import {
   IconBreakFooter,
   IconBreakTop,
