@@ -6,7 +6,13 @@ export const baseRegistrationSchema = z
     phone: z
       .string()
       .regex(/^\d{10}$/, "Phone number must be exactly 10 digits"),
-    password: z.string().min(8, "Password must be at least 8 characters"),
+    password: z
+      .string()
+      .min(8, "Password must be at least 8 characters")
+      .regex(/[A-Z]/, "One uppercase letter")
+      .regex(/[a-z]/, "One lowercase letter")
+      .regex(/[0-9]/, "One number (0-9)")
+      .regex(/[^A-Za-z0-9]/, "One special character (!@#$%)"),
     confirmPassword: z.string(),
     name: z.string().min(2, "Name is required"),
   })

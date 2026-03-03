@@ -110,6 +110,7 @@ export function DoctorRegistrationForm() {
             error={errors.confirmPassword?.message}
           />
         </div>
+
         <Button
           type="submit"
           disabled={isPending}
