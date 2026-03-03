@@ -5,6 +5,9 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/cn";
 import { Icons } from "../shared/icons";
 
+import { UseFormRegister } from "react-hook-form";
+import { type ResetPasswordValues } from "../../schemas/reset-password/reset-password.schema";
+
 export type ResetProfile = {
   accountId: string;
   type: string;
@@ -14,7 +17,7 @@ export type ResetProfile = {
 interface ProfileAccountCardProps {
   profile: ResetProfile;
   isSelected: boolean;
-  register: any;
+  register: UseFormRegister<ResetPasswordValues>;
 }
 
 export const ProfileAccountCard = memo(

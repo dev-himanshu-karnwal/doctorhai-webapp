@@ -22,21 +22,18 @@ import { toast } from "sonner";
 
 export function ForgotPasswordForm() {
   const [step, setStep] = useState<"email" | "otp">("email");
-  const [timeLeft, setTimeLeft] = useState(60);
-  const [isResendDisabled, setIsResendDisabled] = useState(false);
+  const [resendTimer, setResendTimer] = useState(0);
   const router = useRouter();
 
   useEffect(() => {
-    let timer: NodeJS.Timeout;
-    if (isResendDisabled && timeLeft > 0) {
-      timer = setTimeout(() => {
-        setTimeLeft((prev) => prev - 1);
-      }, 1000);
-    } else if (timeLeft === 0) {
-      setIsResendDisabled(false);
-    }
-    return () => clearTimeout(timer);
-  }, [isResendDisabled, timeLeft]);
+    if (resendTimer <= 0) return;
+    const interval = setInterval(() => {
+      setResendTimer((prev) => Math.max(0, prev - 1));
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [resendTimer]);
+
+  const isResendDisabled = resendTimer > 0;
 
   const { mutate: requestOtp, isPending: isRequestingOtp } =
     useForgotPasswordRequest();
@@ -58,8 +55,7 @@ export function ForgotPasswordForm() {
       onSuccess: () => {
         toast.success("OTP sent to your email!");
         otpForm.setValue("email", data.email);
-        setTimeLeft(60);
-        setIsResendDisabled(true);
+        setResendTimer(60);
         setStep("otp");
       },
     });
@@ -73,8 +69,7 @@ export function ForgotPasswordForm() {
       {
         onSuccess: () => {
           toast.success("OTP resent successfully!");
-          setTimeLeft(60);
-          setIsResendDisabled(true);
+          setResendTimer(60);
         },
       }
     );
@@ -167,7 +162,7 @@ export function ForgotPasswordForm() {
             {isRequestingOtp
               ? "Sending..."
               : isResendDisabled
-                ? `Resend code in 00:${timeLeft.toString().padStart(2, "0")}`
+                ? `Resend code in 00:${resendTimer.toString().padStart(2, "0")}`
                 : "Resend OTP"}
           </Button>
           <Button
