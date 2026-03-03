@@ -47,6 +47,7 @@ interface FormInputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
   icon?: ReactNode;
   rightElement?: ReactNode;
+  addonLeft?: ReactNode;
   error?: string;
   successMessage?: string;
 }
@@ -57,6 +58,7 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
       label,
       icon,
       rightElement,
+      addonLeft,
       error,
       successMessage,
       type = "text",
@@ -78,12 +80,24 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
               {icon}
             </div>
           )}
+          {addonLeft && (
+            <div
+              className={cn(
+                "absolute top-1/2 z-10 flex -translate-y-1/2 items-center gap-1.5 text-[16px] font-medium text-[#1E293B]",
+                icon ? "left-11" : "left-4"
+              )}
+            >
+              {addonLeft}
+            </div>
+          )}
           <Input
             ref={ref}
             type={isPass && show ? "text" : type}
             className={cn(
               "h-[60px] rounded-[18px] border-[#F1F5F9] bg-[#F8FAFC] px-4 py-2 text-[16px] text-[#1E293B] placeholder:text-[#94A3B8] focus:border-[#3D8F87] focus:bg-white focus:ring-4 focus:ring-[#3D8F87]/5",
-              icon && "pl-12",
+              icon && !addonLeft && "pl-12",
+              icon && addonLeft && "pl-[100px]",
+              !icon && addonLeft && "pl-[75px]",
               isPass && "pr-12",
               rightElement && "pr-12",
               error &&

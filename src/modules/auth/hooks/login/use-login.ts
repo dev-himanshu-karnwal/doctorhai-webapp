@@ -16,12 +16,8 @@ export function useLogin() {
 
   return useMutation({
     mutationFn: (data: LoginValues) => loginService.login(data),
-    onSuccess: async (response) => {
-      const authData = response.data.auth;
-      // 1. Store token
-      localStorage.setItem("token", authData.accessToken);
-
-      // 2. Fetch user profile to sync AuthContext
+    onSuccess: async () => {
+      // 1. Fetch user profile to sync AuthContext
       try {
         setLoading(true);
         const user = await meService.getCurrentUser();

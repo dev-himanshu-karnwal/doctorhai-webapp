@@ -4,7 +4,7 @@ import type {
   FeatureCard,
   HospitalEntry,
   WorkflowStep,
-} from "../types/landing.types";
+} from "../types";
 
 export const DUMMY_DEPARTMENTS: DepartmentCategory[] = [
   { id: "1", label: "General Physician" },

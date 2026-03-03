@@ -24,6 +24,7 @@ export interface Account {
   username: string;
   roles: Role[];
   isActive: boolean;
+  isVerified: boolean;
   createdAt: string;
   updatedAt: string;
 }
