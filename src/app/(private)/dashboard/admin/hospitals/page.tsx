@@ -383,32 +383,32 @@ function HospitalCard({ h }: { h: Hospital }) {
         <div className="mb-3 w-full border-t border-gray-100" />
 
         {/* Stats */}
-        <div className="mb-1 grid w-full grid-cols-2 gap-3">
-          <div>
+        <div className="mb-1 flex w-full overflow-hidden rounded-[12px] bg-[#F1F5F9]">
+          {/* Total Doctors */}
+          <div className="flex flex-1 flex-col items-center justify-center px-4 py-3">
             <p
-              className="mb-1.5 font-bold text-gray-400 uppercase"
-              style={{ fontSize: "9px", letterSpacing: "0.1em" }}
+              className="mb-1 font-bold text-[#94A3B8] uppercase"
+              style={{ fontSize: "9.5px", letterSpacing: "0.08em" }}
             >
               Total Doctors
             </p>
-            <span
-              className="leading-none font-extrabold text-gray-900"
-              style={{ fontSize: 24 }}
-            >
+            <span className="text-[22px] leading-none font-extrabold text-[#1E293B]">
               {h.totalDoctors !== null ? h.totalDoctors : "–"}
             </span>
           </div>
-          <div>
+
+          {/* Vertical divider */}
+          <div className="my-2 w-px self-stretch bg-[#CBD5E1]/60" />
+
+          {/* Daily Visits */}
+          <div className="flex flex-1 flex-col items-center justify-center px-4 py-3">
             <p
-              className="mb-1.5 font-bold text-gray-400 uppercase"
-              style={{ fontSize: "9px", letterSpacing: "0.1em" }}
+              className="mb-1 font-bold text-[#94A3B8] uppercase"
+              style={{ fontSize: "9.5px", letterSpacing: "0.08em" }}
             >
               Daily Visits
             </p>
-            <span
-              className="leading-none font-extrabold text-gray-900"
-              style={{ fontSize: 24 }}
-            >
+            <span className="text-[22px] leading-none font-extrabold text-[#1E293B]">
               {h.dailyVisits !== null ? h.dailyVisits : "–"}
             </span>
           </div>
@@ -422,11 +422,16 @@ function HospitalCard({ h }: { h: Hospital }) {
           <div className="grid grid-cols-2 gap-2">
             <Link
               href={`/dashboard/admin/hospitals/${h.id}`}
-              className="bg-white py-2.5 text-center font-semibold text-gray-700 transition-colors hover:bg-gray-50"
+              className="text-center font-semibold text-gray-700 transition-colors hover:bg-[#E2E8F0]"
               style={{
                 fontSize: 12.5,
-                border: "1.5px solid #E5E7EB",
+                background: "#F1F5F9",
                 borderRadius: 12,
+                border: "none",
+                paddingTop: 10.5,
+                paddingBottom: 11.5,
+                paddingLeft: 65.75,
+                paddingRight: 65.75,
               }}
             >
               Edit
@@ -472,11 +477,16 @@ function HospitalCard({ h }: { h: Hospital }) {
         {h.status === "INACTIVE" && (
           <div className="grid grid-cols-2 gap-2">
             <button
-              className="bg-white py-2.5 font-semibold text-gray-700 transition-colors hover:bg-gray-50"
+              className="font-semibold text-gray-700 transition-colors hover:bg-[#E2E8F0]"
               style={{
                 fontSize: 12.5,
-                border: "1.5px solid #E5E7EB",
+                background: "#F1F5F9",
                 borderRadius: 12,
+                border: "none",
+                paddingTop: 10.5,
+                paddingBottom: 11.5,
+                paddingLeft: 42.59,
+                paddingRight: 42.6,
               }}
             >
               Reactivate
@@ -541,13 +551,16 @@ export default function HospitalManagementPage() {
         </div>
 
         {/* ── Page Header ── */}
-        <div className="mb-7 flex items-start justify-between">
+        <div className="mb-7 flex items-end justify-between">
           {/* Left */}
           <div className="flex-1 pr-8">
-            <h1 className="mb-2 text-[34px] leading-[1.15] font-extrabold tracking-tight text-gray-900">
+            <h1
+              className="mb-2 font-[Manrope] text-[48px] leading-[48px] font-extrabold text-[#0F172A]"
+              style={{ letterSpacing: "-1.2px" }}
+            >
               Hospital Management
             </h1>
-            <p className="max-w-[400px] text-[13.5px] leading-relaxed text-gray-500">
+            <p className="max-w-[600px] text-[18px] leading-[28px] font-medium text-[#64748B]">
               Manage registered hospitals, monitor operational status, and
               configure institutional access levels.
             </p>
@@ -555,45 +568,59 @@ export default function HospitalManagementPage() {
 
           {/* Right: stat card */}
           <div
-            className="flex-shrink-0 bg-white"
+            className="flex flex-shrink-0 flex-col justify-between bg-white"
             style={{
-              borderRadius: 20,
+              width: 384,
+              minHeight: 186,
+              borderRadius: 24,
               border: "1px solid #F1F2F4",
-              boxShadow: "0 1px 8px 0 rgba(0,0,0,0.07)",
-              padding: "16px 20px",
-              minWidth: 220,
+              boxShadow: "0px 4px 24px -4px rgba(0,0,0,0.04)",
+              padding: "20px 24px",
             }}
           >
-            <div className="mb-2 flex items-center justify-between">
+            {/* Top row: icon + growth badge */}
+            <div className="flex items-center justify-between">
               <div
                 className="flex items-center justify-center"
                 style={{
-                  width: 44,
-                  height: 44,
-                  borderRadius: 12,
+                  width: 56,
+                  height: 56,
+                  borderRadius: 16,
                   background: "#EEF4FF",
+                  boxShadow:
+                    "0px 4px 6px -4px rgba(25,127,230,0.20), 0px 10px 15px -3px rgba(25,127,230,0.20)",
                 }}
               >
-                <IconGridFilled className="h-5 w-5 text-blue-500" />
+                <IconGridFilled className="h-6 w-6 text-blue-500" />
               </div>
-              <span className="text-[11px] font-bold text-emerald-500">
+              <span className="rounded-full bg-[#ECFDF5] px-3 py-[6px] text-[12px] leading-[16px] font-bold text-[#059669]">
                 ↑ 12% Growth
               </span>
             </div>
-            <p
-              className="mb-1 font-bold text-gray-400 uppercase"
-              style={{ fontSize: "9px", letterSpacing: "0.1em" }}
-            >
-              Total Registered Hospitals
-            </p>
-            <span className="text-[30px] leading-none font-extrabold text-gray-900">
-              1,248
-            </span>
+
+            {/* Bottom: label + number */}
+            <div>
+              <p
+                className="mb-1 leading-[20px] font-bold text-[#94A3B8] uppercase"
+                style={{ fontSize: "14px", letterSpacing: "0.7px" }}
+              >
+                Total Registered Hospitals
+              </p>
+              <span className="text-[36px] leading-[40px] font-extrabold text-[#0F172A]">
+                1,248
+              </span>
+            </div>
           </div>
         </div>
 
         {/* ── Filter Bar ── */}
-        <div className="mb-6 flex items-center gap-3">
+        <div
+          className="mb-6 flex items-center gap-2 rounded-[16px] bg-white/90 p-2 backdrop-blur-[12px]"
+          style={{
+            border: "1px solid rgba(226,232,240,0.6)",
+            boxShadow: "0px 1px 2px 0px rgba(0,0,0,0.05)",
+          }}
+        >
           <div className="relative flex-1">
             <SearchIcon className="absolute top-1/2 left-3 h-[15px] w-[15px] -translate-y-1/2 text-gray-400" />
             <input
@@ -601,25 +628,33 @@ export default function HospitalManagementPage() {
               placeholder="Search hospitals by name, ID or address..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full border border-gray-200 bg-white pr-4 pl-10 text-gray-600 placeholder-gray-400 transition-all focus:border-blue-300 focus:ring-2 focus:ring-blue-100 focus:outline-none"
+              className="w-full text-gray-600 placeholder-gray-400 transition-all focus:outline-none"
               style={{
                 fontSize: 13,
-                padding: "9px 14px 9px 38px",
+                background: "#F8FAFC",
                 borderRadius: 12,
-                boxShadow: "0 1px 3px rgba(0,0,0,0.05)",
+                border: "1px solid transparent",
+                paddingTop: 14,
+                paddingRight: 16,
+                paddingBottom: 15,
+                paddingLeft: 44,
               }}
             />
           </div>
           {["Filter by City", "Status", "Newest First"].map((label) => (
             <button
               key={label}
-              className="flex items-center gap-1.5 bg-white font-medium whitespace-nowrap text-gray-600 transition-colors hover:bg-gray-50"
+              className="flex items-center justify-between gap-1.5 font-medium whitespace-nowrap text-gray-600 transition-colors hover:bg-[#F1F5F9]"
               style={{
+                width: 160,
                 fontSize: 12.5,
-                padding: "9px 12px",
-                border: "1px solid #E5E7EB",
+                background: "#F8FAFC",
                 borderRadius: 12,
-                boxShadow: "0 1px 3px rgba(0,0,0,0.05)",
+                border: "1px solid transparent",
+                paddingTop: 15,
+                paddingBottom: 15,
+                paddingLeft: 12,
+                paddingRight: 12,
               }}
             >
               {label}

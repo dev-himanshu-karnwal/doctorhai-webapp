@@ -5,27 +5,13 @@ import Link from "next/link";
 
 // ─── Icons ─────────────────────────────────────────────────────────────────────
 
-const ArrowLeftIcon = ({ className = "" }: { className?: string }) => (
-  <svg
-    className={className}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <line x1="19" y1="12" x2="5" y2="12" />
-    <polyline points="12 19 5 12 12 5" />
-  </svg>
-);
 const MapPinIcon = ({ className = "" }: { className?: string }) => (
   <svg
     className={className}
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    strokeWidth="2"
+    strokeWidth="2.5"
     strokeLinecap="round"
     strokeLinejoin="round"
   >
@@ -39,7 +25,7 @@ const GlobeIcon = ({ className = "" }: { className?: string }) => (
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    strokeWidth="2"
+    strokeWidth="2.5"
     strokeLinecap="round"
     strokeLinejoin="round"
   >
@@ -54,7 +40,7 @@ const StethoscopeIcon = ({ className = "" }: { className?: string }) => (
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    strokeWidth="2"
+    strokeWidth="2.5"
     strokeLinecap="round"
     strokeLinejoin="round"
   >
@@ -69,7 +55,7 @@ const MonitorIcon = ({ className = "" }: { className?: string }) => (
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    strokeWidth="2"
+    strokeWidth="2.5"
     strokeLinecap="round"
     strokeLinejoin="round"
   >
@@ -84,7 +70,7 @@ const CalendarIcon = ({ className = "" }: { className?: string }) => (
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    strokeWidth="2"
+    strokeWidth="2.5"
     strokeLinecap="round"
     strokeLinejoin="round"
   >
@@ -100,7 +86,7 @@ const ShieldCheckIcon = ({ className = "" }: { className?: string }) => (
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    strokeWidth="2"
+    strokeWidth="2.5"
     strokeLinecap="round"
     strokeLinejoin="round"
   >
@@ -114,7 +100,7 @@ const SettingsIcon = ({ className = "" }: { className?: string }) => (
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    strokeWidth="2"
+    strokeWidth="2.5"
     strokeLinecap="round"
     strokeLinejoin="round"
   >
@@ -128,7 +114,7 @@ const UsersIcon = ({ className = "" }: { className?: string }) => (
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    strokeWidth="2"
+    strokeWidth="2.5"
     strokeLinecap="round"
     strokeLinejoin="round"
   >
@@ -143,7 +129,7 @@ const SearchIcon = ({ className = "" }: { className?: string }) => (
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    strokeWidth="2"
+    strokeWidth="2.5"
     strokeLinecap="round"
     strokeLinejoin="round"
   >
@@ -157,7 +143,7 @@ const PlusIcon = ({ className = "" }: { className?: string }) => (
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    strokeWidth="2.5"
+    strokeWidth="3"
     strokeLinecap="round"
     strokeLinejoin="round"
   >
@@ -171,15 +157,15 @@ const PencilIcon = ({ className = "" }: { className?: string }) => (
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    strokeWidth="2"
+    strokeWidth="2.5"
     strokeLinecap="round"
     strokeLinejoin="round"
   >
-    <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" />
-    <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
+    <path d="M12 20h9" />
+    <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
   </svg>
 );
-const ClockIcon = ({ className = "" }: { className?: string }) => (
+const BanIcon = ({ className = "" }: { className?: string }) => (
   <svg
     className={className}
     viewBox="0 0 24 24"
@@ -190,22 +176,21 @@ const ClockIcon = ({ className = "" }: { className?: string }) => (
     strokeLinejoin="round"
   >
     <circle cx="12" cy="12" r="10" />
-    <polyline points="12 6 12 12 16 14" />
+    <line x1="4.93" y1="4.93" x2="19.07" y2="19.07" />
   </svg>
 );
-const AlertOctagonIcon = ({ className = "" }: { className?: string }) => (
+const RefreshIcon = ({ className = "" }: { className?: string }) => (
   <svg
     className={className}
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    strokeWidth="2"
+    strokeWidth="2.5"
     strokeLinecap="round"
     strokeLinejoin="round"
   >
-    <polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2" />
-    <line x1="12" y1="8" x2="12" y2="12" />
-    <line x1="12" y1="16" x2="12.01" y2="16" />
+    <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+    <path d="M3 3v5h5" />
   </svg>
 );
 const TrashIcon = ({ className = "" }: { className?: string }) => (
@@ -214,13 +199,14 @@ const TrashIcon = ({ className = "" }: { className?: string }) => (
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    strokeWidth="2"
+    strokeWidth="2.5"
     strokeLinecap="round"
     strokeLinejoin="round"
   >
-    <polyline points="3 6 5 6 21 6" />
-    <path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6" />
-    <path d="M10 11v6M14 11v6M9 6V4h6v2" />
+    <path d="M3 6h18" />
+    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+    <line x1="10" y1="11" x2="10" y2="17" />
+    <line x1="14" y1="11" x2="14" y2="17" />
   </svg>
 );
 const HospitalIcon = ({ className = "" }: { className?: string }) => (
@@ -229,11 +215,11 @@ const HospitalIcon = ({ className = "" }: { className?: string }) => (
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    strokeWidth="2"
+    strokeWidth="3"
     strokeLinecap="round"
     strokeLinejoin="round"
   >
-    <rect x="3" y="3" width="18" height="18" rx="4" />
+    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
     <line x1="12" y1="8" x2="12" y2="16" />
     <line x1="8" y1="12" x2="16" y2="12" />
   </svg>
@@ -244,25 +230,53 @@ const ChevronDownIcon = ({ className = "" }: { className?: string }) => (
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    strokeWidth="2"
+    strokeWidth="2.5"
     strokeLinecap="round"
     strokeLinejoin="round"
   >
     <polyline points="6 9 12 15 18 9" />
   </svg>
 );
-const RefreshIcon = ({ className = "" }: { className?: string }) => (
+
+const AdminControlsIcon = ({ className = "" }: { className?: string }) => (
   <svg
     className={className}
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    strokeWidth="2"
+    strokeWidth="2.5"
     strokeLinecap="round"
     strokeLinejoin="round"
   >
-    <polyline points="1 4 1 10 7 10" />
-    <path d="M3.51 15a9 9 0 102.13-9.36L1 10" />
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+    <circle cx="12" cy="11" r="3" />
+  </svg>
+);
+
+// ─── Shared SVG Components ───────────────────────────────────────────────────
+
+const StatusDot = ({ active }: { active: boolean }) => (
+  <svg
+    className="h-[6px] w-[6px] shrink-0 fill-current"
+    style={{ color: active ? "#10b981" : "#f59e0b" }}
+    viewBox="0 0 8 8"
+  >
+    <circle cx="4" cy="4" r="4" />
+  </svg>
+);
+
+const TrendUpIcon = ({ className = "" }: { className?: string }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="3"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <line x1="12" y1="19" x2="12" y2="5" />
+    <polyline points="5 12 12 5 19 12" />
   </svg>
 );
 
@@ -282,36 +296,36 @@ export default function HospitalDetailPage() {
 
   const doctors = [
     {
-      initials: "S",
+      initials: "",
       name: "Dr. Sarah Jenkins",
       specialty: "Cardiology • Chief",
       status: "Active",
-      avatarBg: "#E0F2FE",
-      avatarColor: "#0284C7",
+      avatarBg: "#e2e8f0",
+      avatarColor: "#64748b",
     },
     {
       initials: "MJ",
       name: "Dr. Michael Johnson",
       specialty: "Neurology",
       status: "On Leave",
-      avatarBg: "#1E293B",
-      avatarColor: "#FFFFFF",
+      avatarBg: "#e0e7ff",
+      avatarColor: "#4f46e5",
     },
     {
       initials: "EL",
       name: "Dr. Emily Larson",
       specialty: "Pediatrics",
       status: "Active",
-      avatarBg: "#EDE9FE",
-      avatarColor: "#7C3AED",
+      avatarBg: "#fce7f3",
+      avatarColor: "#db2777",
     },
   ];
 
   const labelStyle: React.CSSProperties = {
-    fontSize: "10px",
-    letterSpacing: "0.08em",
+    fontSize: "9.5px",
+    letterSpacing: "0.06em",
     fontWeight: 700,
-    color: "#9CA3AF",
+    color: "#64748b", // slate-500
     textTransform: "uppercase",
     marginBottom: 6,
     display: "block",
@@ -319,332 +333,335 @@ export default function HospitalDetailPage() {
 
   const inputStyle: React.CSSProperties = {
     width: "100%",
-    border: "1.5px solid #E5E7EB",
-    borderRadius: 10,
-    padding: "9px 12px",
+    border: "none",
+    borderRadius: 8,
+    padding: "10px 14px",
     fontSize: 13,
-    color: "#374151",
+    fontWeight: 500,
+    color: "#334155", // slate-700
     outline: "none",
-    background: "#FFFFFF",
+    background: "#f8fafc", // slate-50
+    borderWidth: "1px",
+    borderColor: "#f1f5f9",
   };
 
   return (
-    <div className="min-h-screen" style={{ background: "#F0F2F5" }}>
-      <div className="mx-auto max-w-6xl px-8 py-7">
-        {/* ── Breadcrumb ── */}
-        <div className="mb-5 flex items-center gap-2">
-          <Link
-            href="/dashboard/admin"
-            className="flex items-center gap-1.5 text-[13px] font-medium text-gray-500 transition-colors hover:text-gray-700"
+    <div className="min-h-screen bg-[#f1fcf8] pt-6 pb-12 font-sans">
+      <div className="mx-auto max-w-[1040px] px-8">
+        {/* ── Hospital Header Card ── */}
+        <div
+          className="mb-6 flex items-center justify-between bg-white p-7"
+          style={{
+            borderRadius: 16,
+            boxShadow: "0 1px 3px rgba(0,0,0,0.02), 0 1px 2px rgba(0,0,0,0.01)",
+            border: "1px solid #f1f5f9",
+          }}
+        >
+          <div className="flex items-center gap-5">
+            {/* Icon */}
+            <div
+              className="flex flex-shrink-0 items-center justify-center text-[#10b981]" // emerald-500
+              style={{
+                width: 60,
+                height: 60,
+                borderRadius: 14,
+                background: "#ecfdf5", // emerald-50
+                border: "1px solid #d1fae5",
+              }}
+            >
+              <HospitalIcon className="h-7 w-7" />
+            </div>
+
+            {/* Info */}
+            <div className="min-w-0 flex-1">
+              <div className="mb-1.5 flex flex-wrap items-center gap-3">
+                <h1 className="text-[22px] leading-tight font-bold tracking-tight text-[#0f172a]">
+                  St. Mary&apos;s General Hospital
+                </h1>
+                <span
+                  className="rounded-[6px] bg-[#eff6ff] px-2.5 py-1 font-bold text-[#3b82f6]"
+                  style={{ fontSize: "10px", letterSpacing: "0.02em" }}
+                >
+                  ID: HOSP-8821
+                </span>
+              </div>
+              <div className="flex flex-wrap items-center gap-3">
+                <div className="flex items-center gap-1.5 text-gray-500">
+                  <MapPinIcon className="h-3.5 w-3.5 text-[#94a3b8]" />
+                  <span className="text-[13px] font-medium text-[#64748b]">
+                    123 Healthcare Blvd, New York, NY 10001
+                  </span>
+                </div>
+                <span className="text-[#cbd5e1]">•</span>
+                <div className="flex items-center gap-1.5 text-gray-500">
+                  <GlobeIcon className="h-3.5 w-3.5 text-[#94a3b8]" />
+                  <span className="text-[13px] font-medium text-[#64748b]">
+                    www.stmarys-health.org
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Operational toggle wrapper */}
+          <div className="flex flex-shrink-0">
+            <div className="flex items-center gap-4 rounded-[12px] border border-[#f1f5f9] bg-[#f8fafc] px-4 py-2.5">
+              {/* Toggle */}
+              <button
+                onClick={() => setOperational(!operational)}
+                className="relative inline-flex shrink-0 items-center transition-colors duration-200 focus:outline-none"
+                style={{
+                  width: 44,
+                  height: 24,
+                  borderRadius: 999,
+                  background: operational ? "#e2e8f0" : "#d1d5db",
+                }}
+              >
+                <span
+                  className="absolute rounded-full bg-white shadow-sm transition-transform duration-200"
+                  style={{
+                    width: 18,
+                    height: 18,
+                    top: 3,
+                    left: operational ? 3 : 23,
+                  }}
+                />
+              </button>
+              <div className="flex flex-col">
+                <p
+                  className="font-bold text-[#0f172a]"
+                  style={{ fontSize: "11px", letterSpacing: "0.02em" }}
+                >
+                  {operational ? "OPERATIONAL" : "INACTIVE"}
+                </p>
+                <p
+                  className="font-medium text-[#64748b]"
+                  style={{ fontSize: "10px" }}
+                >
+                  {operational
+                    ? "Accepting new patients"
+                    : "Not accepting patients"}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ── Stats Row ── */}
+        <div className="mb-6 grid grid-cols-4 gap-4">
+          {/* Total Doctors */}
+          <div
+            className="flex flex-col justify-between bg-white p-5"
+            style={{
+              borderRadius: 16,
+              boxShadow:
+                "0 1px 3px rgba(0,0,0,0.02), 0 1px 2px rgba(0,0,0,0.01)",
+              border: "1px solid #f1f5f9",
+            }}
           >
-            <ArrowLeftIcon className="h-[14px] w-[14px]" />
-            Verification Dashboard
-          </Link>
-          <span className="text-gray-300">/</span>
-          <Link
-            href="/dashboard/admin/hospitals"
-            className="text-[13px] font-medium text-gray-500 transition-colors hover:text-gray-700"
+            <div className="mb-4 flex items-center justify-between">
+              <div
+                className="flex items-center justify-center text-[#3b82f6]" // blue-500
+                style={{
+                  width: 32,
+                  height: 32,
+                  borderRadius: 8,
+                  background: "#eff6ff", // blue-50
+                }}
+              >
+                <StethoscopeIcon className="h-4 w-4" />
+              </div>
+              <div
+                className="flex items-center gap-1 rounded-[6px] bg-[#ecfdf5] px-2 py-0.5 font-bold text-[#10b981]"
+                style={{ fontSize: 10 }}
+              >
+                <TrendUpIcon className="h-2.5 w-2.5" />
+                4%
+              </div>
+            </div>
+            <div>
+              <p
+                className="mb-1.5 font-bold text-[#94a3b8] uppercase"
+                style={{ fontSize: "10px", letterSpacing: "0.08em" }}
+              >
+                Total Doctors
+              </p>
+              <span className="text-[28px] leading-tight font-black text-[#0f172a]">
+                142
+              </span>
+            </div>
+          </div>
+
+          {/* Active Sessions */}
+          <div
+            className="flex flex-col justify-between bg-white p-5"
+            style={{
+              borderRadius: 16,
+              boxShadow:
+                "0 1px 3px rgba(0,0,0,0.02), 0 1px 2px rgba(0,0,0,0.01)",
+              border: "1px solid #f1f5f9",
+            }}
           >
-            Hospital Management
-          </Link>
-          <span className="text-gray-300">/</span>
-          <span className="text-[13px] text-gray-400">
-            St. Mary&apos;s General Hospital
-          </span>
+            <div className="mb-4 flex items-center justify-between">
+              <div
+                className="flex items-center justify-center text-[#9333ea]" // purple-600
+                style={{
+                  width: 32,
+                  height: 32,
+                  borderRadius: 8,
+                  background: "#faf5ff", // fuchsia-50/purple-50
+                }}
+              >
+                <MonitorIcon className="h-4 w-4" />
+              </div>
+              <div
+                className="flex items-center gap-1 rounded-[6px] bg-[#ecfdf5] px-2 py-0.5 font-bold text-[#10b981]"
+                style={{ fontSize: 10 }}
+              >
+                <TrendUpIcon className="h-2.5 w-2.5" />
+                12%
+              </div>
+            </div>
+            <div>
+              <p
+                className="mb-1.5 font-bold text-[#94a3b8] uppercase"
+                style={{ fontSize: "10px", letterSpacing: "0.08em" }}
+              >
+                Active Sessions
+              </p>
+              <span className="text-[28px] leading-tight font-black text-[#0f172a]">
+                58
+              </span>
+            </div>
+          </div>
+
+          {/* Monthly Visits */}
+          <div
+            className="flex flex-col justify-between bg-white p-5"
+            style={{
+              borderRadius: 16,
+              boxShadow:
+                "0 1px 3px rgba(0,0,0,0.02), 0 1px 2px rgba(0,0,0,0.01)",
+              border: "1px solid #f1f5f9",
+            }}
+          >
+            <div className="mb-4 flex items-center justify-between">
+              <div
+                className="flex items-center justify-center text-[#f59e0b]" // amber-500
+                style={{
+                  width: 32,
+                  height: 32,
+                  borderRadius: 8,
+                  background: "#fffbeb", // amber-50
+                }}
+              >
+                <CalendarIcon className="h-4 w-4" />
+              </div>
+              <div
+                className="flex items-center rounded-[6px] bg-[#f1f5f9] px-2 py-0.5 font-bold text-[#64748b]"
+                style={{ fontSize: 10 }}
+              >
+                Stable
+              </div>
+            </div>
+            <div>
+              <p
+                className="mb-1.5 font-bold text-[#94a3b8] uppercase"
+                style={{ fontSize: "10px", letterSpacing: "0.08em" }}
+              >
+                Monthly Visits
+              </p>
+              <span className="text-[28px] leading-tight font-black text-[#0f172a]">
+                24.5k
+              </span>
+            </div>
+          </div>
+
+          {/* Verification Status */}
+          <div
+            className="flex flex-col justify-between bg-white p-5"
+            style={{
+              borderRadius: 16,
+              boxShadow:
+                "0 1px 3px rgba(0,0,0,0.02), 0 1px 2px rgba(0,0,0,0.01)",
+              border: "1px solid #f1f5f9",
+            }}
+          >
+            <div className="mb-4 flex items-center justify-between">
+              <div
+                className="flex items-center justify-center text-[#10b981]" // emerald-500
+                style={{
+                  width: 32,
+                  height: 32,
+                  borderRadius: 8,
+                  background: "#ecfdf5", // emerald-50
+                }}
+              >
+                <ShieldCheckIcon className="h-4 w-4" />
+              </div>
+              <div
+                className="flex items-center rounded-[6px] bg-[#ecfdf5] px-2 py-0.5 font-bold text-[#10b981]"
+                style={{ fontSize: 10 }}
+              >
+                Verified
+              </div>
+            </div>
+            <div>
+              <p
+                className="mb-1.5 font-bold text-[#94a3b8] uppercase"
+                style={{ fontSize: "10px", letterSpacing: "0.08em" }}
+              >
+                Verification Status
+              </p>
+              <span className="text-[16px] leading-tight font-bold text-[#0f172a]">
+                Fully Compliant
+              </span>
+            </div>
+          </div>
         </div>
 
         {/* ── Two-column layout ── */}
-        <div className="grid grid-cols-[1fr_300px] gap-5">
+        <div className="grid grid-cols-[1fr_310px] gap-6">
           {/* ════ LEFT COLUMN ════ */}
-          <div className="flex flex-col gap-5">
-            {/* ── Hospital Header Card ── */}
-            <div
-              className="flex items-center gap-4 bg-white p-5"
-              style={{
-                borderRadius: 18,
-                border: "1px solid #F1F2F4",
-                boxShadow: "0 1px 8px rgba(0,0,0,0.07)",
-              }}
-            >
-              {/* Icon */}
-              <div
-                className="flex flex-shrink-0 items-center justify-center text-emerald-600"
-                style={{
-                  width: 60,
-                  height: 60,
-                  borderRadius: 14,
-                  background: "#E8FDF5",
-                }}
-              >
-                <HospitalIcon className="h-7 w-7" />
-              </div>
-
-              {/* Info */}
-              <div className="min-w-0 flex-1">
-                <div className="mb-1 flex flex-wrap items-center gap-2">
-                  <h1 className="text-[20px] leading-tight font-extrabold text-gray-900">
-                    St. Mary&apos;s General Hospital
-                  </h1>
-                  <span
-                    className="rounded-md bg-blue-50 px-2 py-0.5 font-bold text-blue-600"
-                    style={{ fontSize: "11px", letterSpacing: "0.04em" }}
-                  >
-                    ID: HOSP-8821
-                  </span>
-                </div>
-                <div className="flex flex-wrap items-center gap-3">
-                  <div className="flex items-center gap-1">
-                    <MapPinIcon className="h-[11px] w-[11px] text-gray-400" />
-                    <span className="text-[12px] text-gray-400">
-                      123 Healthcare Blvd, New York, NY 10001
-                    </span>
-                  </div>
-                  <span className="text-gray-300">•</span>
-                  <div className="flex items-center gap-1">
-                    <GlobeIcon className="h-[11px] w-[11px] text-gray-400" />
-                    <span className="text-[12px] text-gray-400">
-                      www.stmarys-health.org
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Operational toggle */}
-              <div className="flex flex-shrink-0 flex-col items-end gap-1">
-                <div className="flex items-center gap-2">
-                  {/* Toggle */}
-                  <button
-                    onClick={() => setOperational(!operational)}
-                    className="relative inline-flex items-center transition-colors duration-200 focus:outline-none"
-                    style={{
-                      width: 44,
-                      height: 24,
-                      borderRadius: 999,
-                      background: operational ? "#10B981" : "#D1D5DB",
-                    }}
-                  >
-                    <span
-                      className="absolute rounded-full bg-white shadow transition-transform duration-200"
-                      style={{
-                        width: 18,
-                        height: 18,
-                        top: 3,
-                        left: operational ? 23 : 3,
-                      }}
-                    />
-                  </button>
-                </div>
-                <div className="text-right">
-                  <p
-                    className="font-bold text-gray-700"
-                    style={{ fontSize: 11 }}
-                  >
-                    {operational ? "OPERATIONAL" : "INACTIVE"}
-                  </p>
-                  <p className="text-gray-400" style={{ fontSize: 10 }}>
-                    {operational
-                      ? "Accepting new patients"
-                      : "Not accepting patients"}
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* ── Stats Row ── */}
-            <div className="grid grid-cols-4 gap-3">
-              {/* Total Doctors */}
-              <div
-                className="bg-white p-4"
-                style={{
-                  borderRadius: 14,
-                  border: "1px solid #F1F2F4",
-                  boxShadow: "0 1px 6px rgba(0,0,0,0.06)",
-                }}
-              >
-                <div className="mb-2 flex items-center justify-between">
-                  <div
-                    className="flex items-center justify-center"
-                    style={{
-                      width: 30,
-                      height: 30,
-                      borderRadius: 8,
-                      background: "#EEF2FF",
-                    }}
-                  >
-                    <StethoscopeIcon className="h-[14px] w-[14px] text-indigo-500" />
-                  </div>
-                  <span
-                    className="font-bold text-emerald-500"
-                    style={{ fontSize: 11 }}
-                  >
-                    ↑4%
-                  </span>
-                </div>
-                <p
-                  className="mb-1 font-bold text-gray-400 uppercase"
-                  style={{ fontSize: "9px", letterSpacing: "0.1em" }}
-                >
-                  Total Doctors
-                </p>
-                <span className="text-[26px] leading-none font-extrabold text-gray-900">
-                  142
-                </span>
-              </div>
-
-              {/* Active Sessions */}
-              <div
-                className="bg-white p-4"
-                style={{
-                  borderRadius: 14,
-                  border: "1px solid #F1F2F4",
-                  boxShadow: "0 1px 6px rgba(0,0,0,0.06)",
-                }}
-              >
-                <div className="mb-2 flex items-center justify-between">
-                  <div
-                    className="flex items-center justify-center"
-                    style={{
-                      width: 30,
-                      height: 30,
-                      borderRadius: 8,
-                      background: "#FEF3C7",
-                    }}
-                  >
-                    <MonitorIcon className="h-[14px] w-[14px] text-amber-500" />
-                  </div>
-                  <span
-                    className="font-bold text-emerald-500"
-                    style={{ fontSize: 11 }}
-                  >
-                    ↑12%
-                  </span>
-                </div>
-                <p
-                  className="mb-1 font-bold text-gray-400 uppercase"
-                  style={{ fontSize: "9px", letterSpacing: "0.1em" }}
-                >
-                  Active Sessions
-                </p>
-                <span className="text-[26px] leading-none font-extrabold text-gray-900">
-                  58
-                </span>
-              </div>
-
-              {/* Monthly Visits */}
-              <div
-                className="bg-white p-4"
-                style={{
-                  borderRadius: 14,
-                  border: "1px solid #F1F2F4",
-                  boxShadow: "0 1px 6px rgba(0,0,0,0.06)",
-                }}
-              >
-                <div className="mb-2 flex items-center justify-between">
-                  <div
-                    className="flex items-center justify-center"
-                    style={{
-                      width: 30,
-                      height: 30,
-                      borderRadius: 8,
-                      background: "#FFF7ED",
-                    }}
-                  >
-                    <CalendarIcon className="h-[14px] w-[14px] text-orange-500" />
-                  </div>
-                  <span
-                    className="font-bold text-gray-400"
-                    style={{ fontSize: 11 }}
-                  >
-                    Stable
-                  </span>
-                </div>
-                <p
-                  className="mb-1 font-bold text-gray-400 uppercase"
-                  style={{ fontSize: "9px", letterSpacing: "0.1em" }}
-                >
-                  Monthly Visits
-                </p>
-                <span className="text-[26px] leading-none font-extrabold text-gray-900">
-                  24.5k
-                </span>
-              </div>
-
-              {/* Verification Status */}
-              <div
-                className="bg-white p-4"
-                style={{
-                  borderRadius: 14,
-                  border: "1px solid #F1F2F4",
-                  boxShadow: "0 1px 6px rgba(0,0,0,0.06)",
-                }}
-              >
-                <div className="mb-2 flex items-center justify-between">
-                  <div
-                    className="flex items-center justify-center"
-                    style={{
-                      width: 30,
-                      height: 30,
-                      borderRadius: 8,
-                      background: "#ECFDF5",
-                    }}
-                  >
-                    <ShieldCheckIcon className="h-[14px] w-[14px] text-emerald-500" />
-                  </div>
-                  <span
-                    className="font-bold text-emerald-500"
-                    style={{ fontSize: 11 }}
-                  >
-                    Verified
-                  </span>
-                </div>
-                <p
-                  className="mb-1 font-bold text-gray-400 uppercase"
-                  style={{ fontSize: "9px", letterSpacing: "0.1em" }}
-                >
-                  Verification Status
-                </p>
-                <span className="text-[15px] leading-tight font-extrabold text-gray-900">
-                  Fully Compliant
-                </span>
-              </div>
-            </div>
-
+          <div className="flex flex-col gap-6">
             {/* ── Hospital Configuration ── */}
             <div
-              className="bg-white p-5"
+              className="bg-white p-7"
               style={{
-                borderRadius: 18,
-                border: "1px solid #F1F2F4",
-                boxShadow: "0 1px 8px rgba(0,0,0,0.07)",
+                borderRadius: 16,
+                boxShadow:
+                  "0 1px 3px rgba(0,0,0,0.02), 0 1px 2px rgba(0,0,0,0.01)",
+                border: "1px solid #f1f5f9",
               }}
             >
-              <div className="mb-5 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <SettingsIcon className="h-4 w-4 text-gray-500" />
-                  <h2 className="text-[15px] font-extrabold text-gray-900">
+              <div className="mb-6 flex items-center justify-between">
+                <div className="flex items-center gap-2.5">
+                  <SettingsIcon className="h-4 w-4 text-[#10b981]" />
+                  <h2 className="text-[16px] font-bold text-[#0f172a]">
                     Hospital Configuration
                   </h2>
                 </div>
-                <button className="text-[12.5px] font-semibold text-emerald-600 transition-colors hover:text-emerald-700">
+                <button className="text-[12.5px] font-bold text-[#059669] transition-colors hover:text-[#047857]">
                   Save Changes
                 </button>
               </div>
 
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-5">
                 {/* Public URL */}
                 <div>
                   <label style={labelStyle}>Public URL</label>
                   <div
                     className="flex"
                     style={{
-                      border: "1.5px solid #E5E7EB",
-                      borderRadius: 10,
+                      background: "#f8fafc",
+                      borderRadius: 8,
                       overflow: "hidden",
+                      border: "1px solid #f1f5f9",
                     }}
                   >
                     <span
-                      className="flex items-center border-r border-gray-200 bg-gray-50 px-3 text-gray-400"
-                      style={{ fontSize: 13, whiteSpace: "nowrap" }}
+                      className="flex items-center px-3.5 text-[#94a3b8]"
+                      style={{ fontSize: 13, fontWeight: 500 }}
                     >
                       https://
                     </span>
@@ -652,18 +669,19 @@ export default function HospitalDetailPage() {
                       type="text"
                       value={url}
                       onChange={(e) => setUrl(e.target.value)}
-                      className="flex-1 px-3 focus:outline-none"
+                      className="flex-1 focus:ring-1 focus:ring-emerald-200 focus:outline-none"
                       style={{
-                        fontSize: 13,
-                        color: "#374151",
-                        padding: "9px 12px",
+                        ...inputStyle,
+                        background: "transparent",
+                        paddingLeft: 0,
+                        border: "none",
                       }}
                     />
                   </div>
                 </div>
 
                 {/* Email + Phone row */}
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-5">
                   <div>
                     <label style={labelStyle}>Primary Contact Email</label>
                     <input
@@ -671,7 +689,7 @@ export default function HospitalDetailPage() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       style={inputStyle}
-                      className="transition-all focus:border-blue-300 focus:ring-2 focus:ring-blue-100 focus:outline-none"
+                      className="focus:ring-1 focus:ring-emerald-200"
                     />
                   </div>
                   <div>
@@ -681,10 +699,13 @@ export default function HospitalDetailPage() {
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       style={inputStyle}
-                      className="transition-all focus:border-blue-300 focus:ring-2 focus:ring-blue-100 focus:outline-none"
+                      className="focus:ring-1 focus:ring-emerald-200"
                     />
                   </div>
                 </div>
+
+                {/* Divider Line */}
+                <div className="my-[2px] border-b border-dashed border-[#e2e8f0]" />
 
                 {/* Street Address */}
                 <div>
@@ -694,12 +715,12 @@ export default function HospitalDetailPage() {
                     value={street}
                     onChange={(e) => setStreet(e.target.value)}
                     style={inputStyle}
-                    className="transition-all focus:border-blue-300 focus:ring-2 focus:ring-blue-100 focus:outline-none"
+                    className="focus:ring-1 focus:ring-emerald-200"
                   />
                 </div>
 
                 {/* City + District row */}
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-5">
                   <div>
                     <label style={labelStyle}>City</label>
                     <input
@@ -707,7 +728,7 @@ export default function HospitalDetailPage() {
                       value={city}
                       onChange={(e) => setCity(e.target.value)}
                       style={inputStyle}
-                      className="transition-all focus:border-blue-300 focus:ring-2 focus:ring-blue-100 focus:outline-none"
+                      className="focus:ring-1 focus:ring-emerald-200"
                     />
                   </div>
                   <div>
@@ -717,20 +738,20 @@ export default function HospitalDetailPage() {
                       value={district}
                       onChange={(e) => setDistrict(e.target.value)}
                       style={inputStyle}
-                      className="transition-all focus:border-blue-300 focus:ring-2 focus:ring-blue-100 focus:outline-none"
+                      className="focus:ring-1 focus:ring-emerald-200"
                     />
                   </div>
                 </div>
 
                 {/* State + ZIP row */}
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-5">
                   <div>
                     <label style={labelStyle}>State</label>
                     <div className="relative">
                       <select
                         value={state}
                         onChange={(e) => setState(e.target.value)}
-                        className="w-full appearance-none transition-all focus:border-blue-300 focus:ring-2 focus:ring-blue-100 focus:outline-none"
+                        className="w-full appearance-none focus:ring-1 focus:ring-emerald-200"
                         style={{ ...inputStyle, paddingRight: 36 }}
                       >
                         <option>New York</option>
@@ -739,7 +760,7 @@ export default function HospitalDetailPage() {
                         <option>Florida</option>
                         <option>Illinois</option>
                       </select>
-                      <ChevronDownIcon className="pointer-events-none absolute top-1/2 right-3 h-4 w-4 -translate-y-1/2 text-gray-400" />
+                      <ChevronDownIcon className="pointer-events-none absolute top-1/2 right-3.5 h-[14px] w-[14px] -translate-y-1/2 text-[#94a3b8]" />
                     </div>
                   </div>
                   <div>
@@ -749,7 +770,7 @@ export default function HospitalDetailPage() {
                       value={zip}
                       onChange={(e) => setZip(e.target.value)}
                       style={inputStyle}
-                      className="transition-all focus:border-blue-300 focus:ring-2 focus:ring-blue-100 focus:outline-none"
+                      className="focus:ring-1 focus:ring-emerald-200"
                     />
                   </div>
                 </div>
@@ -758,141 +779,150 @@ export default function HospitalDetailPage() {
 
             {/* ── Doctor Management ── */}
             <div
-              className="bg-white p-5"
+              className="bg-white p-7"
               style={{
-                borderRadius: 18,
-                border: "1px solid #F1F2F4",
-                boxShadow: "0 1px 8px rgba(0,0,0,0.07)",
+                borderRadius: 20,
+                boxShadow:
+                  "0 1px 3px rgba(0,0,0,0.02), 0 1px 2px rgba(0,0,0,0.01)",
+                border: "1px solid #f1f5f9",
               }}
             >
               {/* Header */}
-              <div className="mb-4 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <UsersIcon className="h-4 w-4 text-gray-500" />
-                  <h2 className="text-[15px] font-extrabold text-gray-900">
+              <div className="mb-6 flex items-center justify-between">
+                <div className="flex items-center gap-2.5">
+                  <UsersIcon className="h-5 w-5 text-[#0f766e]" />
+                  <h2 className="text-[18px] font-bold text-[#0f172a]">
                     Doctor Management
                   </h2>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-3">
                   <div className="relative">
-                    <SearchIcon className="absolute top-1/2 left-2.5 h-[13px] w-[13px] -translate-y-1/2 text-gray-400" />
+                    <SearchIcon className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-[#94a3b8]" />
                     <input
                       type="text"
                       placeholder="Search doctors..."
                       value={doctorSearch}
                       onChange={(e) => setDoctorSearch(e.target.value)}
-                      className="pr-3 pl-8 text-gray-600 placeholder-gray-400 transition-all focus:border-blue-300 focus:ring-2 focus:ring-blue-100 focus:outline-none"
+                      className="pr-3 pl-[34px] placeholder-[#94a3b8] focus:ring-1 focus:ring-emerald-200"
                       style={{
-                        fontSize: 12.5,
-                        padding: "7px 12px 7px 30px",
-                        border: "1.5px solid #E5E7EB",
-                        borderRadius: 10,
+                        background: "#ffffff",
+                        border: "1px solid #e2e8f0",
+                        borderRadius: 8,
+                        color: "#334155",
+                        outline: "none",
+                        paddingTop: "9px",
+                        paddingBottom: "9px",
+                        width: 220,
+                        fontSize: "13px",
+                        fontWeight: 500,
                       }}
                     />
                   </div>
                   <button
-                    className="flex items-center gap-1.5 px-3 py-2 font-semibold text-white transition-opacity hover:opacity-90"
+                    className="flex items-center justify-center gap-1.5 px-4 py-2 font-bold text-white hover:opacity-90"
                     style={{
-                      fontSize: 12.5,
-                      background: "#059669",
-                      borderRadius: 10,
+                      fontSize: 13,
+                      background: "#0f766e",
+                      borderRadius: 8,
                     }}
                   >
-                    <PlusIcon className="h-[13px] w-[13px]" />
+                    <PlusIcon className="h-3.5 w-3.5" />
                     New
                   </button>
                 </div>
               </div>
 
-              {/* Table header */}
-              <div className="mb-1 grid grid-cols-[1fr_120px_80px] gap-3 border-b border-gray-100 pb-2">
-                {["Name & Specialty", "Status", "Actions"].map((h) => (
-                  <span
-                    key={h}
-                    className="font-bold text-gray-400 uppercase"
-                    style={{ fontSize: "9px", letterSpacing: "0.1em" }}
-                  >
-                    {h}
-                  </span>
-                ))}
+              {/* Table Container */}
+              <div className="flex flex-col overflow-hidden rounded-[16px] border border-[#f1f5f9]">
+                {/* Table header */}
+                <div className="grid grid-cols-[1fr_100px_80px] gap-4 border-b border-[#f1f5f9] bg-white px-6 py-4">
+                  {["Name & Specialty", "Status", "Actions"].map((h) => (
+                    <span
+                      key={h}
+                      className="font-bold text-[#64748b] uppercase"
+                      style={{ fontSize: "10.5px", letterSpacing: "0.06em" }}
+                    >
+                      {h}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Rows */}
+                <div className="flex flex-col bg-white">
+                  {doctors
+                    .filter((d) =>
+                      d.name.toLowerCase().includes(doctorSearch.toLowerCase())
+                    )
+                    .map((doc, i) => (
+                      <div
+                        key={i}
+                        className="grid grid-cols-[1fr_100px_80px] items-center gap-4 border-b border-[#f1f5f9] px-6 py-4 transition-colors last:border-0"
+                      >
+                        {/* Name + specialty */}
+                        <div className="flex items-center gap-3.5">
+                          <div
+                            className="flex h-[42px] w-[42px] flex-shrink-0 items-center justify-center rounded-full font-bold"
+                            style={{
+                              background: doc.avatarBg,
+                              color: doc.avatarColor,
+                              fontSize: 13.5,
+                            }}
+                          >
+                            {doc.initials}
+                          </div>
+                          <div>
+                            <p
+                              className="mb-0.5 font-bold text-[#0f172a]"
+                              style={{ fontSize: 13.5 }}
+                            >
+                              {doc.name}
+                            </p>
+                            <p
+                              className="font-medium text-[#64748b]"
+                              style={{ fontSize: 12.5 }}
+                            >
+                              {doc.specialty}
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* Status */}
+                        <div>
+                          <span
+                            className="inline-flex items-center gap-1.5 font-bold"
+                            style={{
+                              fontSize: "11px",
+                              letterSpacing: "0.02em",
+                              color:
+                                doc.status === "Active" ? "#10b981" : "#d97706",
+                              background:
+                                doc.status === "Active" ? "#ecfdf5" : "#fef3c7",
+                              padding: "5px 10px",
+                              borderRadius: 999,
+                            }}
+                          >
+                            <StatusDot active={doc.status === "Active"} />
+                            {doc.status}
+                          </span>
+                        </div>
+
+                        {/* Actions */}
+                        <div className="flex items-center gap-4">
+                          <button className="text-[#94a3b8] transition-colors hover:text-[#0f172a]">
+                            <PencilIcon className="h-[18px] w-[18px]" />
+                          </button>
+                          <button className="text-[#94a3b8] transition-colors hover:text-[#ef4444]">
+                            <BanIcon className="h-[18px] w-[18px]" />
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                </div>
               </div>
 
-              {/* Rows */}
-              {doctors
-                .filter((d) =>
-                  d.name.toLowerCase().includes(doctorSearch.toLowerCase())
-                )
-                .map((doc, i) => (
-                  <div
-                    key={i}
-                    className="grid grid-cols-[1fr_120px_80px] items-center gap-3 border-b border-gray-50 py-3 last:border-0"
-                  >
-                    {/* Name + specialty */}
-                    <div className="flex items-center gap-3">
-                      <div
-                        className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full font-bold"
-                        style={{
-                          background: doc.avatarBg,
-                          color: doc.avatarColor,
-                          fontSize: 12,
-                        }}
-                      >
-                        {doc.initials}
-                      </div>
-                      <div>
-                        <p
-                          className="font-semibold text-gray-900"
-                          style={{ fontSize: 13 }}
-                        >
-                          {doc.name}
-                        </p>
-                        <p className="text-gray-400" style={{ fontSize: 11 }}>
-                          {doc.specialty}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Status */}
-                    <div>
-                      <span
-                        className="inline-flex items-center gap-1.5 font-bold"
-                        style={{
-                          fontSize: "10px",
-                          letterSpacing: "0.06em",
-                          color:
-                            doc.status === "Active" ? "#059669" : "#D97706",
-                          background:
-                            doc.status === "Active" ? "#ECFDF5" : "#FFFBEB",
-                          padding: "4px 10px",
-                          borderRadius: 999,
-                        }}
-                      >
-                        <span
-                          className="h-[5px] w-[5px] rounded-full"
-                          style={{
-                            background:
-                              doc.status === "Active" ? "#10B981" : "#F59E0B",
-                          }}
-                        />
-                        {doc.status}
-                      </span>
-                    </div>
-
-                    {/* Actions */}
-                    <div className="flex items-center gap-2">
-                      <button className="flex h-7 w-7 items-center justify-center rounded-lg bg-gray-100 transition-colors hover:bg-gray-200">
-                        <PencilIcon className="h-[13px] w-[13px] text-gray-500" />
-                      </button>
-                      <button className="flex h-7 w-7 items-center justify-center rounded-lg bg-gray-100 transition-colors hover:bg-gray-200">
-                        <ClockIcon className="h-[13px] w-[13px] text-gray-500" />
-                      </button>
-                    </div>
-                  </div>
-                ))}
-
               {/* View All */}
-              <div className="mt-3 text-center">
-                <button className="text-[12.5px] font-semibold text-gray-500 transition-colors hover:text-gray-700">
+              <div className="mt-6 text-center">
+                <button className="text-[14px] font-bold text-[#64748b] transition-colors hover:text-[#0f172a]">
                   View All Doctors
                 </button>
               </div>
@@ -901,110 +931,110 @@ export default function HospitalDetailPage() {
           {/* end left col */}
 
           {/* ════ RIGHT COLUMN ════ */}
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-6">
             {/* ── Admin Controls ── */}
             <div
-              className="bg-white p-5"
+              className="bg-white p-7"
               style={{
-                borderRadius: 18,
-                border: "1px solid #F1F2F4",
-                boxShadow: "0 1px 8px rgba(0,0,0,0.07)",
+                borderRadius: 16,
+                boxShadow:
+                  "0 1px 3px rgba(0,0,0,0.02), 0 1px 2px rgba(0,0,0,0.01)",
+                border: "1px solid #f1f5f9",
               }}
             >
-              <div className="mb-5 flex items-center gap-2">
-                <AlertOctagonIcon className="h-4 w-4 text-red-500" />
-                <h2 className="text-[15px] font-extrabold text-gray-900">
+              <div className="mb-6 flex items-center gap-2.5 pb-2">
+                <AdminControlsIcon className="h-[18px] w-[18px] text-[#ef4444]" />
+                <h2 className="text-[16px] font-bold text-[#0f172a]">
                   Admin Controls
                 </h2>
               </div>
 
               {/* Suspend Account */}
-              <div className="mb-4">
-                <p
-                  className="mb-1 font-bold text-gray-800"
-                  style={{ fontSize: 13 }}
-                >
-                  Suspend Account
-                </p>
-                <p
-                  className="mb-3 leading-relaxed text-gray-400"
-                  style={{ fontSize: 11.5 }}
-                >
-                  Temporarily disable all access for this hospital. Data is
-                  preserved but users cannot log in.
-                </p>
-                <button
-                  className="flex w-full items-center justify-center gap-2 py-2.5 font-semibold transition-opacity hover:opacity-90"
-                  style={{
-                    fontSize: 12.5,
-                    color: "#D97706",
-                    background: "#FEF9C3",
-                    border: "1.5px solid #FDE68A",
-                    borderRadius: 12,
-                  }}
-                >
-                  <AlertOctagonIcon className="h-[13px] w-[13px]" />
-                  Suspend Access
-                </button>
+              <div className="mb-6">
+                <div className="rounded-xl border border-[#f1f5f9] bg-white p-5">
+                  <p
+                    className="mb-1.5 font-bold text-[#0f172a]"
+                    style={{ fontSize: 13 }}
+                  >
+                    Suspend Account
+                  </p>
+                  <p
+                    className="mb-4 leading-[1.6] font-medium text-[#64748b]"
+                    style={{ fontSize: 11.5 }}
+                  >
+                    Temporarily disable all access for this hospital. Data is
+                    preserved but users cannot log in.
+                  </p>
+                  <button
+                    className="flex w-full items-center justify-center gap-2 py-2.5 font-bold transition-opacity hover:opacity-90"
+                    style={{
+                      fontSize: 12.5,
+                      color: "#b45309", // amber-700
+                      background: "#fef3c7", // amber-100
+                      borderRadius: 8,
+                    }}
+                  >
+                    <BanIcon className="h-[14px] w-[14px]" />
+                    Suspend Access
+                  </button>
+                </div>
               </div>
 
-              {/* Divider */}
-              <div className="my-4 border-t border-gray-100" />
-
               {/* Security Reset */}
-              <div className="mb-5">
-                <p
-                  className="mb-1 font-bold text-gray-800"
-                  style={{ fontSize: 13 }}
-                >
-                  Security Reset
-                </p>
-                <p
-                  className="mb-3 leading-relaxed text-gray-400"
-                  style={{ fontSize: 11.5 }}
-                >
-                  Force a password reset for the main hospital administrator
-                  account.
-                </p>
-                <button
-                  className="flex w-full items-center justify-center gap-2 py-2.5 font-semibold transition-colors hover:bg-gray-100"
-                  style={{
-                    fontSize: 12.5,
-                    color: "#374151",
-                    background: "#F9FAFB",
-                    border: "1.5px solid #E5E7EB",
-                    borderRadius: 12,
-                  }}
-                >
-                  <RefreshIcon className="h-[13px] w-[13px]" />
-                  Reset Password
-                </button>
+              <div className="mb-7">
+                <div className="rounded-xl border border-[#f1f5f9] bg-white p-5">
+                  <p
+                    className="mb-1.5 font-bold text-[#0f172a]"
+                    style={{ fontSize: 13 }}
+                  >
+                    Security Reset
+                  </p>
+                  <p
+                    className="mb-4 leading-[1.6] font-medium text-[#64748b]"
+                    style={{ fontSize: 11.5 }}
+                  >
+                    Force a password reset for the main hospital administrator
+                    account.
+                  </p>
+                  <button
+                    className="flex w-full items-center justify-center gap-2 py-2.5 font-bold transition-colors hover:bg-[#e2e8f0]"
+                    style={{
+                      fontSize: 12.5,
+                      color: "#334155", // slate-700
+                      background: "#e2e8f0", // slate-200
+                      borderRadius: 8,
+                    }}
+                  >
+                    <RefreshIcon className="h-[14px] w-[14px]" />
+                    Reset Password
+                  </button>
+                </div>
               </div>
 
               {/* Danger Zone */}
-              <div className="border-t border-red-100 pt-4">
+              <div className="pt-2">
                 <p
-                  className="mb-1 font-bold text-red-500"
+                  className="mb-1.5 font-bold text-[#ef4444]"
                   style={{ fontSize: 13 }}
                 >
                   Danger Zone
                 </p>
                 <p
-                  className="mb-3 leading-relaxed text-gray-400"
+                  className="mb-4 leading-[1.6] font-medium text-[#64748b]"
                   style={{ fontSize: 11.5 }}
                 >
                   This action cannot be undone. All data will be permanently
                   wiped.
                 </p>
                 <button
-                  className="flex w-full items-center justify-center gap-2 py-2.5 font-semibold text-white transition-opacity hover:opacity-90"
+                  className="flex w-full items-center justify-center gap-2 py-2.5 font-bold text-white shadow-sm transition-colors hover:bg-red-600"
                   style={{
                     fontSize: 12.5,
-                    background: "#EF4444",
-                    borderRadius: 12,
+                    background: "#dc2626", // red-600
+                    borderRadius: 8,
                   }}
                 >
-                  <TrashIcon className="h-[13px] w-[13px]" />
+                  <TrashIcon className="h-[14px] w-[14px]" />
                   Permanently Delete Hospital
                 </button>
               </div>

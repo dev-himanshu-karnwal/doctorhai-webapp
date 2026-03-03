@@ -3,9 +3,7 @@ import type {
   DoctorEntry,
   HospitalEntry,
 } from "../../types";
-import { DepartmentsGrid } from "./departments-grid";
-import { TopHospitalsList } from "./top-hospitals-list";
-import { TopDoctorsList } from "./top-doctors-list";
+import { DepartmentsGrid, TopHospitalsList, TopDoctorsList } from "./ui";
 
 type QuickHospitalLookupProps = {
   departments: DepartmentCategory[];

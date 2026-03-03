@@ -225,68 +225,69 @@ function HospitalCard({
 }: HospitalCardProps) {
   return (
     <div
-      className="flex flex-col rounded-2xl bg-white shadow-sm"
+      className="flex flex-col overflow-hidden rounded-3xl bg-white shadow-sm"
       style={{
-        border: "1px solid #F3F4F6",
-        borderTop: `3px solid ${topBorder}`,
+        border: "1px solid #F1F5F9",
+        borderTop: `4px solid ${topBorder}`,
       }}
     >
-      {/* Card body */}
-      <div className="flex flex-1 flex-col items-center px-5 pt-7 pb-4 text-center">
+      {/* Card body — avatar, name, location */}
+      <div className="flex flex-1 flex-col items-center px-6 pt-8 pb-6 text-center">
         {/* Avatar */}
-        <div className="relative h-[74px] w-[74px]">
+        <div className="relative mb-4 h-[90px] w-[90px]">
           <div
             className="flex h-full w-full items-center justify-center rounded-full"
             style={{ backgroundColor: avatarBg }}
           >
             <span
-              className="text-[28px] leading-none font-extrabold"
+              className="text-[38px] leading-none font-extrabold"
               style={{ color: avatarTextColor }}
             >
               {initial}
             </span>
           </div>
           {/* Shield badge */}
-          <div className="absolute right-0 bottom-0 flex h-5 w-5 items-center justify-center rounded-full bg-white shadow-md">
-            <ShieldCheckIcon className="h-3 w-3" color={badgeColor} />
+          <div className="absolute right-0 bottom-0 flex h-7 w-7 items-center justify-center rounded-full bg-white shadow-md">
+            <ShieldCheckIcon className="h-4 w-4" color={badgeColor} />
           </div>
         </div>
 
         {/* Name */}
-        <h3 className="mt-3 mb-0.5 text-[15px] font-bold text-gray-900">
-          {name}
-        </h3>
+        <h3 className="mb-1 text-[20px] font-bold text-[#1A202C]">{name}</h3>
 
         {/* Location */}
-        <div className="mb-5 flex items-center justify-center gap-1">
-          <MapPinIcon className="h-[11px] w-[11px] text-gray-400" />
-          <span className="text-[11px] text-gray-400">{location}</span>
+        <div className="flex items-center justify-center gap-1 text-gray-400">
+          <MapPinIcon className="h-[13px] w-[13px]" />
+          <span className="text-[13px]">{location}</span>
         </div>
+      </div>
 
-        {/* Time in Queue */}
-        <div className="w-full">
-          <p
-            className="mb-1.5 font-bold text-gray-400 uppercase"
-            style={{ fontSize: "9px", letterSpacing: "0.12em" }}
-          >
-            Time in Queue
-          </p>
-          <div className="flex items-center justify-center gap-1.5">
-            <ClockIcon className="h-[13px] w-[13px]" color={clockColor} />
-            <span
-              className="text-[12px] font-semibold"
-              style={{ color: timeColor }}
-            >
-              {timeLabel}
-            </span>
-          </div>
+      {/* Divider */}
+      <div className="mx-5 border-t border-gray-100" />
+
+      {/* Time in Queue */}
+      <div className="flex flex-col items-center px-5 py-5">
+        <p
+          className="mb-3 font-bold tracking-widest text-gray-400 uppercase"
+          style={{ fontSize: "9px", letterSpacing: "0.18em" }}
+        >
+          Time in Queue
+        </p>
+        <div className="flex items-center gap-2 rounded-full border border-gray-200 bg-white px-5 py-2 whitespace-nowrap shadow-[0px_1px_3px_0px_rgba(0,0,0,0.08)]">
+          <ClockIcon
+            className="h-[15px] w-[15px] flex-shrink-0"
+            color={clockColor}
+          />
+          <span className="text-[13px] font-bold text-[#1A202C]">
+            {timeLabel}
+          </span>
         </div>
       </div>
 
       {/* CTA Button */}
-      <div className="px-4 pb-4">
-        <button className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-[14px] bg-gray-900 py-[10px] text-[12px] font-bold text-white transition-colors hover:bg-gray-800">
-          <MonitorIcon className="h-[13px] w-[13px]" />
+      <div className="px-5 pb-5">
+        <button className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-[#1A202C] py-3 text-[13px] font-bold text-white transition-colors hover:bg-gray-800">
+          <MonitorIcon className="h-[14px] w-[14px]" />
           Review Application
         </button>
       </div>
@@ -303,28 +304,37 @@ export default function AdminDashboardPage() {
         {/* Breadcrumb */}
         <div className="mb-2 flex items-center gap-2">
           <span
-            className="rounded-md border border-teal-200 bg-teal-50 px-2.5 py-[3px] font-bold text-teal-700 uppercase"
-            style={{ fontSize: "10px", letterSpacing: "0.1em" }}
+            className="rounded-full bg-[#E6F6F4] px-3 py-1 font-bold text-[#3D8F87] uppercase"
+            style={{
+              fontSize: "12px",
+              lineHeight: "16px",
+              letterSpacing: "0.6px",
+            }}
           >
             Requests Queue
           </span>
-          <span className="text-xs text-gray-400">•</span>
-          <span className="text-[13px] font-medium text-gray-500">
+          <span className="text-[14px] leading-[20px] font-normal text-[#718096]">
+            •
+          </span>
+          <span className="text-[14px] leading-[20px] font-medium text-[#718096]">
             Pending Approvals
           </span>
         </div>
 
         {/* Page Header */}
         <div className="mb-7 flex items-center justify-between">
-          <h1 className="text-[34px] font-extrabold tracking-tight text-gray-900">
+          <h1
+            className="text-[36px] leading-[40px] font-extrabold text-[#2D3748]"
+            style={{ letterSpacing: "-0.9px" }}
+          >
             Verification Dashboard
           </h1>
           <div className="flex items-center gap-2.5">
-            <button className="flex items-center gap-1.5 rounded-xl border border-gray-200 bg-white px-4 py-2 text-[13px] font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50">
+            <button className="flex h-[48px] items-center gap-2 rounded-[24px] border border-[#E2E8F0] bg-white px-6 font-[Manrope] text-[14px] leading-[20px] font-bold text-[#2D3748] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] transition-colors hover:bg-gray-50">
               <ClockIcon className="h-[15px] w-[15px] text-gray-500" />
               Audit Log
             </button>
-            <button className="flex items-center gap-1.5 rounded-xl bg-gray-900 px-4 py-2 text-[13px] font-semibold text-white shadow-sm transition-colors hover:bg-gray-800">
+            <button className="flex h-[48px] items-center gap-2 rounded-[24px] bg-gray-900 px-6 font-[Manrope] text-[14px] leading-[20px] font-bold text-white shadow-[0px_4px_6px_-4px_rgba(0,0,0,0.10),0px_10px_15px_-3px_rgba(0,0,0,0.10)] transition-colors hover:bg-gray-800">
               <DownloadIcon className="h-[15px] w-[15px]" />
               Export Report
             </button>
@@ -336,23 +346,23 @@ export default function AdminDashboardPage() {
           {/* Total Hospitals — clickable */}
           <Link
             href="/dashboard/admin/hospitals"
-            className="group flex cursor-pointer items-center gap-4 rounded-2xl border border-gray-100 bg-white p-5 shadow-sm transition-all hover:border-teal-200 hover:shadow-md hover:ring-1 hover:ring-teal-100"
+            className="group flex min-h-[90px] cursor-pointer items-center gap-4 rounded-[32px] border border-[#F1F5F9] bg-white p-5 shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] transition-all hover:border-teal-200 hover:shadow-md hover:ring-1 hover:ring-teal-100"
           >
-            <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-[#E6F7F6] transition-colors group-hover:bg-teal-100">
+            <div className="flex h-[48px] w-[48px] flex-shrink-0 items-center justify-center rounded-[24px] bg-[#E6F6F4] transition-colors group-hover:bg-teal-100">
               <HospitalSquareIcon className="h-[22px] w-[22px] text-teal-600" />
             </div>
             <div>
               <p
-                className="mb-0.5 font-bold text-gray-400 uppercase"
-                style={{ fontSize: "10px", letterSpacing: "0.08em" }}
+                className="mb-0.5 leading-[16px] font-bold text-[#718096] uppercase"
+                style={{ fontSize: "12px", letterSpacing: "0.3px" }}
               >
                 Total Hospitals
               </p>
               <div className="flex items-baseline gap-2">
-                <span className="text-[30px] leading-none font-extrabold text-gray-900">
+                <span className="text-[24px] leading-[24px] font-extrabold text-[#2D3748]">
                   142
                 </span>
-                <span className="text-[12px] font-bold text-emerald-500">
+                <span className="rounded-[8px] bg-[#F0FDF4] px-[6px] py-[2px] font-[Manrope] text-[12px] leading-[16px] font-bold text-[#16A34A]">
                   ↑12%
                 </span>
               </div>
@@ -362,23 +372,23 @@ export default function AdminDashboardPage() {
           {/* Total Doctors */}
           <Link
             href="/dashboard/admin/doctors"
-            className="group flex cursor-pointer items-center gap-4 rounded-2xl border border-gray-100 bg-white p-5 shadow-sm transition-all hover:border-indigo-200 hover:shadow-md hover:ring-1 hover:ring-indigo-100"
+            className="group flex min-h-[90px] cursor-pointer items-center gap-4 rounded-[32px] border border-[#F1F5F9] bg-white p-5 shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] transition-all hover:border-indigo-200 hover:shadow-md hover:ring-1 hover:ring-indigo-100"
           >
-            <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-[#EEF2FF] transition-colors group-hover:bg-indigo-100">
+            <div className="flex h-[48px] w-[48px] flex-shrink-0 items-center justify-center rounded-[24px] bg-[#EEF2FF] transition-colors group-hover:bg-indigo-100">
               <StethoscopeIcon className="h-[22px] w-[22px] text-indigo-500" />
             </div>
             <div>
               <p
-                className="mb-0.5 font-bold text-gray-400 uppercase"
-                style={{ fontSize: "10px", letterSpacing: "0.08em" }}
+                className="mb-0.5 leading-[16px] font-bold text-[#718096] uppercase"
+                style={{ fontSize: "12px", letterSpacing: "0.3px" }}
               >
                 Total Doctors
               </p>
               <div className="flex items-baseline gap-2">
-                <span className="text-[30px] leading-none font-extrabold text-gray-900">
+                <span className="text-[24px] leading-[24px] font-extrabold text-[#2D3748]">
                   3,850
                 </span>
-                <span className="text-[12px] font-bold text-emerald-500">
+                <span className="rounded-[8px] bg-[#F0FDF4] px-[6px] py-[2px] font-[Manrope] text-[12px] leading-[16px] font-bold text-[#16A34A]">
                   ↑5%
                 </span>
               </div>
@@ -386,28 +396,23 @@ export default function AdminDashboardPage() {
           </Link>
 
           {/* Active Doctors */}
-          <div
-            className="flex items-center gap-4 rounded-2xl border border-violet-100 p-5 shadow-sm"
-            style={{
-              background: "linear-gradient(135deg, #FAF5FF 0%, #EDE9FE 100%)",
-            }}
-          >
-            <div className="relative flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-white/70">
+          <div className="flex min-h-[90px] cursor-pointer items-center gap-4 rounded-[32px] border border-[#F1F5F9] bg-white p-5 shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] transition-all hover:border-[#FAF5FF] hover:shadow-md hover:ring-1 hover:ring-[#FAF5FF]">
+            <div className="relative flex h-[48px] w-[48px] flex-shrink-0 items-center justify-center rounded-[24px] bg-[#FAF5FF]">
               <ShieldCheckIcon className="h-[22px] w-[22px] text-violet-500" />
-              <span className="absolute -top-[5px] -right-[5px] h-[10px] w-[10px] rounded-full border-2 border-white bg-violet-500" />
+              <span className="absolute -top-[-2px] -right-[2px] h-[10px] w-[10px] rounded-full border-2 border-white bg-violet-500" />
             </div>
             <div>
               <p
-                className="mb-0.5 font-bold text-violet-400 uppercase"
-                style={{ fontSize: "10px", letterSpacing: "0.08em" }}
+                className="mb-0.5 leading-[16px] font-bold text-[#718096] uppercase"
+                style={{ fontSize: "12px", letterSpacing: "0.3px" }}
               >
                 Active Doctors
               </p>
-              <div className="flex items-baseline gap-2">
-                <span className="text-[30px] leading-none font-extrabold text-gray-900">
+              <div className="flex items-center gap-2">
+                <span className="text-[24px] leading-[24px] font-extrabold text-[#2D3748]">
                   1,204
                 </span>
-                <span className="rounded-full bg-violet-100 px-1.5 py-0.5 text-[11px] font-bold text-violet-600">
+                <span className="rounded-[8px] bg-[#FAF5FF] px-[6px] py-[2px] font-[Manrope] text-[12px] leading-[16px] font-bold text-[#9333EA]">
                   Live
                 </span>
               </div>
@@ -416,19 +421,21 @@ export default function AdminDashboardPage() {
         </div>
 
         {/* ── Pending Verification Queue ── */}
-        <div className="rounded-2xl border border-gray-200 bg-[#F7F7F2] p-6">
+        <div className="rounded-[48px] border border-[#F1F5F9] bg-white p-8 shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)]">
           {/* Section header */}
-          <div className="mb-5 flex items-start justify-between">
-            <div>
+          <div className="mb-5 flex items-center justify-between">
+            <div className="flex flex-col items-start justify-start gap-1">
               <div className="mb-0.5 flex items-center gap-2.5">
-                <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-amber-100">
-                  <ClipboardListIcon className="h-4 w-4 text-amber-600" />
+                <div className="flex items-center gap-2">
+                  <div className="flex items-center justify-center rounded-[24px] bg-[#FEFCE8] p-2">
+                    <ClipboardListIcon className="h-4 w-4 text-amber-600" />
+                  </div>
+                  <h2 className="text-[24px] leading-[32px] font-bold text-[#2D3748]">
+                    Pending Verification Queue
+                  </h2>
                 </div>
-                <h2 className="text-[19px] font-extrabold text-gray-900">
-                  Pending Verification Queue
-                </h2>
               </div>
-              <p className="ml-[42px] text-[13px] text-gray-500">
+              <p className="ml-[4px] font-[Manrope] text-[14px] leading-[20px] font-normal text-[#718096]">
                 3 new hospital requests require your immediate review
               </p>
             </div>
@@ -438,10 +445,10 @@ export default function AdminDashboardPage() {
                 <input
                   type="text"
                   placeholder="Search by Hospital, City or Date..."
-                  className="w-60 rounded-xl border border-gray-200 bg-white py-[7px] pr-3 pl-9 text-[12px] text-gray-600 placeholder-gray-400 transition-all focus:border-violet-300 focus:ring-2 focus:ring-violet-100 focus:outline-none"
+                  className="w-[320px] rounded-[24px] border border-[#E2E8F0] bg-[#F8FAFC] pt-[12px] pr-[16px] pb-[13px] pl-[36px] text-[14px] leading-none font-medium text-[#718096] placeholder-[#718096]/70 transition-all focus:border-violet-300 focus:ring-2 focus:ring-violet-100 focus:outline-none"
                 />
               </div>
-              <button className="flex items-center gap-1.5 rounded-xl border border-gray-200 bg-white px-3 py-[7px] text-[12px] font-medium whitespace-nowrap text-gray-600 transition-colors hover:bg-gray-50">
+              <button className="flex h-[46px] items-center gap-1.5 rounded-[24px] border border-[#E2E8F0] bg-[#F8FAFC] p-[6px] text-[14px] leading-[20px] font-bold whitespace-nowrap text-[#2D3748] transition-colors hover:bg-gray-100">
                 <FilterIcon className="h-[13px] w-[13px] text-gray-500" />
                 Sort by Date (Newest)
                 <ChevronDownIcon className="h-[13px] w-[13px] text-gray-400" />
@@ -492,8 +499,14 @@ export default function AdminDashboardPage() {
 
             {/* Invite Hospital — dashed */}
             <div className="group flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed border-gray-300 p-6 text-center transition-all hover:border-gray-400 hover:bg-white/50">
-              <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-gray-100 transition-colors group-hover:bg-gray-200">
-                <HospitalPlusIcon className="h-5 w-5 text-gray-400" />
+              <div
+                className="mb-3 flex h-[80px] w-[80px] items-center justify-center rounded-[16px] bg-white transition-colors group-hover:bg-white/90"
+                style={{
+                  boxShadow:
+                    "0px 4px 6px -4px rgba(0,0,0,0.10), 0px 10px 15px -3px rgba(0,0,0,0.10)",
+                }}
+              >
+                <HospitalPlusIcon className="h-8 w-8 text-gray-400" />
               </div>
               <h3 className="mb-1.5 text-[14px] font-bold text-gray-700">
                 Invite Hospital

@@ -1,7 +1,5 @@
 import type { WorkflowStep } from "../../types";
-import { StepOneIcon } from "./step-one-icon";
-import { StepTwoIcon } from "./step-two-icon";
-import { StepThreeIcon } from "./step-three-icon";
+import { StepOneIcon, StepTwoIcon, StepThreeIcon } from "./ui";
 
 type HowItWorksProps = {
   steps: WorkflowStep[];

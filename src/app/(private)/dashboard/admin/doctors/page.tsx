@@ -541,55 +541,68 @@ export default function DoctorManagementPage() {
 
         {/* ── Filter / Search Bar ── */}
         <div
-          className="mb-6 flex items-center gap-3 bg-white px-3 py-2.5"
+          className="mb-6 flex items-center gap-4 bg-white p-[16px]"
           style={{
-            borderRadius: 14,
-            border: "1px solid #F1F2F4",
-            boxShadow: "0 1px 6px rgba(0,0,0,0.06)",
+            borderRadius: 16,
+            border: "1px solid #F1F5F9",
+            boxShadow: "0px 1px 2px 0px rgba(0,0,0,0.05)",
           }}
         >
-          {/* Search */}
+          {/* Search — takes remaining space */}
           <div className="relative flex-1">
-            <SearchIcon className="absolute top-1/2 left-3 h-[14px] w-[14px] -translate-y-1/2 text-gray-400" />
+            <SearchIcon className="absolute top-1/2 left-[14px] h-[14px] w-[14px] -translate-y-1/2 text-gray-400" />
             <input
               type="text"
               placeholder="Search by Name, Specialty, or Hospital..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full bg-transparent pr-3 pl-9 text-gray-600 placeholder-gray-400 focus:outline-none"
-              style={{ fontSize: 13, padding: "6px 10px 6px 34px" }}
+              className="w-full text-gray-600 placeholder-gray-400 focus:outline-none"
+              style={{
+                fontSize: 13,
+                background: "#F8FAFC",
+                borderRadius: 12,
+                border: "1px solid transparent",
+                paddingTop: 14,
+                paddingBottom: 14,
+                paddingRight: 16,
+                paddingLeft: 44,
+              }}
             />
           </div>
 
-          {/* Tabs */}
-          <div className="flex items-center gap-1 border-l border-gray-100 pl-3">
-            {tabs.map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className="px-3 py-1.5 font-semibold transition-all"
-                style={{
-                  fontSize: 12.5,
-                  borderRadius: 8,
-                  background: activeTab === tab ? "#1e293b" : "transparent",
-                  color: activeTab === tab ? "#ffffff" : "#6B7280",
-                }}
-              >
-                {tab}
-              </button>
-            ))}
-          </div>
+          {/* Right side: Tabs + Sort grouped */}
+          <div className="flex flex-shrink-0 items-center gap-3">
+            {/* Tabs pill */}
+            <div className="flex items-center gap-0.5 rounded-[12px] bg-[#F8FAFC] p-[5px]">
+              {tabs.map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className="px-3 py-[9px] font-semibold transition-all"
+                  style={{
+                    fontSize: 12.5,
+                    borderRadius: 8,
+                    background: activeTab === tab ? "#1e293b" : "transparent",
+                    color: activeTab === tab ? "#ffffff" : "#6B7280",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {tab}
+                </button>
+              ))}
+            </div>
 
-          {/* Sort */}
-          <div className="flex items-center gap-1.5 border-l border-gray-100 pl-3">
-            <SlidersIcon className="h-[13px] w-[13px] text-gray-400" />
-            <button
-              className="flex items-center gap-1 font-medium text-gray-600"
-              style={{ fontSize: 12.5 }}
-            >
-              Sort by: Experience
-              <ChevronDownIcon className="h-[13px] w-[13px] text-gray-400" />
-            </button>
+            {/* Sort pill */}
+            <div className="flex items-center gap-2 rounded-[12px] bg-[#F8FAFC] px-[14px] py-[11px]">
+              <SlidersIcon className="h-[13px] w-[13px] flex-shrink-0 text-gray-400" />
+              <button
+                className="flex items-center gap-1.5 font-medium whitespace-nowrap text-gray-600"
+                style={{ fontSize: 12.5 }}
+              >
+                Sort by: Experience
+                <ChevronDownIcon className="h-[13px] w-[13px] text-gray-400" />
+              </button>
+            </div>
           </div>
         </div>
 
@@ -611,72 +624,79 @@ export default function DoctorManagementPage() {
         </div>
 
         {/* ── Pagination ── */}
-        <div className="flex items-center justify-center gap-1.5">
+        <div className="flex items-center justify-center gap-2">
+          {/* Prev */}
           <button
             onClick={() => setPage(Math.max(1, page - 1))}
-            className="flex items-center justify-center transition-colors hover:bg-white"
+            className="flex items-center justify-center bg-white transition-colors hover:bg-gray-50"
             style={{
-              width: 34,
-              height: 34,
-              borderRadius: 10,
-              border: "1px solid #E5E7EB",
+              width: 44,
+              height: 44,
+              borderRadius: 12,
+              border: "1px solid #E2E8F0",
             }}
           >
-            <ChevronLeftIcon className="h-4 w-4 text-gray-500" />
+            <ChevronLeftIcon className="h-[18px] w-[18px] text-gray-500" />
           </button>
 
+          {/* Page numbers */}
           {[1, 2, 3].map((p) => (
             <button
               key={p}
               onClick={() => setPage(p)}
               className="flex items-center justify-center font-semibold transition-all"
               style={{
-                width: 34,
-                height: 34,
-                borderRadius: 10,
-                fontSize: 13,
-                background: page === p ? "#3B82F6" : "transparent",
+                width: 44,
+                height: 44,
+                borderRadius: 12,
+                fontSize: 14,
+                background: page === p ? "#3B82F6" : "#ffffff",
                 color: page === p ? "#ffffff" : "#374151",
-                border: page === p ? "none" : "1px solid #E5E7EB",
+                border: page === p ? "none" : "1px solid #E2E8F0",
+                boxShadow:
+                  page === p ? "0 2px 8px rgba(59,130,246,0.25)" : "none",
               }}
             >
               {p}
             </button>
           ))}
 
+          {/* Dots */}
           <span
-            className="px-1 font-medium text-gray-400"
-            style={{ fontSize: 13 }}
+            className="flex items-center justify-center font-medium text-gray-400"
+            style={{ width: 44, height: 44, fontSize: 14 }}
           >
             ...
           </span>
 
+          {/* Last page */}
           <button
             onClick={() => setPage(12)}
-            className="flex items-center justify-center font-semibold transition-all"
+            className="flex items-center justify-center bg-white font-semibold transition-all hover:bg-gray-50"
             style={{
-              width: 34,
-              height: 34,
-              borderRadius: 10,
-              fontSize: 13,
+              width: 44,
+              height: 44,
+              borderRadius: 12,
+              fontSize: 14,
               color: "#374151",
-              border: "1px solid #E5E7EB",
+              border: "1px solid #E2E8F0",
             }}
           >
             12
           </button>
 
+          {/* Next */}
           <button
             onClick={() => setPage(Math.min(12, page + 1))}
-            className="flex items-center justify-center transition-colors hover:bg-white"
+            className="flex items-center justify-center bg-white transition-colors hover:bg-gray-50"
             style={{
-              width: 34,
-              height: 34,
-              borderRadius: 10,
-              border: "1px solid #E5E7EB",
+              width: 44,
+              height: 44,
+              borderRadius: 12,
+              border: "1px solid #E2E8F0",
             }}
           >
-            <ChevronRightIcon className="h-4 w-4 text-gray-500" />
+            <ChevronRightIcon className="h-[18px] w-[18px] text-gray-500" />
           </button>
         </div>
       </div>

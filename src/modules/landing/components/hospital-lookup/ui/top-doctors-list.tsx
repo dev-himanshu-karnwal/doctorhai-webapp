@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import type { DoctorEntry } from "../../types";
+import type { DoctorEntry } from "../../../types";
 
 type TopDoctorsListProps = {
   topDoctors: DoctorEntry[];
