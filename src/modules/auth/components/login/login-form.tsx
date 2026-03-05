@@ -80,6 +80,15 @@ export function LoginForm() {
           error={fieldErrors.password?.message}
         />
 
+        <div className="-mt-2 flex justify-end">
+          <Link
+            href="/forgot-password"
+            className="text-[14px] font-bold text-[#4FB3AA] transition-colors hover:text-[#3D8F87]"
+          >
+            Forgot Password?
+          </Link>
+        </div>
+
         <Button
           type="submit"
           disabled={isPending}
