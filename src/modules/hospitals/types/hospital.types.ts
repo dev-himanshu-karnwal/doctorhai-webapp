@@ -6,11 +6,11 @@ export type IconType =
   | "brain"
   | "tooth"
   | "cross";
-export type SpecialtyColor = "default" | "teal" | "purple" | "amber";
+export type ListingSpecialtyColor = "default" | "teal" | "purple" | "amber";
 
 export interface HospitalSpecialty {
   name: string;
-  color?: SpecialtyColor;
+  color?: ListingSpecialtyColor;
 }
 
 export interface Hospital {

@@ -1,4 +1,4 @@
-export { HospitalsPage } from "./components/hospitals-page";
+export { HospitalsPage, HospitalDetailPage } from "./components";
 export type {
   Hospital,
   HospitalStatus,
