@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export function Header() {
   return (
-    <div className="w-full bg-[#F8FAFC] px-3 pt-4 pb-3 sm:px-4 sm:pt-6 sm:pb-4 md:px-8">
+    <div className="w-full px-3 pt-4 pb-3 sm:px-4 sm:pt-6 sm:pb-4 md:px-8">
       <header className="mx-auto max-w-7xl">
         <div className="flex h-[60px] items-center justify-between rounded-full border border-gray-50 bg-white px-4 shadow-[0_8px_30px_rgb(0,0,0,0.04)] sm:h-[72px] sm:px-6">
           <Link
