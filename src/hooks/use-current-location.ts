@@ -11,7 +11,9 @@ export function useCurrentLocation() {
 
   useEffect(() => {
     if (!navigator.geolocation) {
-      setError("Geolocation is not supported by your browser");
+      queueMicrotask(() =>
+        setError("Geolocation is not supported by your browser")
+      );
       return;
     }
 
