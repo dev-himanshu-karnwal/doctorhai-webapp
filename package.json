@@ -6,12 +6,12 @@
   "author": {
     "name": "Himanshu Karnwal",
     "email": "himanshukar1810@gmail.com",
-    "github": "https://github.com/dev-himanshu-karnwal/doctor-status-platform-webapp"
+    "github": "https://github.com/dev-himanshu-karnwal/doctorhai-webapp.git"
   },
   "license": "UNLICENSED",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dev-himanshu-karnwal/doctor-status-platform-webapp.git"
+    "url": "https://github.com/dev-himanshu-karnwal/doctorhai-webapp.git"
   },
   "engines": {
     "node": ">=20.0.0",
