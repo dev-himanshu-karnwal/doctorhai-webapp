@@ -3,7 +3,7 @@
 import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormInput } from "../shared/form-input";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui";
 import { Icons } from "../shared/icons";
 import { useRouter } from "next/navigation";
 import {

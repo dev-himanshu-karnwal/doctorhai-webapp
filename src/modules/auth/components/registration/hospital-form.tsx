@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { hospitalRegistrationSchema } from "../../schemas";
 import { HospitalRegistrationValues } from "../../types/registration.types";
 import { FormInput } from "../shared/form-input";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui";
 import { useRegister } from "../../hooks";
 import { Icons } from "../shared/icons";
 import { RegistrationSuccessModal } from "./registration-success-modal";

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { HospitalDetailPage } from "@/modules/hospitals/components/hospital-detail-page";
+import { HospitalDetailPage } from "@/modules/hospitals";
 
 export const metadata: Metadata = {
   title: "City General Hospital | DoctorHai",

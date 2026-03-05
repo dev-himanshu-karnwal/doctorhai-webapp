@@ -208,7 +208,6 @@ interface HospitalCardProps {
   avatarTextColor: string;
   badgeColor: string;
   clockColor: string;
-  timeColor: string;
 }
 
 function HospitalCard({
@@ -221,7 +220,6 @@ function HospitalCard({
   avatarTextColor,
   badgeColor,
   clockColor,
-  timeColor,
 }: HospitalCardProps) {
   return (
     <div
@@ -468,7 +466,6 @@ export default function AdminDashboardPage() {
               avatarTextColor="#D97706"
               badgeColor="#FBBF24"
               clockColor="#FBBF24"
-              timeColor="#92400E"
             />
 
             <HospitalCard
@@ -481,7 +478,6 @@ export default function AdminDashboardPage() {
               avatarTextColor="#7BA6E8"
               badgeColor="#60A5FA"
               clockColor="#60A5FA"
-              timeColor="#1D4ED8"
             />
 
             <HospitalCard
@@ -494,7 +490,6 @@ export default function AdminDashboardPage() {
               avatarTextColor="#C4B5FD"
               badgeColor="#A78BFA"
               clockColor="#9CA3AF"
-              timeColor="#374151"
             />
 
             {/* Invite Hospital — dashed */}

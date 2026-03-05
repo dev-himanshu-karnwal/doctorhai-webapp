@@ -2,7 +2,7 @@ import { MOCK_SEARCH_RESULTS } from "../data/mock-results";
 import { DoctorCard } from "./doctor-card";
 import { ClinicCard } from "./clinic-card";
 import { DoctorCtaCard } from "./doctor-cta-card";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui";
 
 export function SearchResults() {
   return (
