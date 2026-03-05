@@ -1,7 +1,7 @@
 {
-  "name": "doctor-status-platform-webapp",
+  "name": "doctorhai-webapp",
   "version": "1.0.0",
-  "description": "Doctor Status Platform WebApp",
+  "description": "DoctorHai WebApp",
   "private": true,
   "author": {
     "name": "Himanshu Karnwal",
