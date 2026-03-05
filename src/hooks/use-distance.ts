@@ -9,19 +9,21 @@ interface Location {
 
 export function useDistance(targetLocation: Location | undefined | null) {
   const { location: userLocation } = useCurrentLocation();
+  const lat = targetLocation?.latitude;
+  const lon = targetLocation?.longitude;
 
   return useMemo(() => {
-    if (userLocation && targetLocation?.latitude && targetLocation?.longitude) {
+    if (userLocation && lat && lon) {
       const distanceInMeters = getDistance(
         { latitude: userLocation.latitude, longitude: userLocation.longitude },
         {
-          latitude: targetLocation.latitude,
-          longitude: targetLocation.longitude,
+          latitude: lat,
+          longitude: lon,
         }
       );
       const distanceInKm = (distanceInMeters / 1000).toFixed(1);
       return `${distanceInKm}km away`;
     }
     return "";
-  }, [userLocation, targetLocation?.latitude, targetLocation?.longitude]);
+  }, [userLocation, lat, lon]);
 }

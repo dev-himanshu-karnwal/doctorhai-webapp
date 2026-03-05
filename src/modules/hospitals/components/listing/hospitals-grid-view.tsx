@@ -10,7 +10,7 @@ interface HospitalsGridViewProps {
   hospitals: Hospital[];
   isLoading: boolean;
   isFetching: boolean;
-  error: any;
+  error: unknown;
   hasMore: boolean;
   onLoadMore: () => void;
   page: number;
@@ -25,6 +25,14 @@ export function HospitalsGridView({
   onLoadMore,
   page,
 }: HospitalsGridViewProps) {
+  const renderedHospitals = useMemo(
+    () =>
+      hospitals.map((hospital) => (
+        <HospitalCard key={hospital.id} hospital={hospital} />
+      )),
+    [hospitals]
+  );
+
   if (isLoading && page === 1) {
     return <CardSkeletonList count={6} />;
   }
@@ -40,13 +48,7 @@ export function HospitalsGridView({
   return (
     <>
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {useMemo(
-          () =>
-            hospitals.map((hospital) => (
-              <HospitalCard key={hospital.id} hospital={hospital} />
-            )),
-          [hospitals]
-        )}
+        {renderedHospitals}
       </div>
 
       {!isLoading && hospitals.length === 0 && (

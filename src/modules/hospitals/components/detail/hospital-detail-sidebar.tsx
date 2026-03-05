@@ -73,5 +73,3 @@ export function HospitalDetailSidebar({ h }: { h: HospitalDetail }) {
     </aside>
   );
 }
-
-import { cn } from "@/lib/cn";
