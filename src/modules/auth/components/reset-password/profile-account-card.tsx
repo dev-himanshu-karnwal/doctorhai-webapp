@@ -1,7 +1,7 @@
 "use client";
 
 import { memo } from "react";
-import { Input } from "@/components/ui/input";
+import { Input } from "@/components/ui";
 import { cn } from "@/lib/cn";
 import { Icons } from "../shared/icons";
 

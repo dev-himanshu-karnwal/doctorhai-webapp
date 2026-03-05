@@ -1,15 +1,27 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { MOCK_HOSPITALS } from "../../data/mock-hospitals";
-import { HospitalCard } from "./hospital-card";
+import { Button } from "@/components/ui";
 import { HospitalFilters } from "./hospital-filters";
 import { HospitalsSearch } from "./hospitals-search";
+import { HospitalsGridView } from "./hospitals-grid-view";
 import { cn } from "@/lib/cn";
+import { useHospitalsListing } from "../../hooks";
 
 export function HospitalsPage() {
   const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false);
+
+  const {
+    accumulatedHospitals,
+    searchQuery,
+    isLoading,
+    isFetching,
+    error,
+    hasMore,
+    handleLoadMore,
+    handleSearch,
+    meta,
+  } = useHospitalsListing();
 
   return (
     <div className="min-h-screen bg-[#F4F7F5] px-4 py-6 sm:px-6 sm:py-8">
@@ -42,20 +54,19 @@ export function HospitalsPage() {
           <main className="flex-1">
             <HospitalsSearch
               onFilterToggle={() => setIsMobileFiltersOpen(true)}
+              onSearch={handleSearch}
+              value={searchQuery}
             />
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-              {MOCK_HOSPITALS.map((hospital) => (
-                <HospitalCard key={hospital.id} hospital={hospital} />
-              ))}
-            </div>
-            <div className="mt-12 flex justify-center">
-              <Button
-                variant="outline"
-                className="h-12 rounded-full px-8 font-bold"
-              >
-                Load More Hospitals
-              </Button>
-            </div>
+
+            <HospitalsGridView
+              hospitals={accumulatedHospitals}
+              isLoading={isLoading}
+              isFetching={isFetching}
+              error={error}
+              hasMore={hasMore}
+              onLoadMore={handleLoadMore}
+              page={meta?.page ?? 1}
+            />
           </main>
         </div>
       </div>

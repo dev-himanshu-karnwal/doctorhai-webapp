@@ -1,5 +1,5 @@
 import { cn } from "@/lib/cn";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui";
 
 interface LoginToggleProps {
   type: "username" | "email";

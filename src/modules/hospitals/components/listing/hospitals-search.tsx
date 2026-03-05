@@ -1,15 +1,35 @@
 "use client";
-
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Input } from "@/components/ui";
 
 interface HospitalsSearchProps {
   onFilterToggle: () => void;
+  onSearch: (value: string) => void;
+  value?: string;
 }
 
-export function HospitalsSearch({ onFilterToggle }: HospitalsSearchProps) {
+export function HospitalsSearch({
+  onFilterToggle,
+  onSearch,
+  value = "",
+}: HospitalsSearchProps) {
+  const [inputValue, setInputValue] = useState(value);
+
+  useEffect(() => {
+    setInputValue(value);
+  }, [value]);
+
+  const handleSubmit = (e?: React.FormEvent) => {
+    e?.preventDefault();
+    onSearch(inputValue);
+  };
+
   return (
-    <div className="mb-6 flex w-full items-center gap-2 sm:gap-3">
+    <form
+      onSubmit={handleSubmit}
+      className="mb-6 flex w-full items-center gap-2 sm:gap-3"
+    >
       <div className="flex h-[50px] flex-1 items-center overflow-hidden rounded-[24px] border border-[#E2E8F0] bg-white p-1.5 shadow-sm transition-shadow focus-within:shadow-md sm:h-[56px] sm:rounded-[32px] sm:px-[6px]">
         <div className="flex flex-1 items-center gap-2 pl-3 sm:gap-3 sm:pl-4">
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -21,16 +41,28 @@ export function HospitalsSearch({ onFilterToggle }: HospitalsSearchProps) {
           <Input
             type="text"
             placeholder="Search for hospitals ..."
+            value={inputValue}
+            required
+            onChange={(e) => {
+              const newValue = e.target.value;
+              setInputValue(newValue);
+              onSearch(newValue);
+            }}
             className="h-full w-full min-w-0 flex-1 truncate border-0 bg-transparent p-0 text-[14px] text-[#2D3748] ring-0 outline-none placeholder:text-[#718096]/70 focus-visible:ring-0 focus-visible:ring-offset-0 sm:text-[16px]"
           />
         </div>
-        <Button className="h-[38px] rounded-[20px] bg-[#4FB3AA] px-4 font-bold text-white hover:bg-[#3D8F87] sm:h-[40px] sm:rounded-full">
+        <Button
+          type="submit"
+          value={inputValue}
+          className="h-[38px] rounded-[20px] bg-[#4FB3AA] px-4 font-bold text-white hover:bg-[#3D8F87] sm:h-[40px] sm:rounded-full"
+        >
           Search
         </Button>
       </div>
 
       <Button
         onClick={onFilterToggle}
+        type="button"
         variant="outline"
         className="flex h-[50px] w-[50px] items-center justify-center rounded-[24px] border border-[#E2E8F0] bg-white p-0 text-[#2D3748] shadow-sm hover:bg-gray-50 lg:hidden"
       >
@@ -47,6 +79,6 @@ export function HospitalsSearch({ onFilterToggle }: HospitalsSearchProps) {
           <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
         </svg>
       </Button>
-    </div>
+    </form>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { HospitalDetail } from "../../types/hospital-detail.types";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui";
 
 export function HospitalDetailHeader({ h }: { h: HospitalDetail }) {
   return (

@@ -2,7 +2,7 @@
 
 import { HospitalDetail } from "../../types/hospital-detail.types";
 import { DoctorListItem } from "./doctor-list-item";
-import { Input } from "@/components/ui/input";
+import { Input } from "@/components/ui";
 
 export function HospitalDoctorAvailability({
   doctors,

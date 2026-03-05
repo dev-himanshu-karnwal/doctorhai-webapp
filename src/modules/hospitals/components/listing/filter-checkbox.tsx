@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { cn } from "@/lib/cn";
-import { Input } from "@/components/ui/input";
+import { Input } from "@/components/ui";
 
 interface FilterCheckboxProps {
   label: string;

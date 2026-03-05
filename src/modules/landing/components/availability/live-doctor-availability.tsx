@@ -30,7 +30,7 @@ export function LiveDoctorAvailability({
             href={viewAllHref}
             className="group mb-1 flex items-center gap-1 text-[15px] leading-[22px] font-bold text-[#3D8F87] transition-all hover:text-[#2D3748] sm:mb-2 sm:gap-2 sm:text-[16px] sm:leading-[24px]"
           >
-            View All Departments
+            View All Doctors
             <svg
               width="18"
               height="18"

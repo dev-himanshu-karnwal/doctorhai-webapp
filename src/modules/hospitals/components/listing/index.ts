@@ -4,6 +4,5 @@ export * from "./hospital-card";
 export * from "./hospitals-search";
 export * from "./toggle-switch";
 export * from "./filter-checkbox";
-export * from "./hospital-icon";
 export * from "./specialty-pill";
 export * from "./distance-slider";

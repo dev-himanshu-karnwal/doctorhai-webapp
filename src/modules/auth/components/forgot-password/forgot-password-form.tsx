@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormInput } from "../shared/form-input";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui";
 import { Icons } from "../shared/icons";
 import Link from "next/link";
 import { useRouter } from "next/navigation";

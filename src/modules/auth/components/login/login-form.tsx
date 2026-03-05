@@ -5,7 +5,7 @@ import { useForm, type FieldErrors } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema, type LoginValues } from "../../schemas";
 import { FormInput } from "../shared/form-input";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui";
 import Link from "next/link";
 import { useLogin } from "../../hooks";
 import { LoginToggle } from "./toggle";
