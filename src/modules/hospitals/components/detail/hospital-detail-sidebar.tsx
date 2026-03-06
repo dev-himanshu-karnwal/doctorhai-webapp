@@ -25,7 +25,7 @@ function HospitalTimelineDropdown({
     return (
       <div className="space-y-1">
         <p className="text-[10px] font-bold tracking-widest text-[#94A3B8] uppercase">
-          Today's Hours
+          Today&apos;s Hours
         </p>
         <div className="flex items-center justify-between">
           <span className="text-[15px] font-bold text-[#2D3748]">
@@ -42,7 +42,7 @@ function HospitalTimelineDropdown({
     <div className="space-y-2">
       <div className="space-y-1">
         <p className="text-[10px] font-bold tracking-widest text-[#94A3B8] uppercase">
-          Today's Hours
+          Today&apos;s Hours
         </p>
         <button
           onClick={() => setIsExpanded(!isExpanded)}

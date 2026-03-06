@@ -27,6 +27,7 @@ export function useHospitalDetail(id: string) {
 
   useEffect(() => {
     // Reset page and accumulated doctors when search changes
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setPage(1);
     setAccumulatedDoctors([]);
   }, [debouncedSearchQuery]);
@@ -34,6 +35,7 @@ export function useHospitalDetail(id: string) {
   useEffect(() => {
     if (data?.doctors?.items && !isPlaceholderData) {
       if (page === 1) {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setAccumulatedDoctors(data.doctors.items);
       } else {
         setAccumulatedDoctors((prev) => {

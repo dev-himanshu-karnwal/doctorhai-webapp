@@ -23,7 +23,6 @@ export function useHospitalsListing() {
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setPage(1);
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setAccumulatedHospitals([]);
   }, [debouncedSearch]);
 
@@ -33,7 +32,6 @@ export function useHospitalsListing() {
         // eslint-disable-next-line react-hooks/set-state-in-effect
         setAccumulatedHospitals(data.items);
       } else {
-        // eslint-disable-next-line react-hooks/set-state-in-effect
         setAccumulatedHospitals((prev) => {
           const existingIds = new Set(prev.map((h) => h.id));
           const newItems = data.items.filter((h) => !existingIds.has(h.id));
