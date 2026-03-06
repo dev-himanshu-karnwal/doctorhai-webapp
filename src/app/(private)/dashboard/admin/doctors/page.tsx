@@ -474,7 +474,7 @@ export default function DoctorManagementPage() {
 
   return (
     <div className="min-h-screen" style={{ background: "#F0F2F5" }}>
-      <div className="mx-auto max-w-6xl px-8 py-7">
+      <div className="mx-auto max-w-6xl px-4 py-7 sm:px-6 md:px-8">
         {/* ── Breadcrumb ── */}
         <div className="mb-5 flex items-center gap-2">
           <Link
@@ -489,10 +489,10 @@ export default function DoctorManagementPage() {
         </div>
 
         {/* ── Page Header ── */}
-        <div className="mb-7 flex items-start justify-between">
+        <div className="mb-7 flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
           {/* Left */}
-          <div className="flex-1 pr-8">
-            <h1 className="mb-2 text-[34px] leading-[1.15] font-extrabold tracking-tight text-gray-900">
+          <div className="flex-1">
+            <h1 className="mb-2 text-[28px] leading-[1.15] font-extrabold tracking-tight text-gray-900 sm:text-[34px]">
               Doctor Management
             </h1>
             <p className="text-[13.5px] leading-relaxed text-gray-500">
@@ -502,7 +502,7 @@ export default function DoctorManagementPage() {
 
           {/* Right: stat card */}
           <div
-            className="flex flex-shrink-0 items-center gap-3 bg-white"
+            className="flex w-full flex-shrink-0 items-center gap-3 bg-white sm:w-auto"
             style={{
               borderRadius: 18,
               border: "1px solid #F1F2F4",
@@ -530,9 +530,9 @@ export default function DoctorManagementPage() {
                   marginBottom: 2,
                 }}
               >
-                Total Doctors Onboarded
+                Total Doctors
               </p>
-              <span className="text-[28px] leading-none font-extrabold text-gray-900">
+              <span className="text-[24px] leading-none font-extrabold text-gray-900 sm:text-[28px]">
                 1,248
               </span>
             </div>
@@ -541,7 +541,7 @@ export default function DoctorManagementPage() {
 
         {/* ── Filter / Search Bar ── */}
         <div
-          className="mb-6 flex items-center gap-4 bg-white p-[16px]"
+          className="mb-6 flex flex-col gap-4 bg-white p-[16px] xl:flex-row xl:items-center"
           style={{
             borderRadius: 16,
             border: "1px solid #F1F5F9",
@@ -553,7 +553,7 @@ export default function DoctorManagementPage() {
             <SearchIcon className="absolute top-1/2 left-[14px] h-[14px] w-[14px] -translate-y-1/2 text-gray-400" />
             <input
               type="text"
-              placeholder="Search by Name, Specialty, or Hospital..."
+              placeholder="Search doctors..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="w-full text-gray-600 placeholder-gray-400 focus:outline-none"
@@ -571,9 +571,9 @@ export default function DoctorManagementPage() {
           </div>
 
           {/* Right side: Tabs + Sort grouped */}
-          <div className="flex flex-shrink-0 items-center gap-3">
+          <div className="flex flex-col gap-3 md:flex-row md:items-center">
             {/* Tabs pill */}
-            <div className="flex items-center gap-0.5 rounded-[12px] bg-[#F8FAFC] p-[5px]">
+            <div className="no-scrollbar flex items-center gap-0.5 overflow-x-auto rounded-[12px] bg-[#F8FAFC] p-[5px]">
               {tabs.map((tab) => (
                 <button
                   key={tab}
@@ -593,21 +593,23 @@ export default function DoctorManagementPage() {
             </div>
 
             {/* Sort pill */}
-            <div className="flex items-center gap-2 rounded-[12px] bg-[#F8FAFC] px-[14px] py-[11px]">
-              <SlidersIcon className="h-[13px] w-[13px] flex-shrink-0 text-gray-400" />
-              <button
-                className="flex items-center gap-1.5 font-medium whitespace-nowrap text-gray-600"
-                style={{ fontSize: 12.5 }}
-              >
-                Sort by: Experience
-                <ChevronDownIcon className="h-[13px] w-[13px] text-gray-400" />
-              </button>
+            <div className="flex items-center justify-between gap-2 rounded-[12px] bg-[#F8FAFC] px-[14px] py-[11px] md:justify-start">
+              <div className="flex items-center gap-2">
+                <SlidersIcon className="h-[13px] w-[13px] flex-shrink-0 text-gray-400" />
+                <button
+                  className="flex items-center gap-1.5 font-medium whitespace-nowrap text-gray-600"
+                  style={{ fontSize: 12.5 }}
+                >
+                  Sort: Experience
+                </button>
+              </div>
+              <ChevronDownIcon className="h-[13px] w-[13px] text-gray-400" />
             </div>
           </div>
         </div>
 
         {/* ── Cards Grid ── */}
-        <div className="mb-7 grid grid-cols-4 gap-4">
+        <div className="mb-7 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {filtered.map((doc) => (
             <DoctorCard key={doc.id} doc={doc} />
           ))}
@@ -615,7 +617,7 @@ export default function DoctorManagementPage() {
           <AddDoctorCard />
           {filtered.length === 0 && (
             <div
-              className="col-span-3 py-10 text-center text-gray-400"
+              className="col-span-1 py-10 text-center text-gray-400 sm:col-span-2 md:col-span-3 lg:col-span-4"
               style={{ fontSize: 14 }}
             >
               No doctors match your search.
@@ -624,17 +626,11 @@ export default function DoctorManagementPage() {
         </div>
 
         {/* ── Pagination ── */}
-        <div className="flex items-center justify-center gap-2">
+        <div className="flex flex-wrap items-center justify-center gap-2 pb-10">
           {/* Prev */}
           <button
             onClick={() => setPage(Math.max(1, page - 1))}
-            className="flex items-center justify-center bg-white transition-colors hover:bg-gray-50"
-            style={{
-              width: 44,
-              height: 44,
-              borderRadius: 12,
-              border: "1px solid #E2E8F0",
-            }}
+            className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#E2E8F0] bg-white transition-colors hover:bg-gray-50 active:scale-95 sm:h-11 sm:w-11"
           >
             <ChevronLeftIcon className="h-[18px] w-[18px] text-gray-500" />
           </button>
@@ -644,11 +640,8 @@ export default function DoctorManagementPage() {
             <button
               key={p}
               onClick={() => setPage(p)}
-              className="flex items-center justify-center font-semibold transition-all"
+              className="flex h-10 w-10 items-center justify-center rounded-xl font-semibold transition-all active:scale-95 sm:h-11 sm:w-11"
               style={{
-                width: 44,
-                height: 44,
-                borderRadius: 12,
                 fontSize: 14,
                 background: page === p ? "#3B82F6" : "#ffffff",
                 color: page === p ? "#ffffff" : "#374151",
@@ -661,10 +654,10 @@ export default function DoctorManagementPage() {
             </button>
           ))}
 
-          {/* Dots */}
+          {/* Dots — hidden on very small screens to save space */}
           <span
-            className="flex items-center justify-center font-medium text-gray-400"
-            style={{ width: 44, height: 44, fontSize: 14 }}
+            className="hidden h-10 w-10 items-center justify-center font-medium text-gray-400 sm:flex sm:h-11 sm:w-11"
+            style={{ fontSize: 14 }}
           >
             ...
           </span>
@@ -672,14 +665,10 @@ export default function DoctorManagementPage() {
           {/* Last page */}
           <button
             onClick={() => setPage(12)}
-            className="flex items-center justify-center bg-white font-semibold transition-all hover:bg-gray-50"
+            className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#E2E8F0] bg-white font-semibold transition-all hover:bg-gray-50 active:scale-95 sm:h-11 sm:w-11"
             style={{
-              width: 44,
-              height: 44,
-              borderRadius: 12,
               fontSize: 14,
               color: "#374151",
-              border: "1px solid #E2E8F0",
             }}
           >
             12
@@ -688,13 +677,7 @@ export default function DoctorManagementPage() {
           {/* Next */}
           <button
             onClick={() => setPage(Math.min(12, page + 1))}
-            className="flex items-center justify-center bg-white transition-colors hover:bg-gray-50"
-            style={{
-              width: 44,
-              height: 44,
-              borderRadius: 12,
-              border: "1px solid #E2E8F0",
-            }}
+            className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#E2E8F0] bg-white transition-colors hover:bg-gray-50 active:scale-95 sm:h-11 sm:w-11"
           >
             <ChevronRightIcon className="h-[18px] w-[18px] text-gray-500" />
           </button>

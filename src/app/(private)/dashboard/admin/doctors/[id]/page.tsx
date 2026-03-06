@@ -422,7 +422,7 @@ export default function DoctorDetailPage() {
 
   return (
     <div className="min-h-screen bg-[#f4f7f9] pt-6 pb-12 font-sans">
-      <div className="mx-auto max-w-[1020px] px-6">
+      <div className="mx-auto max-w-[1200px] px-4 sm:px-6">
         {/* ═══════════════ TOP CARD ═══════════════ */}
         <div
           className="mb-6 shrink-0 bg-white"
@@ -433,21 +433,21 @@ export default function DoctorDetailPage() {
           }}
         >
           {/* Header section w/ Avatar & Status */}
-          <div className="flex items-center justify-between px-8 pt-7 pb-6">
-            <div className="flex items-center gap-6">
+          <div className="flex flex-col gap-6 px-4 pt-7 pb-6 sm:px-8 lg:flex-row lg:items-center lg:justify-between">
+            <div className="flex flex-col items-center gap-6 text-center sm:flex-row sm:text-left">
               <DoctorProfileAvatar />
               <div>
-                <h1 className="mb-1.5 text-[25px] font-bold tracking-tight text-[#0f172a]">
+                <h1 className="mb-1.5 text-[22px] font-bold tracking-tight text-[#0f172a] sm:text-[25px]">
                   Dr. Sarah Johnson
                 </h1>
-                <p className="text-[14.5px] font-medium text-[#64748b]">
+                <p className="text-[14px] font-medium text-[#64748b] sm:text-[14.5px]">
                   Cardiologist &nbsp;·&nbsp; ID: #DOC-8921
                 </p>
               </div>
             </div>
 
             {/* System Status toggle pill */}
-            <div className="mb-4 flex flex-col">
+            <div className="flex flex-col items-center lg:items-end">
               <div
                 className="flex items-center gap-3.5 rounded-[14px]"
                 style={{
@@ -494,7 +494,7 @@ export default function DoctorDetailPage() {
 
           {/* Stats row */}
           <div
-            className="flex items-center gap-24 px-8 py-5"
+            className="flex flex-wrap items-center gap-8 px-4 py-5 sm:gap-24 sm:px-8"
             style={{ borderTop: "1px solid #f1f5f9" }}
           >
             {[
@@ -502,7 +502,7 @@ export default function DoctorDetailPage() {
               { label: "LAST LOGIN", value: "Today, 09:41 AM" },
               { label: "PATIENTS", value: "1,204" },
             ].map(({ label, value }) => (
-              <div key={label}>
+              <div key={label} className="min-w-[120px] flex-1 sm:flex-none">
                 <p className="mb-1 text-[10.5px] font-bold tracking-wider text-[#94a3b8] uppercase">
                   {label}
                 </p>
@@ -511,7 +511,7 @@ export default function DoctorDetailPage() {
                 </p>
               </div>
             ))}
-            <div>
+            <div className="min-w-[120px] flex-1 sm:flex-none">
               <p className="mb-1 text-[10.5px] font-bold tracking-wider text-[#94a3b8] uppercase">
                 RATING
               </p>
@@ -526,7 +526,7 @@ export default function DoctorDetailPage() {
         </div>
 
         {/* ═══════════════ MAIN CONTENT GRID ═══════════════ */}
-        <div className="mb-6 grid grid-cols-3 gap-6">
+        <div className="mb-6 grid grid-cols-1 gap-6 lg:grid-cols-3">
           {/* ── COLUMN 1: Identity & Account ── */}
           <div className="flex flex-col gap-6">
             {/* Identity Details Card */}
@@ -674,7 +674,7 @@ export default function DoctorDetailPage() {
           </div>
 
           {/* ── COLUMN 2: Contact & Location ── */}
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-6 lg:col-span-1">
             <div
               className="h-full bg-white p-6"
               style={{
@@ -702,27 +702,7 @@ export default function DoctorDetailPage() {
               </div>
 
               <div className="flex flex-col gap-5">
-                <div>
-                  <label style={labelSt}>Primary Phone</label>
-                  <input
-                    type="text"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    className="focus:border-[#93c5fd] focus:ring-1 focus:ring-[#93c5fd]"
-                    style={inputSt}
-                  />
-                </div>
-                <div>
-                  <label style={labelSt}>Street Address</label>
-                  <input
-                    type="text"
-                    value={street}
-                    onChange={(e) => setStreet(e.target.value)}
-                    className="focus:border-[#93c5fd] focus:ring-1 focus:ring-[#93c5fd]"
-                    style={inputSt}
-                  />
-                </div>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <div>
                     <label style={labelSt}>City</label>
                     <input
@@ -744,7 +724,7 @@ export default function DoctorDetailPage() {
                     />
                   </div>
                 </div>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <div>
                     <label style={labelSt}>State</label>
                     <input
@@ -785,7 +765,7 @@ export default function DoctorDetailPage() {
           </div>
 
           {/* ── COLUMN 3: Hospital Links ── */}
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-6 lg:col-span-1">
             <div
               className="h-full bg-white p-6"
               style={{
@@ -859,23 +839,23 @@ export default function DoctorDetailPage() {
 
         {/* ═══════════════ BOTTOM ACTION BAR ═══════════════ */}
         <div
-          className="flex items-center justify-between bg-white px-7 py-5"
+          className="flex flex-col gap-6 bg-white px-4 py-5 sm:px-7 md:flex-row md:items-center md:justify-between"
           style={{
             borderRadius: 18,
             boxShadow: "0 1px 3px rgba(0,0,0,0.03), 0 1px 2px rgba(0,0,0,0.02)",
             border: "1px solid #f1f5f9",
           }}
         >
-          <div className="flex items-center gap-3.5">
-            <AlertTriangleIcon className="h-[20px] w-[20px] flex-shrink-0 text-[#94a3b8]" />
-            <span className="text-[13.5px] font-medium text-[#64748b]">
+          <div className="flex items-start gap-3.5 md:items-center">
+            <AlertTriangleIcon className="mt-1 h-[20px] w-[20px] flex-shrink-0 text-[#94a3b8] md:mt-0" />
+            <span className="text-[13px] leading-relaxed font-medium text-[#64748b] sm:text-[13.5px]">
               Ensure all details are verified before saving. Deletion is
               irreversible.
             </span>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:gap-4">
             <button
-              className="flex items-center gap-2.5 font-bold transition-colors hover:bg-red-50"
+              className="flex items-center justify-center gap-2.5 font-bold transition-colors hover:bg-red-50"
               style={{
                 fontSize: 13.5,
                 color: "#e11d48",
@@ -886,10 +866,10 @@ export default function DoctorDetailPage() {
               }}
             >
               <TrashIcon className="h-[16px] w-[16px]" />
-              Permanently Delete Doctor
+              Delete Doctor
             </button>
             <button
-              className="flex items-center gap-2 font-bold text-white shadow-sm transition-colors hover:bg-blue-700"
+              className="flex items-center justify-center gap-2 font-bold text-white shadow-sm transition-colors hover:bg-blue-700"
               style={{
                 fontSize: 13.5,
                 background: "#2563EB",
