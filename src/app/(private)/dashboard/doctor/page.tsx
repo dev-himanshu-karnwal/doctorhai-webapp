@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 
 // ─── Pixel-Perfect Inline SVG Icons ──────────────────────────────────────────
 const SettingsIcon = ({ className = "" }) => (
@@ -189,11 +190,12 @@ export default function DoctorDashboard() {
       {/* ─── HEADER ─── */}
       <header className="flex items-center justify-between px-5 py-5 sm:px-10 lg:px-16">
         <div className="flex items-center gap-3 sm:gap-4">
-          <div className="h-10 w-10 shrink-0 overflow-hidden rounded-full border-2 border-white bg-slate-100 shadow-md sm:h-11 sm:w-11">
-            <img
+          <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full border-2 border-white bg-slate-100 shadow-md sm:h-11 sm:w-11">
+            <Image
               src="https://images.pexels.com/photos/5452293/pexels-photo-5452293.jpeg?auto=compress&cs=tinysrgb&w=150"
               alt="Dr. Sarah Smith"
-              className="h-full w-full object-cover"
+              fill
+              className="object-cover"
             />
           </div>
           <div className="flex flex-col">

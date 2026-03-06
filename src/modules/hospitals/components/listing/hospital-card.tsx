@@ -13,7 +13,13 @@ export function HospitalCard({ hospital }: { hospital: Hospital }) {
       <div className="mb-4 flex items-start gap-3">
         <div className="relative h-[48px] w-[48px] flex-shrink-0 overflow-hidden rounded-full border border-gray-100">
           <Image
-            src={hospital.coverPhotoUrl ?? "/images/hospital.jpg"}
+            src={
+              hospital.coverPhotoUrl &&
+              (hospital.coverPhotoUrl.startsWith("http") ||
+                hospital.coverPhotoUrl.startsWith("/"))
+                ? hospital.coverPhotoUrl
+                : "/images/hospital.jpg"
+            }
             alt={hospital.name}
             fill
             className="h-full w-full object-cover"

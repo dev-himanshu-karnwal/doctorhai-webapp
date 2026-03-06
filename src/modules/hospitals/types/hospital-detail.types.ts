@@ -1,38 +1,19 @@
-export type DoctorStatus = "available" | "completing" | "off-duty" | "busy";
-export type DoctorSpecialty =
-  | "CARDIOLOGY"
-  | "PEDIATRICS"
-  | "NEUROLOGY"
-  | "GENERAL"
-  | "SURGERY";
-export type DoctorSpecialtyColor = "teal" | "purple" | "blue" | "gray" | "pink";
-
-export interface Doctor {
-  id: string;
-  name: string;
-  role: string;
-  experience: string;
-  specialty: DoctorSpecialty;
-  specialtyColor: DoctorSpecialtyColor;
-  status: DoctorStatus;
-  updatedAt: string;
-  initials: string;
-  avatarBg: string;
-  avatarTextColor: string;
-}
+import { Doctor } from "@/modules/doctors/types";
+import { HospitalTimelineItem } from "./hospital-detail-api.types";
 
 export interface HospitalDetail {
   id: string;
   name: string;
   availableDoctors: number;
   address: string;
+  location?: { latitude: number; longitude: number };
   phone: string;
   hours: string;
+  timeline: HospitalTimelineItem[] | null;
   isOpenNow: boolean;
   erAvailable: boolean;
   erWaitTime: string;
   facilities: string[];
   totalDoctors: number;
-  departments: number;
   doctors: Doctor[];
 }

@@ -392,8 +392,6 @@ export default function DoctorDetailPage() {
   const [fullName, setFullName] = useState("Sarah Johnson");
   const [spec, setSpec] = useState("Cardiologist");
   const [exp, setExp] = useState("12");
-  const [phone, setPhone] = useState("+1 (555) 123-4567");
-  const [street, setStreet] = useState("45 Medical Plaza Dr.");
   const [city, setCity] = useState("Boston");
   const [district, setDistrict] = useState("Back Bay");
   const [state, setState] = useState("MA");
