@@ -5,7 +5,7 @@ export type DoctorSpecialty =
   | "NEUROLOGY"
   | "GENERAL"
   | "SURGERY";
-export type SpecialtyColor = "teal" | "purple" | "blue" | "gray" | "pink";
+export type DoctorSpecialtyColor = "teal" | "purple" | "blue" | "gray" | "pink";
 
 export interface Doctor {
   id: string;
@@ -13,7 +13,7 @@ export interface Doctor {
   role: string;
   experience: string;
   specialty: DoctorSpecialty;
-  specialtyColor: SpecialtyColor;
+  specialtyColor: DoctorSpecialtyColor;
   status: DoctorStatus;
   updatedAt: string;
   initials: string;

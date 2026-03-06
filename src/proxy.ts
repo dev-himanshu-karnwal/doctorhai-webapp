@@ -14,11 +14,11 @@ export function proxy(request: NextRequest) {
     return NextResponse.redirect(new URL("/", request.url));
   }
 
-  // // Protect dashboard routes - requires authentication
-  // const isDashboardRoute = pathname.startsWith("/dashboard");
-  // if (!token && isDashboardRoute) {
-  //   return NextResponse.redirect(new URL("/login", request.url));
-  // }
+  // Protect dashboard routes - requires authentication
+  const isDashboardRoute = pathname.startsWith("/dashboard");
+  if (!token && isDashboardRoute) {
+    return NextResponse.redirect(new URL("/login", request.url));
+  }
 
   // Allow all other routes to proceed normally
   return NextResponse.next();

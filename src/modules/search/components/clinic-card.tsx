@@ -1,5 +1,5 @@
 import { Clinic } from "../types/search.types";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui";
 
 interface ClinicCardProps {
   clinic: Clinic;

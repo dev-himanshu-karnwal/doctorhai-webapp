@@ -1,5 +1,5 @@
 import type { HospitalEntry } from "../../../types";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui";
 
 type TopHospitalsListProps = {
   topHospitals: HospitalEntry[];

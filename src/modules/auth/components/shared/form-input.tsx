@@ -6,7 +6,7 @@ import {
   forwardRef,
   type InputHTMLAttributes,
 } from "react";
-import { Input } from "@/components/ui/input";
+import { Input } from "@/components/ui";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
 
