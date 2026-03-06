@@ -1,15 +1,23 @@
-import { DoctorStatusCard } from "./ui";
-import type { DoctorEntry } from "../../types";
+"use client";
+
+import Link from "next/link";
+import { useDoctors } from "@/modules/doctors/hooks";
+import { DoctorStatusCardSkeletonList } from "@/modules/doctors/components/cards";
+import { LiveDoctorCard } from "./live-doctor-card";
 
 type LiveDoctorAvailabilityProps = {
-  doctors: DoctorEntry[];
   viewAllHref?: string;
 };
 
 export function LiveDoctorAvailability({
-  doctors,
-  viewAllHref = "#",
+  viewAllHref = "/doctors",
 }: LiveDoctorAvailabilityProps) {
+  const {
+    data: doctors,
+    isLoading,
+    error,
+  } = useDoctors({ limit: 4, isVerified: true });
+
   return (
     <section className="relative -mx-4 flex flex-col items-center bg-gradient-to-br from-[#FAF5FF] via-[#EFF6FF] to-white/0 px-4 py-12 sm:-mx-6 sm:px-6 sm:py-16 lg:-mx-8 lg:px-8">
       <div className="w-full max-w-7xl">
@@ -26,7 +34,7 @@ export function LiveDoctorAvailability({
               Real-time Doctor Availability
             </h2>
           </div>
-          <a
+          <Link
             href={viewAllHref}
             className="group mb-1 flex items-center gap-1 text-[15px] leading-[22px] font-bold text-[#3D8F87] transition-all hover:text-[#2D3748] sm:mb-2 sm:gap-2 sm:text-[16px] sm:leading-[24px]"
           >
@@ -44,7 +52,7 @@ export function LiveDoctorAvailability({
             >
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
-          </a>
+          </Link>
         </div>
 
         {/* Horizontal Scroll with Fade Effect */}
@@ -58,9 +66,19 @@ export function LiveDoctorAvailability({
                 "linear-gradient(to right, black 85%, transparent 100%)",
             }}
           >
-            {doctors.map((doctor) => (
-              <DoctorStatusCard key={doctor.id} doctor={doctor} />
-            ))}
+            {isLoading ? (
+              <DoctorStatusCardSkeletonList count={4} />
+            ) : error ? (
+              <p className="py-8 text-sm text-[#718096]">
+                Could not load doctors. Please try again later.
+              </p>
+            ) : !doctors?.length ? (
+              <p className="py-8 text-sm text-[#718096]">No doctors found.</p>
+            ) : (
+              doctors.map((doctor) => (
+                <LiveDoctorCard key={doctor.id} doctor={doctor} />
+              ))
+            )}
           </div>
         </div>
       </div>

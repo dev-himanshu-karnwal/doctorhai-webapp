@@ -1,4 +1,4 @@
-import type { DoctorEntry } from "../../../types";
+import type { StatusKind } from "@/types/common.types";
 import {
   IconBreakFooter,
   IconBreakTop,
@@ -8,7 +8,7 @@ import {
   IconOnlineTop,
 } from "./doctor-status-icons";
 
-export const getStatusConfig = (status: DoctorEntry["status"]) => {
+export const getStatusConfig = (status: StatusKind) => {
   switch (status) {
     case "available":
       return {
@@ -26,11 +26,11 @@ export const getStatusConfig = (status: DoctorEntry["status"]) => {
         footerIcon: <IconBusyFooter />,
         topIcon: <IconBusyTop />,
       };
-    case "on-break":
+    case "back_soon":
       return {
         barBg: "bg-[#FFF7ED]",
         barText: "text-[#F97316]",
-        label: "On Break (15m)",
+        label: "Back Soon",
         footerIcon: <IconBreakFooter />,
         topIcon: <IconBreakTop />,
       };

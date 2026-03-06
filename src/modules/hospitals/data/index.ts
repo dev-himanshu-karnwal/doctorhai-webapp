@@ -1,1 +1,1 @@
-export * from "./mock-hospital-detail";
+export {};

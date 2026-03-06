@@ -1,6 +1,5 @@
 import {
   DUMMY_DEPARTMENTS,
-  DUMMY_LIVE_DOCTORS,
   DUMMY_TOP_DOCTORS,
   DUMMY_TOP_HOSPITALS,
   DUMMY_WORKFLOW_STEPS,
@@ -24,7 +23,7 @@ export function LandingPage() {
         />
       </div>
       <FeatureCards />
-      <LiveDoctorAvailability doctors={DUMMY_LIVE_DOCTORS} />
+      <LiveDoctorAvailability />
       <HowItWorks steps={DUMMY_WORKFLOW_STEPS} />
       <BottomSection />
     </div>
