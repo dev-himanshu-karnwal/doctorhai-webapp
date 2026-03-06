@@ -347,17 +347,17 @@ export default function HospitalDetailPage() {
 
   return (
     <div className="min-h-screen bg-[#f1fcf8] pt-6 pb-12 font-sans">
-      <div className="mx-auto max-w-[1040px] px-8">
+      <div className="mx-auto max-w-[1200px] px-4 sm:px-6 md:px-8">
         {/* ── Hospital Header Card ── */}
         <div
-          className="mb-6 flex items-center justify-between bg-white p-7"
+          className="mb-6 flex flex-col gap-6 bg-white p-5 sm:p-7 xl:flex-row xl:items-center xl:justify-between"
           style={{
             borderRadius: 16,
             boxShadow: "0 1px 3px rgba(0,0,0,0.02), 0 1px 2px rgba(0,0,0,0.01)",
             border: "1px solid #f1f5f9",
           }}
         >
-          <div className="flex items-center gap-5">
+          <div className="flex flex-col items-center gap-5 sm:flex-row sm:items-start xl:items-center">
             {/* Icon */}
             <div
               className="flex flex-shrink-0 items-center justify-center text-[#10b981]" // emerald-500
@@ -373,9 +373,9 @@ export default function HospitalDetailPage() {
             </div>
 
             {/* Info */}
-            <div className="min-w-0 flex-1">
-              <div className="mb-1.5 flex flex-wrap items-center gap-3">
-                <h1 className="text-[22px] leading-tight font-bold tracking-tight text-[#0f172a]">
+            <div className="min-w-0 flex-1 text-center sm:text-left">
+              <div className="mb-1.5 flex flex-wrap items-center justify-center gap-3 sm:justify-start">
+                <h1 className="text-[20px] leading-tight font-bold tracking-tight text-[#0f172a] sm:text-[22px]">
                   St. Mary&apos;s General Hospital
                 </h1>
                 <span
@@ -385,14 +385,14 @@ export default function HospitalDetailPage() {
                   ID: HOSP-8821
                 </span>
               </div>
-              <div className="flex flex-wrap items-center gap-3">
+              <div className="flex flex-wrap items-center justify-center gap-3 sm:justify-start">
                 <div className="flex items-center gap-1.5 text-gray-500">
                   <MapPinIcon className="h-3.5 w-3.5 text-[#94a3b8]" />
                   <span className="text-[13px] font-medium text-[#64748b]">
                     123 Healthcare Blvd, New York, NY 10001
                   </span>
                 </div>
-                <span className="text-[#cbd5e1]">•</span>
+                <span className="hidden text-[#cbd5e1] sm:inline">•</span>
                 <div className="flex items-center gap-1.5 text-gray-500">
                   <GlobeIcon className="h-3.5 w-3.5 text-[#94a3b8]" />
                   <span className="text-[13px] font-medium text-[#64748b]">
@@ -404,7 +404,7 @@ export default function HospitalDetailPage() {
           </div>
 
           {/* Operational toggle wrapper */}
-          <div className="flex flex-shrink-0">
+          <div className="flex flex-shrink-0 justify-center">
             <div className="flex items-center gap-4 rounded-[12px] border border-[#f1f5f9] bg-[#f8fafc] px-4 py-2.5">
               {/* Toggle */}
               <button
@@ -439,7 +439,7 @@ export default function HospitalDetailPage() {
                   style={{ fontSize: "10px" }}
                 >
                   {operational
-                    ? "Accepting new patients"
+                    ? "Accepting patients"
                     : "Not accepting patients"}
                 </p>
               </div>
@@ -448,7 +448,7 @@ export default function HospitalDetailPage() {
         </div>
 
         {/* ── Stats Row ── */}
-        <div className="mb-6 grid grid-cols-4 gap-4">
+        <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {/* Total Doctors */}
           <div
             className="flex flex-col justify-between bg-white p-5"
@@ -621,7 +621,7 @@ export default function HospitalDetailPage() {
         </div>
 
         {/* ── Two-column layout ── */}
-        <div className="grid grid-cols-[1fr_310px] gap-6">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_310px]">
           {/* ════ LEFT COLUMN ════ */}
           <div className="flex flex-col gap-6">
             {/* ── Hospital Configuration ── */}
@@ -681,7 +681,7 @@ export default function HospitalDetailPage() {
                 </div>
 
                 {/* Email + Phone row */}
-                <div className="grid grid-cols-2 gap-5">
+                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                   <div>
                     <label style={labelStyle}>Primary Contact Email</label>
                     <input
@@ -720,7 +720,7 @@ export default function HospitalDetailPage() {
                 </div>
 
                 {/* City + District row */}
-                <div className="grid grid-cols-2 gap-5">
+                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                   <div>
                     <label style={labelStyle}>City</label>
                     <input
@@ -744,7 +744,7 @@ export default function HospitalDetailPage() {
                 </div>
 
                 {/* State + ZIP row */}
-                <div className="grid grid-cols-2 gap-5">
+                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                   <div>
                     <label style={labelStyle}>State</label>
                     <div className="relative">
@@ -788,14 +788,14 @@ export default function HospitalDetailPage() {
               }}
             >
               {/* Header */}
-              <div className="mb-6 flex items-center justify-between">
+              <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div className="flex items-center gap-2.5">
                   <UsersIcon className="h-5 w-5 text-[#0f766e]" />
                   <h2 className="text-[18px] font-bold text-[#0f172a]">
                     Doctor Management
                   </h2>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
                   <div className="relative">
                     <SearchIcon className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-[#94a3b8]" />
                     <input
@@ -812,7 +812,7 @@ export default function HospitalDetailPage() {
                         outline: "none",
                         paddingTop: "9px",
                         paddingBottom: "9px",
-                        width: 220,
+                        width: "100%",
                         fontSize: "13px",
                         fontWeight: 500,
                       }}
@@ -833,90 +833,98 @@ export default function HospitalDetailPage() {
               </div>
 
               {/* Table Container */}
-              <div className="flex flex-col overflow-hidden rounded-[16px] border border-[#f1f5f9]">
-                {/* Table header */}
-                <div className="grid grid-cols-[1fr_100px_80px] gap-4 border-b border-[#f1f5f9] bg-white px-6 py-4">
-                  {["Name & Specialty", "Status", "Actions"].map((h) => (
-                    <span
-                      key={h}
-                      className="font-bold text-[#64748b] uppercase"
-                      style={{ fontSize: "10.5px", letterSpacing: "0.06em" }}
-                    >
-                      {h}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Rows */}
-                <div className="flex flex-col bg-white">
-                  {doctors
-                    .filter((d) =>
-                      d.name.toLowerCase().includes(doctorSearch.toLowerCase())
-                    )
-                    .map((doc, i) => (
-                      <div
-                        key={i}
-                        className="grid grid-cols-[1fr_100px_80px] items-center gap-4 border-b border-[#f1f5f9] px-6 py-4 transition-colors last:border-0"
+              <div className="no-scrollbar flex flex-col overflow-x-auto rounded-[16px] border border-[#f1f5f9]">
+                <div className="min-w-[500px]">
+                  {/* Table header */}
+                  <div className="grid grid-cols-[1fr_100px_80px] gap-4 border-b border-[#f1f5f9] bg-white px-6 py-4">
+                    {["Name & Specialty", "Status", "Actions"].map((h) => (
+                      <span
+                        key={h}
+                        className="font-bold text-[#64748b] uppercase"
+                        style={{ fontSize: "10.5px", letterSpacing: "0.06em" }}
                       >
-                        {/* Name + specialty */}
-                        <div className="flex items-center gap-3.5">
-                          <div
-                            className="flex h-[42px] w-[42px] flex-shrink-0 items-center justify-center rounded-full font-bold"
-                            style={{
-                              background: doc.avatarBg,
-                              color: doc.avatarColor,
-                              fontSize: 13.5,
-                            }}
-                          >
-                            {doc.initials}
-                          </div>
-                          <div>
-                            <p
-                              className="mb-0.5 font-bold text-[#0f172a]"
-                              style={{ fontSize: 13.5 }}
-                            >
-                              {doc.name}
-                            </p>
-                            <p
-                              className="font-medium text-[#64748b]"
-                              style={{ fontSize: 12.5 }}
-                            >
-                              {doc.specialty}
-                            </p>
-                          </div>
-                        </div>
-
-                        {/* Status */}
-                        <div>
-                          <span
-                            className="inline-flex items-center gap-1.5 font-bold"
-                            style={{
-                              fontSize: "11px",
-                              letterSpacing: "0.02em",
-                              color:
-                                doc.status === "Active" ? "#10b981" : "#d97706",
-                              background:
-                                doc.status === "Active" ? "#ecfdf5" : "#fef3c7",
-                              padding: "5px 10px",
-                              borderRadius: 999,
-                            }}
-                          >
-                            <StatusDot active={doc.status === "Active"} />
-                            {doc.status}
-                          </span>
-                        </div>
-
-                        {/* Actions */}
-                        <div className="flex items-center gap-4">
-                          <button className="text-[#94a3b8] transition-colors hover:text-[#0f172a]">
-                            <PencilIcon className="h-[18px] w-[18px]" />
-                          </button>
-                          <button className="text-[#94a3b8] transition-colors hover:text-[#ef4444]">
-                            <BanIcon className="h-[18px] w-[18px]" />
-                          </button>
-                        </div>
-                      </div>
+                        {h}
+                      </span>
                     ))}
+                  </div>
+
+                  {/* Rows */}
+                  <div className="flex flex-col bg-white">
+                    {doctors
+                      .filter((d) =>
+                        d.name
+                          .toLowerCase()
+                          .includes(doctorSearch.toLowerCase())
+                      )
+                      .map((doc, i) => (
+                        <div
+                          key={i}
+                          className="grid grid-cols-[1fr_100px_80px] items-center gap-4 border-b border-[#f1f5f9] px-6 py-4 transition-colors last:border-0"
+                        >
+                          {/* Name + specialty */}
+                          <div className="flex items-center gap-3.5">
+                            <div
+                              className="flex h-[42px] w-[42px] flex-shrink-0 items-center justify-center rounded-full font-bold"
+                              style={{
+                                background: doc.avatarBg,
+                                color: doc.avatarColor,
+                                fontSize: 13.5,
+                              }}
+                            >
+                              {doc.initials}
+                            </div>
+                            <div>
+                              <p
+                                className="mb-0.5 font-bold text-[#0f172a]"
+                                style={{ fontSize: 13.5 }}
+                              >
+                                {doc.name}
+                              </p>
+                              <p
+                                className="font-medium text-[#64748b]"
+                                style={{ fontSize: 12.5 }}
+                              >
+                                {doc.specialty}
+                              </p>
+                            </div>
+                          </div>
+
+                          {/* Status */}
+                          <div>
+                            <span
+                              className="inline-flex items-center gap-1.5 font-bold"
+                              style={{
+                                fontSize: "11px",
+                                letterSpacing: "0.02em",
+                                color:
+                                  doc.status === "Active"
+                                    ? "#10b981"
+                                    : "#d97706",
+                                background:
+                                  doc.status === "Active"
+                                    ? "#ecfdf5"
+                                    : "#fef3c7",
+                                padding: "5px 10px",
+                                borderRadius: 999,
+                              }}
+                            >
+                              <StatusDot active={doc.status === "Active"} />
+                              {doc.status}
+                            </span>
+                          </div>
+
+                          {/* Actions */}
+                          <div className="flex items-center gap-4">
+                            <button className="text-[#94a3b8] transition-colors hover:text-[#0f172a]">
+                              <PencilIcon className="h-[18px] w-[18px]" />
+                            </button>
+                            <button className="text-[#94a3b8] transition-colors hover:text-[#ef4444]">
+                              <BanIcon className="h-[18px] w-[18px]" />
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                  </div>
                 </div>
               </div>
 

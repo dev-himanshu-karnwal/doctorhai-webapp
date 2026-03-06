@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 // ─── Shared Icons ─────────────────────────────────────────────────────────────
 
@@ -160,6 +160,8 @@ export default function EditDoctorModal({
   isOpen,
   onClose,
 }: EditDoctorModalProps) {
+  const [showOnBoard, setShowOnBoard] = useState(true);
+
   if (!isOpen) return null;
 
   return (
@@ -171,45 +173,50 @@ export default function EditDoctorModal({
       />
 
       {/* Drawer */}
-      <div className="animate-in slide-in-from-right relative z-10 h-full w-full max-w-[500px] overflow-y-auto bg-[#f4f5f7] shadow-2xl duration-300">
-        <div className="p-8">
-          {/* Header */}
-          <div className="mb-7">
-            <h2 className="mb-1 text-[26px] font-bold tracking-tight text-[#1e293b]">
+      <div className="animate-in slide-in-from-right relative z-10 h-full w-full max-w-[500px] overflow-y-auto bg-[#f8f9fa] shadow-2xl duration-300">
+        <div className="p-6 sm:p-8">
+          <div className="mb-8">
+            <h2 className="mb-1 text-[24px] font-bold tracking-tight text-[#1e293b] sm:text-[26px]">
               Doctor Profile
             </h2>
-            <p className="text-[14px] text-[#64748b]">
+            <p className="text-[13.5px] leading-relaxed text-[#64748b] sm:text-[14px]">
               Update the details that patients will see on the live board.
             </p>
           </div>
 
           <div className="flex flex-col gap-5">
             {/* CARD 1: Profile Photo */}
-            <div className="rounded-[20px] border border-[#f1f5f9] bg-white p-6 shadow-[0_2px_10px_rgba(0,0,0,0.01)]">
+            <div className="rounded-[28px] border border-[#f1f5f9] bg-white p-6 shadow-[0_2px_10px_rgba(0,0,0,0.01)]">
               <div className="mb-6 flex items-center gap-2">
-                <FaceSmileIcon className="h-5 w-5 text-[#3b82f6]" />
+                <FaceSmileIcon className="h-5 w-5 text-[#4ab4a5]" />
                 <h3 className="text-[15px] font-bold text-[#1e293b]">
                   Profile Photo
                 </h3>
               </div>
 
-              <div className="flex items-center gap-6">
+              <div className="flex flex-col items-center gap-6 sm:flex-row">
                 <div className="relative">
                   <div className="flex h-24 w-24 items-center justify-center rounded-full border-2 border-dashed border-[#e2e8f0] bg-[#f8fafc]">
                     <CameraIcon className="h-8 w-8 text-[#cbd5e1]" />
                   </div>
-                  <div className="absolute right-0 bottom-0 flex h-6 w-6 cursor-pointer items-center justify-center rounded-full border-2 border-white bg-[#3b82f6] shadow-sm transition-colors hover:bg-blue-600">
+                  <div
+                    className="absolute right-0 bottom-0 flex h-7 w-7 cursor-pointer items-center justify-center rounded-full border-2 border-white shadow-sm transition-colors"
+                    style={{ backgroundColor: "#4ab4a5" }}
+                  >
                     <PencilIcon className="h-3 w-3 text-white" />
                   </div>
                 </div>
-                <div>
+                <div className="text-center sm:text-left">
                   <h4 className="mb-1 text-[14px] font-bold text-[#1e293b]">
-                    Upload a friendly photo
+                    Upload a photo
                   </h4>
                   <p className="mb-1.5 text-[12px] text-[#94a3b8]">
                     JPG, PNG or GIF. Max 2MB.
                   </p>
-                  <button className="text-[13px] font-bold text-[#3b82f6] transition-colors hover:text-blue-700">
+                  <button
+                    className="text-[13px] font-bold transition-colors hover:opacity-80"
+                    style={{ color: "#4ab4a5" }}
+                  >
                     Choose File
                   </button>
                 </div>
@@ -217,10 +224,10 @@ export default function EditDoctorModal({
             </div>
 
             {/* CARD 2: Basic Information */}
-            <div className="rounded-[20px] border border-[#f1f5f9] bg-white p-6 shadow-[0_2px_10px_rgba(0,0,0,0.01)]">
+            <div className="rounded-[28px] border border-[#f1f5f9] bg-white p-6 shadow-[0_2px_10px_rgba(0,0,0,0.01)]">
               <div className="mb-5 flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <IdBadgeIcon className="h-5 w-5 text-[#3b82f6]" />
+                  <IdBadgeIcon className="h-5 w-5 text-[#4ab4a5]" />
                   <h3 className="text-[15px] font-bold text-[#1e293b]">
                     Basic Information
                   </h3>
@@ -231,34 +238,34 @@ export default function EditDoctorModal({
                 </button>
               </div>
 
-              <div className="grid grid-cols-2 gap-x-4 gap-y-4">
+              <div className="grid grid-cols-1 gap-x-4 gap-y-4 sm:grid-cols-2">
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-[11.5px] font-bold text-[#475569]">
+                  <label className="text-[11px] font-bold tracking-wide text-[#94a3b8] uppercase sm:text-[11.5px]">
                     First Name
                   </label>
                   <input
                     type="text"
                     placeholder="e.g. Sarah"
-                    className="h-[44px] rounded-[10px] border border-[#e2e8f0] bg-[#fbfcfd] px-3.5 text-[13.5px] text-[#0f172a] transition-all outline-none placeholder:text-[#94a3b8] focus:border-[#3b82f6] focus:ring-1 focus:ring-[#3b82f6]"
+                    className="h-[46px] rounded-[14px] border border-[#e2e8f0] bg-[#fbfcfd] px-3.5 text-[13.5px] text-[#0f172a] transition-all outline-none placeholder:text-[#cbd5e1] focus:border-[#4ab4a5] focus:ring-2 focus:ring-[#4ab4a5]/10"
                   />
                 </div>
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-[11.5px] font-bold text-[#475569]">
+                  <label className="text-[11px] font-bold tracking-wide text-[#94a3b8] uppercase sm:text-[11.5px]">
                     Last Name
                   </label>
                   <input
                     type="text"
                     placeholder="e.g. Smith"
-                    className="h-[44px] rounded-[10px] border border-[#e2e8f0] bg-[#fbfcfd] px-3.5 text-[13.5px] text-[#0f172a] transition-all outline-none placeholder:text-[#94a3b8] focus:border-[#3b82f6] focus:ring-1 focus:ring-[#3b82f6]"
+                    className="h-[46px] rounded-[14px] border border-[#e2e8f0] bg-[#fbfcfd] px-3.5 text-[13.5px] text-[#0f172a] transition-all outline-none placeholder:text-[#cbd5e1] focus:border-[#4ab4a5] focus:ring-2 focus:ring-[#4ab4a5]/10"
                   />
                 </div>
-                <div className="col-span-2 flex flex-col gap-1.5">
-                  <label className="text-[11.5px] font-bold text-[#475569]">
-                    Specialty
+                <div className="col-span-1 flex flex-col gap-1.5 sm:col-span-2">
+                  <label className="text-[11px] font-bold tracking-wide text-[#94a3b8] uppercase sm:text-[11.5px]">
+                    Specialty / Department
                   </label>
                   <div className="relative">
                     <select
-                      className="h-[44px] w-full appearance-none rounded-[10px] border border-[#e2e8f0] bg-[#fbfcfd] px-3.5 text-[13.5px] text-[#0f172a] transition-all outline-none focus:border-[#3b82f6] focus:ring-1 focus:ring-[#3b82f6]"
+                      className="h-[46px] w-full appearance-none rounded-[14px] border border-[#e2e8f0] bg-[#fbfcfd] px-3.5 text-[13.5px] text-[#0f172a] transition-all outline-none focus:border-[#4ab4a5] focus:ring-2 focus:ring-[#4ab4a5]/10"
                       defaultValue=""
                     >
                       <option value="" disabled className="text-[#94a3b8]">
@@ -272,92 +279,111 @@ export default function EditDoctorModal({
                   </div>
                 </div>
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-[11.5px] font-bold text-[#475569]">
-                    Primary Room / Office
+                  <label className="text-[11px] font-bold tracking-wide text-[#94a3b8] uppercase sm:text-[11.5px]">
+                    Primary Room
                   </label>
                   <input
                     type="text"
-                    placeholder="e.g. Room 304, West Wing"
-                    className="h-[44px] rounded-[10px] border border-[#e2e8f0] bg-[#fbfcfd] px-3.5 text-[13.5px] text-[#0f172a] transition-all outline-none placeholder:text-[#94a3b8] focus:border-[#3b82f6] focus:ring-1 focus:ring-[#3b82f6]"
+                    placeholder="e.g. Room 304"
+                    className="h-[46px] rounded-[14px] border border-[#e2e8f0] bg-[#fbfcfd] px-3.5 text-[13.5px] text-[#0f172a] transition-all outline-none placeholder:text-[#cbd5e1] focus:border-[#4ab4a5] focus:ring-2 focus:ring-[#4ab4a5]/10"
                   />
                 </div>
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-[11.5px] font-bold text-[#475569]">
+                  <label className="text-[11px] font-bold tracking-wide text-[#94a3b8] uppercase sm:text-[11.5px]">
                     Experience
                   </label>
                   <input
                     type="text"
                     placeholder="e.g. 12 years"
-                    className="h-[44px] rounded-[10px] border border-[#e2e8f0] bg-[#fbfcfd] px-3.5 text-[13.5px] text-[#0f172a] transition-all outline-none placeholder:text-[#94a3b8] focus:border-[#3b82f6] focus:ring-1 focus:ring-[#3b82f6]"
+                    className="h-[46px] rounded-[14px] border border-[#e2e8f0] bg-[#fbfcfd] px-3.5 text-[13.5px] text-[#0f172a] transition-all outline-none placeholder:text-[#cbd5e1] focus:border-[#4ab4a5] focus:ring-2 focus:ring-[#4ab4a5]/10"
                   />
                 </div>
               </div>
             </div>
 
             {/* CARD 3: Default Availability */}
-            <div className="rounded-[20px] border border-[#f1f5f9] bg-white p-6 shadow-[0_2px_10px_rgba(0,0,0,0.01)]">
+            <div className="rounded-[28px] border border-[#f1f5f9] bg-white p-6 shadow-[0_2px_10px_rgba(0,0,0,0.01)]">
               <div className="mb-5 flex items-center gap-2">
-                <ClockIcon className="h-5 w-5 text-[#3b82f6]" />
+                <ClockIcon className="h-5 w-5 text-[#4ab4a5]" />
                 <h3 className="text-[15px] font-bold text-[#1e293b]">
                   Default Availability
                 </h3>
               </div>
 
-              <div className="mb-5 flex items-center justify-between rounded-[12px] border border-[#eff3f8] bg-[#fbfcfd] p-3.5">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#dcfce7] text-[#22c55e]">
-                    <CheckCircleIcon className="h-5 w-5" />
+              <div className="mb-5 flex items-center justify-between rounded-[20px] border border-[#eff3f8] bg-[#fbfcfd] p-4">
+                <div className="flex items-center gap-3.5">
+                  <div
+                    className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#e8f6f3]"
+                    style={{ color: "#4ab4a5" }}
+                  >
+                    <CheckCircleIcon className="h-6 w-6" />
                   </div>
                   <div>
-                    <p className="mb-0.5 text-[13px] font-bold text-[#1e293b]">
+                    <p className="mb-0.5 text-[13.5px] font-bold text-[#1e293b]">
                       Show on Public Board
                     </p>
-                    <p className="text-[11px] font-medium text-[#94a3b8]">
+                    <p className="text-[11.5px] font-medium text-[#94a3b8]">
                       Visible to patients immediately
                     </p>
                   </div>
                 </div>
                 {/* Toggle switch visual */}
-                <div className="relative flex h-[24px] w-[42px] cursor-pointer items-center rounded-full bg-[#3b82f6] px-1 transition-colors">
-                  <div className="h-[18px] w-[18px] translate-x-[16px] rounded-full bg-white shadow-sm transition-transform" />
-                </div>
+                <button
+                  onClick={() => setShowOnBoard(!showOnBoard)}
+                  className="relative flex h-[24px] w-[44px] cursor-pointer items-center rounded-full px-1 transition-colors duration-200 focus:outline-none"
+                  style={{
+                    backgroundColor: showOnBoard ? "#4ab4a5" : "#cbd5e1",
+                  }}
+                >
+                  <div
+                    className="h-[18px] w-[18px] rounded-full bg-white shadow-sm transition-transform duration-200"
+                    style={{
+                      transform: showOnBoard
+                        ? "translateX(18px)"
+                        : "translateX(0)",
+                    }}
+                  />
+                </button>
               </div>
 
-              <div className="grid grid-cols-2 gap-x-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-[11.5px] font-bold text-[#475569]">
+                  <label className="text-[11px] font-bold tracking-wide text-[#94a3b8] uppercase sm:text-[11.5px]">
                     Typical Start Time
                   </label>
                   <input
                     type="text"
                     placeholder="09:00 AM"
-                    className="h-[44px] rounded-[10px] border border-[#e2e8f0] bg-[#fbfcfd] px-3.5 text-[13.5px] text-[#0f172a] transition-all outline-none placeholder:text-[#94a3b8] focus:border-[#3b82f6] focus:ring-1 focus:ring-[#3b82f6]"
+                    className="h-[46px] rounded-[14px] border border-[#e2e8f0] bg-[#fbfcfd] px-3.5 text-[13.5px] text-[#0f172a] transition-all outline-none placeholder:text-[#cbd5e1] focus:border-[#4ab4a5] focus:ring-2 focus:ring-[#4ab4a5]/10"
                   />
                 </div>
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-[11.5px] font-bold text-[#475569]">
+                  <label className="text-[11px] font-bold tracking-wide text-[#94a3b8] uppercase sm:text-[11.5px]">
                     Typical End Time
                   </label>
                   <input
                     type="text"
                     placeholder="05:00 PM"
-                    className="h-[44px] rounded-[10px] border border-[#e2e8f0] bg-[#fbfcfd] px-3.5 text-[13.5px] text-[#0f172a] transition-all outline-none placeholder:text-[#94a3b8] focus:border-[#3b82f6] focus:ring-1 focus:ring-[#3b82f6]"
+                    className="h-[46px] rounded-[14px] border border-[#e2e8f0] bg-[#fbfcfd] px-3.5 text-[13.5px] text-[#0f172a] transition-all outline-none placeholder:text-[#cbd5e1] focus:border-[#4ab4a5] focus:ring-2 focus:ring-[#4ab4a5]/10"
                   />
                 </div>
               </div>
             </div>
 
             {/* ACTION FOOTER */}
-            <div className="mt-2 flex gap-3">
-              <button className="flex flex-1 items-center justify-center gap-2 rounded-[12px] bg-[#3b82f6] py-3.5 font-bold text-white shadow-md transition-colors hover:bg-blue-600">
+            <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+              <button
+                className="flex flex-1 items-center justify-center gap-2 rounded-[16px] py-4 font-bold text-white shadow-md transition-all active:scale-[0.98]"
+                style={{ backgroundColor: "#4ab4a5" }}
+              >
                 <SaveIcon className="h-5 w-5" />
-                <span className="text-[14px]">Save Profile</span>
+                <span className="text-[14.5px]">Save Profile</span>
               </button>
               <button
-                className="rounded-[12px] border border-[#e2e8f0] bg-white px-8 py-3.5 font-bold text-[#475569] shadow-sm transition-colors hover:bg-[#f8fafc]"
+                className="rounded-[16px] border border-[#e2e8f0] bg-white px-8 py-4 font-bold text-[#475569] shadow-sm transition-colors hover:bg-[#f8fafc] active:scale-[0.98]"
                 onClick={onClose}
               >
-                <span className="text-[14px]">Cancel</span>
+                <span className="text-[14.5px]">Cancel</span>
               </button>
             </div>
           </div>

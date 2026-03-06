@@ -286,13 +286,13 @@ export default function HospitalDoctorsDashboard() {
   const themeColor = "#4ab4a5"; // exact soft teal color from design
 
   return (
-    <div className="min-h-screen bg-[#f8f9fa] pt-8 pb-16 font-sans text-[#0f172a]">
-      <div className="mx-auto max-w-[1200px] px-6">
+    <div className="min-h-screen bg-[#f8f9fa] pt-6 pb-16 font-sans text-[#0f172a] sm:pt-8">
+      <div className="mx-auto max-w-[1200px] px-4 sm:px-6">
         {/* ═══════════════ HEADER WIDGET ═══════════════ */}
         <div
-          className="mb-8 flex flex-col items-center justify-between gap-8 bg-white px-6 py-8 md:flex-row md:gap-0 md:px-10"
+          className="mb-6 flex flex-col items-center justify-between gap-8 bg-white px-5 py-7 sm:px-6 md:mb-8 md:flex-row md:gap-0 md:px-10 md:py-8"
           style={{
-            borderRadius: 36,
+            borderRadius: 32,
             boxShadow:
               "0 2px 10px rgba(0,0,0,0.02), 0 4px 24px rgba(0,0,0,0.01)",
             border: "1px solid #f1f5f9",
@@ -317,13 +317,13 @@ export default function HospitalDoctorsDashboard() {
               </div>
             </div>
 
-            <h1 className="mt-1 text-[28px] leading-none font-bold tracking-tight text-[#1e293b] md:text-[34px]">
+            <h1 className="mt-1 text-[26px] leading-tight font-bold tracking-tight text-[#1e293b] sm:text-[28px] md:text-[34px]">
               City General Hospital
             </h1>
 
-            <div className="mt-1 flex flex-col items-center gap-1.5 text-[#64748b] md:flex-row">
+            <div className="mt-2 flex flex-col items-center gap-1.5 text-[#64748b] md:flex-row">
               <MapPinIcon className="h-4 w-4 shrink-0 text-[#4ab4a5]" />
-              <span className="text-[13.5px] font-medium text-[#94a3b8]">
+              <span className="text-[13px] font-medium text-[#94a3b8] sm:text-[13.5px]">
                 123 Medical Park Blvd, Downtown, Metropolis
               </span>
             </div>
@@ -333,28 +333,28 @@ export default function HospitalDoctorsDashboard() {
           <div className="flex w-full justify-center gap-4 md:w-auto">
             {/* Doctors Available */}
             <div
-              className="flex h-[110px] flex-1 flex-col items-center justify-center gap-1.5 sm:h-[130px] md:w-[150px]"
-              style={{ backgroundColor: "#eef8f6", borderRadius: 36 }}
+              className="flex h-[100px] flex-1 flex-col items-center justify-center gap-1 sm:h-[130px] md:w-[150px]"
+              style={{ backgroundColor: "#eef8f6", borderRadius: 28 }}
             >
               <span
-                className="text-[36px] leading-none font-bold tracking-tight sm:text-[44px]"
+                className="text-[32px] leading-none font-bold tracking-tight sm:text-[44px]"
                 style={{ color: themeColor }}
               >
                 12
               </span>
-              <span className="mt-1 px-2 text-center text-[9px] font-extrabold tracking-widest text-[#79a69d] uppercase">
+              <span className="mt-1 px-2 text-center text-[8px] font-extrabold tracking-widest text-[#79a69d] uppercase sm:text-[9px]">
                 Doctors Available
               </span>
             </div>
             {/* Total Doctors */}
             <div
-              className="flex h-[110px] flex-1 flex-col items-center justify-center gap-1.5 sm:h-[130px] md:w-[150px]"
-              style={{ backgroundColor: "#f8fafc", borderRadius: 36 }}
+              className="flex h-[100px] flex-1 flex-col items-center justify-center gap-1 sm:h-[130px] md:w-[150px]"
+              style={{ backgroundColor: "#f8fafc", borderRadius: 28 }}
             >
-              <span className="text-[36px] leading-none font-bold tracking-tight text-[#1e293b] sm:text-[44px]">
+              <span className="text-[32px] leading-none font-bold tracking-tight text-[#1e293b] sm:text-[44px]">
                 45
               </span>
-              <span className="mt-1 text-[9px] font-extrabold tracking-widest text-[#94a3b8] uppercase">
+              <span className="mt-1 text-[8px] font-extrabold tracking-widest text-[#94a3b8] uppercase sm:text-[9px]">
                 Total Doctors
               </span>
             </div>
@@ -363,49 +363,51 @@ export default function HospitalDoctorsDashboard() {
 
         {/* ═══════════════ MAIN CONTENT WIDGET ═══════════════ */}
         <div
-          className="bg-white px-6 py-8 md:px-10 md:py-10"
+          className="bg-white px-4 py-6 sm:px-8 sm:py-9 md:px-10 md:py-10"
           style={{
-            borderRadius: 36,
+            borderRadius: 32,
             boxShadow:
               "0 2px 10px rgba(0,0,0,0.02), 0 4px 24px rgba(0,0,0,0.01)",
             border: "1px solid #f1f5f9",
           }}
         >
           {/* Main Title & Tools */}
-          <div className="mb-8 flex flex-col justify-between gap-6 md:flex-row md:items-center md:gap-0">
+          <div className="mb-8 flex flex-col justify-between gap-6 xl:flex-row xl:items-center xl:gap-0">
             <div className="flex items-center gap-3">
-              <UsersIcon className="h-6 w-6 shrink-0 text-[#4ab4a5]" />
-              <h2 className="text-[20px] font-bold text-[#1e293b] md:text-[22px]">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#e8f6f3]">
+                <UsersIcon className="h-5 w-5 text-[#4ab4a5]" />
+              </div>
+              <h2 className="text-[20px] font-bold text-[#1e293b] sm:text-[22px]">
                 Manage Doctors
               </h2>
             </div>
 
-            <div className="flex w-full flex-col items-stretch gap-4 sm:flex-row sm:items-center md:w-auto">
+            <div className="flex w-full flex-col items-center gap-4 sm:flex-row xl:w-auto">
               {/* Search Bar */}
               <div
-                className="flex w-full items-center gap-2.5 rounded-full px-5 py-2.5 md:w-[320px]"
+                className="group flex w-full items-center gap-2.5 rounded-full px-5 py-3 transition-all focus-within:ring-2 focus-within:ring-[#4ab4a5]/10 sm:w-auto sm:flex-1 md:w-[320px] md:py-2.5"
                 style={{
                   backgroundColor: "#fbfcfd",
                   border: "1px solid #e2e8f0",
                 }}
               >
-                <SearchIcon className="h-4 w-4 text-[#94a3b8]" />
+                <SearchIcon className="h-4 w-4 text-[#94a3b8] transition-colors group-focus-within:text-[#4ab4a5]" />
                 <input
                   type="text"
-                  placeholder="Search doctor by name or ID..."
+                  placeholder="Search doctor..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full bg-transparent text-[13px] font-medium text-[#334155] outline-none placeholder:text-[#94a3b8]"
+                  className="w-full bg-transparent text-[13.5px] font-medium text-[#334155] outline-none placeholder:text-[#cbd5e1]"
                 />
               </div>
 
               {/* Add Doctor Button */}
               <button
-                className="flex items-center justify-center gap-1.5 rounded-full px-5 py-2.5 font-bold text-white transition-opacity hover:opacity-90"
-                style={{ backgroundColor: themeColor, fontSize: 13 }}
+                className="flex w-full items-center justify-center gap-2 rounded-full px-6 py-3 font-bold text-white shadow-sm transition-all hover:opacity-90 active:scale-[0.98] sm:w-auto md:py-2.5"
+                style={{ backgroundColor: themeColor, fontSize: 13.5 }}
               >
                 <PlusIcon className="h-4 w-4" />
-                Add Doctor
+                <span>Add Doctor</span>
               </button>
             </div>
           </div>
@@ -415,8 +417,8 @@ export default function HospitalDoctorsDashboard() {
             {DOCTORS_DATA.map((doc, idx) => (
               <div
                 key={idx}
-                className="flex flex-col gap-6 px-5 py-6 transition-shadow hover:shadow-sm sm:px-7 lg:grid lg:grid-cols-[1fr_minmax(150px,200px)_minmax(150px,200px)_auto] lg:items-center"
-                style={{ border: "1px solid #f1f5f9", borderRadius: 32 }}
+                className="flex flex-col gap-5 px-5 py-6 transition-shadow hover:shadow-sm sm:px-7 lg:grid lg:grid-cols-[1fr_minmax(150px,200px)_minmax(150px,200px)_auto] lg:items-center lg:gap-6"
+                style={{ border: "1px solid #f1f5f9", borderRadius: 28 }}
               >
                 {/* Column 1: Profile */}
                 <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
@@ -426,20 +428,20 @@ export default function HospitalDoctorsDashboard() {
                     <img
                       src={doc.avatar}
                       alt={doc.name}
-                      className="h-[56px] w-[56px] rounded-full bg-gray-100 object-cover"
+                      className="h-[50px] w-[50px] rounded-full bg-gray-100 object-cover sm:h-[56px] sm:w-[56px]"
                     />
                     <span
-                      className="absolute right-0 bottom-0 h-3.5 w-3.5 rounded-full border-[2.5px] border-white"
+                      className="absolute right-0 bottom-0 h-3 w-3 rounded-full border-[2px] border-white sm:h-3.5 sm:w-3.5 sm:border-[2.5px]"
                       style={{ backgroundColor: doc.statusBadge.dotColor }}
                     />
                   </div>
 
                   {/* Info & Pill */}
                   <div className="flex flex-col justify-center">
-                    <p className="mb-[2px] text-[16.5px] leading-tight font-bold text-[#1e293b]">
+                    <p className="mb-[2px] text-[16px] leading-tight font-bold text-[#1e293b] sm:text-[16.5px]">
                       {doc.name}
                     </p>
-                    <p className="mb-2 text-[12.5px] leading-tight font-medium text-[#94a3b8]">
+                    <p className="mb-2 text-[12px] leading-tight font-medium text-[#94a3b8] sm:text-[12.5px]">
                       {doc.subtext}
                     </p>
                     <div
@@ -460,43 +462,42 @@ export default function HospitalDoctorsDashboard() {
                   </div>
                 </div>
 
-                {/* Column 2: Shift Info */}
-                <div className="flex flex-col justify-center">
-                  <span className="mb-1 text-[10px] font-extrabold tracking-wider text-[#cbd5e1] uppercase">
-                    {doc.col1.label}
-                  </span>
-                  <span className="text-[13.5px] font-medium text-[#475569]">
-                    {doc.col1.value}
-                  </span>
-                </div>
+                {/* Column 2 & 3: Info row for mobile/tablet */}
+                <div className="xs:grid-cols-2 grid grid-cols-1 gap-4 lg:contents lg:gap-0">
+                  {/* Column 2: Shift Info */}
+                  <div className="xs:bg-transparent xs:p-0 xs:text-left flex flex-col justify-center rounded-2xl bg-[#fbfcfd] p-3 text-center">
+                    <span className="mb-1 text-[9px] font-extrabold tracking-wider text-[#cbd5e1] uppercase sm:text-[10px]">
+                      {doc.col1.label}
+                    </span>
+                    <span className="text-[13px] font-medium text-[#475569] sm:text-[13.5px]">
+                      {doc.col1.value}
+                    </span>
+                  </div>
 
-                {/* Column 3: Room Info */}
-                <div className="flex flex-col justify-center">
-                  <span className="mb-1 text-[10px] font-extrabold tracking-wider text-[#cbd5e1] uppercase">
-                    {doc.col2.label}
-                  </span>
-                  <span className="text-[13.5px] font-medium text-[#475569]">
-                    {doc.col2.value}
-                  </span>
+                  {/* Column 3: Room Info */}
+                  <div className="xs:bg-transparent xs:p-0 xs:text-left flex flex-col justify-center rounded-2xl bg-[#fbfcfd] p-3 text-center">
+                    <span className="mb-1 text-[9px] font-extrabold tracking-wider text-[#cbd5e1] uppercase sm:text-[10px]">
+                      {doc.col2.label}
+                    </span>
+                    <span className="text-[13px] font-medium text-[#475569] sm:text-[13.5px]">
+                      {doc.col2.value}
+                    </span>
+                  </div>
                 </div>
 
                 {/* Column 4: Actions */}
-                <div className="mt-2 flex w-full flex-wrap items-center gap-3 border-t border-[#f1f5f9] pt-2 sm:flex-nowrap lg:mt-0 lg:w-auto lg:border-t-0 lg:pt-0">
+                <div className="xs:flex-nowrap mt-2 flex w-full flex-wrap items-center gap-2.5 border-t border-[#f1f5f9] pt-5 lg:mt-0 lg:w-auto lg:border-t-0 lg:pt-0">
                   <button
                     onClick={() => setSelectedDoctor(doc.name)}
-                    className="flex-1 justify-center rounded-full px-5 py-2 text-center font-bold text-white shadow-sm transition-opacity hover:opacity-90 sm:flex-none"
+                    className="xs:py-2.5 flex-1 justify-center rounded-full px-5 py-3.5 text-center font-bold text-white shadow-sm transition-all hover:opacity-90 active:scale-[0.98] lg:px-6 lg:py-2"
                     style={{ backgroundColor: themeColor, fontSize: 13 }}
                   >
-                    Update Status
+                    Update
                   </button>
                   <button
                     onClick={() => setEditingDoctor(doc.name)}
-                    className="flex-1 justify-center rounded-full px-5 py-2 text-center font-bold text-[#475569] transition-colors hover:bg-[#f1f5f9] sm:flex-none"
-                    style={{
-                      border: "1px solid #e2e8f0",
-                      backgroundColor: "white",
-                      fontSize: 13,
-                    }}
+                    className="xs:py-2.5 flex-1 justify-center rounded-full border border-[#e2e8f0] bg-white px-5 py-3.5 text-center font-bold text-[#475569] transition-all hover:bg-[#f1f5f9] active:scale-[0.98] lg:px-6 lg:py-2"
+                    style={{ fontSize: 13 }}
                   >
                     Edit
                   </button>
@@ -506,47 +507,31 @@ export default function HospitalDoctorsDashboard() {
           </div>
 
           {/* ═══════════════ PAGINATION ═══════════════ */}
-          <div className="mt-8 flex items-center justify-center gap-2">
-            <button
-              className="flex h-9 w-9 items-center justify-center rounded-full transition-colors hover:bg-[#f8fafc]"
-              style={{ border: "1px solid #e2e8f0", color: "#94a3b8" }}
-            >
+          <div className="mt-10 flex items-center justify-center gap-2 sm:gap-3">
+            <button className="flex h-10 w-10 items-center justify-center rounded-full border border-[#e2e8f0] text-[#94a3b8] transition-all hover:bg-[#f1f5f9] active:scale-95">
               <ChevronLeftIcon className="h-4 w-4" />
             </button>
-            <button
-              className="flex h-9 w-9 items-center justify-center rounded-full font-bold shadow-sm"
-              style={{
-                backgroundColor: themeColor,
-                color: "white",
-                fontSize: 13,
-              }}
-            >
-              1
-            </button>
-            <button
-              className="flex h-9 w-9 items-center justify-center rounded-full font-bold transition-colors hover:bg-[#f8fafc]"
-              style={{
-                border: "1px solid #e2e8f0",
-                color: "#64748b",
-                fontSize: 13,
-              }}
-            >
-              2
-            </button>
-            <button
-              className="flex h-9 w-9 items-center justify-center rounded-full font-bold transition-colors hover:bg-[#f8fafc]"
-              style={{
-                border: "1px solid #e2e8f0",
-                color: "#64748b",
-                fontSize: 13,
-              }}
-            >
-              3
-            </button>
-            <button
-              className="flex h-9 w-9 items-center justify-center rounded-full transition-colors hover:bg-[#f8fafc]"
-              style={{ border: "1px solid #e2e8f0", color: "#94a3b8" }}
-            >
+            <div className="flex items-center gap-2">
+              <button
+                className="flex h-10 w-10 items-center justify-center rounded-full font-bold text-white shadow-md transition-all active:scale-95"
+                style={{ backgroundColor: themeColor, fontSize: 14 }}
+              >
+                1
+              </button>
+              <button
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-[#e2e8f0] font-bold text-[#64748b] transition-all hover:bg-[#f1f5f9] active:scale-95 sm:flex"
+                style={{ fontSize: 14 }}
+              >
+                2
+              </button>
+              <button
+                className="hidden h-10 w-10 items-center justify-center rounded-full border border-[#e2e8f0] font-bold text-[#64748b] transition-all hover:bg-[#f1f5f9] active:scale-95 sm:flex"
+                style={{ fontSize: 14 }}
+              >
+                3
+              </button>
+            </div>
+            <button className="flex h-10 w-10 items-center justify-center rounded-full border border-[#e2e8f0] text-[#94a3b8] transition-all hover:bg-[#f1f5f9] active:scale-95">
               <ChevronRightIcon className="h-4 w-4" />
             </button>
           </div>

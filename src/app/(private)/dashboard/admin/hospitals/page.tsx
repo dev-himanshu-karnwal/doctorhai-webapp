@@ -422,7 +422,7 @@ function HospitalCard({ h }: { h: Hospital }) {
           <div className="grid grid-cols-2 gap-2">
             <Link
               href={`/dashboard/admin/hospitals/${h.id}`}
-              className="text-center font-semibold text-gray-700 transition-colors hover:bg-[#E2E8F0]"
+              className="flex items-center justify-center text-center font-semibold text-gray-700 transition-colors hover:bg-[#E2E8F0]"
               style={{
                 fontSize: 12.5,
                 background: "#F1F5F9",
@@ -430,8 +430,6 @@ function HospitalCard({ h }: { h: Hospital }) {
                 border: "none",
                 paddingTop: 10.5,
                 paddingBottom: 11.5,
-                paddingLeft: 65.75,
-                paddingRight: 65.75,
               }}
             >
               Edit
@@ -477,7 +475,7 @@ function HospitalCard({ h }: { h: Hospital }) {
         {h.status === "INACTIVE" && (
           <div className="grid grid-cols-2 gap-2">
             <button
-              className="font-semibold text-gray-700 transition-colors hover:bg-[#E2E8F0]"
+              className="flex items-center justify-center font-semibold text-gray-700 transition-colors hover:bg-[#E2E8F0]"
               style={{
                 fontSize: 12.5,
                 background: "#F1F5F9",
@@ -485,8 +483,6 @@ function HospitalCard({ h }: { h: Hospital }) {
                 border: "none",
                 paddingTop: 10.5,
                 paddingBottom: 11.5,
-                paddingLeft: 42.59,
-                paddingRight: 42.6,
               }}
             >
               Reactivate
@@ -536,7 +532,7 @@ export default function HospitalManagementPage() {
 
   return (
     <div className="min-h-screen" style={{ background: "#F0F2F5" }}>
-      <div className="mx-auto max-w-6xl px-8 py-7">
+      <div className="mx-auto max-w-6xl px-4 py-7 sm:px-6 md:px-8">
         {/* ── Breadcrumb ── */}
         <div className="mb-5 flex items-center gap-2">
           <Link
@@ -551,16 +547,16 @@ export default function HospitalManagementPage() {
         </div>
 
         {/* ── Page Header ── */}
-        <div className="mb-7 flex items-end justify-between">
+        <div className="mb-7 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           {/* Left */}
-          <div className="flex-1 pr-8">
+          <div className="flex-1 lg:pr-8">
             <h1
-              className="mb-2 font-[Manrope] text-[48px] leading-[48px] font-extrabold text-[#0F172A]"
+              className="mb-2 font-[Manrope] text-[32px] leading-[36px] font-extrabold text-[#0F172A] sm:text-[40px] sm:leading-[44px] md:text-[48px] md:leading-[48px]"
               style={{ letterSpacing: "-1.2px" }}
             >
               Hospital Management
             </h1>
-            <p className="max-w-[600px] text-[18px] leading-[28px] font-medium text-[#64748B]">
+            <p className="max-w-[600px] text-[16px] leading-[24px] font-medium text-[#64748B] sm:text-[18px] sm:leading-[28px]">
               Manage registered hospitals, monitor operational status, and
               configure institutional access levels.
             </p>
@@ -568,9 +564,8 @@ export default function HospitalManagementPage() {
 
           {/* Right: stat card */}
           <div
-            className="flex flex-shrink-0 flex-col justify-between bg-white"
+            className="flex w-full flex-shrink-0 flex-col justify-between bg-white lg:w-[384px]"
             style={{
-              width: 384,
               minHeight: 186,
               borderRadius: 24,
               border: "1px solid #F1F2F4",
@@ -615,7 +610,7 @@ export default function HospitalManagementPage() {
 
         {/* ── Filter Bar ── */}
         <div
-          className="mb-6 flex items-center gap-2 rounded-[16px] bg-white/90 p-2 backdrop-blur-[12px]"
+          className="mb-6 flex flex-col gap-2 rounded-[16px] bg-white/90 p-2 backdrop-blur-[12px] md:flex-row md:items-center"
           style={{
             border: "1px solid rgba(226,232,240,0.6)",
             boxShadow: "0px 1px 2px 0px rgba(0,0,0,0.05)",
@@ -625,7 +620,7 @@ export default function HospitalManagementPage() {
             <SearchIcon className="absolute top-1/2 left-3 h-[15px] w-[15px] -translate-y-1/2 text-gray-400" />
             <input
               type="text"
-              placeholder="Search hospitals by name, ID or address..."
+              placeholder="Search hospitals..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="w-full text-gray-600 placeholder-gray-400 transition-all focus:outline-none"
@@ -641,36 +636,37 @@ export default function HospitalManagementPage() {
               }}
             />
           </div>
-          {["Filter by City", "Status", "Newest First"].map((label) => (
-            <button
-              key={label}
-              className="flex items-center justify-between gap-1.5 font-medium whitespace-nowrap text-gray-600 transition-colors hover:bg-[#F1F5F9]"
-              style={{
-                width: 160,
-                fontSize: 12.5,
-                background: "#F8FAFC",
-                borderRadius: 12,
-                border: "1px solid transparent",
-                paddingTop: 15,
-                paddingBottom: 15,
-                paddingLeft: 12,
-                paddingRight: 12,
-              }}
-            >
-              {label}
-              <ChevronDownIcon className="h-[14px] w-[14px] text-gray-400" />
-            </button>
-          ))}
+          <div className="flex flex-wrap gap-2 md:flex-nowrap">
+            {["Filter by City", "Status", "Newest First"].map((label) => (
+              <button
+                key={label}
+                className="flex min-w-[120px] flex-1 items-center justify-between gap-1.5 font-medium whitespace-nowrap text-gray-600 transition-colors hover:bg-[#F1F5F9] md:w-[160px] md:flex-none"
+                style={{
+                  fontSize: 12.5,
+                  background: "#F8FAFC",
+                  borderRadius: 12,
+                  border: "1px solid transparent",
+                  paddingTop: 15,
+                  paddingBottom: 15,
+                  paddingLeft: 12,
+                  paddingRight: 12,
+                }}
+              >
+                {label}
+                <ChevronDownIcon className="h-[14px] w-[14px] text-gray-400" />
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* ── Cards Grid ── */}
-        <div className="mb-8 grid grid-cols-3 gap-5">
+        <div className="mb-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((hospital) => (
             <HospitalCard key={hospital.id} h={hospital} />
           ))}
           {filtered.length === 0 && (
             <div
-              className="col-span-3 py-20 text-center text-gray-400"
+              className="col-span-1 py-20 text-center text-gray-400 sm:col-span-2 lg:col-span-3"
               style={{ fontSize: 14 }}
             >
               No hospitals match your search.

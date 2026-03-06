@@ -300,7 +300,7 @@ function HospitalCard({
 export default function AdminDashboardPage() {
   return (
     <div className="min-h-screen bg-[#F2F2ED]">
-      <div className="mx-auto max-w-6xl px-8 py-7">
+      <div className="mx-auto max-w-6xl px-4 py-7 sm:px-6 md:px-8">
         {/* Breadcrumb */}
         <div className="mb-2 flex items-center gap-2">
           <span
@@ -322,19 +322,19 @@ export default function AdminDashboardPage() {
         </div>
 
         {/* Page Header */}
-        <div className="mb-7 flex items-center justify-between">
+        <div className="mb-7 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <h1
-            className="text-[36px] leading-[40px] font-extrabold text-[#2D3748]"
+            className="text-[28px] leading-[32px] font-extrabold text-[#2D3748] sm:text-[36px] sm:leading-[40px]"
             style={{ letterSpacing: "-0.9px" }}
           >
             Verification Dashboard
           </h1>
-          <div className="flex items-center gap-2.5">
-            <button className="flex h-[48px] items-center gap-2 rounded-[24px] border border-[#E2E8F0] bg-white px-6 font-[Manrope] text-[14px] leading-[20px] font-bold text-[#2D3748] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] transition-colors hover:bg-gray-50">
+          <div className="flex flex-wrap items-center gap-2.5 sm:flex-nowrap">
+            <button className="flex h-[48px] flex-1 items-center justify-center gap-2 rounded-[24px] border border-[#E2E8F0] bg-white px-6 font-[Manrope] text-[14px] leading-[20px] font-bold text-[#2D3748] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] transition-colors hover:bg-gray-50 sm:flex-none">
               <ClockIcon className="h-[15px] w-[15px] text-gray-500" />
               Audit Log
             </button>
-            <button className="flex h-[48px] items-center gap-2 rounded-[24px] bg-gray-900 px-6 font-[Manrope] text-[14px] leading-[20px] font-bold text-white shadow-[0px_4px_6px_-4px_rgba(0,0,0,0.10),0px_10px_15px_-3px_rgba(0,0,0,0.10)] transition-colors hover:bg-gray-800">
+            <button className="flex h-[48px] flex-1 items-center justify-center gap-2 rounded-[24px] bg-gray-900 px-6 font-[Manrope] text-[14px] leading-[20px] font-bold text-white shadow-[0px_4px_6px_-4px_rgba(0,0,0,0.10),0px_10px_15px_-3px_rgba(0,0,0,0.10)] transition-colors hover:bg-gray-800 sm:flex-none">
               <DownloadIcon className="h-[15px] w-[15px]" />
               Export Report
             </button>
@@ -342,7 +342,7 @@ export default function AdminDashboardPage() {
         </div>
 
         {/* Stats Row */}
-        <div className="mb-7 grid grid-cols-3 gap-4">
+        <div className="mb-7 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {/* Total Hospitals — clickable */}
           <Link
             href="/dashboard/admin/hospitals"
@@ -421,16 +421,16 @@ export default function AdminDashboardPage() {
         </div>
 
         {/* ── Pending Verification Queue ── */}
-        <div className="rounded-[48px] border border-[#F1F5F9] bg-white p-8 shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)]">
+        <div className="rounded-[32px] border border-[#F1F5F9] bg-white p-4 shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] sm:rounded-[48px] sm:p-8">
           {/* Section header */}
-          <div className="mb-5 flex items-center justify-between">
+          <div className="mb-5 flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
             <div className="flex flex-col items-start justify-start gap-1">
               <div className="mb-0.5 flex items-center gap-2.5">
                 <div className="flex items-center gap-2">
                   <div className="flex items-center justify-center rounded-[24px] bg-[#FEFCE8] p-2">
                     <ClipboardListIcon className="h-4 w-4 text-amber-600" />
                   </div>
-                  <h2 className="text-[24px] leading-[32px] font-bold text-[#2D3748]">
+                  <h2 className="text-[20px] leading-[28px] font-bold text-[#2D3748] sm:text-[24px] sm:leading-[32px]">
                     Pending Verification Queue
                   </h2>
                 </div>
@@ -439,16 +439,16 @@ export default function AdminDashboardPage() {
                 3 new hospital requests require your immediate review
               </p>
             </div>
-            <div className="flex flex-shrink-0 items-center gap-2.5">
-              <div className="relative">
+            <div className="flex flex-col items-stretch gap-2.5 sm:flex-row sm:items-center">
+              <div className="relative flex-1 sm:flex-none">
                 <SearchIcon className="absolute top-1/2 left-3 h-3.5 w-3.5 -translate-y-1/2 text-gray-400" />
                 <input
                   type="text"
                   placeholder="Search by Hospital, City or Date..."
-                  className="w-[320px] rounded-[24px] border border-[#E2E8F0] bg-[#F8FAFC] pt-[12px] pr-[16px] pb-[13px] pl-[36px] text-[14px] leading-none font-medium text-[#718096] placeholder-[#718096]/70 transition-all focus:border-violet-300 focus:ring-2 focus:ring-violet-100 focus:outline-none"
+                  className="w-full rounded-[24px] border border-[#E2E8F0] bg-[#F8FAFC] pt-[12px] pr-[16px] pb-[13px] pl-[36px] text-[14px] leading-none font-medium text-[#718096] placeholder-[#718096]/70 transition-all focus:border-violet-300 focus:ring-2 focus:ring-violet-100 focus:outline-none sm:w-[320px]"
                 />
               </div>
-              <button className="flex h-[46px] items-center gap-1.5 rounded-[24px] border border-[#E2E8F0] bg-[#F8FAFC] p-[6px] text-[14px] leading-[20px] font-bold whitespace-nowrap text-[#2D3748] transition-colors hover:bg-gray-100">
+              <button className="flex h-[46px] items-center justify-center gap-1.5 rounded-[24px] border border-[#E2E8F0] bg-[#F8FAFC] px-4 py-[6px] text-[13px] leading-[20px] font-bold whitespace-nowrap text-[#2D3748] transition-colors hover:bg-gray-100 sm:text-[14px]">
                 <FilterIcon className="h-[13px] w-[13px] text-gray-500" />
                 Sort by Date (Newest)
                 <ChevronDownIcon className="h-[13px] w-[13px] text-gray-400" />
@@ -457,7 +457,7 @@ export default function AdminDashboardPage() {
           </div>
 
           {/* Cards Grid */}
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             <HospitalCard
               initial="H"
               name="Hope Valley"
