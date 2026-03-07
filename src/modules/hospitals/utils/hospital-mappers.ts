@@ -20,9 +20,8 @@ export function mapHospital(
     timeline: dto.timeline || null,
     isOpenNow: dto.isActive,
     erAvailable: true,
-    erWaitTime: "~15 mins",
     facilities: dto.facilities || [],
-    totalDoctors: dto.doctors?.meta?.total || docs.length,
+    totalDoctors: docs.length,
     doctors: docs,
   };
 }

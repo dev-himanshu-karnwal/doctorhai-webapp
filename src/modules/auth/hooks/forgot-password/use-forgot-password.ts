@@ -15,8 +15,8 @@ export function useForgotPasswordRequest() {
     AxiosError<{ message?: string }>,
     ForgotPasswordRequest
   >({
-    mutationFn: (data: ForgotPasswordRequest) =>
-      forgotPasswordService.requestOtp(data),
+    mutationFn: async (data: ForgotPasswordRequest) =>
+      await forgotPasswordService.requestOtp(data),
     onError: (error) => {
       const message =
         error?.response?.data?.message ||

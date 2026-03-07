@@ -12,7 +12,6 @@ export interface HospitalDetail {
   timeline: HospitalTimelineItem[] | null;
   isOpenNow: boolean;
   erAvailable: boolean;
-  erWaitTime: string;
   facilities: string[];
   totalDoctors: number;
   doctors: Doctor[];

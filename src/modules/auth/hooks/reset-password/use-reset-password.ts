@@ -21,12 +21,12 @@ export function useResetPassword() {
     AxiosError<{ message?: string }>,
     ResetPasswordRequest
   >({
-    mutationFn: (data: ResetPasswordRequest) => {
+    mutationFn: async (data: ResetPasswordRequest) => {
       const token = localStorage.getItem("resetToken");
       if (!token) {
         throw new Error("Reset token not found");
       }
-      return resetPasswordService.resetPassword(data, token);
+      return await resetPasswordService.resetPassword(data, token);
     },
     onSuccess: async () => {
       try {

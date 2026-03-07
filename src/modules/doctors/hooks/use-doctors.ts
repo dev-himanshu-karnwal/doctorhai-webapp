@@ -1,13 +1,17 @@
-import { useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { doctorsService } from "../services";
-import { DoctorQueryParams } from "../types";
+import { DoctorsQueryParams } from "../types";
 
-export const useDoctors = (params?: DoctorQueryParams) => {
+export const useDoctors = (params?: DoctorsQueryParams) => {
   return useQuery({
     queryKey: ["doctors", params],
     queryFn: async () => {
       const data = await doctorsService.getDoctors(params);
-      return data?.doctors || [];
+      return {
+        doctors: data?.doctors || [],
+        metadata: data?.paginatedmetadata,
+      };
     },
+    placeholderData: keepPreviousData,
   });
 };
