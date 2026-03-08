@@ -1,0 +1,13 @@
+export { default as SettingsIcon } from "./SettingsIcon";
+export { default as CheckIcon } from "./CheckIcon";
+export { default as StethoscopeIcon } from "./StethoscopeIcon";
+export { default as BackSoonIcon } from "./BackSoonIcon";
+export { default as OffDutyIcon } from "./OffDutyIcon";
+export { default as TimerIcon } from "./TimerIcon";
+export { default as LogOutIcon } from "./LogOutIcon";
+export { default as UserIcon } from "./UserIcon";
+export { default as XIcon } from "./XIcon";
+export { default as CameraIcon } from "./CameraIcon";
+export { default as PencilIcon } from "./PencilIcon";
+export { default as SaveIcon } from "./SaveIcon";
+export { default as ExternalLinkIcon } from "./ExternalLinkIcon";
