@@ -13,8 +13,8 @@ export async function proxy(request: NextRequest) {
   const isRoot = pathname === "/";
 
   if (token) {
-    // If authenticated and trying to access auth routes, root, or base dashboard, redirect based on role
-    if (isAuthRoute || isRoot || isDashboardBase) {
+    // If authenticated and trying to access auth routes or base dashboard, redirect based on role
+    if (isAuthRoute || isDashboardBase) {
       try {
         const response = await axiosInstance.get<ApiResponse<{ user: User }>>(
           "/auth/me",
