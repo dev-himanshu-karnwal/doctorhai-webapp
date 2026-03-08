@@ -3,6 +3,7 @@ import { toast } from "sonner";
 import { AxiosError } from "axios";
 import { doctorProfileService } from "../services/doctor-profile.service";
 import { DoctorProfileValues } from "../validators";
+import { AUTH_KEYS } from "@/modules/auth";
 
 interface UpdateProfileParams {
   id: string;
@@ -24,9 +25,9 @@ export const useUpdateDoctorProfile = () => {
         queryKey: ["doctor", variables.id],
       });
       queryClient.invalidateQueries({
-        queryKey: ["auth-user"],
+        queryKey: AUTH_KEYS.USER,
       });
-
+      queryClient.invalidateQueries({ queryKey: ["doctors"] });
       toast.success("Profile updated successfully!");
     },
     onError: (error: AxiosError<ApiError>) => {
