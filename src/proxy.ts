@@ -10,7 +10,6 @@ export async function proxy(request: NextRequest) {
   const isAuthRoute =
     pathname.startsWith("/login") || pathname.startsWith("/register");
   const isDashboardBase = pathname === "/dashboard";
-  const isRoot = pathname === "/";
 
   if (token) {
     // If authenticated and trying to access auth routes or base dashboard, redirect based on role
