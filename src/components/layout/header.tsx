@@ -7,6 +7,14 @@ import { Skeleton } from "@/components/ui";
 export function Header() {
   const { user, loading } = useAuth();
   const isActive = user?.account?.isVerified;
+  const role = user?.account?.roles?.[0];
+
+  const getDashboardHref = () => {
+    if (role === "doctor") return "/dashboard/doctor";
+    if (role === "hospital") return "/dashboard/hospitals";
+    if (role === "admin") return "/dashboard/admin";
+    return "/";
+  };
   return (
     <div className="w-full bg-[#F8FAFC] px-3 pt-4 pb-3 sm:px-4 sm:pt-6 sm:pb-4 md:px-8">
       <header className="mx-auto max-w-7xl">
@@ -33,7 +41,7 @@ export function Header() {
               <>
                 {isActive && (
                   <Link
-                    href={"/dashboard"}
+                    href={getDashboardHref()}
                     className="flex h-9 items-center justify-center rounded-full bg-[#4DB6AC] px-5 text-[14px] font-bold text-white shadow-[0_4px_12px_rgba(77,182,172,0.3)] transition-all hover:bg-[#3DA59B] hover:shadow-[0_6px_16px_rgba(77,182,172,0.4)] active:scale-95 sm:h-11 sm:px-7 sm:text-[15px]"
                   >
                     Dashboard

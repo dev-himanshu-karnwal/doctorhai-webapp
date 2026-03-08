@@ -1,17 +1,53 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { axiosInstance } from "@/lib/axios";
+import { User, ApiResponse } from "@/types/api.types";
 
-export function proxy(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const token = request.cookies.get("access_token")?.value;
-
   const { pathname } = request.nextUrl;
 
-  // Prevent authenticated users from visiting login or register pages
   const isAuthRoute =
     pathname.startsWith("/login") || pathname.startsWith("/register");
-  if (token && isAuthRoute) {
-    // Usually redirect them to dashboard or home
-    return NextResponse.redirect(new URL("/", request.url));
+  const isDashboardBase = pathname === "/dashboard";
+
+  if (token) {
+    // If authenticated and trying to access auth routes or base dashboard, redirect based on role
+    if (isAuthRoute || isDashboardBase) {
+      try {
+        const response = await axiosInstance.get<ApiResponse<{ user: User }>>(
+          "/auth/me",
+          {
+            headers: {
+              Cookie: `access_token=${token}`,
+            },
+          }
+        );
+
+        const role = response.data.data?.user?.account?.roles?.[0];
+
+        if (role === "doctor") {
+          return NextResponse.redirect(
+            new URL("/dashboard/doctor", request.url)
+          );
+        } else if (role === "hospital") {
+          return NextResponse.redirect(
+            new URL("/dashboard/hospitals", request.url)
+          );
+        } else if (role === "admin") {
+          return NextResponse.redirect(
+            new URL("/dashboard/admin", request.url)
+          );
+        }
+      } catch (error) {
+        console.error("Error fetching user profile in proxy:", error);
+      }
+
+      // Fallback if role is not found or fetch fails
+      if (isAuthRoute) {
+        return NextResponse.redirect(new URL("/", request.url));
+      }
+    }
   }
 
   // Protect dashboard routes - requires authentication
