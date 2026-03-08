@@ -11,10 +11,5 @@ export {
   ChevronLeftIcon,
   ChevronRightIcon,
   XIcon,
-  CheckCircleIcon,
-  DocumentCheckIcon,
-  StatusAsteriskIcon,
   SaveIcon,
-  ClockIcon,
-  CoffeeOffIcon,
 } from "./HospitalIcons";
