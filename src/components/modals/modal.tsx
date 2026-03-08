@@ -40,7 +40,7 @@ export function Modal({ isOpen, onClose, children, className }: ModalProps) {
       />
       <div
         className={cn(
-          "relative z-10 w-full max-w-[420px] scale-100 transform overflow-hidden rounded-[24px] bg-white p-8 text-center shadow-2xl transition-all",
+          "relative z-10 max-h-[90vh] w-full max-w-[420px] scale-100 transform overflow-y-auto rounded-[24px] bg-white p-8 text-center shadow-2xl transition-all",
           className
         )}
       >

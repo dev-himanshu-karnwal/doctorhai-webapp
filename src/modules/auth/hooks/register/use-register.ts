@@ -18,13 +18,10 @@ export function useRegister() {
     mutationFn: async (data: RegistrationValues) =>
       await registerService.register(data),
     onSuccess: async () => {
-      // 1. Fetch full user profile and set in AuthContext
       try {
         setLoading(true);
         const user = await meService.getCurrentUser();
         setUser(user);
-
-        // 2. Update React Query cache
         queryClient.setQueryData(AUTH_KEYS.USER, user);
       } catch {
         toast.error("Failed to fetch user after registration");

@@ -23,6 +23,7 @@ export const useUpdateDoctorStatus = () => {
       queryClient.invalidateQueries({
         queryKey: ["doctor", variables.id],
       });
+      queryClient.invalidateQueries({ queryKey: ["doctors"] });
       toast.success("Status updated successfully!");
     },
     onError: (error: AxiosError<ApiError>) => {
