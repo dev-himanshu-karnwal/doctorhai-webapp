@@ -14,8 +14,18 @@ export interface DoctorProfileDto {
   email: string;
   slug: string;
   profilePhotoUrl: string | null;
-  hasExperience: boolean;
+  hasExperience: number | null;
+  bio: string | null;
+  hospitalId?: string;
   status?: DoctorStatusDto;
+}
+
+export interface SingleDoctorResponse {
+  status: string;
+  message: string;
+  data: {
+    doctor: DoctorProfileDto;
+  };
 }
 
 export interface DoctorsQueryParams {
@@ -24,6 +34,8 @@ export interface DoctorsQueryParams {
   search?: string;
   specialty?: string;
   isAvailableNow?: boolean;
+  isVerified?: boolean;
+  hospitalId?: string;
 }
 
 export interface DoctorsPaginatedMetadata {

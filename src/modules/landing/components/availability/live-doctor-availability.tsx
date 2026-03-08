@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { useDoctors } from "@/modules/doctors/hooks";
-import { DoctorStatusCardSkeletonList } from "@/modules/doctors/components/cards";
 import { LiveDoctorCard } from "./live-doctor-card";
+import { LiveDoctorCardSkeletonList } from "./live-doctor-card-skeleton";
 
 type LiveDoctorAvailabilityProps = {
   viewAllHref?: string;
@@ -13,10 +13,12 @@ export function LiveDoctorAvailability({
   viewAllHref = "/doctors",
 }: LiveDoctorAvailabilityProps) {
   const {
-    data: doctors,
+    data: doctorsData,
     isLoading,
     error,
   } = useDoctors({ limit: 4, isVerified: true });
+
+  const doctors = doctorsData?.doctors || [];
 
   return (
     <section className="relative -mx-4 flex flex-col items-center bg-gradient-to-br from-[#FAF5FF] via-[#EFF6FF] to-white/0 px-4 py-12 sm:-mx-6 sm:px-6 sm:py-16 lg:-mx-8 lg:px-8">
@@ -67,12 +69,12 @@ export function LiveDoctorAvailability({
             }}
           >
             {isLoading ? (
-              <DoctorStatusCardSkeletonList count={4} />
+              <LiveDoctorCardSkeletonList count={4} />
             ) : error ? (
               <p className="py-8 text-sm text-[#718096]">
                 Could not load doctors. Please try again later.
               </p>
-            ) : !doctors?.length ? (
+            ) : doctors.length === 0 ? (
               <p className="py-8 text-sm text-[#718096]">No doctors found.</p>
             ) : (
               doctors.map((doctor) => (

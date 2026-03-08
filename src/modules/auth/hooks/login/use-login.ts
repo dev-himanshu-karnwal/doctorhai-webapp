@@ -15,7 +15,7 @@ export function useLogin() {
   const { setUser, setLoading } = useAuth();
 
   return useMutation({
-    mutationFn: (data: LoginValues) => loginService.login(data),
+    mutationFn: async (data: LoginValues) => await loginService.login(data),
     onSuccess: async () => {
       // 1. Fetch user profile to sync AuthContext
       try {

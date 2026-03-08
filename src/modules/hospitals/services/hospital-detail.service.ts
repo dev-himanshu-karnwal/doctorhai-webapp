@@ -8,11 +8,10 @@ export interface HospitalDetailQueryParams {
 }
 
 export const hospitalDetailService = {
-  getHospitalById: async (id: string, params?: HospitalDetailQueryParams) => {
+  getHospitalById: async (id: string) => {
     const response = await axiosInstance.get<HospitalDetailResponse>(
-      `/hospitals/${id}`,
-      { params }
+      `/hospitals/${id}`
     );
-    return response.data.data.hospital;
+    return response.data;
   },
 };

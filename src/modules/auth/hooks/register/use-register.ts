@@ -15,7 +15,8 @@ export function useRegister() {
   const { setUser, setLoading } = useAuth();
 
   return useMutation({
-    mutationFn: (data: RegistrationValues) => registerService.register(data),
+    mutationFn: async (data: RegistrationValues) =>
+      await registerService.register(data),
     onSuccess: async () => {
       // 1. Fetch full user profile and set in AuthContext
       try {

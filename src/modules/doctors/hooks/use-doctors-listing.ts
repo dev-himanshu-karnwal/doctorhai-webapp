@@ -1,7 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
-import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import { doctorsService } from "../services/doctors.service";
 import { Doctor, DoctorQueryParams } from "../types";
+import { useDoctors } from "./use-doctors";
 import { useDebounce } from "@/hooks";
 
 export function useDoctorsListing() {
@@ -18,11 +17,8 @@ export function useDoctorsListing() {
     isVerified: true,
   };
 
-  const { data, isLoading, isFetching, isPlaceholderData, error } = useQuery({
-    queryKey: ["doctors-listing", queryParams],
-    queryFn: () => doctorsService.getDoctors(queryParams),
-    placeholderData: keepPreviousData,
-  });
+  const { data, isLoading, isFetching, isPlaceholderData, error } =
+    useDoctors(queryParams);
 
   // Reset accumulation when search changes
   useEffect(() => {
@@ -53,7 +49,7 @@ export function useDoctorsListing() {
 
   const loadMore = useCallback(() => setPage((p) => p + 1), []);
   // Only allow loadMore if the total array length is less than the total available on the server.
-  const hasMore = items.length < (data?.paginatedmetadata?.total ?? 0);
+  const hasMore = items.length < (data?.metadata?.total ?? 0);
 
   return {
     items,

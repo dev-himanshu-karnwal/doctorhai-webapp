@@ -8,7 +8,7 @@ import { User } from "@/types/api.types";
 export function useCurrentUser() {
   return useQuery<User>({
     queryKey: AUTH_KEYS.USER,
-    queryFn: meService.getCurrentUser,
+    queryFn: async () => await meService.getCurrentUser(),
     retry: false,
     staleTime: AUTH_CONFIG.STALE_TIME,
   });

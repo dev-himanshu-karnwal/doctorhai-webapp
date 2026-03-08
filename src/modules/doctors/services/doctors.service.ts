@@ -9,4 +9,11 @@ export const doctorsService = {
     );
     return response.data?.data?.entity;
   },
+
+  getDoctor: async (id: string) => {
+    const response = await axiosInstance.get<
+      import("../types").SingleDoctorResponse
+    >(`/doctor-profiles/${id}`);
+    return response.data?.data?.doctor;
+  },
 };

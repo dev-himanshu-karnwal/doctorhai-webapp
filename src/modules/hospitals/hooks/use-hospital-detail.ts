@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useCallback, useEffect } from "react";
-import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import { hospitalDetailService } from "../services/hospital-detail.service";
-import { Doctor } from "@/modules/doctors/types";
+import { useHospital } from "./use-hospital";
+import { useDoctors } from "@/modules/doctors/hooks/use-doctors";
 import { useDebounce } from "@/hooks/use-debounce";
+import { Doctor } from "@/modules/doctors/types";
 
 export function useHospitalDetail(id: string) {
   const [page, setPage] = useState(1);
@@ -13,16 +13,23 @@ export function useHospitalDetail(id: string) {
 
   const [accumulatedDoctors, setAccumulatedDoctors] = useState<Doctor[]>([]);
 
-  const { data, isLoading, isFetching, isPlaceholderData, error } = useQuery({
-    queryKey: ["hospital", id, page, debouncedSearchQuery],
-    queryFn: () =>
-      hospitalDetailService.getHospitalById(id, {
-        page,
-        limit: 10,
-        search: debouncedSearchQuery,
-      }),
-    enabled: !!id,
-    placeholderData: keepPreviousData,
+  // 1. Fetch Hospital Info
+  const {
+    data: hospital,
+    isLoading: isHospitalLoading,
+    error: hospitalError,
+  } = useHospital(id);
+
+  // 2. Fetch Doctors for this Hospital
+  const {
+    data: doctorsData,
+    isFetching: isDoctorsFetching,
+    error: doctorsError,
+  } = useDoctors({
+    page,
+    limit: 10,
+    search: debouncedSearchQuery,
+    hospitalId: id,
   });
 
   useEffect(() => {
@@ -33,37 +40,37 @@ export function useHospitalDetail(id: string) {
   }, [debouncedSearchQuery]);
 
   useEffect(() => {
-    if (data?.doctors?.items && !isPlaceholderData) {
+    if (doctorsData?.doctors) {
       if (page === 1) {
         // eslint-disable-next-line react-hooks/set-state-in-effect
-        setAccumulatedDoctors(data.doctors.items);
+        setAccumulatedDoctors(doctorsData.doctors);
       } else {
         setAccumulatedDoctors((prev) => {
           const existingIds = new Set(prev.map((d: Doctor) => d.id));
-          const newDoctors = data.doctors.items.filter(
+          const newDoctors = doctorsData.doctors.filter(
             (d: Doctor) => !existingIds.has(d.id)
           );
           return [...prev, ...newDoctors];
         });
       }
     }
-  }, [data?.doctors?.items, page, isPlaceholderData]);
+  }, [doctorsData?.doctors, page]);
 
   const handleLoadMore = useCallback(() => {
     setPage((prev) => prev + 1);
   }, []);
 
   const hasMoreDoctors =
-    Array.isArray(data?.doctors?.items) &&
-    data.doctors.items.length > 0 &&
-    accumulatedDoctors.length < (data?.doctors?.meta?.total ?? 0);
+    Array.isArray(doctorsData?.doctors) &&
+    doctorsData.doctors.length > 0 &&
+    accumulatedDoctors.length < (doctorsData?.metadata?.total || 0);
 
   return {
-    hospital: data,
+    hospital,
     doctors: accumulatedDoctors,
-    isLoading,
-    isFetching,
-    error,
+    isLoading: isHospitalLoading,
+    isFetching: isDoctorsFetching,
+    error: hospitalError || doctorsError,
     hasMoreDoctors,
     handleLoadMore,
     searchQuery,

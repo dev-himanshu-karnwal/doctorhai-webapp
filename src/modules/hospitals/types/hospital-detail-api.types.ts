@@ -41,13 +41,12 @@ export interface HospitalDetailDto {
   coverPhotoUrl: string | null;
   isActive: boolean;
   location: HospitalLocation;
-  type: string;
+  type: string | null;
   timeline: HospitalTimelineItem[] | null;
-  facilities: string[];
+  facilities: string[] | null;
   createdAt: string;
   updatedAt: string;
   address: HospitalAddress | null;
-  doctors: HospitalDetailDoctorPaginated;
 }
 
 export interface HospitalDetailResponse {
