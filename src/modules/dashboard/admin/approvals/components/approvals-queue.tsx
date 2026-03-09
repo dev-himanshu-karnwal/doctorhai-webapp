@@ -55,7 +55,11 @@ export function ApprovalsQueue({
             className="sm:w-[160px]"
             icon={<MonitorIcon className="h-[13px] w-[13px]" />}
             value={requestType}
-            onChange={(e) => onRequestTypeChange(e.target.value as any)}
+            onChange={(e) =>
+              onRequestTypeChange(
+                e.target.value as "all" | "doctor" | "hospital"
+              )
+            }
             options={[
               { value: "all", label: "All Requests" },
               { value: "doctor", label: "Doctors" },
