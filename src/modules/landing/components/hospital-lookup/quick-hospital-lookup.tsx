@@ -1,21 +1,46 @@
-import type {
-  DepartmentCategory,
-  DoctorEntry,
-  HospitalEntry,
-} from "../../types";
+"use client";
+
+import { useDoctors } from "@/modules/doctors/hooks";
+import { useHospitals } from "@/modules/hospitals/hooks";
+import type { DepartmentCategory } from "../../types";
 import { DepartmentsGrid, TopHospitalsList, TopDoctorsList } from "./ui";
+import {
+  TopDoctorsSkeleton,
+  TopHospitalsSkeleton,
+} from "./ui/skeleton/lookup-skeletons";
 
 type QuickHospitalLookupProps = {
   departments: DepartmentCategory[];
-  topHospitals: HospitalEntry[];
-  topDoctors: DoctorEntry[];
 };
 
-export function QuickHospitalLookup({
-  departments,
-  topHospitals,
-  topDoctors,
-}: QuickHospitalLookupProps) {
+export function QuickHospitalLookup({ departments }: QuickHospitalLookupProps) {
+  const { data: hospitalsData, isLoading: isLoadingHospitals } = useHospitals({
+    limit: 2,
+    isVerified: true,
+  });
+
+  const { data: doctorsData, isLoading: isLoadingDoctors } = useDoctors({
+    limit: 2,
+    isVerified: true,
+  });
+
+  const topHospitals =
+    hospitalsData?.items.map((h) => ({
+      id: h.id,
+      name: h.name,
+      status: (h.isActive ? "available" : "busy") as string,
+    })) || [];
+
+  const topDoctors =
+    doctorsData?.doctors.map((d) => ({
+      id: d.id,
+      name: d.fullName,
+      specialty: d.specialization || "General Physician",
+      imageUrl: d.profilePhotoUrl || undefined,
+      status: (d.status?.status || "available") as string,
+      hasExperience: d.hasExperience ? d.hasExperience.toString() : "0",
+    })) || [];
+
   return (
     <section className="col-span-12 flex h-auto min-h-[auto] w-full flex-col justify-between rounded-[24px] bg-[#DDF2F8] p-4 shadow-sm transition-all duration-300 sm:rounded-[32px] sm:p-6 md:rounded-[40px] md:p-8 lg:col-span-3 xl:min-h-[646px]">
       <div className="space-y-1 pb-3 sm:pb-4 md:pb-[16px]">
@@ -27,9 +52,23 @@ export function QuickHospitalLookup({
         </p>
       </div>
 
-      <DepartmentsGrid departments={departments} />
-      <TopHospitalsList topHospitals={topHospitals} />
-      <TopDoctorsList topDoctors={topDoctors} />
+      <div className="flex flex-1 flex-col justify-between gap-4">
+        <DepartmentsGrid departments={departments} />
+
+        <div className="space-y-4">
+          {isLoadingHospitals ? (
+            <TopHospitalsSkeleton />
+          ) : (
+            <TopHospitalsList topHospitals={topHospitals} />
+          )}
+
+          {isLoadingDoctors ? (
+            <TopDoctorsSkeleton />
+          ) : (
+            <TopDoctorsList topDoctors={topDoctors} />
+          )}
+        </div>
+      </div>
     </section>
   );
 }

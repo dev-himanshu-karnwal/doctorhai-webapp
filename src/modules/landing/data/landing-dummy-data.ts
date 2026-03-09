@@ -14,27 +14,6 @@ export const DUMMY_DEPARTMENTS: DepartmentCategory[] = [
   { id: "5", label: "Orthopedics" },
   { id: "6", label: "Dermatology" },
 ];
-
-export const DUMMY_TOP_HOSPITALS: HospitalEntry[] = [
-  { id: "1", name: "Mayo Clinic", status: "busy" },
-  { id: "2", name: "Cleveland Clinic", status: "open" },
-];
-
-export const DUMMY_TOP_DOCTORS: DoctorEntry[] = [
-  {
-    id: "1",
-    name: "Dr. Emily Chan",
-    specialty: "Cardiology",
-    status: "available",
-  },
-  {
-    id: "2",
-    name: "Dr. Michael Rowe",
-    specialty: "Neurosurgery",
-    status: "busy",
-  },
-];
-
 export const DUMMY_FEATURE_CARDS: FeatureCard[] = [
   {
     id: "1",

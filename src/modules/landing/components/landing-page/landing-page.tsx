@@ -1,9 +1,4 @@
-import {
-  DUMMY_DEPARTMENTS,
-  DUMMY_TOP_DOCTORS,
-  DUMMY_TOP_HOSPITALS,
-  DUMMY_WORKFLOW_STEPS,
-} from "../../data";
+import { DUMMY_DEPARTMENTS, DUMMY_WORKFLOW_STEPS } from "../../data";
 import { BottomSection } from "../bottom-section";
 import { FeatureCards } from "../features";
 import { HeroSection } from "../hero";
@@ -16,11 +11,7 @@ export function LandingPage() {
     <div className="mx-auto max-w-7xl space-y-10 px-4 py-8">
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-9">
         <HeroSection />
-        <QuickHospitalLookup
-          departments={DUMMY_DEPARTMENTS}
-          topHospitals={DUMMY_TOP_HOSPITALS}
-          topDoctors={DUMMY_TOP_DOCTORS}
-        />
+        <QuickHospitalLookup departments={DUMMY_DEPARTMENTS} />
       </div>
       <FeatureCards />
       <LiveDoctorAvailability />
