@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useCallback, useEffect } from "react";
 import { Doctor, DoctorQueryParams } from "../types";
 import { useDoctors } from "./use-doctors";
