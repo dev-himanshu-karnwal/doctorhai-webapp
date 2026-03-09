@@ -1,5 +1,5 @@
 import { Doctor } from "../types/search.types";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui";
 import Image from "next/image";
 import { cn } from "@/lib/cn";
 

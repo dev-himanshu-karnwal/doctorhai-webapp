@@ -1,17 +1,17 @@
 {
-  "name": "doctor-status-platform-webapp",
+  "name": "doctorhai-webapp",
   "version": "1.0.0",
-  "description": "Doctor Status Platform WebApp",
+  "description": "DoctorHai WebApp",
   "private": true,
   "author": {
     "name": "Himanshu Karnwal",
     "email": "himanshukar1810@gmail.com",
-    "github": "https://github.com/dev-himanshu-karnwal/doctor-status-platform-webapp"
+    "github": "https://github.com/dev-himanshu-karnwal/doctorhai-webapp.git"
   },
   "license": "UNLICENSED",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dev-himanshu-karnwal/doctor-status-platform-webapp.git"
+    "url": "https://github.com/dev-himanshu-karnwal/doctorhai-webapp.git"
   },
   "engines": {
     "node": ">=20.0.0",
@@ -30,16 +30,22 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
+    "@tanstack/react-query": "^5.90.21",
+    "@tanstack/react-query-devtools": "^5.91.3",
+    "axios": "^1.13.5",
     "clsx": "^2",
+    "geolib": "^3.3.4",
     "next": "16.1.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-hook-form": "^7.71.2",
+    "sonner": "^2.0.7",
     "tailwind-merge": "^2",
     "zod": "^4.3.6"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "@tanstack/eslint-plugin-query": "^5.91.4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
