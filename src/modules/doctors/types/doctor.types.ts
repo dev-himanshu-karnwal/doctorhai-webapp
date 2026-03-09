@@ -16,9 +16,11 @@ export type Doctor = {
   email: string | null;
   slug: string | null;
   profilePhotoUrl: string | null;
+  public_view_count?: number;
   hasExperience: boolean | null;
   bio?: string | null;
   status: DoctorStatus | null;
+  createdAt?: string;
 };
 
 export interface DoctorQueryParams {

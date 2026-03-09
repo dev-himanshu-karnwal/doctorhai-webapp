@@ -5,7 +5,7 @@ import { Doctor, DoctorQueryParams } from "../types";
 import { useDoctors } from "./use-doctors";
 import { useDebounce } from "@/hooks";
 
-export function useDoctorsListing() {
+export function useDoctorsListing(initialIsVerified = true) {
   const [page, setPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
   const debouncedSearch = useDebounce(searchQuery, 400);
@@ -16,7 +16,7 @@ export function useDoctorsListing() {
     page,
     limit: 10,
     search: debouncedSearch || undefined,
-    isVerified: true,
+    isVerified: initialIsVerified,
   };
 
   const { data, isLoading, isFetching, isPlaceholderData, error } =
@@ -53,6 +53,11 @@ export function useDoctorsListing() {
   // Only allow loadMore if the total array length is less than the total available on the server.
   const hasMore = items.length < (data?.metadata?.total ?? 0);
 
+  const handleSearch = useCallback((value: string) => {
+    setSearchQuery(value);
+    setPage(1);
+  }, []);
+
   return {
     items,
     isLoading: isLoading && items.length === 0,
@@ -62,6 +67,7 @@ export function useDoctorsListing() {
     loadMore,
     searchQuery,
     setSearchQuery,
+    handleSearch,
     error,
   };
 }

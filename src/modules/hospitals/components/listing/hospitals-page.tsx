@@ -15,13 +15,14 @@ export function HospitalsPage() {
     accumulatedHospitals,
     searchQuery,
     isLoading,
-    isFetching,
+    isSearching,
+    isFetchingMore,
     error,
     hasMore,
     handleLoadMore,
     handleSearch,
     meta,
-  } = useHospitalsListing();
+  } = useHospitalsListing(true);
 
   return (
     <div className="min-h-screen bg-[#F4F7F5] px-4 py-6 sm:px-6 sm:py-8">
@@ -61,7 +62,7 @@ export function HospitalsPage() {
             <HospitalsGridView
               hospitals={accumulatedHospitals}
               isLoading={isLoading}
-              isFetching={isFetching}
+              isFetching={isSearching || isFetchingMore}
               error={error}
               hasMore={hasMore}
               onLoadMore={handleLoadMore}

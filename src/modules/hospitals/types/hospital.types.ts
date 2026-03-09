@@ -11,9 +11,11 @@ export interface Hospital {
   slug: string;
   coverPhotoUrl: string;
   isActive: boolean;
+  public_view_count?: number;
   location: HospitalLocation;
   type: string;
   specialist: string[];
+  createdAt: string;
 }
 
 export interface PaginatedMeta {
