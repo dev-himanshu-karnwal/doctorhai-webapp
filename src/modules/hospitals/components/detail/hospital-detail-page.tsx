@@ -1,17 +1,26 @@
 "use client";
 
+import Link from "next/link";
 import { useParams } from "next/navigation";
 import { HospitalDetailHeader } from "./hospital-detail-header";
 import { HospitalDetailSidebar } from "./hospital-detail-sidebar";
 import { HospitalDoctorAvailability } from "./hospital-doctor-availability";
-import Link from "next/link";
-import { useHospitalDetail } from "../../hooks";
+import { useHospitalDetail, useIncrementHospitalView } from "../../hooks";
 import { mapHospital } from "../../utils/hospital-mappers";
 import { HospitalDetailSkeleton } from "../shared";
+import { useEffect } from "react";
 
 export function HospitalDetailPage() {
   const params = useParams<{ id: string }>();
   const id = params?.id || "";
+
+  const { incrementView } = useIncrementHospitalView();
+
+  useEffect(() => {
+    if (id) {
+      incrementView(id);
+    }
+  }, [id, incrementView]);
 
   const {
     hospital,

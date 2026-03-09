@@ -9,13 +9,22 @@ import {
   DoctorProfileSkeleton,
 } from "./index";
 import { useParams } from "next/navigation";
-import { useDoctor } from "../../hooks";
+import { useDoctor, useIncrementDoctorView } from "../../hooks";
 import { useHospital } from "@/modules/hospitals/hooks";
 import { useDirections } from "@/hooks/use-directions";
 import Link from "next/link";
+import { useEffect } from "react";
 
 export function DoctorProfilePage() {
   const { id } = useParams() as { id: string };
+  const { incrementView } = useIncrementDoctorView();
+
+  useEffect(() => {
+    if (id) {
+      incrementView(id);
+    }
+  }, [id, incrementView]);
+
   const {
     data: doctor,
     isLoading: isDoctorLoading,

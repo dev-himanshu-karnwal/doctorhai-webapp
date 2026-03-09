@@ -5,7 +5,7 @@ import { useHospitals } from "./use-hospitals";
 import { Hospital } from "../types/hospital.types";
 import { useDebounce } from "@/hooks";
 
-export function useHospitalsListing() {
+export function useHospitalsListing(initialIsVerified = true) {
   const [page, setPage] = useState(1);
   const [accumulatedHospitals, setAccumulatedHospitals] = useState<Hospital[]>(
     []
@@ -17,7 +17,7 @@ export function useHospitalsListing() {
     page,
     limit: 10,
     search: debouncedSearch,
-    isVerified: true,
+    isVerified: initialIsVerified,
   });
 
   useEffect(() => {
@@ -55,8 +55,9 @@ export function useHospitalsListing() {
   return {
     accumulatedHospitals,
     searchQuery,
-    isLoading,
-    isFetching,
+    isLoading: isLoading && accumulatedHospitals.length === 0,
+    isSearching: isFetching && accumulatedHospitals.length === 0,
+    isFetchingMore: isFetching && accumulatedHospitals.length > 0,
     error,
     hasMore,
     handleLoadMore,

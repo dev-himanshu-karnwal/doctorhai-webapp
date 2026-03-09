@@ -50,7 +50,7 @@ export const useTimeAgo = (dateStr: string | undefined): string => {
         }
 
         setTimeAgo(date.toLocaleDateString());
-      } catch (e) {
+      } catch (_e) {
         setTimeAgo("Just now");
       }
     };
