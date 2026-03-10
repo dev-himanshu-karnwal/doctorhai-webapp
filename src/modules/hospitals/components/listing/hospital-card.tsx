@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Hospital } from "../../types/hospital.types";
 import { Button } from "@/components/ui";
 import { useDistance } from "@/hooks";
+import { MapPinIcon } from "@/components/icons";
 
 export function HospitalCard({ hospital }: { hospital: Hospital }) {
   const distanceText = useDistance(hospital.location);
@@ -32,17 +33,7 @@ export function HospitalCard({ hospital }: { hospital: Hospital }) {
           <div className="flex items-center gap-1.5 text-[12px] text-[#718096]">
             {hospital.type && (
               <>
-                <svg
-                  width="12"
-                  height="12"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-                  <circle cx="12" cy="10" r="3" />
-                </svg>
+                <MapPinIcon size={12} />
                 <span>
                   {distanceText} {hospital.type && `• ${hospital.type}`}
                 </span>

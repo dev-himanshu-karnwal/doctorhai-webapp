@@ -4,8 +4,9 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormInput } from "../shared/form-input";
+import { MailIcon, LockIcon } from "@/components/icons";
+import { AuthSubmitIcon } from "@/modules/auth/icons";
 import { Button } from "@/components/ui";
-import { Icons } from "../shared/icons";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
@@ -95,7 +96,7 @@ export function ForgotPasswordForm() {
             label="Email Address"
             {...emailForm.register("email")}
             placeholder="name@example.com"
-            icon={<Icons.Email />}
+            icon={<MailIcon size={20} className="text-[#94A3B8]" />}
             type="email"
             error={emailForm.formState.errors.email?.message}
           />
@@ -145,7 +146,7 @@ export function ForgotPasswordForm() {
           label="Enter OTP"
           {...otpForm.register("otp")}
           placeholder="6-digit code"
-          icon={<Icons.Lock />}
+          icon={<LockIcon size={20} className="text-[#94A3B8]" />}
           type="text"
           maxLength={6}
           error={otpForm.formState.errors.otp?.message}
@@ -185,7 +186,9 @@ export function ForgotPasswordForm() {
           <span>
             {isVerifyingOtp ? "Verifying..." : "Go to Reset Password"}
           </span>
-          {!isVerifyingOtp && <Icons.Check />}
+          {!isVerifyingOtp && (
+            <AuthSubmitIcon size={16} className="text-white" />
+          )}
         </Button>
       </form>
     </div>

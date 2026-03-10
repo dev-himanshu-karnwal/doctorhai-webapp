@@ -1,5 +1,5 @@
 import React from "react";
-import { UsersIcon, SearchIcon, PlusIcon } from "../HospitalIcons";
+import { UsersIcon, SearchIcon, PlusIcon } from "@/components/icons";
 import { Input, Button } from "@/components/ui";
 
 interface DoctorListHeaderProps {

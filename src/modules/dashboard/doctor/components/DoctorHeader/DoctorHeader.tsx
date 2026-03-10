@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { SettingsIcon, UserIcon, LogOutIcon } from "../DoctorIcons";
+import { SettingsIcon, UserIcon, LogOutIcon } from "@/components/icons";
 import { useAuth } from "@/modules/auth";
 import { EditDoctorSlider } from "../EditDoctorSlider/EditDoctorSlider";
 import { useUpdateDoctorProfile } from "../../hooks";

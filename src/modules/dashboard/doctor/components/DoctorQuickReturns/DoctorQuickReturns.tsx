@@ -2,7 +2,7 @@ import { Controller, UseFormReturn } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
-import { TimerIcon } from "../DoctorIcons";
+import { TimerIcon } from "@/components/icons";
 import { useUpdateDoctorStatus } from "../../hooks";
 import { QuickReturnValues } from "../../validators";
 import { calculateExpectedAtISO } from "../../utils/status.utils";

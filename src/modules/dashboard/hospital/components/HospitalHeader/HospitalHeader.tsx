@@ -1,6 +1,6 @@
 import React from "react";
 import { HospitalHeaderProps } from "../../types/hospital.types";
-import { MapPinIcon } from "../HospitalIcons";
+import { MapPinIcon } from "@/components/icons";
 
 const HospitalHeader: React.FC<HospitalHeaderProps> = ({
   hospitalName,

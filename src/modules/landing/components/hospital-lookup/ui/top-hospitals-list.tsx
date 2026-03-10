@@ -1,10 +1,10 @@
 import Link from "next/link";
 import type { HospitalEntry } from "../../../types";
-import { Button } from "@/components/ui";
+import { HospitalSquareIcon, PulseDotIcon } from "@/components/icons";
 
-type TopHospitalsListProps = {
+interface TopHospitalsListProps {
   topHospitals: HospitalEntry[];
-};
+}
 
 export function TopHospitalsList({ topHospitals }: TopHospitalsListProps) {
   return (
@@ -28,18 +28,7 @@ export function TopHospitalsList({ topHospitals }: TopHospitalsListProps) {
           >
             <div className="flex min-w-[70%] flex-1 items-center gap-2 sm:gap-3 md:gap-4">
               <div className="flex h-[24px] w-[24px] shrink-0 items-center justify-center rounded-full bg-white shadow-[0_1px_2px_rgba(0,0,0,0.05)] transition-shadow group-hover:shadow-md sm:h-[28px] sm:w-[28px] md:h-[32px] md:w-[32px]">
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="#A0AEC0"
-                  strokeWidth="2.5"
-                >
-                  <rect x="3" y="3" width="18" height="18" rx="4" />
-                  <line x1="12" y1="8" x2="12" y2="16" />
-                  <line x1="8" y1="12" x2="16" y2="12" />
-                </svg>
+                <HospitalSquareIcon className="text-[#A0AEC0]" />
               </div>
               <div className="w-full min-w-0 flex-1 space-y-0.5 pr-1 sm:space-y-0">
                 <p className="truncate text-[12px] leading-[16px] font-bold text-[#2D3748] transition-colors group-hover:text-[#3D8F87] sm:text-[13px] sm:leading-[18px] md:text-[14px] md:leading-[20px]">
@@ -49,7 +38,7 @@ export function TopHospitalsList({ topHospitals }: TopHospitalsListProps) {
             </div>
             {hospital.status === "available" && (
               <div className="flex shrink-0 items-center gap-[2px] rounded-full bg-[#DCFCE7] px-[4px] py-[2px] transition-transform group-hover:scale-105 sm:gap-[3px] sm:px-[5px] sm:py-[2px] md:gap-[4px] md:px-[8px] md:py-[4px]">
-                <div className="h-[4px] w-[4px] animate-pulse rounded-full bg-[#22C55E] sm:h-[5px] sm:w-[5px] md:h-[6px] md:w-[6px]" />
+                <PulseDotIcon size={4} className="text-[#22C55E]" />
                 <span className="text-[8px] leading-[10px] font-bold text-[#15803D] sm:text-[9px] sm:leading-[12px] md:text-[10px] md:leading-[15px]">
                   Live
                 </span>

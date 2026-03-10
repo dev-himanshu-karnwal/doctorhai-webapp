@@ -1,10 +1,14 @@
 import {
-  ClipboardListIcon,
   SearchIcon,
   FilterIcon,
+  ChevronDownIcon,
+  MapPinIcon,
+  ClockIcon,
+  StethoscopeIcon,
+  HospitalSquareIcon,
   MonitorIcon,
-} from "./icons";
-
+  ClipboardListIcon,
+} from "@/components/icons";
 import { HospitalCard } from "./hospital-card";
 import { Input, Button, Select } from "@/components/ui";
 import type { ApprovalsQueueProps } from "../types";
@@ -41,7 +45,7 @@ export function ApprovalsQueue({
         </div>
         <div className="flex flex-col items-stretch gap-2.5 sm:flex-row sm:items-center">
           <div className="relative flex-1 sm:flex-none">
-            <SearchIcon className="absolute top-1/2 left-3 z-10 h-3.5 w-3.5 -translate-y-1/2 text-gray-400" />
+            <SearchIcon className="absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2 text-slate-400" />
             <Input
               type="text"
               placeholder="Search by name, city..."
@@ -53,7 +57,7 @@ export function ApprovalsQueue({
 
           <Select
             className="sm:w-[160px]"
-            icon={<MonitorIcon className="h-[13px] w-[13px]" />}
+            icon={<MonitorIcon className="h-4 w-4" />}
             value={requestType}
             onChange={(e) =>
               onRequestTypeChange(

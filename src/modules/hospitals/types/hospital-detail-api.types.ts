@@ -1,18 +1,9 @@
-import { HospitalLocation } from "./hospital.types";
+import { HospitalLocation, HospitalAddress } from "./hospital.types";
 import { Doctor } from "@/modules/doctors/types";
 
 export interface HospitalBrandImage {
   id: string;
   url: string;
-}
-
-export interface HospitalAddress {
-  id: string;
-  addressLine1: string;
-  addressLine2?: string;
-  city: string;
-  state: string;
-  pincode: string;
 }
 
 export interface HospitalDetailDoctorPaginated {

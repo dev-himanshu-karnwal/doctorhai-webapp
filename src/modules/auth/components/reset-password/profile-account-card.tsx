@@ -3,8 +3,11 @@
 import { memo } from "react";
 import { Input } from "@/components/ui";
 import { cn } from "@/lib/cn";
-import { Icons } from "../shared/icons";
-
+import {
+  CheckCircleIcon,
+  HeartIcon,
+  HospitalSquareIcon,
+} from "@/components/icons";
 import { UseFormRegister } from "react-hook-form";
 import { type ResetPasswordValues } from "../../schemas/reset-password/reset-password.schema";
 
@@ -48,34 +51,10 @@ export const ProfileAccountCard = memo(
                     : "bg-gray-50 text-gray-400"
                 )}
               >
-                {profile.type.toLowerCase() === "doctor" ? (
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-                  </svg>
+                {profile.type?.toLowerCase() === "doctor" ? (
+                  <HeartIcon size={16} />
                 ) : (
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M3 21h18" />
-                    <path d="M5 21V7l8-4v18" />
-                    <path d="M13 21v-4a3 3 0 0 1 6 0v4" />
-                  </svg>
+                  <HospitalSquareIcon size={16} />
                 )}
               </div>
               <span
@@ -87,7 +66,7 @@ export const ProfileAccountCard = memo(
                 {profile.type}
               </span>
             </div>
-            <Icons.CheckCircle
+            <CheckCircleIcon
               className={cn(
                 "h-5 w-5 text-[#3D8F87] transition-all duration-300",
                 isSelected ? "scale-100 opacity-100" : "scale-50 opacity-0"

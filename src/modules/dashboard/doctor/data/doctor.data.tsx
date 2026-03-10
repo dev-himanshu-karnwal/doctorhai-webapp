@@ -3,7 +3,7 @@ import {
   StethoscopeIcon,
   BackSoonIcon,
   OffDutyIcon,
-} from "../components/DoctorIcons";
+} from "@/components/icons";
 import type { StatusOption } from "../types";
 
 export const statusOptions: StatusOption[] = [

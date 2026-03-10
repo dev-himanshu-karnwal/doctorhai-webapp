@@ -6,9 +6,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { hospitalRegistrationSchema } from "../../schemas";
 import { HospitalRegistrationValues } from "../../types/registration.types";
 import { FormInput } from "../shared/form-input";
+import { PhoneIcon, MailIcon, LockIcon } from "@/components/icons";
+import { AuthHospitalIcon, AuthSubmitIcon } from "@/modules/auth/icons";
 import { Button } from "@/components/ui";
 import { useRegister } from "../../hooks";
-import { Icons } from "../shared/icons";
 import { RegistrationSuccessModal } from "./registration-success-modal";
 
 export function HospitalRegistrationForm() {
@@ -43,7 +44,7 @@ export function HospitalRegistrationForm() {
           label="Hospital Name"
           {...register("name")}
           placeholder="St. Mary's General Hospital"
-          icon={<Icons.Hospital />}
+          icon={<AuthHospitalIcon size={20} className="text-[#94A3B8]" />}
           error={errors.name?.message}
         />
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
@@ -51,7 +52,7 @@ export function HospitalRegistrationForm() {
             label="Phone Number"
             {...register("phone")}
             placeholder="9876543210"
-            icon={<Icons.Phone />}
+            icon={<PhoneIcon size={20} className="text-[#94A3B8]" />}
             addonLeft={
               <span className="flex items-center gap-1">
                 <span>🇮🇳</span>
@@ -64,7 +65,7 @@ export function HospitalRegistrationForm() {
             label="Email"
             {...register("email")}
             placeholder="admin@hospital.com"
-            icon={<Icons.Email />}
+            icon={<MailIcon size={20} className="text-[#94A3B8]" />}
             error={errors.email?.message}
           />
         </div>
@@ -74,7 +75,7 @@ export function HospitalRegistrationForm() {
             {...register("password")}
             type="password"
             placeholder="••••••••"
-            icon={<Icons.Lock />}
+            icon={<LockIcon size={20} className="text-[#94A3B8]" />}
             error={errors.password?.message}
           />
           <FormInput
@@ -82,7 +83,7 @@ export function HospitalRegistrationForm() {
             {...register("confirmPassword")}
             type="password"
             placeholder="••••••••"
-            icon={<Icons.Lock />}
+            icon={<LockIcon size={20} className="text-[#94A3B8]" />}
             error={errors.confirmPassword?.message}
           />
         </div>
@@ -94,7 +95,7 @@ export function HospitalRegistrationForm() {
           className="group mt-6 h-[64px] w-full rounded-[18px] bg-[#3D8F87] text-[18px] font-bold text-white shadow-[0_4px_6px_-4px_rgba(79,179,170,0.3),0_10px_15px_-3px_rgba(79,179,170,0.3)] transition-all active:scale-[0.98]"
         >
           <span>{isPending ? "Submitting..." : "Submit Request"}</span>
-          {!isPending && <Icons.Check />}
+          {!isPending && <AuthSubmitIcon size={16} className="text-white" />}
         </Button>
       </form>
     </>

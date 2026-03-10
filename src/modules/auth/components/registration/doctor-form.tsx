@@ -6,9 +6,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { doctorRegistrationSchema } from "../../schemas";
 import { DoctorRegistrationValues } from "../../types/registration.types";
 import { FormInput } from "../shared/form-input";
+import { UserIcon, MailIcon, PhoneIcon, LockIcon } from "@/components/icons";
+import { AuthSubmitIcon } from "@/modules/auth/icons";
 import { Button } from "@/components/ui";
 import { useRegister, useDebouncedUsernameCheck } from "../../hooks";
-import { Icons } from "../shared/icons";
 import { RegistrationSuccessModal } from "./registration-success-modal";
 
 export function DoctorRegistrationForm() {
@@ -56,14 +57,14 @@ export function DoctorRegistrationForm() {
           label="Full Name"
           {...register("name")}
           placeholder="Enter your full name"
-          icon={<Icons.User />}
+          icon={<UserIcon size={20} className="text-[#94A3B8]" />}
           error={errors.name?.message}
         />
         <FormInput
           label="Username"
           {...register("username")}
           placeholder="dr_arora12"
-          icon={<Icons.Email />}
+          icon={<MailIcon size={20} className="text-[#94A3B8]" />}
           error={errors.username?.message}
           successMessage={
             usernameStatus === "available" ? "Username is available" : undefined
@@ -75,7 +76,7 @@ export function DoctorRegistrationForm() {
             label="Phone Number"
             {...register("phone")}
             placeholder="9876543210"
-            icon={<Icons.Phone />}
+            icon={<PhoneIcon size={20} className="text-[#94A3B8]" />}
             addonLeft={
               <span className="flex items-center gap-1">
                 <span>🇮🇳</span>
@@ -88,7 +89,7 @@ export function DoctorRegistrationForm() {
             label="Email"
             {...register("email")}
             placeholder="doctor@example.com"
-            icon={<Icons.Email />}
+            icon={<MailIcon size={20} className="text-[#94A3B8]" />}
             error={errors.email?.message}
           />
         </div>
@@ -98,7 +99,7 @@ export function DoctorRegistrationForm() {
             {...register("password")}
             type="password"
             placeholder="••••••••"
-            icon={<Icons.Lock />}
+            icon={<LockIcon size={20} className="text-[#94A3B8]" />}
             error={errors.password?.message}
           />
           <FormInput
@@ -106,7 +107,7 @@ export function DoctorRegistrationForm() {
             {...register("confirmPassword")}
             type="password"
             placeholder="••••••••"
-            icon={<Icons.Lock />}
+            icon={<LockIcon size={20} className="text-[#94A3B8]" />}
             error={errors.confirmPassword?.message}
           />
         </div>
@@ -118,7 +119,7 @@ export function DoctorRegistrationForm() {
           className="group mt-6 h-[64px] w-full rounded-[18px] bg-[#3D8F87] text-[18px] font-bold text-white shadow-[0_4px_6px_-4px_rgba(79,179,170,0.3),0_10px_15px_-3px_rgba(79,179,170,0.3)] transition-all active:scale-[0.98]"
         >
           <span>{isPending ? "Submitting..." : "Submit Request"}</span>
-          {!isPending && <Icons.Check />}
+          {!isPending && <AuthSubmitIcon size={16} className="text-white" />}
         </Button>
       </form>
     </>

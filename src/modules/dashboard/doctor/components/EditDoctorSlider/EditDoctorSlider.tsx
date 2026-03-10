@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { XIcon, PencilIcon, SaveIcon } from "../DoctorIcons";
+import { XIcon, PencilIcon, SaveIcon } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
