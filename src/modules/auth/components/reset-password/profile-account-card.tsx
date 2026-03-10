@@ -51,7 +51,7 @@ export const ProfileAccountCard = memo(
                     : "bg-gray-50 text-gray-400"
                 )}
               >
-                {profile.type.toLowerCase() === "doctor" ? (
+                {profile.type?.toLowerCase() === "doctor" ? (
                   <HeartIcon size={16} />
                 ) : (
                   <HospitalSquareIcon size={16} />

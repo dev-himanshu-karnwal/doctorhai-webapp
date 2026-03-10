@@ -29,14 +29,18 @@ export function useDebouncedUsernameCheck(
   const [usernameStatus, setUsernameStatus] = useState<
     "idle" | "checking" | "available" | "unavailable"
   >("idle");
+  const [prevUsername, setPrevUsername] = useState(username);
+
+  // Synchronously adjust state during render when props change to avoid useEffect warning
+  if (username !== prevUsername) {
+    setPrevUsername(username);
+    setUsernameStatus(!username || username.length < 3 ? "idle" : "checking");
+  }
 
   useEffect(() => {
     if (!username || username.length < 3) {
-      setUsernameStatus("idle");
       return;
     }
-
-    setUsernameStatus("checking");
 
     const timer = setTimeout(() => {
       checkUsername(username, {
