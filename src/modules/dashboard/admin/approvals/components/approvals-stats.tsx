@@ -1,7 +1,20 @@
 import Link from "next/link";
-import { HospitalSquareIcon, StethoscopeIcon, ShieldCheckIcon } from "./icons";
+import {
+  HospitalSquareIcon,
+  StethoscopeIcon,
+  ShieldCheckIcon,
+  ClockIcon,
+} from "@/components/icons";
+import { useStats } from "@/modules/stats";
+import { ApprovalsStatsSkeleton } from "./skeletons";
 
 export function ApprovalsStats() {
+  const { doctorStats, hospitalStats, isLoading } = useStats();
+
+  if (isLoading) {
+    return <ApprovalsStatsSkeleton />;
+  }
+
   return (
     <div className="mb-7 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {/* Total Hospitals — clickable */}
@@ -21,11 +34,13 @@ export function ApprovalsStats() {
           </p>
           <div className="flex items-baseline gap-2">
             <span className="text-[24px] leading-[24px] font-extrabold text-[#2D3748]">
-              142
+              {hospitalStats?.total_hospital_count?.toLocaleString() || 0}
             </span>
-            <span className="rounded-[8px] bg-[#F0FDF4] px-[6px] py-[2px] font-[Manrope] text-[12px] leading-[16px] font-bold text-[#16A34A]">
-              ↑12%
-            </span>
+            {hospitalStats?.percentage_change !== undefined && (
+              <span className="rounded-[8px] bg-[#F0FDF4] px-[6px] py-[2px] font-[Manrope] text-[12px] leading-[16px] font-bold text-[#16A34A]">
+                ↑{hospitalStats.percentage_change}%
+              </span>
+            )}
           </div>
         </div>
       </Link>
@@ -47,11 +62,13 @@ export function ApprovalsStats() {
           </p>
           <div className="flex items-baseline gap-2">
             <span className="text-[24px] leading-[24px] font-extrabold text-[#2D3748]">
-              3,850
+              {doctorStats?.total_doctor_count?.toLocaleString() || 0}
             </span>
-            <span className="rounded-[8px] bg-[#F0FDF4] px-[6px] py-[2px] font-[Manrope] text-[12px] leading-[16px] font-bold text-[#16A34A]">
-              ↑5%
-            </span>
+            {doctorStats?.percentage_change !== undefined && (
+              <span className="rounded-[8px] bg-[#F0FDF4] px-[6px] py-[2px] font-[Manrope] text-[12px] leading-[16px] font-bold text-[#16A34A]">
+                ↑{doctorStats.percentage_change}%
+              </span>
+            )}
           </div>
         </div>
       </Link>
@@ -71,7 +88,7 @@ export function ApprovalsStats() {
           </p>
           <div className="flex items-center gap-2">
             <span className="text-[24px] leading-[24px] font-extrabold text-[#2D3748]">
-              1,204
+              {doctorStats?.total_available?.toLocaleString() || 0}
             </span>
             <span className="rounded-[8px] bg-[#FAF5FF] px-[6px] py-[2px] font-[Manrope] text-[12px] leading-[16px] font-bold text-[#9333EA]">
               Live

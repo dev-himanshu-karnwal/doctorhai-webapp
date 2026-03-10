@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { doctorRegistrationSchema } from "@/modules/auth/schemas";
 import { DoctorRegistrationValues } from "@/modules/auth/types/registration.types";
 import { FormInput } from "@/modules/auth/components/shared/form-input";
-import { Icons } from "@/modules/auth/components/shared/icons";
+import { UserIcon, PhoneIcon, MailIcon, LockIcon } from "@/components/icons";
 import { Button } from "@/components/ui";
 import { useDebouncedUsernameCheck } from "@/modules/auth/hooks";
 
@@ -53,7 +53,7 @@ export const AddDoctorForm: React.FC<AddDoctorFormProps> = ({
         label="Full Name"
         {...register("name")}
         placeholder="Enter full name"
-        icon={<Icons.User />}
+        icon={<UserIcon />}
         error={errors.name?.message}
       />
 
@@ -61,7 +61,7 @@ export const AddDoctorForm: React.FC<AddDoctorFormProps> = ({
         label="Username"
         {...register("username")}
         placeholder="dr_username"
-        icon={<Icons.User />}
+        icon={<UserIcon />}
         error={errors.username?.message}
         successMessage={
           usernameStatus === "available" ? "Username is available" : undefined
@@ -74,7 +74,7 @@ export const AddDoctorForm: React.FC<AddDoctorFormProps> = ({
           label="Phone Number"
           {...register("phone")}
           placeholder="9876543210"
-          icon={<Icons.Phone />}
+          icon={<PhoneIcon />}
           addonLeft={
             <span className="flex items-center gap-1.5 border-r border-gray-200 pr-2">
               <span>🇮🇳</span>
@@ -87,7 +87,7 @@ export const AddDoctorForm: React.FC<AddDoctorFormProps> = ({
           label="Email"
           {...register("email")}
           placeholder="doctor@example.com"
-          icon={<Icons.Email />}
+          icon={<MailIcon />}
           error={errors.email?.message}
         />
       </div>
@@ -98,7 +98,7 @@ export const AddDoctorForm: React.FC<AddDoctorFormProps> = ({
           {...register("password")}
           type="password"
           placeholder="••••••••"
-          icon={<Icons.Lock />}
+          icon={<LockIcon />}
           error={errors.password?.message}
         />
         <FormInput
@@ -106,7 +106,7 @@ export const AddDoctorForm: React.FC<AddDoctorFormProps> = ({
           {...register("confirmPassword")}
           type="password"
           placeholder="••••••••"
-          icon={<Icons.Lock />}
+          icon={<LockIcon />}
           error={errors.confirmPassword?.message}
         />
       </div>

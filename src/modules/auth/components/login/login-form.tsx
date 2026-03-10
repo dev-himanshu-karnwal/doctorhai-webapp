@@ -5,11 +5,12 @@ import { useForm, type FieldErrors } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema, type LoginValues } from "../../schemas";
 import { FormInput } from "../shared/form-input";
+import { UserIcon, MailIcon, LockIcon } from "@/components/icons";
+import { AuthSubmitIcon } from "@/modules/auth/icons";
 import { Button } from "@/components/ui";
 import Link from "next/link";
 import { useLogin } from "../../hooks";
 import { LoginToggle } from "./toggle";
-import { Icons } from "../shared/icons";
 
 export function LoginForm() {
   const [loginType, setLoginType] = useState<"username" | "email">("email");
@@ -56,27 +57,27 @@ export function LoginForm() {
         {loginType === "username" ? (
           <FormInput
             label="Username"
-            {...register("username" as const)}
+            {...register("username")}
             placeholder="dr_arora12"
-            icon={<Icons.User />}
+            icon={<UserIcon size={20} className="text-[#94A3B8]" />}
             error={fieldErrors.username?.message}
           />
         ) : (
           <FormInput
             label="Email Address"
-            {...register("email" as const)}
+            {...register("email")}
             placeholder="admin@hospital.com"
-            icon={<Icons.Email />}
+            icon={<MailIcon size={20} className="text-[#94A3B8]" />}
             error={fieldErrors.email?.message}
           />
         )}
 
         <FormInput
           label="Password"
-          {...register("password" as const)}
+          {...register("password")}
           type="password"
           placeholder="••••••••"
-          icon={<Icons.Lock />}
+          icon={<LockIcon size={20} className="text-[#94A3B8]" />}
           error={fieldErrors.password?.message}
         />
 
@@ -96,7 +97,7 @@ export function LoginForm() {
           className="group mt-6 h-[64px] w-full rounded-[18px] bg-[#3D8F87] text-[18px] font-bold text-white shadow-[0_4px_6px_-4px_rgba(79,179,170,0.3),0_10px_15px_-3px_rgba(79,179,170,0.3)] transition-all active:scale-[0.98]"
         >
           <span>{isPending ? "Signing in..." : "Sign In"}</span>
-          {!isPending && <Icons.Check />}
+          {!isPending && <AuthSubmitIcon size={16} className="text-white" />}
         </Button>
 
         <div className="text-center text-[15px] font-medium text-[#64748B]">

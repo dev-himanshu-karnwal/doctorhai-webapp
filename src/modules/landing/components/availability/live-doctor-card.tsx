@@ -3,6 +3,7 @@
 import Image from "next/image";
 import type { Doctor } from "@/modules/doctors/types";
 import { getStatusConfig } from "@/modules/doctors/components/cards/doctor-status-config";
+import { MapPinIcon } from "@/components/icons";
 
 type LiveDoctorCardProps = {
   doctor: Doctor;
@@ -41,19 +42,7 @@ export function LiveDoctorCard({ doctor }: LiveDoctorCardProps) {
       </div>
 
       <div className="flex items-center gap-2 px-1">
-        <svg
-          width="14"
-          height="14"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="#718096"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-          <circle cx="12" cy="10" r="3" />
-        </svg>
+        <MapPinIcon size={14} className="text-[#718096]" />
         <span className="text-[12px] leading-[16px] font-normal text-[#718096]">
           {doctor.designation || "General Hospital"}
         </span>

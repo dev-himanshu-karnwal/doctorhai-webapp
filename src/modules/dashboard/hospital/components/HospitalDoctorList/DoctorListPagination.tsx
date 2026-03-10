@@ -1,5 +1,5 @@
 import React from "react";
-import { ChevronLeftIcon, ChevronRightIcon } from "../HospitalIcons";
+import { ChevronLeftIcon, ChevronRightIcon } from "@/components/icons";
 import { Button } from "@/components/ui";
 
 interface DoctorListPaginationProps {

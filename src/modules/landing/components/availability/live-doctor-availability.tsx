@@ -9,6 +9,15 @@ type LiveDoctorAvailabilityProps = {
   viewAllHref?: string;
 };
 
+import {
+  ArrowRightIcon,
+  MapPinIcon,
+  ChevronDownIcon,
+  ClockIcon,
+  StethoscopeIcon,
+  PulseDotIcon,
+} from "@/components/icons";
+
 export function LiveDoctorAvailability({
   viewAllHref = "/doctors",
 }: LiveDoctorAvailabilityProps) {
@@ -27,7 +36,7 @@ export function LiveDoctorAvailability({
         <div className="mb-8 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end sm:gap-6">
           <div className="w-full sm:w-auto">
             <div className="mb-2 flex items-center gap-2 sm:mb-3">
-              <span className="h-[10px] w-[10px] rounded-full bg-[#4FB3AA] sm:h-[12px] sm:w-[12px]" />
+              <PulseDotIcon size={12} className="text-[#4FB3AA]" />
               <span className="text-[12px] leading-[18px] font-bold tracking-[0.7px] text-[#3D8F87] uppercase sm:text-[14px] sm:leading-[20px]">
                 Live Status Pulse
               </span>
@@ -41,19 +50,10 @@ export function LiveDoctorAvailability({
             className="group mb-1 flex items-center gap-1 text-[15px] leading-[22px] font-bold text-[#3D8F87] transition-all hover:text-[#2D3748] sm:mb-2 sm:gap-2 sm:text-[16px] sm:leading-[24px]"
           >
             View All Doctors
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="3"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+            <ArrowRightIcon
               className="h-[16px] w-[16px] transition-transform group-hover:translate-x-1 sm:h-[18px] sm:w-[18px]"
-            >
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
+              strokeWidth={3}
+            />
           </Link>
         </div>
 

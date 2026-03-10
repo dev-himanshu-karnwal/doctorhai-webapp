@@ -1,5 +1,10 @@
 import { useRouter } from "next/navigation";
-import { ShieldCheckIcon, MapPinIcon, ClockIcon, MonitorIcon } from "./icons";
+import {
+  ShieldCheckIcon,
+  MapPinIcon,
+  ClockIcon,
+  MonitorIcon,
+} from "@/components/icons";
 import { Button } from "@/components/ui";
 import { useTimeAgo } from "@/hooks/use-time-ago";
 

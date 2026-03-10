@@ -9,39 +9,7 @@ import {
 import { Input } from "@/components/ui";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
-
-const Eye = () => (
-  <svg
-    width="20"
-    height="20"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
-    <circle cx="12" cy="12" r="3" />
-  </svg>
-);
-
-const EyeOff = () => (
-  <svg
-    width="20"
-    height="20"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
-    <circle cx="12" cy="12" r="3" />
-    <line x1="2" y1="2" x2="22" y2="22" />
-  </svg>
-);
+import { EyeIcon, EyeOffIcon } from "@/components/icons";
 
 interface FormInputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
@@ -120,7 +88,7 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
                 onClick={() => setShow(!show)}
                 className="absolute top-1/2 right-2 h-9 w-9 -translate-y-1/2 p-0 text-[#94A3B8] hover:bg-transparent hover:text-[#3D8F87]"
               >
-                {show ? <EyeOff /> : <Eye />}
+                {show ? <EyeOffIcon size={20} /> : <EyeIcon size={20} />}
               </Button>
             )
           )}

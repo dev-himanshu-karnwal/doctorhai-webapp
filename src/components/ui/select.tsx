@@ -1,6 +1,6 @@
 import * as React from "react";
 import { cn } from "@/lib/cn";
-import { ChevronDownIcon } from "@/modules/dashboard/admin/approvals/components/icons";
+import { ChevronDownIcon } from "@/components/icons";
 
 export interface SelectOption {
   value: string;

@@ -1,9 +1,9 @@
 "use client";
 
 import { Modal } from "@/components/modals";
-import { Button } from "@/components/ui";
+import { Button } from "@/components/ui/button";
+import { CheckCircleIcon } from "@/components/icons";
 import { useRouter } from "next/navigation";
-import { Icons } from "../shared/icons";
 
 interface RegistrationSuccessModalProps {
   isOpen: boolean;
@@ -17,7 +17,7 @@ export function RegistrationSuccessModal({
   return (
     <Modal isOpen={isOpen}>
       <div className="mx-auto mb-6 flex h-[72px] w-[72px] items-center justify-center rounded-full bg-[#E5F7F1]">
-        <Icons.CheckCircle className="h-8 w-8 text-[#00E599]" />
+        <CheckCircleIcon className="h-8 w-8 text-[#00E599]" />
       </div>
       <h3 className="mb-3 text-[22px] font-bold text-[#1A2B3D]">
         Request Submitted Successfully

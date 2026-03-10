@@ -1,6 +1,6 @@
 import React from "react";
 import { HospitalDoctorListProps } from "../../types/hospital.types";
-import { UsersIcon } from "../HospitalIcons";
+import { UsersIcon } from "@/components/icons";
 import HospitalDoctorCard from "../HospitalDoctorCard";
 import DoctorListHeader from "./DoctorListHeader";
 import DoctorListPagination from "./DoctorListPagination";

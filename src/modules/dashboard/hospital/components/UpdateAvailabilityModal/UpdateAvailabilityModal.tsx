@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { UpdateAvailabilityModalProps } from "../../types/hospital.types";
 import { Button, Input } from "@/components/ui";
-import { XIcon, SaveIcon } from "../HospitalIcons";
+import { XIcon, SaveIcon } from "@/components/icons";
 import { useUpdateDoctorStatus } from "../../../doctor/hooks/use-doctor-status";
 import {
   quickReturnSchema,

@@ -1,4 +1,5 @@
 import { JSX } from "react";
+import { CheckIcon, ClockIcon } from "@/components/icons";
 
 export interface StatusTheme {
   bg: string;
@@ -12,20 +13,7 @@ export const statusThemes: Record<string, StatusTheme> = {
     bg: "bg-[#22C55E]",
     accent: "bg-[#22C55E]",
     statusLabel: "Available Now",
-    icon: (
-      <svg
-        width="40"
-        height="40"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="white"
-        strokeWidth="3.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <polyline points="20 6 9 17 4 12" />
-      </svg>
-    ),
+    icon: <CheckIcon size={40} className="text-white" strokeWidth={3.5} />,
   },
   busy: {
     bg: "bg-[#FFEDD5]",
@@ -50,20 +38,7 @@ export const statusThemes: Record<string, StatusTheme> = {
     bg: "bg-[#FEF9C3]",
     accent: "bg-[#CA8A04]",
     statusLabel: "Back Soon",
-    icon: (
-      <svg
-        width="34"
-        height="34"
-        viewBox="16 13 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M28.04 36.8506C26.4069 36.8506 24.8697 36.539 23.4286 35.9158C21.9875 35.2926 20.7323 34.4463 19.663 33.377C18.5937 32.3078 17.7474 31.0525 17.1242 29.6114C16.501 28.1703 16.1895 26.6331 16.1895 25C16.1895 23.3668 16.501 21.8297 17.1242 20.3886C17.7474 18.9474 18.5937 17.6922 19.663 16.6229C20.7323 15.5536 21.9875 14.7074 23.4286 14.0842C24.8697 13.461 26.4069 13.1494 28.04 13.1494C29.7719 13.1494 31.4094 13.5022 32.9524 14.2078C34.4954 14.9135 35.8276 15.9211 36.949 17.2309V14.5584H39.714V22.5H31.737V19.6997H34.6799C33.8611 18.6743 32.8738 17.8784 31.718 17.3118C30.5622 16.7452 29.3362 16.462 28.04 16.462C25.6614 16.462 23.6437 17.2903 21.987 18.947C20.3303 20.6037 19.502 22.6214 19.502 25C19.502 27.3786 20.3303 29.3963 21.987 31.053C23.6437 32.7097 25.6614 33.538 28.04 33.538C30.1686 33.538 32.0271 32.8503 33.6154 31.4748C35.2037 30.0994 36.1496 28.3578 36.4531 26.25H39.8104C39.5097 29.2808 38.2328 31.8053 35.9796 33.8234C33.7264 35.8415 31.0799 36.8506 28.04 36.8506ZM31.3987 30.3913L26.6487 25.6413V18.75H29.4137V24.5L33.3607 28.4293L31.3987 30.3913Z"
-          fill="#CA8A04"
-        />
-      </svg>
-    ),
+    icon: <ClockIcon size={34} className="text-[#CA8A04]" />,
   },
   off_duty: {
     bg: "bg-[#F3E8FF]",

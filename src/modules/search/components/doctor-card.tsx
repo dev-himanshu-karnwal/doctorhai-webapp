@@ -2,6 +2,7 @@ import { Doctor } from "../types/search.types";
 import { Button } from "@/components/ui";
 import Image from "next/image";
 import { cn } from "@/lib/cn";
+import { MapPinIcon } from "@/components/icons";
 
 interface DoctorCardProps {
   doctor: Doctor;
@@ -59,20 +60,7 @@ export function DoctorCard({ doctor }: DoctorCardProps) {
 
         {/* Location Pill */}
         <div className="mb-[12px] flex h-[36px] w-full items-center gap-[6px] rounded-[20px] bg-[#F8FAFC] px-[10px] py-[8px] sm:mb-[16px] sm:h-[40px] sm:gap-[8px] sm:rounded-[24px] sm:py-[10px]">
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="#A0AEC0"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="shrink-0 sm:h-[18px] sm:w-[18px]"
-          >
-            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-            <circle cx="12" cy="10" r="3" />
-          </svg>
+          <MapPinIcon size={18} className="shrink-0 text-[#A0AEC0]" />
           <span className="truncate text-[13px] leading-[18px] font-normal tracking-[0px] text-[#718096] sm:text-[14px] sm:leading-[20px]">
             {doctor.location}
           </span>

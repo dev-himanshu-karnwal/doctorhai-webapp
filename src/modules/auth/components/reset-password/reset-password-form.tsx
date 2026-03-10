@@ -4,7 +4,8 @@ import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormInput } from "../shared/form-input";
 import { Button } from "@/components/ui";
-import { Icons } from "../shared/icons";
+import { LockIcon } from "@/components/icons";
+import { AuthSubmitIcon } from "@/modules/auth/icons";
 import { useRouter } from "next/navigation";
 import {
   resetPasswordSchema,
@@ -100,7 +101,7 @@ export function ResetPasswordForm() {
           {...register("newPassword")}
           type="password"
           placeholder="••••••••"
-          icon={<Icons.Lock />}
+          icon={<LockIcon size={20} className="text-[#94A3B8]" />}
           error={errors.newPassword?.message}
         />
         <PasswordRequirements password={password} />
@@ -111,7 +112,7 @@ export function ResetPasswordForm() {
         {...register("confirmPassword")}
         type="password"
         placeholder="••••••••"
-        icon={<Icons.Lock />}
+        icon={<LockIcon size={20} className="text-[#94A3B8]" />}
         error={errors.confirmPassword?.message}
       />
 
@@ -122,7 +123,7 @@ export function ResetPasswordForm() {
         className="group mt-6 h-[64px] w-full rounded-[18px] bg-[#3D8F87] text-[18px] font-bold text-white shadow-[0_4px_6px_-4px_rgba(79,179,170,0.3),0_10px_15px_-3px_rgba(79,179,170,0.3)] transition-all active:scale-[0.98]"
       >
         <span>{isPending ? "Resetting..." : "Reset Password"}</span>
-        {!isPending && <Icons.Check />}
+        {!isPending && <AuthSubmitIcon size={16} className="text-white" />}
       </Button>
     </form>
   );

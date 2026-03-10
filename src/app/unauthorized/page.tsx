@@ -1,45 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
-const ShieldAlertIcon = ({ size = 48 }: { size?: number }) => (
-  <svg
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="1.5"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-    <path d="M12 8v4" />
-    <path d="M12 16h.01" />
-  </svg>
-);
-
-const HomeIcon = ({
-  size = 20,
-  className,
-}: {
-  size?: number;
-  className?: string;
-}) => (
-  <svg
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className}
-  >
-    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-    <polyline points="9 22 9 12 15 12 15 22" />
-  </svg>
-);
+import { HomeIcon, ShieldAlertIcon } from "@/components/icons";
 
 export default function UnauthorizedPage() {
   return (

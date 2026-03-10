@@ -3,6 +3,7 @@ import { DoctorCard } from "./doctor-card";
 import { ClinicCard } from "./clinic-card";
 import { DoctorCtaCard } from "./doctor-cta-card";
 import { Button } from "@/components/ui";
+import { ChevronDownIcon } from "@/components/icons";
 
 export function SearchResults() {
   return (
@@ -23,19 +24,7 @@ export function SearchResults() {
           </span>
           <button className="flex items-center gap-1.5 text-[14px] leading-[20px] font-bold text-[#3D8F87] sm:text-[16px] sm:leading-[24px]">
             Relevance
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="h-3.5 w-3.5 sm:h-4 sm:w-4"
-            >
-              <path d="m6 9 6 6 6-6" />
-            </svg>
+            <ChevronDownIcon size={16} className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
           </button>
         </div>
       </div>
@@ -63,19 +52,7 @@ export function SearchResults() {
           className="h-[48px] w-full gap-[8px] rounded-full border border-[#E2E8F0] bg-white px-[24px] py-[12px] text-[14px] leading-[20px] font-bold tracking-[0px] text-[#2D3748] shadow-[0_1px_2px_0_rgba(0,0,0,0.05)] transition-all hover:border-gray-200 hover:bg-gray-50 sm:h-[58px] sm:w-auto sm:px-[32px] sm:py-[16px] sm:text-[16px] sm:leading-[24px]"
         >
           Load More Results
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="text-gray-400"
-          >
-            <path d="m6 9 6 6 6-6" />
-          </svg>
+          <ChevronDownIcon size={20} className="text-gray-400" />
         </Button>
       </div>
     </div>

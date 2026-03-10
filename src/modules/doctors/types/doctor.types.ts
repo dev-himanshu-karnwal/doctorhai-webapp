@@ -19,6 +19,7 @@ export type Doctor = {
   public_view_count?: number;
   hasExperience: boolean | null;
   bio?: string | null;
+  isVerified: boolean;
   status: DoctorStatus | null;
   createdAt?: string;
 };

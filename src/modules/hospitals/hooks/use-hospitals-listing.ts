@@ -5,7 +5,7 @@ import { useHospitals } from "./use-hospitals";
 import { Hospital } from "../types/hospital.types";
 import { useDebounce } from "@/hooks";
 
-export function useHospitalsListing(initialIsVerified = true) {
+export function useHospitalsListing(initialIsVerified?: boolean) {
   const [page, setPage] = useState(1);
   const [accumulatedHospitals, setAccumulatedHospitals] = useState<Hospital[]>(
     []

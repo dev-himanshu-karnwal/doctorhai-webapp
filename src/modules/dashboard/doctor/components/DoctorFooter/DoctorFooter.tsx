@@ -1,4 +1,4 @@
-import { ExternalLinkIcon } from "../DoctorIcons";
+import { ExternalLinkIcon } from "@/components/icons";
 import Link from "next/link";
 
 export const DoctorFooter = () => {
