@@ -1,34 +1,45 @@
 "use client";
 import { useState } from "react";
 import { ShieldCheckIcon, TrashIcon } from "@/components/icons";
+import { useVerifyAccount, useDeleteAccount } from "@/modules/accounts/hooks";
 import { Button } from "@/components/ui/button";
 import { ApproveModal, DeleteModal } from "@/components/modals";
 
 interface HospitalCardActionsProps {
   id: string;
+  accountId: string;
   name: string;
   isVerified: boolean;
 }
 
 export function HospitalCardActions({
   id,
+  accountId,
   name,
   isVerified,
 }: HospitalCardActionsProps) {
   const [showApproveModal, setShowApproveModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
+  const { mutate: verifyAccount, isPending: isVerifying } = useVerifyAccount();
+  const { mutate: deleteAccount, isPending: isDeleting } = useDeleteAccount();
+
   const handleApprove = () => setShowApproveModal(true);
   const handleDelete = () => setShowDeleteModal(true);
 
   const confirmApprove = () => {
-    console.log("Approving", id);
-    setShowApproveModal(false);
+    verifyAccount(
+      { id: accountId, payload: { isVerified: true } },
+      {
+        onSuccess: () => setShowApproveModal(false),
+      }
+    );
   };
 
   const confirmDelete = () => {
-    console.log("Deleting/Rejecting", id);
-    setShowDeleteModal(false);
+    deleteAccount(accountId, {
+      onSuccess: () => setShowDeleteModal(false),
+    });
   };
 
   return (
@@ -74,6 +85,7 @@ export function HospitalCardActions({
         onClose={() => setShowApproveModal(false)}
         onConfirm={confirmApprove}
         name={name}
+        loading={isVerifying}
       />
 
       <DeleteModal
@@ -82,6 +94,7 @@ export function HospitalCardActions({
         onConfirm={confirmDelete}
         name={name}
         isVerified={isVerified}
+        loading={isDeleting}
       />
     </div>
   );

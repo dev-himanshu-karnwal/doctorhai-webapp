@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
@@ -40,6 +40,17 @@ const UpdateAvailabilityModal: React.FC<UpdateAvailabilityModalProps> = ({
 
   const currentStatus = useWatch({ control, name: "status" });
   const expectedAtWatch = useWatch({ control, name: "expectedAt" });
+
+  useEffect(() => {
+    if (isOpen && doctor) {
+      reset({
+        status:
+          (doctor.rawStatus as QuickReturnValues["status"]) || "available",
+        expectedAt: "",
+        expectedAtNote: "",
+      });
+    }
+  }, [isOpen, doctor, reset]);
 
   const onSubmit = (data: QuickReturnValues) => {
     if (!doctor?.id) {

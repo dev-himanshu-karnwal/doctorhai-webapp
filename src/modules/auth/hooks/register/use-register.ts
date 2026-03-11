@@ -18,6 +18,10 @@ export function useRegister() {
     mutationFn: async (data: RegistrationValues) =>
       await registerService.register(data),
     onSuccess: async () => {
+      queryClient.invalidateQueries({ queryKey: ["doctors"] });
+      queryClient.invalidateQueries({ queryKey: ["hospital-stats"] });
+      queryClient.invalidateQueries({ queryKey: ["doctor-stats"] });
+      queryClient.invalidateQueries({ queryKey: ["hospitals"] });
       try {
         setLoading(true);
         const user = await meService.getCurrentUser();
