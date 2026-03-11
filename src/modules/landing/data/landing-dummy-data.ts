@@ -1,10 +1,4 @@
-import type {
-  DepartmentCategory,
-  DoctorEntry,
-  FeatureCard,
-  HospitalEntry,
-  WorkflowStep,
-} from "../types";
+import type { DepartmentCategory, FeatureCard, WorkflowStep } from "../types";
 
 export const DUMMY_DEPARTMENTS: DepartmentCategory[] = [
   { id: "1", label: "General Physician" },
@@ -36,37 +30,6 @@ export const DUMMY_FEATURE_CARDS: FeatureCard[] = [
       "A public-facing page for every department. Patients check status before leaving home.",
     icon: "status",
     highlight: "SIMPLE SOLUTION",
-  },
-];
-
-export const DUMMY_LIVE_DOCTORS: DoctorEntry[] = [
-  {
-    id: "1",
-    name: "Dr. Sarah Smith",
-    specialty: "Cardiology",
-    hospitalName: "City General Hospital",
-    status: "available",
-  },
-  {
-    id: "2",
-    name: "Dr. James Chen",
-    specialty: "Neurosurgeon",
-    hospitalName: "St. Mary's Medical Center",
-    status: "busy",
-  },
-  {
-    id: "3",
-    name: "Dr. Emily Davis",
-    specialty: "Pediatrics",
-    hospitalName: "Children's Hospital",
-    status: "on-break",
-  },
-  {
-    id: "4",
-    name: "Dr. M. Thompson",
-    specialty: "Orthopedics",
-    hospitalName: "Westside Clinic",
-    status: "available",
   },
 ];
 

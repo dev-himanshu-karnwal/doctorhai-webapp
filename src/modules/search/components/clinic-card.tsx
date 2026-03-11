@@ -3,7 +3,6 @@ import { Button } from "@/components/ui";
 import {
   HospitalSquareIcon,
   StarIcon,
-  UserIcon,
   ClockIcon,
   UsersIcon,
 } from "@/components/icons";

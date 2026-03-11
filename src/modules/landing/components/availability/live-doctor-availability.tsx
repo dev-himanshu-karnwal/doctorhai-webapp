@@ -9,14 +9,7 @@ type LiveDoctorAvailabilityProps = {
   viewAllHref?: string;
 };
 
-import {
-  ArrowRightIcon,
-  MapPinIcon,
-  ChevronDownIcon,
-  ClockIcon,
-  StethoscopeIcon,
-  PulseDotIcon,
-} from "@/components/icons";
+import { ArrowRightIcon, PulseDotIcon } from "@/components/icons";
 
 export function LiveDoctorAvailability({
   viewAllHref = "/doctors",

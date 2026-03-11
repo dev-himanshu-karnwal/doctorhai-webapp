@@ -1,11 +1,6 @@
 import {
   SearchIcon,
   FilterIcon,
-  ChevronDownIcon,
-  MapPinIcon,
-  ClockIcon,
-  StethoscopeIcon,
-  HospitalSquareIcon,
   MonitorIcon,
   ClipboardListIcon,
 } from "@/components/icons";

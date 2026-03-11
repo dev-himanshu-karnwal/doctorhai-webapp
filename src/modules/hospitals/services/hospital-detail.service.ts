@@ -1,5 +1,5 @@
 import { axiosInstance } from "@/lib/axios";
-import { HospitalDetailResponse, HospitalDetailDto } from "../types";
+import { HospitalDetailResponse } from "../types";
 import { HospitalUpdatePayload } from "../schemas/hospital-update.schema";
 
 export interface HospitalDetailQueryParams {

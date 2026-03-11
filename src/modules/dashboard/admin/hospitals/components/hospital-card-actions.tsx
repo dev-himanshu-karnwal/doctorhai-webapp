@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { ShieldCheckIcon, TrashIcon } from "@/components/icons";
+import { TrashIcon } from "@/components/icons";
 import { useVerifyAccount, useDeleteAccount } from "@/modules/accounts/hooks";
 import { Button } from "@/components/ui/button";
 import { ApproveModal, DeleteModal } from "@/components/modals";

@@ -8,22 +8,6 @@ export type DepartmentCategory = {
   icon?: string;
 };
 
-export type HospitalEntry = {
-  id: string;
-  name: string;
-  status: StatusKind;
-};
-
-export type DoctorEntry = {
-  id: string;
-  name: string;
-  specialty: string;
-  imageUrl?: string;
-  status: StatusKind;
-  hospitalName?: string;
-  hasExperience?: string;
-};
-
 export type FeatureCard = {
   id: string;
   title: string;
