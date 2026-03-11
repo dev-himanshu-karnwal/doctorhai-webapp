@@ -22,7 +22,7 @@ export function ApprovalsView() {
     hasMore: hasMoreDoctors,
     loadMore: loadMoreDoctors,
     handleSearch: handleDoctorSearch,
-  } = useDoctorsListing(false);
+  } = useDoctorsListing({ initialIsVerified: false });
 
   const {
     accumulatedHospitals: hospitals,

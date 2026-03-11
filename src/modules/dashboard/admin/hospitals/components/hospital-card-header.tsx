@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export function HospitalCardHeader({
   isVerified,
   name,
@@ -39,9 +41,11 @@ export function HospitalCardHeader({
         }}
       >
         {imageUrl ? (
-          <img
-            src={imageUrl}
+          <Image
+            src={imageUrl ?? "/images/hospital.jpg"}
             alt={name}
+            width={80}
+            height={80}
             className="h-full w-full object-cover"
           />
         ) : (

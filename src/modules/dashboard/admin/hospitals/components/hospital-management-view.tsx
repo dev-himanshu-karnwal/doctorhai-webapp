@@ -20,7 +20,7 @@ export function HospitalManagementView() {
     isFetchingMore,
     hasMore,
     handleLoadMore,
-  } = useHospitalsListing(undefined); // undefined gives all hospitals
+  } = useHospitalsListing(undefined);
 
   const isLoading = isLoadingStats || isLoadingHospitals;
 

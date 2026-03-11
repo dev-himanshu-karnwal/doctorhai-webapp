@@ -21,7 +21,7 @@ export function DoctorsListingPage() {
     searchQuery,
     setSearchQuery,
     error,
-  } = useDoctorsListing(true);
+  } = useDoctorsListing({ initialIsVerified: true });
 
   // If there's an error from the API, we won't crash the grid entirely
   // It handles it internally, but the layout remains the same

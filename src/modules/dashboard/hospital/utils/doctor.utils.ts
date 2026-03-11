@@ -12,6 +12,7 @@ export const mapApiDoctorToUI = (doc: ApiDoctor): UIDoctor => ({
     doc.profilePhotoUrl ||
     `https://ui-avatars.com/api/?name=${encodeURIComponent(doc.fullName)}&background=random`,
   statusBadge: getStatusBadge(doc.status?.status as StatusKind),
+  rawStatus: doc.status?.status,
   col1: { label: "SHIFT", value: "-" },
   col2: { label: "ROOM", value: "-" },
   // Fields for EditDoctorSlider

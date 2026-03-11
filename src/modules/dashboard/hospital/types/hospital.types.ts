@@ -13,6 +13,7 @@ export interface Doctor extends Partial<DoctorProfileValues> {
   subtext: string;
   avatar: string;
   statusBadge: StatusBadge;
+  rawStatus?: string;
   col1: { label: string; value: string };
   col2: { label: string; value: string };
   // Explicitly mentioning fields from DoctorProfileValues for better clarity/IDE support

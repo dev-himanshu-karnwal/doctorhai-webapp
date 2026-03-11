@@ -93,7 +93,16 @@ function HospitalTimelineDropdown({
   );
 }
 
-export function HospitalDetailSidebar({ h }: { h: HospitalDetail }) {
+export function HospitalDetailSidebar({
+  h,
+  doctorStats,
+}: {
+  h: HospitalDetail;
+  doctorStats?: {
+    total_verfied_count: number;
+    total_available: number;
+  };
+}) {
   return (
     <aside className="w-full flex-col gap-4 lg:flex lg:w-[300px]">
       <div className="rounded-[24px] border border-[#F1F5F9] bg-white p-5 shadow-sm">
@@ -129,9 +138,14 @@ export function HospitalDetailSidebar({ h }: { h: HospitalDetail }) {
 
       <div className="mt-4 grid grid-cols-2 gap-3">
         <SidebarStatCard
-          value={h.totalDoctors}
-          label="Total Doctors"
-          color="text-[#3D8F87]"
+          value={doctorStats?.total_verfied_count || 0}
+          label="Verified Doctors"
+          color="text-[#3B82F6]"
+        />
+        <SidebarStatCard
+          value={doctorStats?.total_available || 0}
+          label="Available Doctors"
+          color="text-[#10B981]"
         />
       </div>
     </aside>

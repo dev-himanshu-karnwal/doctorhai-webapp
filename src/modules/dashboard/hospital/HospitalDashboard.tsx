@@ -20,6 +20,7 @@ import { useAddDoctor } from "./hooks";
 import { Doctor as UIDoctor } from "./types/hospital.types";
 import { mapApiDoctorToUI } from "./utils";
 import { DoctorProfileValues } from "../doctor/validators";
+import { useStats } from "@/modules/stats/hooks/use-stats";
 
 const HospitalDashboard: React.FC = () => {
   const { user, loading: authLoading } = useAuth();
@@ -36,6 +37,8 @@ const HospitalDashboard: React.FC = () => {
     page,
     limit,
   });
+
+  const { doctorStats, isLoading: statsLoading } = useStats(hospitalId);
 
   const [selectedDoctor, setSelectedDoctor] = useState<UIDoctor | null>(null);
   const [editingDoctor, setEditingDoctor] = useState<UIDoctor | null>(null);
@@ -68,13 +71,12 @@ const HospitalDashboard: React.FC = () => {
   };
 
   // Show skeleton if auth is still loading or if we have a hospital and doctors are loading
-  const showSkeleton = authLoading || (!!hospitalId && doctorsLoading && !data);
+  const showSkeleton =
+    authLoading || (!!hospitalId && doctorsLoading && !data) || statsLoading;
 
-  // Calculate counts
-  const availableCount = (data?.doctors || []).filter(
-    (doc) => doc.status?.status === "available"
-  ).length;
-  const totalCount = data?.metadata?.total || 0;
+  // Aggregate counts from the useStats hook
+  const availableCount = doctorStats?.total_available || 0;
+  const totalCount = doctorStats?.total_doctor_count || 0;
 
   // Map API doctors to UI doctors
   const uiDoctors: UIDoctor[] = (data?.doctors || []).map(mapApiDoctorToUI);

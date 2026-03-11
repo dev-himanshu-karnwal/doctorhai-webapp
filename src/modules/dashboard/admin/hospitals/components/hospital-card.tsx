@@ -21,7 +21,12 @@ export function HospitalCard({ h }: { h: Hospital }) {
         />
         <HospitalCardStats name={h.name} />
       </div>
-      <HospitalCardActions id={h.id} name={h.name} isVerified={h.isVerified} />
+      <HospitalCardActions
+        id={h.id}
+        accountId={h.accountId}
+        name={h.name}
+        isVerified={h.isVerified}
+      />
     </div>
   );
 }

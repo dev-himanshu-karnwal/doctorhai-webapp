@@ -3,7 +3,6 @@ import {
   HospitalSquareIcon,
   StethoscopeIcon,
   ShieldCheckIcon,
-  ClockIcon,
 } from "@/components/icons";
 import { useStats } from "@/modules/stats";
 import { ApprovalsStatsSkeleton } from "./skeletons";

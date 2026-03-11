@@ -9,6 +9,7 @@ export type DoctorStatus = {
 
 export type Doctor = {
   id: string;
+  accountId?: string;
   fullName: string;
   designation: string | null;
   specialization: string | null;
@@ -31,4 +32,5 @@ export interface DoctorQueryParams {
   isVerified?: boolean;
   specialty?: string;
   isAvailableNow?: boolean;
+  hospitalId?: string;
 }

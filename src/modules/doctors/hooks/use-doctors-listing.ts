@@ -5,7 +5,13 @@ import { Doctor, DoctorQueryParams } from "../types";
 import { useDoctors } from "./use-doctors";
 import { useDebounce } from "@/hooks";
 
-export function useDoctorsListing(initialIsVerified = true) {
+export function useDoctorsListing({
+  initialIsVerified = true,
+  hospitalId,
+}: {
+  initialIsVerified?: boolean;
+  hospitalId?: string;
+} = {}) {
   const [page, setPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
   const debouncedSearch = useDebounce(searchQuery, 400);
@@ -17,6 +23,7 @@ export function useDoctorsListing(initialIsVerified = true) {
     limit: 10,
     search: debouncedSearch || undefined,
     isVerified: initialIsVerified,
+    hospitalId,
   };
 
   const { data, isLoading, isFetching, isPlaceholderData, error } =

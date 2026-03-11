@@ -9,12 +9,14 @@ import { useHospitalDetail, useIncrementHospitalView } from "../../hooks";
 import { mapHospital } from "../../utils/hospital-mappers";
 import { HospitalDetailSkeleton } from "../shared";
 import { useEffect } from "react";
+import { useStats } from "@/modules/stats/hooks/use-stats";
 
 export function HospitalDetailPage() {
   const params = useParams<{ id: string }>();
   const id = params?.id || "";
 
   const { incrementView } = useIncrementHospitalView();
+  const { doctorStats } = useStats(id);
 
   useEffect(() => {
     if (id) {
@@ -63,7 +65,7 @@ export function HospitalDetailPage() {
         <HospitalDetailHeader h={h} />
 
         <div className="flex flex-col gap-8 lg:flex-row">
-          <HospitalDetailSidebar h={h} />
+          <HospitalDetailSidebar h={h} doctorStats={doctorStats} />
           <HospitalDoctorAvailability
             doctors={h.doctors}
             hasMore={hasMoreDoctors}

@@ -33,6 +33,7 @@ export interface HospitalDetailDto {
   isActive: boolean;
   location: HospitalLocation;
   type: string | null;
+  public_view_count?: number;
   timeline: HospitalTimelineItem[] | null;
   facilities: string[] | null;
   createdAt: string;
