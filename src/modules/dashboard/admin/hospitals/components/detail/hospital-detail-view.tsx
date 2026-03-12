@@ -86,7 +86,6 @@ export function HospitalDetailView({ hospitalId }: HospitalDetailViewProps) {
               isLoading={isDoctorsLoading}
               searchQuery={searchQuery}
               onSearchChange={handleSearch}
-              hospitalId={hospitalId}
               hasMore={hasMore}
               onLoadMore={loadMore}
             />

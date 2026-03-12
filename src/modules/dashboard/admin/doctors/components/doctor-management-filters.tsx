@@ -1,5 +1,5 @@
 import { Input, Button } from "@/components/ui";
-import { SearchIcon, ChevronDownIcon } from "../icons";
+import { SearchIcon } from "../icons";
 import { SlidersIcon } from "../icons";
 import type { DoctorFilterTab } from "../types";
 

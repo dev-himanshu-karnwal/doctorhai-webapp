@@ -11,7 +11,7 @@ import DoctorDashboardSkeleton from "./components/Skeleton";
 import { useAuth } from "@/modules/auth";
 import { useDoctor } from "@/modules/doctors/hooks/use-doctor";
 
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { quickReturnSchema, type QuickReturnValues } from "./validators";
 
@@ -58,7 +58,10 @@ export const DoctorDashboard = () => {
     }
   }, [doctorData, form]);
 
-  const currentStatus = form.watch("status");
+  const currentStatus = useWatch({
+    control: form.control,
+    name: "status",
+  });
 
   if (!doctorData) {
     return <DoctorDashboardSkeleton />;

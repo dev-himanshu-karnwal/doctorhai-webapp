@@ -4,7 +4,6 @@ import { useState } from "react";
 import { UsersIcon, SearchIcon } from "@/components/icons";
 import { Button, Input } from "@/components/ui";
 import { Doctor } from "@/modules/doctors/types";
-import Link from "next/link";
 import { DoctorTableRow } from "./DoctorTableRow";
 import { DeleteModal } from "@/components/modals";
 import { EditDoctorSlider } from "@/modules/dashboard/doctor/components/EditDoctorSlider/EditDoctorSlider";
@@ -17,7 +16,6 @@ interface DoctorManagementTableProps {
   isLoading: boolean;
   searchQuery: string;
   onSearchChange: (value: string) => void;
-  hospitalId: string;
   hasMore?: boolean;
   onLoadMore?: () => void;
 }
@@ -27,7 +25,6 @@ export function DoctorManagementTable({
   isLoading,
   searchQuery,
   onSearchChange,
-  hospitalId,
   hasMore,
   onLoadMore,
 }: DoctorManagementTableProps) {

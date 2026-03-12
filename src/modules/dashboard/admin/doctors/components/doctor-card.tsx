@@ -111,7 +111,7 @@ export function DoctorCard({ doc }: DoctorCardProps) {
               className="mt-1 line-clamp-2 text-center font-medium text-gray-500 italic"
               style={{ fontSize: 10, maxWidth: "180px" }}
             >
-              "{doc.status.expectedAtNote}"
+              &quot;{doc.status.expectedAtNote}&quot;
             </p>
           )}
         </div>
