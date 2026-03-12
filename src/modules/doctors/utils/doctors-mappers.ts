@@ -26,6 +26,6 @@ export function mapDoctorProfile(dto: Doctor): DoctorProfileUI {
     initials,
     status: statusObj,
     slug: dto.slug ?? "",
-    hasExperience: dto.hasExperience ?? false,
+    hasExperience: dto.hasExperience ?? "0",
   };
 }
