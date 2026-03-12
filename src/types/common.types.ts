@@ -2,5 +2,5 @@ export type StatusKind =
   | "available"
   | "busy"
   | "back_soon"
-  | "off-duty"
+  | "off_duty"
   | string;

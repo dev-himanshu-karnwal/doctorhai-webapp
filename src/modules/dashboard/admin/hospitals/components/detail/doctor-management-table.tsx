@@ -4,7 +4,6 @@ import { useState } from "react";
 import { UsersIcon, SearchIcon } from "@/components/icons";
 import { Button, Input } from "@/components/ui";
 import { Doctor } from "@/modules/doctors/types";
-import Link from "next/link";
 import { DoctorTableRow } from "./DoctorTableRow";
 import { DeleteModal } from "@/components/modals";
 import { EditDoctorSlider } from "@/modules/dashboard/doctor/components/EditDoctorSlider/EditDoctorSlider";
@@ -17,7 +16,8 @@ interface DoctorManagementTableProps {
   isLoading: boolean;
   searchQuery: string;
   onSearchChange: (value: string) => void;
-  hospitalId: string;
+  hasMore?: boolean;
+  onLoadMore?: () => void;
 }
 
 export function DoctorManagementTable({
@@ -25,7 +25,8 @@ export function DoctorManagementTable({
   isLoading,
   searchQuery,
   onSearchChange,
-  hospitalId,
+  hasMore,
+  onLoadMore,
 }: DoctorManagementTableProps) {
   const [selectedDoctor, setSelectedDoctor] = useState<Doctor | null>(null);
   const [isEditOpen, setIsEditOpen] = useState(false);
@@ -127,16 +128,15 @@ export function DoctorManagementTable({
         </div>
       </div>
 
-      {doctors.length > 0 && (
+      {hasMore && (
         <div className="mt-6 text-center">
-          <Link href={`/dashboard/admin/doctors?hospitalId=${hospitalId}`}>
-            <Button
-              variant="ghost"
-              className="text-[13px] font-bold text-[#64748b] hover:text-[#0f172a]"
-            >
-              View All Doctors
-            </Button>
-          </Link>
+          <Button
+            variant="ghost"
+            onClick={onLoadMore}
+            className="text-[13px] font-bold text-[#64748b] hover:text-[#0f172a]"
+          >
+            Load More Doctors
+          </Button>
         </div>
       )}
 

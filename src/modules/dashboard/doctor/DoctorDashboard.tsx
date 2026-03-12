@@ -11,7 +11,7 @@ import DoctorDashboardSkeleton from "./components/Skeleton";
 import { useAuth } from "@/modules/auth";
 import { useDoctor } from "@/modules/doctors/hooks/use-doctor";
 
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { quickReturnSchema, type QuickReturnValues } from "./validators";
 
@@ -20,7 +20,6 @@ export const DoctorDashboard = () => {
   const doctorId = user?.doctor?.id;
   const { data: doctorData } = useDoctor(doctorId as string);
 
-  const [dbStatus, setDbStatus] = useState("off_duty"); // Explicit DB status tracking
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
   const form = useForm<QuickReturnValues>({
@@ -36,7 +35,6 @@ export const DoctorDashboard = () => {
     if (doctorData) {
       const apiStatus = (doctorData.status?.status ||
         "off_duty") as QuickReturnValues["status"];
-      setDbStatus(apiStatus);
 
       let initialExpectedAt = "";
       if (doctorData.status?.expectedAt) {
@@ -58,7 +56,10 @@ export const DoctorDashboard = () => {
     }
   }, [doctorData, form]);
 
-  const currentStatus = form.watch("status");
+  const currentStatus = useWatch({
+    control: form.control,
+    name: "status",
+  });
 
   if (!doctorData) {
     return <DoctorDashboardSkeleton />;
@@ -72,7 +73,9 @@ export const DoctorDashboard = () => {
       />
 
       <main className="mx-auto flex max-w-[850px] flex-col items-center px-5 pt-2 pb-32 sm:px-8 sm:pt-4 lg:pt-6">
-        <DoctorStatusTracker currentStatus={dbStatus} />
+        <DoctorStatusTracker
+          currentStatus={doctorData.status?.status || "off_duty"}
+        />
 
         <DoctorStatusOptions
           currentStatus={currentStatus}

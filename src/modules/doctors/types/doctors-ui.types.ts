@@ -20,7 +20,7 @@ export interface DoctorProfileUI {
   initials: string;
   status: DoctorStatusUI;
   slug: string;
-  hasExperience: boolean;
+  hasExperience: string;
   // Base attributes for unified cards
   type: "doctor";
 }
