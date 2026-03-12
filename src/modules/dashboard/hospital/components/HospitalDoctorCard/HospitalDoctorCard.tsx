@@ -2,6 +2,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { HospitalDoctorCardProps } from "../../types/hospital.types";
 import { Button } from "@/components/ui";
+import Image from "next/image";
 
 const HospitalDoctorCard: React.FC<HospitalDoctorCardProps> = ({
   doctor,
@@ -26,9 +27,10 @@ const HospitalDoctorCard: React.FC<HospitalDoctorCardProps> = ({
         {/* Avatar & Online Dot */}
         <div className="relative flex-shrink-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={doctor.avatar}
             alt={doctor.name}
+            fill
             className="h-[50px] w-[50px] rounded-full border-2 border-white object-cover shadow-sm sm:h-[56px] sm:w-[56px]"
           />
           <span

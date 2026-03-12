@@ -50,7 +50,9 @@ export function useHospitalsListing(initialIsVerified?: boolean) {
     setPage(1);
   }, []);
 
-  const hasMore = (data?.meta?.page ?? 0) < (data?.meta?.totalPages ?? 0);
+  const hasMore =
+    (data?.meta?.page ?? 0) > 0 &&
+    (data?.meta?.page ?? 0) < (data?.meta?.totalPages ?? 0);
 
   return {
     accumulatedHospitals,
