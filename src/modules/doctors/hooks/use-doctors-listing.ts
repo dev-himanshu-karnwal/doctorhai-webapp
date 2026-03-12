@@ -60,8 +60,14 @@ export function useDoctorsListing({
   }, [data, page, isPlaceholderData]);
 
   const loadMore = useCallback(() => setPage((p) => p + 1), []);
-  // Only allow loadMore if the total array length is less than the total available on the server.
-  const hasMore = items.length < (data?.metadata?.total ?? 0);
+  const isFetchingMore = isFetching && items.length > 0;
+
+  const hasMore =
+    isFetchingMore ||
+    (!isPlaceholderData &&
+      items.length > 0 &&
+      items.length < (data?.metadata?.total ?? 0) &&
+      page < (data?.metadata?.totalPages ?? 0));
 
   const handleSearch = useCallback((value: string) => {
     setSearchQuery(value);
@@ -72,7 +78,7 @@ export function useDoctorsListing({
     items,
     isLoading: isLoading && items.length === 0,
     isSearching: isFetching && items.length === 0,
-    isFetchingMore: isFetching && items.length > 0,
+    isFetchingMore,
     hasMore,
     loadMore,
     searchQuery,

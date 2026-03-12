@@ -19,6 +19,7 @@ export function ApprovalsView() {
     items: doctors,
     isLoading: isLoadingDoctors,
     isSearching: isSearchingDoctors,
+    isFetchingMore: isFetchingMoreDoctors,
     hasMore: hasMoreDoctors,
     loadMore: loadMoreDoctors,
     handleSearch: handleDoctorSearch,
@@ -28,6 +29,7 @@ export function ApprovalsView() {
     accumulatedHospitals: hospitals,
     isLoading: isLoadingHospitals,
     isSearching: isSearchingHospitals,
+    isFetchingMore: isFetchingMoreHospitals,
     hasMore: hasMoreHospitals,
     handleLoadMore: loadMoreHospitals,
     handleSearch: handleHospitalSearch,
@@ -35,6 +37,7 @@ export function ApprovalsView() {
 
   const isGlobalLoading = isLoadingDoctors || isLoadingHospitals;
   const isGlobalSearching = isSearchingDoctors || isSearchingHospitals;
+  const isGlobalFetchingMore = isFetchingMoreDoctors || isFetchingMoreHospitals;
 
   const onSearchChange = (query: string) => {
     setSearchQuery(query);
@@ -93,8 +96,16 @@ export function ApprovalsView() {
             <ApprovalsQueue
               hospitals={displayHospitals}
               doctors={displayDoctors}
-              isLoading={isGlobalLoading || isGlobalSearching}
-              hasMore={hasMoreHospitals || hasMoreDoctors}
+              isLoading={
+                isGlobalLoading || isGlobalSearching || isGlobalFetchingMore
+              }
+              hasMore={
+                requestType === "all"
+                  ? hasMoreHospitals || hasMoreDoctors
+                  : requestType === "hospital"
+                    ? hasMoreHospitals
+                    : hasMoreDoctors
+              }
               searchQuery={searchQuery}
               onSearchChange={onSearchChange}
               requestType={requestType}

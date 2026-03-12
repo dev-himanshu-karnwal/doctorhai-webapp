@@ -9,7 +9,7 @@ type DoctorStatusCardProps = {
 };
 
 export function DoctorStatusCard({ doctor }: DoctorStatusCardProps) {
-  const config = getStatusConfig(doctor.status?.status ?? "available");
+  const config = getStatusConfig(doctor.status?.status ?? "off_duty");
 
   // Format the expected time natively, or fallback to exactly "0" when null, as requested
   const formatTime = (isoString?: string | null) => {
@@ -55,8 +55,8 @@ export function DoctorStatusCard({ doctor }: DoctorStatusCardProps) {
           {doctor.fullName}
         </h3>
         <p className="mt-1 text-[14px] font-medium text-[#4FB3AA]">
-          {doctor.specialization || "General"} •{" "}
-          {doctor.hasExperience ? "10+" : "0"} years exp.
+          {doctor.specialization || "N/A"} •{" "}
+          {doctor.hasExperience ? doctor.hasExperience : "N/A"} years exp.
         </p>
 
         <div className="mt-5 flex items-center gap-2 rounded-2xl bg-[#F8FAFC] px-4 py-3 text-left">
@@ -75,7 +75,7 @@ export function DoctorStatusCard({ doctor }: DoctorStatusCardProps) {
             <circle cx="12" cy="10" r="3" />
           </svg>
           <span className="truncate text-[13px] font-medium text-[#718096]">
-            {doctor.designation || "General Hospital"}
+            {doctor.designation || "N/A"}
           </span>
         </div>
       </div>
