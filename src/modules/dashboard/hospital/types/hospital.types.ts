@@ -14,9 +14,10 @@ export interface Doctor extends Partial<DoctorProfileValues> {
   avatar: string;
   statusBadge: StatusBadge;
   rawStatus?: string;
+  expectedAt?: string;
+  expectedAtNote?: string;
   col1: { label: string; value: string };
   col2: { label: string; value: string };
-  // Explicitly mentioning fields from DoctorProfileValues for better clarity/IDE support
   fullName: string;
   designation: string;
   specialization: string;

@@ -18,6 +18,8 @@ interface DoctorManagementTableProps {
   searchQuery: string;
   onSearchChange: (value: string) => void;
   hospitalId: string;
+  hasMore?: boolean;
+  onLoadMore?: () => void;
 }
 
 export function DoctorManagementTable({
@@ -26,6 +28,8 @@ export function DoctorManagementTable({
   searchQuery,
   onSearchChange,
   hospitalId,
+  hasMore,
+  onLoadMore,
 }: DoctorManagementTableProps) {
   const [selectedDoctor, setSelectedDoctor] = useState<Doctor | null>(null);
   const [isEditOpen, setIsEditOpen] = useState(false);
@@ -127,16 +131,15 @@ export function DoctorManagementTable({
         </div>
       </div>
 
-      {doctors.length > 0 && (
+      {hasMore && (
         <div className="mt-6 text-center">
-          <Link href={`/dashboard/admin/doctors?hospitalId=${hospitalId}`}>
-            <Button
-              variant="ghost"
-              className="text-[13px] font-bold text-[#64748b] hover:text-[#0f172a]"
-            >
-              View All Doctors
-            </Button>
-          </Link>
+          <Button
+            variant="ghost"
+            onClick={onLoadMore}
+            className="text-[13px] font-bold text-[#64748b] hover:text-[#0f172a]"
+          >
+            Load More Doctors
+          </Button>
         </div>
       )}
 

@@ -6,12 +6,14 @@ import { useDoctors } from "./use-doctors";
 import { useDebounce } from "@/hooks";
 
 export function useDoctorsListing({
-  initialIsVerified = true,
+  initialIsVerified,
   hospitalId,
+  sortOrder = "asc",
 }: {
   initialIsVerified?: boolean;
   hospitalId?: string;
-} = {}) {
+  sortOrder?: "asc" | "desc";
+}) {
   const [page, setPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
   const debouncedSearch = useDebounce(searchQuery, 400);
@@ -24,6 +26,7 @@ export function useDoctorsListing({
     search: debouncedSearch || undefined,
     isVerified: initialIsVerified,
     hospitalId,
+    sortOrder,
   };
 
   const { data, isLoading, isFetching, isPlaceholderData, error } =

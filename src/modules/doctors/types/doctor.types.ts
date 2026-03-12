@@ -18,7 +18,7 @@ export type Doctor = {
   slug: string | null;
   profilePhotoUrl: string | null;
   public_view_count?: number;
-  hasExperience: boolean | null;
+  hasExperience: string | null;
   bio?: string | null;
   isVerified: boolean;
   status: DoctorStatus | null;
@@ -33,4 +33,5 @@ export interface DoctorQueryParams {
   specialty?: string;
   isAvailableNow?: boolean;
   hospitalId?: string;
+  sortOrder?: "asc" | "desc";
 }

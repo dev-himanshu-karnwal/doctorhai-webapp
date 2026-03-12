@@ -46,8 +46,8 @@ const UpdateAvailabilityModal: React.FC<UpdateAvailabilityModalProps> = ({
       reset({
         status:
           (doctor.rawStatus as QuickReturnValues["status"]) || "available",
-        expectedAt: "",
-        expectedAtNote: "",
+        expectedAt: doctor.expectedAt || "",
+        expectedAtNote: doctor.expectedAtNote || "",
       });
     }
   }, [isOpen, doctor, reset]);

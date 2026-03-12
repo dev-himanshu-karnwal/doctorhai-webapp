@@ -32,6 +32,8 @@ export function HospitalDetailView({ hospitalId }: HospitalDetailViewProps) {
     isLoading: isDoctorsLoading,
     searchQuery,
     handleSearch,
+    hasMore,
+    loadMore,
   } = useDoctorsListing({ hospitalId });
 
   const { formMethods, onSubmit, isUpdating } = useHospitalDetailForm({
@@ -85,6 +87,8 @@ export function HospitalDetailView({ hospitalId }: HospitalDetailViewProps) {
               searchQuery={searchQuery}
               onSearchChange={handleSearch}
               hospitalId={hospitalId}
+              hasMore={hasMore}
+              onLoadMore={loadMore}
             />
           </div>
           <DangerZone onDelete={() => setIsDeleteModalOpen(true)} />
