@@ -75,7 +75,7 @@ export function useHospitalDetailForm({
         timeline: hospital.timeline || [],
       });
     }
-  }, [hospital, hospitalForm.reset]);
+  }, [hospital, hospitalForm]);
 
   useEffect(() => {
     const src = address;
@@ -88,7 +88,7 @@ export function useHospitalDetailForm({
         pincode: src.pincode || "",
       });
     }
-  }, [address, addressForm.reset]);
+  }, [address, addressForm]);
 
   const onSubmit = () => {
     // Submit hospital form

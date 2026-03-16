@@ -1,6 +1,5 @@
 import { DoctorProfileAvatar } from "./doctor-profile-avatar";
 import { DoctorStatusDto } from "@/modules/doctors/types/doctors-api.types";
-import { StatusKind } from "@/types/common.types";
 
 interface ProfileHeaderProps {
   name: string;
@@ -53,7 +52,7 @@ export const ProfileHeader = ({
         )}
         {status?.expectedAtNote && (
           <div className="max-w-[200px] text-right text-[11px] text-[#94a3b8] italic">
-            "{status.expectedAtNote}"
+            &quot;{status.expectedAtNote}&quot;
           </div>
         )}
       </div>

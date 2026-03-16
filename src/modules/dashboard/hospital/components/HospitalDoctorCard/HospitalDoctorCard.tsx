@@ -26,7 +26,6 @@ const HospitalDoctorCard: React.FC<HospitalDoctorCardProps> = ({
       <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
         {/* Avatar & Online Dot */}
         <div className="relative flex-shrink-0">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <Image
             src={
               doctor.avatar ||
