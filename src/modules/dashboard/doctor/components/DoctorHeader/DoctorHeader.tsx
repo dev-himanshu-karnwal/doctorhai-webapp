@@ -5,7 +5,7 @@ import { SettingsIcon, UserIcon, LogOutIcon } from "@/components/icons";
 import { useAuth } from "@/modules/auth";
 import { EditDoctorSlider } from "../EditDoctorSlider/EditDoctorSlider";
 import { useUpdateDoctorProfile } from "../../hooks";
-import { type DoctorProfileValues } from "../../validators";
+import { type DoctorProfileBaseValues } from "../../validators";
 
 interface DoctorHeaderProps {
   isSettingsOpen: boolean;
@@ -37,7 +37,7 @@ export const DoctorHeader = ({
   const title =
     entityData?.designation || entityData?.specialization || "Doctor";
 
-  const handleSaveProfile = (data: DoctorProfileValues) => {
+  const handleSaveProfile = (data: DoctorProfileBaseValues) => {
     if (!entityData?.id) return;
     updateProfile(
       {
@@ -115,7 +115,7 @@ export const DoctorHeader = ({
       <EditDoctorSlider
         isOpen={isProfileOpen}
         onClose={() => setIsProfileOpen(false)}
-        initialData={entityData as unknown as Partial<DoctorProfileValues>}
+        initialData={entityData as unknown as Partial<DoctorProfileBaseValues>}
         onSave={handleSaveProfile}
         isPending={isUpdating}
       />
