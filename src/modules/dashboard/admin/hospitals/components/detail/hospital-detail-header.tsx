@@ -37,8 +37,9 @@ export function HospitalDetailHeader({
           </span>
         </div>
         <p className="font-medium text-[#64748b]" style={{ fontSize: 13.5 }}>
-          ID: {hospital?.id} •{" "}
-          {hospital?.address?.addressLine1 || "No address provided"}
+          {hospital?.address || hospital?.addressId
+            ? `${hospital?.address?.addressLine1}, ${hospital?.address?.city}, ${hospital?.address?.pincode}`
+            : "No address provided"}
         </p>
       </div>
 

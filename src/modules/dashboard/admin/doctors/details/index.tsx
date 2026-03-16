@@ -9,17 +9,17 @@ import {
   DetailsSkeleton,
 } from "./components";
 import { useDoctor } from "@/modules/doctors/hooks/use-doctor";
-import { useForm } from "react-hook-form";
+import { useForm, Resolver } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   doctorProfileSchema,
   type DoctorProfileValues,
+  type DoctorProfileBaseValues,
 } from "@/modules/dashboard/doctor/validators";
 import { useUpdateDoctorProfile } from "@/modules/dashboard/doctor/hooks/use-doctor-profile";
 import {
   useAddress,
   useUpdateAddress,
-  useCreateAddress,
 } from "@/modules/address/hooks/use-address";
 
 interface DoctorDetailsViewProps {
@@ -31,13 +31,10 @@ export default function DoctorDetailsView({ id }: DoctorDetailsViewProps) {
   const { data: addressData, isLoading: isFetchingAddress } = useAddress(
     doctorData?.addressId
   );
-
   const { mutate: updateProfile, isPending: isUpdatingProfile } =
-    useUpdateDoctorProfile();
+    useUpdateDoctorProfile({ showToast: false });
   const { mutate: updateAddress, isPending: isUpdatingAddress } =
     useUpdateAddress();
-  const { mutate: createAddress, isPending: isCreatingAddress } =
-    useCreateAddress();
 
   const {
     register,
@@ -45,11 +42,14 @@ export default function DoctorDetailsView({ id }: DoctorDetailsViewProps) {
     handleSubmit,
     formState: { errors },
   } = useForm<DoctorProfileValues>({
-    resolver: zodResolver(doctorProfileSchema),
+    resolver: zodResolver(doctorProfileSchema) as Resolver<DoctorProfileValues>,
   });
 
   useEffect(() => {
     if (doctorData) {
+      // Use nested address if available, fallback to separate fetch
+      const src = doctorData.address || addressData;
+
       reset({
         fullName: doctorData.fullName || "",
         designation: doctorData.designation || "",
@@ -59,26 +59,42 @@ export default function DoctorDetailsView({ id }: DoctorDetailsViewProps) {
             ? String(doctorData.hasExperience)
             : "",
         bio: doctorData.bio || "",
-        addressLine1: addressData?.addressLine1 || "",
-        addressLine2: addressData?.addressLine2 || "",
-        city: addressData?.city || "",
-        state: addressData?.state || "",
-        pincode: addressData?.pincode || "",
+        addressLine1: src?.addressLine1 || "",
+        addressLine2: src?.addressLine2 || "",
+        city: src?.city || "",
+        state: src?.state || "",
+        pincode: src?.pincode || "",
+        latitude: src?.latitude ?? null,
+        longitude: src?.longitude ?? null,
       });
     }
   }, [doctorData, addressData, reset]);
 
   const onSubmit = (values: DoctorProfileValues) => {
-    updateProfile({
-      id,
-      data: {
-        fullName: values.fullName,
-        designation: values.designation,
-        specialization: values.specialization,
-        hasExperience: values.hasExperience,
-        bio: values.bio,
-      } as DoctorProfileValues,
-    });
+    let completed = 0;
+    const total = 2;
+    const onSubSuccess = () => {
+      completed++;
+      if (completed === total) {
+        import("sonner").then(({ toast }) =>
+          toast.success("Profile updated successfully!")
+        );
+      }
+    };
+
+    updateProfile(
+      {
+        id,
+        data: {
+          fullName: values.fullName,
+          designation: values.designation,
+          specialization: values.specialization,
+          hasExperience: values.hasExperience,
+          bio: values.bio,
+        } as DoctorProfileBaseValues,
+      },
+      { onSuccess: onSubSuccess }
+    );
 
     const addressPayload = {
       addressLine1: values.addressLine1,
@@ -86,27 +102,38 @@ export default function DoctorDetailsView({ id }: DoctorDetailsViewProps) {
       city: values.city,
       state: values.state,
       pincode: values.pincode,
+      latitude:
+        values.latitude !== undefined && values.latitude !== null
+          ? Number(values.latitude)
+          : null,
+      longitude:
+        values.longitude !== undefined && values.longitude !== null
+          ? Number(values.longitude)
+          : null,
     };
 
-    if (doctorData?.addressId) {
-      updateAddress({
-        accountId: doctorData.accountId || "",
-        data: addressPayload,
-      });
-    } else if (doctorData?.accountId) {
-      // POST — create address for this account
-      createAddress({
-        accountId: doctorData.accountId,
-        data: addressPayload,
-      });
+    if (doctorData?.accountId) {
+      updateAddress(
+        {
+          accountId: doctorData.accountId,
+          data: addressPayload,
+        },
+        { onSuccess: onSubSuccess }
+      );
+    } else {
+      onSubSuccess();
     }
   };
 
-  if (isFetchingDoctor || isFetchingAddress) {
+  // Wait for address if id exists, but data isn't nested already
+  const isAddressPending =
+    !!doctorData?.addressId && !doctorData.address && isFetchingAddress;
+
+  if (isFetchingDoctor || isAddressPending) {
     return <DetailsSkeleton />;
   }
 
-  const isPending = isUpdatingProfile || isUpdatingAddress || isCreatingAddress;
+  const isPending = isUpdatingProfile || isUpdatingAddress;
 
   return (
     <form

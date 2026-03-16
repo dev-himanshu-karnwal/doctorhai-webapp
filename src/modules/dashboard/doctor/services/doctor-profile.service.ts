@@ -1,8 +1,8 @@
 import { axiosInstance } from "@/lib/axios";
-import { DoctorProfileValues } from "../validators";
+import { DoctorProfileBaseValues } from "../validators";
 
 class DoctorProfileService {
-  async updateProfile(id: string, data: DoctorProfileValues) {
+  async updateProfile(id: string, data: DoctorProfileBaseValues) {
     const response = await axiosInstance.patch(`/doctor-profiles/${id}`, data);
     return response.data;
   }

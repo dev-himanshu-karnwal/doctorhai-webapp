@@ -1,11 +1,11 @@
 import { JSX } from "react";
-import { DoctorProfileValues } from "../validators";
+import { DoctorProfileBaseValues } from "../validators";
 
 export interface EditDoctorSliderProps {
   isOpen: boolean;
   onClose: () => void;
-  initialData?: Partial<DoctorProfileValues>;
-  onSave: (data: DoctorProfileValues) => void;
+  initialData?: Partial<DoctorProfileBaseValues>;
+  onSave: (data: DoctorProfileBaseValues) => void;
   isPending?: boolean;
 }
 

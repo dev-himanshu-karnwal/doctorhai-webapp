@@ -9,7 +9,6 @@ import { useHospital } from "@/modules/hospitals/hooks/use-hospital";
 import { useStats } from "@/modules/stats/hooks/use-stats";
 import { useDoctorsListing } from "@/modules/doctors/hooks/use-doctors-listing";
 import { useHospitalDetailForm } from "../../hooks";
-import { useAddress } from "@/modules/address/hooks/use-address";
 import { DangerZone } from "./DangerZone";
 import {
   HeaderSkeleton,
@@ -28,10 +27,6 @@ export function HospitalDetailView({ hospitalId }: HospitalDetailViewProps) {
   const { data: hospital, isLoading: isHospitalLoading } =
     useHospital(hospitalId);
 
-  const addressId = hospital?.addressId;
-  const { data: addressData, isLoading: isAddressLoading } =
-    useAddress(addressId);
-
   const { doctorStats, isLoading: isStatsLoading } = useStats(hospitalId);
   const {
     items: doctors,
@@ -45,10 +40,9 @@ export function HospitalDetailView({ hospitalId }: HospitalDetailViewProps) {
   const { hospitalForm, addressForm, onSubmit, isUpdating } =
     useHospitalDetailForm({
       hospital,
-      address: addressData,
     });
 
-  const isLoading = isHospitalLoading || isAddressLoading;
+  const isLoading = isHospitalLoading;
 
   if (isLoading) {
     return (

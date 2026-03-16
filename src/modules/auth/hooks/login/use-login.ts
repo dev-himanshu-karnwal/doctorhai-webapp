@@ -26,10 +26,23 @@ export function useLogin() {
         // 3. Update React Query cache
         queryClient.setQueryData(AUTH_KEYS.USER, user);
 
+        const role = user.account?.roles?.[0];
+
+        console.log(role, user);
         toast.success("Login successful! Welcome back.");
-        router.push("/");
+
+        // 4. Role-based redirection
+        if (role === "doctor") {
+          router.push("/dashboard/doctor");
+        } else if (role === "hospital") {
+          router.push("/dashboard/hospitals");
+        } else if (role === "super_admin") {
+          router.push("/dashboard/admin");
+        } else {
+          router.push("/");
+        }
       } catch (error) {
-        console.error("Failed to fetch user after login:", error);
+        console.error("Failed to fetch user after login text:", error);
         toast.success("Login successful! Redirecting...");
         router.push("/");
       } finally {

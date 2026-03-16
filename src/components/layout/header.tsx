@@ -12,7 +12,7 @@ export function Header() {
   const getDashboardHref = () => {
     if (role === "doctor") return "/dashboard/doctor";
     if (role === "hospital") return "/dashboard/hospitals";
-    if (role === "admin") return "/dashboard/admin";
+    if (role === "super_admin") return "/dashboard/admin";
     return "/";
   };
   return (

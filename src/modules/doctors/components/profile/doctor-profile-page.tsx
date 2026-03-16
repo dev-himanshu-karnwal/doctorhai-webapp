@@ -105,7 +105,6 @@ export function DoctorProfilePage() {
                   name: hospital.name,
                   street: hospital.address?.addressLine1 || "N/A",
                   city: hospital.address?.city || "N/A",
-                  district: hospital.address?.addressLine2 || "N/A",
                   state: hospital.address?.state || "N/A",
                   zipcode: hospital.address?.pincode || "N/A",
                 }}

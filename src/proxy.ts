@@ -8,7 +8,9 @@ export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   const isAuthRoute =
-    pathname.startsWith("/login") || pathname.startsWith("/register");
+    pathname.startsWith("/login") ||
+    pathname.startsWith("/register") ||
+    pathname === "/dashboard/admin/login";
   const isDashboardBase = pathname === "/dashboard";
 
   // Handle Auth and Dashboard routes
@@ -39,7 +41,7 @@ export async function proxy(request: NextRequest) {
             return NextResponse.redirect(
               new URL("/dashboard/hospitals", request.url)
             );
-          } else if (role === "admin") {
+          } else if (role === "super_admin") {
             return NextResponse.redirect(
               new URL("/dashboard/admin", request.url)
             );
@@ -57,7 +59,10 @@ export async function proxy(request: NextRequest) {
           ) {
             return NextResponse.redirect(new URL("/unauthorized", request.url));
           }
-          if (pathname.startsWith("/dashboard/admin") && role !== "admin") {
+          if (
+            pathname.startsWith("/dashboard/admin") &&
+            role !== "super_admin"
+          ) {
             return NextResponse.redirect(new URL("/unauthorized", request.url));
           }
         }

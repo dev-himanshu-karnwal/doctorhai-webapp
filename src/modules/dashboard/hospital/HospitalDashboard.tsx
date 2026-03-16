@@ -19,7 +19,7 @@ import { DoctorRegistrationValues } from "@/modules/auth/types/registration.type
 import { useAddDoctor } from "./hooks";
 import { Doctor as UIDoctor } from "./types/hospital.types";
 import { mapApiDoctorToUI } from "./utils";
-import { DoctorProfileValues } from "../doctor/validators";
+import { DoctorProfileBaseValues } from "../doctor/validators";
 import { useStats } from "@/modules/stats/hooks/use-stats";
 
 const HospitalDashboard: React.FC = () => {
@@ -58,7 +58,7 @@ const HospitalDashboard: React.FC = () => {
     });
   };
 
-  const handleEditSave = (values: DoctorProfileValues) => {
+  const handleEditSave = (values: DoctorProfileBaseValues) => {
     if (!editingDoctor) return;
     updateProfile(
       { id: editingDoctor.id, data: values },
@@ -136,7 +136,9 @@ const HospitalDashboard: React.FC = () => {
       <EditDoctorSlider
         isOpen={!!editingDoctor}
         onClose={() => setEditingDoctor(null)}
-        initialData={editingDoctor || undefined}
+        initialData={
+          editingDoctor as unknown as Partial<DoctorProfileBaseValues>
+        }
         onSave={handleEditSave}
         isPending={isUpdatingProfile}
       />

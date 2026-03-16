@@ -11,6 +11,7 @@ import {
   QuickReturnValues,
 } from "../../../doctor/validators/quick-return.validator";
 import { statusOptions } from "../../../doctor/data/doctor.data";
+import { DoctorStatusUpdateData } from "../../../doctor/types";
 import { calculateExpectedAtISO } from "../../../doctor/utils/status.utils";
 
 const UpdateAvailabilityModal: React.FC<UpdateAvailabilityModalProps> = ({
@@ -24,7 +25,7 @@ const UpdateAvailabilityModal: React.FC<UpdateAvailabilityModalProps> = ({
   const form = useForm<QuickReturnValues>({
     resolver: zodResolver(quickReturnSchema),
     defaultValues: {
-      status: "available",
+      status: "off_duty",
       expectedAt: "",
       expectedAtNote: "",
     },
@@ -43,9 +44,16 @@ const UpdateAvailabilityModal: React.FC<UpdateAvailabilityModalProps> = ({
 
   useEffect(() => {
     if (isOpen && doctor) {
+      // Map existing status or default to off_duty
+      const initialStatus =
+        (doctor.rawStatus as QuickReturnValues["status"]) ||
+        (doctor.statusBadge?.text
+          ?.toLowerCase()
+          .replace(" ", "_") as QuickReturnValues["status"]) ||
+        "off_duty";
+
       reset({
-        status:
-          (doctor.rawStatus as QuickReturnValues["status"]) || "available",
+        status: initialStatus,
         expectedAt: doctor.expectedAt || "",
         expectedAtNote: doctor.expectedAtNote || "",
       });
@@ -63,16 +71,24 @@ const UpdateAvailabilityModal: React.FC<UpdateAvailabilityModalProps> = ({
         ? calculateExpectedAtISO(data.expectedAt)
         : null;
 
+    console.log(expectedAtISO);
+
     const expectedAtNote = data.expectedAtNote?.trim() || null;
+    console.log(expectedAtNote);
+
+    const updateData: DoctorStatusUpdateData = {
+      status: data.status,
+      expectedAtNote,
+    };
+
+    if (expectedAtISO) {
+      updateData.expectedAt = expectedAtISO;
+    }
 
     updateStatus(
       {
         id: doctor.id,
-        data: {
-          status: data.status,
-          expectedAt: expectedAtISO,
-          expectedAtNote,
-        },
+        data: updateData,
       },
       {
         onSuccess: () => {

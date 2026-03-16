@@ -6,6 +6,8 @@ export const addressSchema = z.object({
   city: z.string().min(2, "City is required"),
   state: z.string().min(2, "State is required"),
   pincode: z.string().min(6, "Pincode must be at least 6 characters"),
+  latitude: z.number().nullable().optional(),
+  longitude: z.number().nullable().optional(),
 });
 
 export type AddressValues = z.infer<typeof addressSchema>;

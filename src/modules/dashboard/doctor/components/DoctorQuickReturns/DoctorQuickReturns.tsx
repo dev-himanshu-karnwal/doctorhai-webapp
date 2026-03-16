@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { TimerIcon } from "@/components/icons";
 import { useUpdateDoctorStatus } from "../../hooks";
 import { QuickReturnValues } from "../../validators";
+import { DoctorStatusUpdateData } from "../../types";
 import { calculateExpectedAtISO } from "../../utils/status.utils";
 
 interface DoctorQuickReturnsProps {
@@ -32,21 +33,26 @@ export const DoctorQuickReturns = ({
       return;
     }
 
-    let expectedAtISO: string | null = null;
+    const expectedAtISO =
+      data.status === "back_soon" || data.status === "busy"
+        ? calculateExpectedAtISO(data.expectedAt)
+        : null;
+
     const expectedAtNote: string | null = data.expectedAtNote?.trim() || null;
 
-    if (data.status === "back_soon" || data.status === "busy") {
-      expectedAtISO = calculateExpectedAtISO(data.expectedAt);
+    const updateData: DoctorStatusUpdateData = {
+      status: data.status,
+      expectedAtNote,
+    };
+
+    if (expectedAtISO) {
+      updateData.expectedAt = expectedAtISO;
     }
 
     updateStatus(
       {
         id: doctorId,
-        data: {
-          status: data.status,
-          expectedAt: expectedAtISO,
-          expectedAtNote,
-        },
+        data: updateData,
       },
       {
         onSuccess: () => {
