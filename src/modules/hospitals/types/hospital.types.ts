@@ -6,7 +6,7 @@ export interface HospitalLocation {
 export interface HospitalAddress {
   id: string;
   addressLine1: string;
-  addressLine2?: string;
+  addressLine2?: string | null;
   city: string;
   state: string;
   pincode: string;

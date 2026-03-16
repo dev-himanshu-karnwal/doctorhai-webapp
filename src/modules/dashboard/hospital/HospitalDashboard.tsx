@@ -93,7 +93,14 @@ const HospitalDashboard: React.FC = () => {
         <HospitalHeader
           hospitalName={user?.hospital?.name || "Hospital Dashboard"}
           address={
-            user?.hospital?.address?.addressLine1 || "Loading address..."
+            [
+              user?.hospital?.address?.addressLine1,
+              user?.hospital?.address?.city,
+              user?.hospital?.address?.state,
+              user?.hospital?.address?.pincode,
+            ]
+              .filter(Boolean)
+              .join(", ") || "N/A"
           }
           availableCount={availableCount}
           totalCount={totalCount}

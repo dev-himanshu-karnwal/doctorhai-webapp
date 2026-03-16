@@ -23,6 +23,14 @@ export type Doctor = {
   isVerified: boolean;
   status: DoctorStatus | null;
   createdAt?: string;
+  addressId?: string;
+  address?: {
+    addressLine1: string;
+    addressLine2?: string | null;
+    city: string;
+    state: string;
+    pincode: string;
+  };
 };
 
 export interface DoctorQueryParams {

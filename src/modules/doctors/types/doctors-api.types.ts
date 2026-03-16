@@ -7,6 +7,7 @@ export interface DoctorStatusDto {
 
 export interface DoctorProfileDto {
   id: string;
+  accountId?: string;
   fullName: string;
   designation: string;
   specialization: string;
@@ -18,6 +19,14 @@ export interface DoctorProfileDto {
   bio: string | null;
   hospitalId?: string;
   status?: DoctorStatusDto;
+  addressId?: string;
+  address?: {
+    addressLine1: string;
+    addressLine2?: string | null;
+    city: string;
+    state: string;
+    pincode: string;
+  };
 }
 
 export interface SingleDoctorResponse {

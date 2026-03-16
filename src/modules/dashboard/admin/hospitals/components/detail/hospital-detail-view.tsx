@@ -9,6 +9,7 @@ import { useHospital } from "@/modules/hospitals/hooks/use-hospital";
 import { useStats } from "@/modules/stats/hooks/use-stats";
 import { useDoctorsListing } from "@/modules/doctors/hooks/use-doctors-listing";
 import { useHospitalDetailForm } from "../../hooks";
+import { useAddress } from "@/modules/address/hooks/use-address";
 import { DangerZone } from "./DangerZone";
 import {
   HeaderSkeleton,
@@ -26,6 +27,11 @@ export function HospitalDetailView({ hospitalId }: HospitalDetailViewProps) {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const { data: hospital, isLoading: isHospitalLoading } =
     useHospital(hospitalId);
+
+  const addressId = hospital?.addressId;
+  const { data: addressData, isLoading: isAddressLoading } =
+    useAddress(addressId);
+
   const { doctorStats, isLoading: isStatsLoading } = useStats(hospitalId);
   const {
     items: doctors,
@@ -36,11 +42,15 @@ export function HospitalDetailView({ hospitalId }: HospitalDetailViewProps) {
     loadMore,
   } = useDoctorsListing({ hospitalId });
 
-  const { formMethods, onSubmit, isUpdating } = useHospitalDetailForm({
-    hospital,
-  });
+  const { hospitalForm, addressForm, onSubmit, isUpdating } =
+    useHospitalDetailForm({
+      hospital,
+      address: addressData,
+    });
 
-  if (isHospitalLoading) {
+  const isLoading = isHospitalLoading || isAddressLoading;
+
+  if (isLoading) {
     return (
       <div className="min-h-screen bg-[#f1fcf8] px-4 pt-6 pb-12 font-sans sm:px-6 md:px-8">
         <div className="mx-auto max-w-[1200px]">
@@ -76,8 +86,9 @@ export function HospitalDetailView({ hospitalId }: HospitalDetailViewProps) {
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_310px]">
           <div className="flex flex-col gap-6">
             <HospitalConfigForm
-              isLoading={isHospitalLoading}
-              formMethods={formMethods}
+              isLoading={isLoading}
+              hospitalForm={hospitalForm}
+              addressForm={addressForm}
               onSubmit={onSubmit}
               isUpdating={isUpdating}
             />

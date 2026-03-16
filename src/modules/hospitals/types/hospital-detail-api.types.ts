@@ -38,6 +38,7 @@ export interface HospitalDetailDto {
   facilities: string[] | null;
   createdAt: string;
   updatedAt: string;
+  addressId: string;
   address: HospitalAddress | null;
 }
 
