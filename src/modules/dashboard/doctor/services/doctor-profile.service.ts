@@ -1,5 +1,5 @@
 import { axiosInstance } from "@/lib/axios";
-import { DoctorProfileValues, DoctorProfileBaseValues } from "../validators";
+import { DoctorProfileBaseValues } from "../validators";
 
 class DoctorProfileService {
   async updateProfile(id: string, data: DoctorProfileBaseValues) {

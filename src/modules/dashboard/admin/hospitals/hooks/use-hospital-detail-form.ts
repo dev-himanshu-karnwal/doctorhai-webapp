@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useForm, UseFormReturn, Resolver } from "react-hook-form";
+import { useForm, Resolver } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { HospitalDetailDto } from "@/modules/hospitals/types/hospital-detail-api.types";
 import { useUpdateHospital } from "@/modules/hospitals/hooks/use-update-hospital";
@@ -22,7 +22,6 @@ export function useHospitalDetailForm({
   hospital,
 }: UseHospitalDetailFormProps) {
   const hospitalId = hospital?.id || "";
-  const addressId = hospital?.addressId || "";
 
   const { mutate: updateHospital, isPending: isUpdatingHospital } =
     useUpdateHospital(hospitalId, { showToast: false });

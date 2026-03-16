@@ -31,7 +31,7 @@ export function HospitalManagementFilters({
         />
       </div>
       <div className="flex flex-wrap gap-2 md:flex-nowrap">
-        {["Filter by City", "Status", "Newest First"].map((label) => (
+        {["Status", "Newest First"].map((label) => (
           <Button
             key={label}
             variant="secondary"

@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { AxiosError } from "axios";
 import { doctorProfileService } from "../services/doctor-profile.service";
-import { DoctorProfileValues, DoctorProfileBaseValues } from "../validators";
+import { DoctorProfileBaseValues } from "../validators";
 import { AUTH_KEYS } from "@/modules/auth";
 
 interface UpdateProfileParams {

@@ -11,6 +11,7 @@ import {
   QuickReturnValues,
 } from "../../../doctor/validators/quick-return.validator";
 import { statusOptions } from "../../../doctor/data/doctor.data";
+import { DoctorStatusUpdateData } from "../../../doctor/types";
 import { calculateExpectedAtISO } from "../../../doctor/utils/status.utils";
 
 const UpdateAvailabilityModal: React.FC<UpdateAvailabilityModalProps> = ({
@@ -46,7 +47,9 @@ const UpdateAvailabilityModal: React.FC<UpdateAvailabilityModalProps> = ({
       // Map existing status or default to off_duty
       const initialStatus =
         (doctor.rawStatus as QuickReturnValues["status"]) ||
-        (doctor.statusBadge?.text?.toLowerCase().replace(" ", "_") as any) ||
+        (doctor.statusBadge?.text
+          ?.toLowerCase()
+          .replace(" ", "_") as QuickReturnValues["status"]) ||
         "off_duty";
 
       reset({
@@ -68,9 +71,12 @@ const UpdateAvailabilityModal: React.FC<UpdateAvailabilityModalProps> = ({
         ? calculateExpectedAtISO(data.expectedAt)
         : null;
 
-    const expectedAtNote = data.expectedAtNote?.trim() || null;
+    console.log(expectedAtISO);
 
-    const updateData: any = {
+    const expectedAtNote = data.expectedAtNote?.trim() || null;
+    console.log(expectedAtNote);
+
+    const updateData: DoctorStatusUpdateData = {
       status: data.status,
       expectedAtNote,
     };

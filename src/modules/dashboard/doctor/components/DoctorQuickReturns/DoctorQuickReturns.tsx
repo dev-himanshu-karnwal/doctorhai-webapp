@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { TimerIcon } from "@/components/icons";
 import { useUpdateDoctorStatus } from "../../hooks";
 import { QuickReturnValues } from "../../validators";
+import { DoctorStatusUpdateData } from "../../types";
 import { calculateExpectedAtISO } from "../../utils/status.utils";
 
 interface DoctorQuickReturnsProps {
@@ -39,7 +40,7 @@ export const DoctorQuickReturns = ({
 
     const expectedAtNote: string | null = data.expectedAtNote?.trim() || null;
 
-    const updateData: any = {
+    const updateData: DoctorStatusUpdateData = {
       status: data.status,
       expectedAtNote,
     };
