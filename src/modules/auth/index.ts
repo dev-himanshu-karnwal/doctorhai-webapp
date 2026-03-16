@@ -2,6 +2,7 @@ export * from "./components/registration/hospital-form";
 export * from "./components/registration/doctor-form";
 export * from "./components/registration/wrapper";
 export * from "./components/login/login-form";
+export * from "./components/login/admin-login-form";
 export * from "./components/login/wrapper";
 export * from "./schemas";
 export * from "./types";

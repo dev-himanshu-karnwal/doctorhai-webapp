@@ -32,21 +32,26 @@ export const DoctorQuickReturns = ({
       return;
     }
 
-    let expectedAtISO: string | null = null;
+    const expectedAtISO =
+      data.status === "back_soon" || data.status === "busy"
+        ? calculateExpectedAtISO(data.expectedAt)
+        : null;
+
     const expectedAtNote: string | null = data.expectedAtNote?.trim() || null;
 
-    if (data.status === "back_soon" || data.status === "busy") {
-      expectedAtISO = calculateExpectedAtISO(data.expectedAt);
+    const updateData: any = {
+      status: data.status,
+      expectedAtNote,
+    };
+
+    if (expectedAtISO) {
+      updateData.expectedAt = expectedAtISO;
     }
 
     updateStatus(
       {
         id: doctorId,
-        data: {
-          status: data.status,
-          expectedAt: expectedAtISO,
-          expectedAtNote,
-        },
+        data: updateData,
       },
       {
         onSuccess: () => {

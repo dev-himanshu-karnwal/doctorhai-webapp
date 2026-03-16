@@ -5,8 +5,8 @@ import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
-  doctorProfileSchema,
-  type DoctorProfileValues,
+  doctorProfileBaseSchema,
+  type DoctorProfileBaseValues,
 } from "../../validators";
 import { type EditDoctorSliderProps } from "../../types";
 
@@ -22,8 +22,8 @@ export const EditDoctorSlider = ({
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<DoctorProfileValues>({
-    resolver: zodResolver(doctorProfileSchema),
+  } = useForm<DoctorProfileBaseValues>({
+    resolver: zodResolver(doctorProfileBaseSchema),
     defaultValues: {
       fullName: "",
       designation: "",

@@ -5,6 +5,7 @@ import { UseFormRegister } from "react-hook-form";
 import { MapPinIcon } from "@/components/icons";
 import { Input } from "@/components/ui";
 import { AddressValues } from "@/modules/address/validators/address.validator";
+import { HospitalUpdateValues } from "@/modules/hospitals/schemas/hospital-update.schema";
 
 const labelStyle: React.CSSProperties = {
   fontSize: "9.5px",
@@ -18,9 +19,7 @@ const labelStyle: React.CSSProperties = {
 
 interface AddressSectionProps {
   register: UseFormRegister<AddressValues>;
-  hospitalRegister: UseFormRegister<
-    import("@/modules/hospitals/schemas/hospital-update.schema").HospitalUpdateValues
-  >;
+  hospitalRegister: UseFormRegister<HospitalUpdateValues>;
 }
 
 export function AddressSection({
@@ -95,9 +94,8 @@ export function AddressSection({
             <Input
               type="number"
               step="any"
-              {...hospitalRegister("location.latitude", {
-                valueAsNumber: true,
-              })}
+              {...register("latitude", { valueAsNumber: true })}
+              placeholder="e.g. 28.6139"
               className="border-[#f1f5f9] bg-[#f8fafc] focus:ring-emerald-200"
             />
           </div>
@@ -106,9 +104,8 @@ export function AddressSection({
             <Input
               type="number"
               step="any"
-              {...hospitalRegister("location.longitude", {
-                valueAsNumber: true,
-              })}
+              {...register("longitude", { valueAsNumber: true })}
+              placeholder="e.g. 77.2090"
               className="border-[#f1f5f9] bg-[#f8fafc] focus:ring-emerald-200"
             />
           </div>

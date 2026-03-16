@@ -1,12 +1,9 @@
 import { useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, UseFormReturn, Resolver } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { HospitalDetailDto } from "@/modules/hospitals/types/hospital-detail-api.types";
 import { useUpdateHospital } from "@/modules/hospitals/hooks/use-update-hospital";
-import {
-  useUpdateAddress,
-  useCreateAddress,
-} from "@/modules/address/hooks/use-address";
+import { useUpdateAddress } from "@/modules/address/hooks/use-address";
 import {
   addressSchema,
   AddressValues,
@@ -19,26 +16,24 @@ import {
 
 interface UseHospitalDetailFormProps {
   hospital: HospitalDetailDto | undefined;
-  address: AddressValues | undefined;
 }
 
 export function useHospitalDetailForm({
   hospital,
-  address,
 }: UseHospitalDetailFormProps) {
   const hospitalId = hospital?.id || "";
   const addressId = hospital?.addressId || "";
 
   const { mutate: updateHospital, isPending: isUpdatingHospital } =
-    useUpdateHospital(hospitalId);
+    useUpdateHospital(hospitalId, { showToast: false });
   const { mutate: updateAddress, isPending: isUpdatingAddress } =
     useUpdateAddress();
-  const { mutate: createAddress, isPending: isCreatingAddress } =
-    useCreateAddress();
 
   // Form 1: Hospital fields only
   const hospitalForm = useForm<HospitalUpdateValues>({
-    resolver: zodResolver(hospitalUpdateSchema),
+    resolver: zodResolver(
+      hospitalUpdateSchema
+    ) as Resolver<HospitalUpdateValues>,
     defaultValues: {
       email: "",
       phone: "",
@@ -51,13 +46,15 @@ export function useHospitalDetailForm({
 
   // Form 2: Address fields — using address module's schema
   const addressForm = useForm<AddressValues>({
-    resolver: zodResolver(addressSchema),
+    resolver: zodResolver(addressSchema) as Resolver<AddressValues>,
     defaultValues: {
       addressLine1: "",
       addressLine2: "",
       city: "",
       state: "",
       pincode: "",
+      latitude: 0,
+      longitude: 0,
     },
   });
 
@@ -78,7 +75,7 @@ export function useHospitalDetailForm({
   }, [hospital, hospitalForm]);
 
   useEffect(() => {
-    const src = address;
+    const src = hospital?.address;
     if (src) {
       addressForm.reset({
         addressLine1: src.addressLine1 || "",
@@ -86,29 +83,53 @@ export function useHospitalDetailForm({
         city: src.city || "",
         state: src.state || "",
         pincode: src.pincode || "",
+        latitude: hospital.location?.latitude ?? 0,
+        longitude: hospital.location?.longitude ?? 0,
       });
     }
-  }, [address, addressForm]);
+  }, [hospital, addressForm]);
 
   const onSubmit = () => {
+    let completed = 0;
+    const total = 2;
+    const onSubSuccess = () => {
+      completed++;
+      if (completed === total) {
+        import("sonner").then(({ toast }) =>
+          toast.success("Profile updated successfully!")
+        );
+      }
+    };
+
     // Submit hospital form
     hospitalForm.handleSubmit((data: HospitalUpdateValues) => {
+      // Sync coordinates from addressForm if they exist
+      const addressVals = addressForm.getValues();
       const payload: HospitalUpdatePayload = {
         ...data,
+        location: {
+          latitude:
+            addressVals.latitude !== undefined && addressVals.latitude !== null
+              ? Number(addressVals.latitude)
+              : 0,
+          longitude:
+            addressVals.longitude !== undefined &&
+            addressVals.longitude !== null
+              ? Number(addressVals.longitude)
+              : 0,
+        },
         facilities: data.facilities?.map((f) => f.value) || [],
       };
-      updateHospital(payload);
+      updateHospital(payload, { onSuccess: onSubSuccess });
     })();
 
     // Submit address form independently
     addressForm.handleSubmit((data: AddressValues) => {
       const accountId = hospital?.accountId || "";
-      if (addressId) {
-        // PATCH — address already exists
-        updateAddress({ accountId, data });
-      } else if (hospital?.accountId) {
-        // POST — create address for this hospital account
-        createAddress({ accountId, data });
+      if (accountId) {
+        updateAddress({ accountId, data }, { onSuccess: onSubSuccess });
+      } else {
+        onSubSuccess();
       }
     })();
   };
@@ -117,6 +138,6 @@ export function useHospitalDetailForm({
     hospitalForm,
     addressForm,
     onSubmit,
-    isUpdating: isUpdatingHospital || isUpdatingAddress || isCreatingAddress,
+    isUpdating: isUpdatingHospital || isUpdatingAddress,
   };
 }

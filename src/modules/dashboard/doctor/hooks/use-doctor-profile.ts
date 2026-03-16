@@ -2,19 +2,19 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { AxiosError } from "axios";
 import { doctorProfileService } from "../services/doctor-profile.service";
-import { DoctorProfileValues } from "../validators";
+import { DoctorProfileValues, DoctorProfileBaseValues } from "../validators";
 import { AUTH_KEYS } from "@/modules/auth";
 
 interface UpdateProfileParams {
   id: string;
-  data: DoctorProfileValues;
+  data: DoctorProfileBaseValues;
 }
 
 interface ApiError {
   message: string;
 }
 
-export const useUpdateDoctorProfile = () => {
+export const useUpdateDoctorProfile = (options?: { showToast?: boolean }) => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -28,7 +28,9 @@ export const useUpdateDoctorProfile = () => {
         queryKey: AUTH_KEYS.USER,
       });
       queryClient.invalidateQueries({ queryKey: ["doctors"] });
-      toast.success("Profile updated successfully!");
+      if (options?.showToast !== false) {
+        toast.success("Profile updated successfully!");
+      }
     },
     onError: (error: AxiosError<ApiError>) => {
       const message =

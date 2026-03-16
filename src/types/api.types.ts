@@ -4,7 +4,7 @@ export interface ApiResponse<T> {
   success: boolean;
 }
 
-export type Role = "doctor" | "hospital" | "admin";
+export type Role = "doctor" | "hospital" | "super_admin";
 
 export interface Address {
   id: string;

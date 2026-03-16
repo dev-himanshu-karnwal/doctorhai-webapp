@@ -74,13 +74,37 @@ export const ContactLocation = ({ register }: ContactLocationProps) => {
             <Input {...register("state")} className={inputClasses} />
           </div>
         </div>
-        <div>
-          <label style={labelSt}>Pincode</label>
-          <Input
-            {...register("pincode")}
-            className={inputClasses}
-            placeholder="6-digit pincode"
-          />
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div>
+            <label style={labelSt}>Pincode</label>
+            <Input
+              {...register("pincode")}
+              className={inputClasses}
+              placeholder="6-digit pincode"
+            />
+          </div>
+          <div className="flex gap-4">
+            <div className="flex-1">
+              <label style={labelSt}>Latitude</label>
+              <Input
+                type="number"
+                step="any"
+                {...register("latitude", { valueAsNumber: true })}
+                className={inputClasses}
+                placeholder="28.6139"
+              />
+            </div>
+            <div className="flex-1">
+              <label style={labelSt}>Longitude</label>
+              <Input
+                type="number"
+                step="any"
+                {...register("longitude", { valueAsNumber: true })}
+                className={inputClasses}
+                placeholder="77.2090"
+              />
+            </div>
+          </div>
         </div>
 
         {/* Info Note */}

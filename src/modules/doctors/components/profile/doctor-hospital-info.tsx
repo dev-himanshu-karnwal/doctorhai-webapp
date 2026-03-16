@@ -7,7 +7,6 @@ interface HospitalInfo {
   name: string;
   street: string;
   city: string;
-  district: string;
   state: string;
   zipcode: string;
 }
@@ -38,7 +37,6 @@ export function DoctorHospitalInfo({
           {[
             { label: "Street:", value: hospital.street },
             { label: "City:", value: hospital.city },
-            { label: "District:", value: hospital.district },
             { label: "State:", value: hospital.state },
             { label: "Zipcode:", value: hospital.zipcode },
           ].map((item) => (

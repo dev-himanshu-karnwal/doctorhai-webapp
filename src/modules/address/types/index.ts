@@ -4,6 +4,8 @@ export interface UpdateAddressData {
   city: string;
   state: string;
   pincode: string;
+  latitude?: number | null;
+  longitude?: number | null;
 }
 
 export interface CreateAddressData extends UpdateAddressData {
@@ -13,5 +15,7 @@ export interface CreateAddressData extends UpdateAddressData {
 export interface AddressResponse {
   status: string;
   message: string;
-  data: UpdateAddressData & { id: string; accountId: string };
+  data: {
+    address: UpdateAddressData & { id: string; accountId: string };
+  };
 }

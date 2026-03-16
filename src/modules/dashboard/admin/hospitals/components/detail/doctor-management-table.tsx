@@ -8,7 +8,12 @@ import { DoctorTableRow } from "./DoctorTableRow";
 import { DeleteModal } from "@/components/modals";
 import { EditDoctorSlider } from "@/modules/dashboard/doctor/components/EditDoctorSlider/EditDoctorSlider";
 import { useUpdateDoctorProfile } from "@/modules/dashboard/doctor/hooks/use-doctor-profile";
-import { DoctorProfileValues } from "@/modules/dashboard/doctor/validators";
+import {
+  doctorProfileBaseSchema, // if used
+  doctorProfileSchema,
+  type DoctorProfileValues,
+  type DoctorProfileBaseValues,
+} from "@/modules/dashboard/doctor/validators";
 import { useDeleteAccount } from "@/modules/accounts/hooks";
 
 interface DoctorManagementTableProps {
@@ -48,14 +53,14 @@ export function DoctorManagementTable({
   };
 
   const { mutate: updateProfile, isPending: isUpdatingProfile } =
-    useUpdateDoctorProfile();
+    useUpdateDoctorProfile({ showToast: true });
   const { mutate: deleteAccount, isPending: isDeletingAccount } =
     useDeleteAccount();
 
-  const handleSave = (data: DoctorProfileValues) => {
+  const handleSave = (data: DoctorProfileBaseValues) => {
     if (selectedDoctor) {
       updateProfile(
-        { id: selectedDoctor.id, data },
+        { id: selectedDoctor.id, data: data as any },
         {
           onSuccess: () => handleClose(),
         }

@@ -17,24 +17,6 @@ export const useAddress = (id?: string) => {
   });
 };
 
-export const useCreateAddress = () => {
-  const queryClient = useQueryClient();
-
-  return useMutation({
-    mutationFn: async ({ accountId, data }: AddressParams) =>
-      await addressService.createAddress(accountId, data),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["doctors"] });
-      queryClient.invalidateQueries({ queryKey: ["doctor"] });
-      queryClient.invalidateQueries({ queryKey: ["hospitals"] });
-      queryClient.invalidateQueries({ queryKey: ["hospital"] });
-    },
-    onError: (error: AxiosError<{ message?: string }>) => {
-      toast.error(error?.response?.data?.message || "Failed to create address");
-    },
-  });
-};
-
 export const useUpdateAddress = () => {
   const queryClient = useQueryClient();
 
