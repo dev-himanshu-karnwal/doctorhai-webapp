@@ -4,7 +4,7 @@ import React from "react";
 import { UseFormRegister } from "react-hook-form";
 import { MapPinIcon } from "@/components/icons";
 import { Input } from "@/components/ui";
-import { HospitalUpdateValues } from "@/modules/hospitals/schemas/hospital-update.schema";
+import { AddressValues } from "@/modules/address/validators/address.validator";
 
 const labelStyle: React.CSSProperties = {
   fontSize: "9.5px",
@@ -17,10 +17,16 @@ const labelStyle: React.CSSProperties = {
 };
 
 interface AddressSectionProps {
-  register: UseFormRegister<HospitalUpdateValues>;
+  register: UseFormRegister<AddressValues>;
+  hospitalRegister: UseFormRegister<
+    import("@/modules/hospitals/schemas/hospital-update.schema").HospitalUpdateValues
+  >;
 }
 
-export function AddressSection({ register }: AddressSectionProps) {
+export function AddressSection({
+  register,
+  hospitalRegister,
+}: AddressSectionProps) {
   return (
     <div
       className="bg-white p-7"
@@ -33,38 +39,49 @@ export function AddressSection({ register }: AddressSectionProps) {
       <div className="mb-6 flex items-center gap-2.5">
         <MapPinIcon size={16} className="h-4 w-4 text-[#3b82f6]" />
         <h2 className="text-[16px] font-bold text-[#0f172a]">
-          Address & Location
+          Address &amp; Location
         </h2>
       </div>
 
       <div className="flex flex-col gap-5">
-        <div>
-          <label style={labelStyle}>Street Address</label>
-          <Input
-            {...register("address.addressLine1")}
-            className="border-[#f1f5f9] bg-[#f8fafc] focus:ring-emerald-200"
-          />
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <div>
+            <label style={labelStyle}>Address Line 1</label>
+            <Input
+              {...register("addressLine1")}
+              placeholder="Building name, Street"
+              className="border-[#f1f5f9] bg-[#f8fafc] focus:ring-emerald-200"
+            />
+          </div>
+          <div>
+            <label style={labelStyle}>Address Line 2 (Optional)</label>
+            <Input
+              {...register("addressLine2")}
+              placeholder="Area, Landmark"
+              className="border-[#f1f5f9] bg-[#f8fafc] focus:ring-emerald-200"
+            />
+          </div>
         </div>
 
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-3">
           <div>
             <label style={labelStyle}>City</label>
             <Input
-              {...register("address.city")}
+              {...register("city")}
               className="border-[#f1f5f9] bg-[#f8fafc] focus:ring-emerald-200"
             />
           </div>
           <div>
             <label style={labelStyle}>State</label>
             <Input
-              {...register("address.state")}
+              {...register("state")}
               className="border-[#f1f5f9] bg-[#f8fafc] focus:ring-emerald-200"
             />
           </div>
           <div>
             <label style={labelStyle}>ZIP Code</label>
             <Input
-              {...register("address.pincode")}
+              {...register("pincode")}
               className="border-[#f1f5f9] bg-[#f8fafc] focus:ring-emerald-200"
             />
           </div>
@@ -78,7 +95,9 @@ export function AddressSection({ register }: AddressSectionProps) {
             <Input
               type="number"
               step="any"
-              {...register("location.latitude", { valueAsNumber: true })}
+              {...hospitalRegister("location.latitude", {
+                valueAsNumber: true,
+              })}
               className="border-[#f1f5f9] bg-[#f8fafc] focus:ring-emerald-200"
             />
           </div>
@@ -87,14 +106,16 @@ export function AddressSection({ register }: AddressSectionProps) {
             <Input
               type="number"
               step="any"
-              {...register("location.longitude", { valueAsNumber: true })}
+              {...hospitalRegister("location.longitude", {
+                valueAsNumber: true,
+              })}
               className="border-[#f1f5f9] bg-[#f8fafc] focus:ring-emerald-200"
             />
           </div>
           <div>
             <label style={labelStyle}>Hospital Type</label>
             <Input
-              {...register("type")}
+              {...hospitalRegister("type")}
               placeholder="e.g. Multispeciality"
               className="border-[#f1f5f9] bg-[#f8fafc] focus:ring-emerald-200"
             />

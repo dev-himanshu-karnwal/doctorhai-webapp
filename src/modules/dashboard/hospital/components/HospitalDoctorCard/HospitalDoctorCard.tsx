@@ -26,11 +26,14 @@ const HospitalDoctorCard: React.FC<HospitalDoctorCardProps> = ({
       <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
         {/* Avatar & Online Dot */}
         <div className="relative flex-shrink-0">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <Image
-            src={doctor.avatar}
+            src={
+              doctor.avatar ||
+              `https://ui-avatars.com/api/?name=${encodeURIComponent(doctor.name)}`
+            }
             alt={doctor.name}
-            fill
+            width={56}
+            height={56}
             className="h-[50px] w-[50px] rounded-full border-2 border-white object-cover shadow-sm sm:h-[56px] sm:w-[56px]"
           />
           <span

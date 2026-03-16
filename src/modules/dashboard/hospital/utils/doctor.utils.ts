@@ -9,8 +9,13 @@ export const mapApiDoctorToUI = (doc: ApiDoctor): UIDoctor => ({
   subtext:
     `${doc.designation || ""} ${doc.specialization ? `• ${doc.specialization}` : ""}`.trim(),
   avatar:
-    doc.profilePhotoUrl ||
-    `https://ui-avatars.com/api/?name=${encodeURIComponent(doc.fullName)}&background=random`,
+    doc.profilePhotoUrl &&
+    doc.profilePhotoUrl !== "" &&
+    doc.profilePhotoUrl !== "string" &&
+    doc.profilePhotoUrl !== "null" &&
+    doc.profilePhotoUrl !== "undefined"
+      ? doc.profilePhotoUrl
+      : `https://ui-avatars.com/api/?name=${encodeURIComponent(doc.fullName || "Doctor")}&background=random`,
   statusBadge: getStatusBadge(doc.status?.status as StatusKind),
   rawStatus: doc.status?.status,
   col1: { label: "SHIFT", value: "-" },

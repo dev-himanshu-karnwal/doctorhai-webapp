@@ -3,6 +3,7 @@
 import React from "react";
 import { UseFormReturn } from "react-hook-form";
 import { HospitalUpdateValues } from "@/modules/hospitals/schemas/hospital-update.schema";
+import { AddressValues } from "@/modules/address/validators/address.validator";
 import {
   BasicInfoSection,
   AddressSection,
@@ -14,14 +15,16 @@ import { Button } from "@/components/ui";
 
 interface HospitalConfigFormProps {
   isLoading: boolean;
-  formMethods: UseFormReturn<HospitalUpdateValues>;
+  hospitalForm: UseFormReturn<HospitalUpdateValues>;
+  addressForm: UseFormReturn<AddressValues>;
   onSubmit: () => void;
   isUpdating: boolean;
 }
 
 export function HospitalConfigForm({
   isLoading,
-  formMethods,
+  hospitalForm,
+  addressForm,
   onSubmit,
   isUpdating,
 }: HospitalConfigFormProps) {
@@ -29,7 +32,7 @@ export function HospitalConfigForm({
     register,
     control,
     formState: { errors },
-  } = formMethods;
+  } = hospitalForm;
 
   if (isLoading) {
     return null; // Parent handles loading skeleton
@@ -38,7 +41,10 @@ export function HospitalConfigForm({
   return (
     <div className="flex flex-col gap-6">
       <BasicInfoSection register={register} errors={errors} />
-      <AddressSection register={register} />
+      <AddressSection
+        register={addressForm.register}
+        hospitalRegister={register}
+      />
       <FacilitiesSection register={register} control={control} />
       <TimelineSection register={register} control={control} />
 

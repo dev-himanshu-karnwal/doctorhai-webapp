@@ -1,5 +1,9 @@
 import { axiosInstance } from "@/lib/axios";
-import { DoctorQueryParams, DoctorsPaginatedResponse } from "../types";
+import {
+  DoctorQueryParams,
+  DoctorsPaginatedResponse,
+  SingleDoctorResponse,
+} from "../types";
 
 export const doctorsService = {
   getDoctors: async (params?: DoctorQueryParams) => {
@@ -11,9 +15,9 @@ export const doctorsService = {
   },
 
   getDoctor: async (id: string) => {
-    const response = await axiosInstance.get<
-      import("../types").SingleDoctorResponse
-    >(`/doctor-profiles/${id}`);
+    const response = await axiosInstance.get<SingleDoctorResponse>(
+      `/doctor-profiles/${id}`
+    );
     return response.data?.data?.doctor;
   },
 };
