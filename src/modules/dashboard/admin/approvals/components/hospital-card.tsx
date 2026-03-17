@@ -20,6 +20,7 @@ interface HospitalCardProps {
   avatarTextColor: string;
   badgeColor: string;
   clockColor: string;
+  isVerified?: boolean;
 }
 
 export function HospitalCard({
@@ -34,6 +35,7 @@ export function HospitalCard({
   avatarTextColor,
   badgeColor,
   clockColor,
+  isVerified,
 }: HospitalCardProps) {
   const timeAgo = useTimeAgo(createdAt);
   const router = useRouter();
@@ -41,8 +43,8 @@ export function HospitalCard({
   const handleReviewClick = () => {
     const path =
       type === "hospital"
-        ? `/dashboard/admin/hospitals/${id}`
-        : `/dashboard/admin/doctors/${id}`;
+        ? `/dashboard/admin/hospitals/${id}?verified=${isVerified}`
+        : `/dashboard/admin/doctors/${id}?verified=${isVerified}`;
     router.push(path);
   };
   return (

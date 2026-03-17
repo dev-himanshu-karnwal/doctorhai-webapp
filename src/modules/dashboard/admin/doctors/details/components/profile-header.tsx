@@ -1,11 +1,15 @@
 import { DoctorProfileAvatar } from "./doctor-profile-avatar";
 import { DoctorStatusDto } from "@/modules/doctors/types/doctors-api.types";
+import { Button } from "@/components/ui/button";
 
 interface ProfileHeaderProps {
   name: string;
   designation?: string;
   specialization?: string;
   status?: DoctorStatusDto;
+  isVerified?: boolean;
+  onApprove?: () => void;
+  onReject?: () => void;
 }
 
 export const ProfileHeader = ({
@@ -13,6 +17,9 @@ export const ProfileHeader = ({
   designation,
   specialization,
   status,
+  isVerified,
+  onApprove,
+  onReject,
 }: ProfileHeaderProps) => {
   return (
     <div className="flex flex-col gap-6 px-4 pt-7 pb-6 sm:px-8 lg:flex-row lg:items-start lg:justify-between">
@@ -37,7 +44,7 @@ export const ProfileHeader = ({
       </div>
 
       <div className="flex flex-col items-center gap-2 lg:items-end">
-        {status?.expectedAt && (
+        {isVerified && status?.expectedAt && (
           <div className="flex items-center gap-2 rounded-lg border border-[#f1f5f9] bg-[#f8fafc] px-3 py-2">
             <span className="text-[12px] font-medium text-[#64748b]">
               Expected at:
@@ -50,9 +57,27 @@ export const ProfileHeader = ({
             </span>
           </div>
         )}
-        {status?.expectedAtNote && (
+        {isVerified && status?.expectedAtNote && (
           <div className="max-w-[200px] text-right text-[11px] text-[#94a3b8] italic">
             &quot;{status.expectedAtNote}&quot;
+          </div>
+        )}
+        {!isVerified && (
+          <div className="mt-2 flex items-center gap-2">
+            <Button
+              type="button"
+              onClick={onReject}
+              className="h-9 rounded-xl border-[#fecdd3] bg-[#fff1f2] px-6 font-bold text-[#e11d48] hover:bg-red-50 active:scale-95"
+            >
+              Reject
+            </Button>
+            <Button
+              type="button"
+              onClick={onApprove}
+              className="h-9 rounded-xl border-none bg-blue-500 px-6 font-bold text-white hover:bg-blue-600 active:scale-95"
+            >
+              Approve
+            </Button>
           </div>
         )}
       </div>

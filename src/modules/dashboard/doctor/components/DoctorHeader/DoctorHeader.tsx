@@ -31,8 +31,9 @@ export const DoctorHeader = ({
   }
 
   const profileImage =
-    entityData?.profilePhotoUrl ||
-    "https://images.pexels.com/photos/5452293/pexels-photo-5452293.jpeg?auto=compress&cs=tinysrgb&w=150";
+    entityData?.profilePhotoUrl && entityData.profilePhotoUrl !== "string"
+      ? entityData.profilePhotoUrl
+      : "https://images.pexels.com/photos/5452293/pexels-photo-5452293.jpeg?auto=compress&cs=tinysrgb&w=150";
   const displayName = entityData?.fullName || "Doctor";
   const title =
     entityData?.designation || entityData?.specialization || "Doctor";

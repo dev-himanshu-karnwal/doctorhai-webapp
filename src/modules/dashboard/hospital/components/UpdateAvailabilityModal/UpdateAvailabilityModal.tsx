@@ -70,11 +70,7 @@ const UpdateAvailabilityModal: React.FC<UpdateAvailabilityModalProps> = ({
       data.status === "back_soon" || data.status === "busy"
         ? calculateExpectedAtISO(data.expectedAt)
         : null;
-
-    console.log(expectedAtISO);
-
     const expectedAtNote = data.expectedAtNote?.trim() || null;
-    console.log(expectedAtNote);
 
     const updateData: DoctorStatusUpdateData = {
       status: data.status,

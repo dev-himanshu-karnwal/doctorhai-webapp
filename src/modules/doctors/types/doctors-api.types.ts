@@ -19,6 +19,7 @@ export interface DoctorProfileDto {
   bio: string | null;
   hospitalId?: string;
   status?: DoctorStatusDto;
+  isVerified: boolean;
   addressId?: string;
   address?: {
     addressLine1: string;

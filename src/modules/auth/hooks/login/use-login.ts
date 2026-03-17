@@ -28,7 +28,6 @@ export function useLogin() {
 
         const role = user.account?.roles?.[0];
 
-        console.log(role, user);
         toast.success("Login successful! Welcome back.");
 
         // 4. Role-based redirection

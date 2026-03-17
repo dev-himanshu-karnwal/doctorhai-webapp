@@ -64,7 +64,7 @@ export function HospitalCardActions({
         )}
         <Button
           variant="secondary"
-          href={`/dashboard/admin/hospitals/${id}`}
+          href={`/dashboard/admin/hospitals/${id}?verified=${isVerified}`}
           className="w-full border-none bg-[#F1F5F9] tracking-wide text-gray-700 hover:bg-[#E2E8F0]"
         >
           Edit

@@ -31,6 +31,7 @@ export interface HospitalDetailDto {
   email: string;
   coverPhotoUrl: string | null;
   isActive: boolean;
+  isVerified: boolean;
   location: HospitalLocation;
   type: string | null;
   public_view_count?: number;
