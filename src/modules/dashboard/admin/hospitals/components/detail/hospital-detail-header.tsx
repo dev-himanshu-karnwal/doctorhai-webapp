@@ -7,11 +7,15 @@ import { HospitalDetailDto } from "@/modules/hospitals/types/hospital-detail-api
 interface HospitalDetailHeaderProps {
   hospital: HospitalDetailDto | undefined;
   isLoading: boolean;
+  isVerified?: boolean;
+  onApprove?: () => void;
 }
 
 export function HospitalDetailHeader({
   hospital,
   isLoading,
+  isVerified,
+  onApprove,
 }: HospitalDetailHeaderProps) {
   if (isLoading) {
     return (
@@ -52,6 +56,14 @@ export function HospitalDetailHeader({
           <AdminControlsIcon className="h-4 w-4" />
           Admin Controls
         </Button>
+        {!isVerified && (
+          <Button
+            onClick={onApprove}
+            className="h-auto rounded-xl border-none bg-blue-500 px-6 py-[10px] text-[13.5px] font-bold text-white hover:bg-blue-600 active:scale-95"
+          >
+            Approve
+          </Button>
+        )}
       </div>
     </div>
   );

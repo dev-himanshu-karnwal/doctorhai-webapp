@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useRouter, usePathname } from "next/navigation";
 import {
   ProfileHeader,
   IdentityDetails,
@@ -8,6 +9,8 @@ import {
   ActionBar,
   DetailsSkeleton,
 } from "./components";
+import { ApproveModal } from "@/components/modals";
+import { useVerifyAccount } from "@/modules/accounts/hooks";
 import { useDoctor } from "@/modules/doctors/hooks/use-doctor";
 import { useForm, Resolver } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -24,9 +27,20 @@ import {
 
 interface DoctorDetailsViewProps {
   id: string;
+  initialIsVerified?: boolean;
 }
 
-export default function DoctorDetailsView({ id }: DoctorDetailsViewProps) {
+export default function DoctorDetailsView({
+  id,
+  initialIsVerified,
+}: DoctorDetailsViewProps) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const [isApproveModalOpen, setIsApproveModalOpen] = useState(false);
+  const [isVerifiedState, setIsVerifiedState] = useState(
+    initialIsVerified ?? false
+  );
+
   const { data: doctorData, isLoading: isFetchingDoctor } = useDoctor(id);
   const { data: addressData, isLoading: isFetchingAddress } = useAddress(
     doctorData?.addressId
@@ -35,6 +49,13 @@ export default function DoctorDetailsView({ id }: DoctorDetailsViewProps) {
     useUpdateDoctorProfile({ showToast: false });
   const { mutate: updateAddress, isPending: isUpdatingAddress } =
     useUpdateAddress();
+  const { mutate: verifyAccount, isPending: isVerifying } = useVerifyAccount();
+
+  useEffect(() => {
+    if (doctorData) {
+      setIsVerifiedState(doctorData.isVerified);
+    }
+  }, [doctorData]);
 
   const {
     register,
@@ -155,6 +176,8 @@ export default function DoctorDetailsView({ id }: DoctorDetailsViewProps) {
             designation={doctorData?.designation || ""}
             specialization={doctorData?.specialization || ""}
             status={doctorData?.status}
+            isVerified={isVerifiedState}
+            onApprove={() => setIsApproveModalOpen(true)}
           />
         </div>
 
@@ -178,6 +201,26 @@ export default function DoctorDetailsView({ id }: DoctorDetailsViewProps) {
           accountId={doctorData?.accountId}
         />
       </div>
+      <ApproveModal
+        isOpen={isApproveModalOpen}
+        onClose={() => setIsApproveModalOpen(false)}
+        onConfirm={() => {
+          if (doctorData?.accountId) {
+            verifyAccount(
+              { id: doctorData.accountId, payload: { isVerified: true } },
+              {
+                onSuccess: () => {
+                  setIsApproveModalOpen(false);
+                  setIsVerifiedState(true);
+                  router.push(`${pathname}?verified=true`, { scroll: false });
+                },
+              }
+            );
+          }
+        }}
+        name={doctorData?.fullName || "this doctor"}
+        loading={isVerifying}
+      />
     </form>
   );
 }

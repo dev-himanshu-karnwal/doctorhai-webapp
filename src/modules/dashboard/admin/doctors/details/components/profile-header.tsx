@@ -1,11 +1,14 @@
 import { DoctorProfileAvatar } from "./doctor-profile-avatar";
 import { DoctorStatusDto } from "@/modules/doctors/types/doctors-api.types";
+import { Button } from "@/components/ui/button";
 
 interface ProfileHeaderProps {
   name: string;
   designation?: string;
   specialization?: string;
   status?: DoctorStatusDto;
+  isVerified?: boolean;
+  onApprove?: () => void;
 }
 
 export const ProfileHeader = ({
@@ -13,6 +16,8 @@ export const ProfileHeader = ({
   designation,
   specialization,
   status,
+  isVerified,
+  onApprove,
 }: ProfileHeaderProps) => {
   return (
     <div className="flex flex-col gap-6 px-4 pt-7 pb-6 sm:px-8 lg:flex-row lg:items-start lg:justify-between">
@@ -54,6 +59,14 @@ export const ProfileHeader = ({
           <div className="max-w-[200px] text-right text-[11px] text-[#94a3b8] italic">
             &quot;{status.expectedAtNote}&quot;
           </div>
+        )}
+        {!isVerified && (
+          <Button
+            onClick={onApprove}
+            className="mt-2 h-9 rounded-xl border-none bg-blue-500 px-6 font-bold text-white hover:bg-blue-600 active:scale-95"
+          >
+            Approve
+          </Button>
         )}
       </div>
     </div>

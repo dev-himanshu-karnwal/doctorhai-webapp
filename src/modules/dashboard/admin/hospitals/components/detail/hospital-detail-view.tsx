@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { HospitalDetailHeader } from "./hospital-detail-header";
 import { HospitalStatsRow } from "./hospital-stats-row";
 import { HospitalConfigForm } from "./hospital-config-form";
@@ -16,16 +16,36 @@ import {
   ConfigFormSkeleton,
   TableSkeleton,
 } from "./skeleton";
-import { DeleteModal } from "@/components/modals";
+import { DeleteModal, ApproveModal } from "@/components/modals";
+import { useDeleteAccount, useVerifyAccount } from "@/modules/accounts/hooks";
+import { usePathname, useRouter } from "next/navigation";
 
 interface HospitalDetailViewProps {
   hospitalId: string;
+  initialIsVerified?: boolean;
 }
 
-export function HospitalDetailView({ hospitalId }: HospitalDetailViewProps) {
+export function HospitalDetailView({
+  hospitalId,
+  initialIsVerified,
+}: HospitalDetailViewProps) {
+  const router = useRouter();
+  const pathname = usePathname();
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isApproveModalOpen, setIsApproveModalOpen] = useState(false);
+  const [isVerifiedState, setIsVerifiedState] = useState(
+    initialIsVerified ?? false
+  );
+
   const { data: hospital, isLoading: isHospitalLoading } =
     useHospital(hospitalId);
+  const { mutate: verifyAccount, isPending: isVerifying } = useVerifyAccount();
+
+  useEffect(() => {
+    if (hospital) {
+      setIsVerifiedState(hospital.isVerified);
+    }
+  }, [hospital]);
 
   const { doctorStats, isLoading: isStatsLoading } = useStats(hospitalId);
   const {
@@ -70,6 +90,8 @@ export function HospitalDetailView({ hospitalId }: HospitalDetailViewProps) {
         <HospitalDetailHeader
           hospital={hospital}
           isLoading={isHospitalLoading}
+          isVerified={isVerifiedState}
+          onApprove={() => setIsApproveModalOpen(true)}
         />
         <HospitalStatsRow
           stats={doctorStats}
@@ -107,6 +129,27 @@ export function HospitalDetailView({ hospitalId }: HospitalDetailViewProps) {
         }}
         name={hospital?.name || "this hospital"}
         isVerified={true}
+      />
+
+      <ApproveModal
+        isOpen={isApproveModalOpen}
+        onClose={() => setIsApproveModalOpen(false)}
+        onConfirm={() => {
+          if (hospital?.accountId) {
+            verifyAccount(
+              { id: hospital.accountId, payload: { isVerified: true } },
+              {
+                onSuccess: () => {
+                  setIsApproveModalOpen(false);
+                  setIsVerifiedState(true);
+                  router.push(`${pathname}?verified=true`, { scroll: false });
+                },
+              }
+            );
+          }
+        }}
+        name={hospital?.name || "this hospital"}
+        loading={isVerifying}
       />
     </div>
   );

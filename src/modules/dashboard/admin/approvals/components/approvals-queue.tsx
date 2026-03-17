@@ -108,6 +108,7 @@ export function ApprovalsQueue({
               avatarTextColor="#D97706"
               badgeColor="#FBBF24"
               clockColor="#FBBF24"
+              isVerified={h.isVerified}
             />
           ))}
 
@@ -125,6 +126,7 @@ export function ApprovalsQueue({
               avatarTextColor="#C4B5FD"
               badgeColor="#A78BFA"
               clockColor="#9CA3AF"
+              isVerified={d.isVerified}
             />
           ))}
         </div>
