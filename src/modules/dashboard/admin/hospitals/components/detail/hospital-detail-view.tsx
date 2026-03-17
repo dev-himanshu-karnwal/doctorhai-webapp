@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { HospitalDetailHeader } from "./hospital-detail-header";
 import { HospitalStatsRow } from "./hospital-stats-row";
 import { HospitalConfigForm } from "./hospital-config-form";
