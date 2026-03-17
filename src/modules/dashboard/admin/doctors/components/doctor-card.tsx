@@ -2,12 +2,13 @@
 import { useState } from "react";
 import { Button } from "@/components/ui";
 import { PencilIcon, EyeIcon, TrashIcon } from "../icons";
+import { ShieldCheckIcon } from "@/components/icons";
 import { DoctorAvatar } from "./doctor-avatar";
 import type { Doctor } from "@/modules/doctors/types";
 import { getStatusBadge } from "@/modules/dashboard/hospital/utils/status.utils";
 import { StatusKind } from "@/types/common.types";
-import { DeleteModal } from "@/components/modals/delete-modal";
-import { useDeleteAccount } from "@/modules/accounts/hooks/use-delete-account";
+import { DeleteModal, ApproveModal } from "@/components/modals";
+import { useVerifyAccount, useDeleteAccount } from "@/modules/accounts/hooks";
 import UpdateAvailabilityModal from "@/modules/dashboard/hospital/components/UpdateAvailabilityModal/UpdateAvailabilityModal";
 import type { Doctor as HospitalDoctor } from "@/modules/dashboard/hospital/types/hospital.types";
 
@@ -17,8 +18,10 @@ interface DoctorCardProps {
 
 export function DoctorCard({ doc }: DoctorCardProps) {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showApproveModal, setShowApproveModal] = useState(false);
   const [showStatusModal, setShowStatusModal] = useState(false);
-  const { mutate: deleteAccount, isPending } = useDeleteAccount();
+  const { mutate: deleteAccount, isPending: isDeleting } = useDeleteAccount();
+  const { mutate: verifyAccount, isPending: isVerifying } = useVerifyAccount();
 
   const status = (doc.status?.status || "off_duty") as StatusKind;
   const statusConfig = getStatusBadge(status);
@@ -117,52 +120,103 @@ export function DoctorCard({ doc }: DoctorCardProps) {
         </div>
 
         {/* Divider */}
-        <div style={{ borderTop: "1px solid #F3F4F6" }} />
+        <div className="mx-4 border-t border-gray-100" />
 
-        {/* Action buttons */}
+        {/* Action buttons - 1x3 Grid */}
         <div className="grid grid-cols-3 divide-x divide-gray-100">
-          <Button
-            variant="ghost"
-            href={`/dashboard/admin/doctors/${doc.id}`}
-            className="flex h-auto flex-col items-center gap-1 py-2.5 hover:bg-gray-50"
-            style={{ borderRadius: "0 0 0 18px" }}
-          >
-            <PencilIcon className="h-[13px] w-[13px] text-gray-400" />
-            <span
-              className="font-medium text-gray-500"
-              style={{ fontSize: 10.5 }}
-            >
-              Edit
-            </span>
-          </Button>
-          <Button
-            variant="ghost"
-            onClick={() => setShowStatusModal(true)}
-            className="flex h-auto flex-col items-center gap-1 py-2.5 hover:bg-gray-50"
-            style={{ borderRadius: 0 }}
-          >
-            <EyeIcon className="h-[13px] w-[13px] text-gray-400" />
-            <span
-              className="font-medium text-gray-500"
-              style={{ fontSize: 10.5 }}
-            >
-              Status
-            </span>
-          </Button>
-          <Button
-            variant="ghost"
-            onClick={() => setShowDeleteModal(true)}
-            className="flex h-auto flex-col items-center gap-1 py-2.5 hover:bg-red-50"
-            style={{ borderRadius: "0 0 18px 0" }}
-          >
-            <TrashIcon className="h-[13px] w-[13px] text-gray-400" />
-            <span
-              className="font-medium text-gray-500"
-              style={{ fontSize: 10.5 }}
-            >
-              Delete
-            </span>
-          </Button>
+          {!doc.isVerified ? (
+            // UNVERIFIED: [Approve] [Edit] [Reject]
+            <>
+              <Button
+                variant="ghost"
+                onClick={() => setShowApproveModal(true)}
+                className="flex h-auto flex-col items-center gap-1 py-2.5 hover:bg-blue-50"
+                style={{ borderRadius: "0 0 0 18px" }}
+              >
+                <ShieldCheckIcon className="h-[13px] w-[13px] text-blue-500" />
+                <span
+                  className="font-bold text-blue-600"
+                  style={{ fontSize: 10 }}
+                >
+                  Approve
+                </span>
+              </Button>
+              <Button
+                variant="ghost"
+                href={`/dashboard/admin/doctors/${doc.id}?verified=${doc.isVerified}`}
+                className="flex h-auto flex-col items-center gap-1 py-2.5 hover:bg-gray-50"
+                style={{ borderRadius: 0 }}
+              >
+                <PencilIcon className="h-[13px] w-[13px] text-gray-400" />
+                <span
+                  className="font-medium text-gray-500"
+                  style={{ fontSize: 10.5 }}
+                >
+                  Edit
+                </span>
+              </Button>
+              <Button
+                variant="ghost"
+                onClick={() => setShowDeleteModal(true)}
+                className="flex h-auto flex-col items-center gap-1 py-2.5 hover:bg-red-50"
+                style={{ borderRadius: "0 0 18px 0" }}
+              >
+                <TrashIcon className="h-[13px] w-[13px] text-red-400" />
+                <span
+                  className="font-medium text-red-500"
+                  style={{ fontSize: 10.5 }}
+                >
+                  Reject
+                </span>
+              </Button>
+            </>
+          ) : (
+            // VERIFIED: [Edit] [Status] [Delete]
+            <>
+              <Button
+                variant="ghost"
+                href={`/dashboard/admin/doctors/${doc.id}?verified=${doc.isVerified}`}
+                className="flex h-auto flex-col items-center gap-1 py-2.5 hover:bg-gray-50"
+                style={{ borderRadius: "0 0 0 18px" }}
+              >
+                <PencilIcon className="h-[13px] w-[13px] text-gray-400" />
+                <span
+                  className="font-medium text-gray-500"
+                  style={{ fontSize: 10.5 }}
+                >
+                  Edit
+                </span>
+              </Button>
+              <Button
+                variant="ghost"
+                onClick={() => setShowStatusModal(true)}
+                className="flex h-auto flex-col items-center gap-1 py-2.5 hover:bg-gray-50"
+                style={{ borderRadius: 0 }}
+              >
+                <EyeIcon className="h-[13px] w-[13px] text-gray-400" />
+                <span
+                  className="font-medium text-gray-500"
+                  style={{ fontSize: 10.5 }}
+                >
+                  Status
+                </span>
+              </Button>
+              <Button
+                variant="ghost"
+                onClick={() => setShowDeleteModal(true)}
+                className="flex h-auto flex-col items-center gap-1 py-2.5 hover:bg-red-50"
+                style={{ borderRadius: "0 0 18px 0" }}
+              >
+                <TrashIcon className="h-[13px] w-[13px] text-gray-400" />
+                <span
+                  className="font-medium text-gray-500"
+                  style={{ fontSize: 10.5 }}
+                >
+                  Delete
+                </span>
+              </Button>
+            </>
+          )}
         </div>
       </div>
 
@@ -171,8 +225,25 @@ export function DoctorCard({ doc }: DoctorCardProps) {
         onClose={() => setShowDeleteModal(false)}
         onConfirm={handleDelete}
         name={doc.fullName}
-        isVerified={true}
-        loading={isPending}
+        isVerified={doc.isVerified}
+        loading={isDeleting}
+      />
+
+      <ApproveModal
+        isOpen={showApproveModal}
+        onClose={() => setShowApproveModal(false)}
+        onConfirm={() => {
+          if (doc.accountId) {
+            verifyAccount(
+              { id: doc.accountId, payload: { isVerified: true } },
+              {
+                onSuccess: () => setShowApproveModal(false),
+              }
+            );
+          }
+        }}
+        name={doc.fullName}
+        loading={isVerifying}
       />
 
       <UpdateAvailabilityModal

@@ -32,8 +32,9 @@ export function DoctorStatusCard({ doctor }: DoctorStatusCardProps) {
         <div className="relative h-[68px] w-[68px] flex-shrink-0 overflow-hidden rounded-full ring-4 ring-rose-50 ring-offset-0">
           <Image
             src={
-              doctor.profilePhotoUrl ||
-              `https://api.dicebear.com/7.x/avataaars/svg?seed=${doctor.fullName}&background=%23f0fdf4`
+              doctor.profilePhotoUrl && doctor.profilePhotoUrl !== "string"
+                ? doctor.profilePhotoUrl
+                : `https://api.dicebear.com/7.x/avataaars/svg?seed=${doctor.fullName}&background=%23f0fdf4`
             }
             alt={doctor.fullName}
             fill

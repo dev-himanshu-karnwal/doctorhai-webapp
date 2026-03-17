@@ -28,8 +28,9 @@ const HospitalDoctorCard: React.FC<HospitalDoctorCardProps> = ({
         <div className="relative flex-shrink-0">
           <Image
             src={
-              doctor.avatar ||
-              `https://ui-avatars.com/api/?name=${encodeURIComponent(doctor.name)}`
+              doctor.avatar && doctor.avatar !== "string"
+                ? doctor.avatar
+                : `https://ui-avatars.com/api/?name=${encodeURIComponent(doctor.name)}`
             }
             alt={doctor.name}
             width={56}

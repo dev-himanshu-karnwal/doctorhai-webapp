@@ -61,12 +61,14 @@ const HospitalDoctorList: React.FC<HospitalDoctorListProps> = ({
         )}
       </div>
 
-      <DoctorListPagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={onPageChange}
-        themeColor={themeColor}
-      />
+      {doctors.length > 0 && (
+        <DoctorListPagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={onPageChange}
+          themeColor={themeColor}
+        />
+      )}
     </div>
   );
 };

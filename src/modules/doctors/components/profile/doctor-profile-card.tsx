@@ -16,7 +16,11 @@ export function DoctorProfileCard({
       <div className="relative mx-auto mb-5 h-[120px] w-[120px] sm:mb-6 sm:h-[140px] sm:w-[140px]">
         <div className="h-full w-full overflow-hidden rounded-full border-4 border-[#F8FAFC]">
           <Image
-            src={imageUrl}
+            src={
+              imageUrl && imageUrl !== "string"
+                ? imageUrl
+                : "https://images.pexels.com/photos/5452293/pexels-photo-5452293.jpeg?auto=compress&cs=tinysrgb&w=150"
+            }
             alt={name}
             fill
             className="object-cover"

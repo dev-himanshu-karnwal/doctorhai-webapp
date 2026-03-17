@@ -9,6 +9,7 @@ interface HospitalDetailHeaderProps {
   isLoading: boolean;
   isVerified?: boolean;
   onApprove?: () => void;
+  onReject?: () => void;
 }
 
 export function HospitalDetailHeader({
@@ -16,6 +17,7 @@ export function HospitalDetailHeader({
   isLoading,
   isVerified,
   onApprove,
+  onReject,
 }: HospitalDetailHeaderProps) {
   if (isLoading) {
     return (
@@ -48,21 +50,33 @@ export function HospitalDetailHeader({
       </div>
 
       <div className="flex items-center gap-3">
-        <Button
-          variant="outline"
-          size="md"
-          className="gap-2.5 rounded-xl border-[#e2e8f0] bg-white font-bold text-[#475569] shadow-sm hover:bg-[#f8fafc]"
-        >
-          <AdminControlsIcon className="h-4 w-4" />
-          Admin Controls
-        </Button>
-        {!isVerified && (
+        {isVerified && (
           <Button
-            onClick={onApprove}
-            className="h-auto rounded-xl border-none bg-blue-500 px-6 py-[10px] text-[13.5px] font-bold text-white hover:bg-blue-600 active:scale-95"
+            variant="outline"
+            size="md"
+            className="gap-2.5 rounded-xl border-[#e2e8f0] bg-white font-bold text-[#475569] shadow-sm hover:bg-[#f8fafc]"
           >
-            Approve
+            <AdminControlsIcon className="h-4 w-4" />
+            Admin Controls
           </Button>
+        )}
+        {!isVerified && (
+          <div className="flex items-center gap-2">
+            <Button
+              type="button"
+              onClick={onReject}
+              className="h-auto rounded-xl border-[#fecdd3] bg-[#fff1f2] px-6 py-[10px] text-[13.5px] font-bold text-[#e11d48] hover:bg-red-50 active:scale-95"
+            >
+              Reject
+            </Button>
+            <Button
+              type="button"
+              onClick={onApprove}
+              className="h-auto rounded-xl border-none bg-blue-500 px-6 py-[10px] text-[13.5px] font-bold text-white hover:bg-blue-600 active:scale-95"
+            >
+              Approve
+            </Button>
+          </div>
         )}
       </div>
     </div>

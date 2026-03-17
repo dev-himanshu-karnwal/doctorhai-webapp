@@ -19,7 +19,11 @@ export function DoctorCard({ doctor }: DoctorCardProps) {
       <div className="flex items-start justify-between">
         <div className="relative h-[60px] w-[60px] shrink-0 overflow-hidden rounded-full ring-2 ring-gray-50 sm:h-[72px] sm:w-[72px]">
           <Image
-            src={doctor.image}
+            src={
+              doctor.image && doctor.image !== "string"
+                ? doctor.image
+                : "https://images.pexels.com/photos/5452293/pexels-photo-5452293.jpeg?auto=compress&cs=tinysrgb&w=150"
+            }
             alt={doctor.name}
             fill
             className="object-cover"

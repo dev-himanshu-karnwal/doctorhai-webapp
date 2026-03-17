@@ -7,81 +7,81 @@ export async function proxy(request: NextRequest) {
   const token = request.cookies.get("access_token")?.value;
   const { pathname } = request.nextUrl;
 
-  const isAuthRoute =
-    pathname.startsWith("/login") ||
-    pathname.startsWith("/register") ||
-    pathname === "/dashboard/admin/login";
-  const isDashboardBase = pathname === "/dashboard";
+  // const isAuthRoute =
+  //   pathname.startsWith("/login") ||
+  //   pathname.startsWith("/register") ||
+  //   pathname === "/dashboard/admin/login";
+  // const isDashboardBase = pathname === "/dashboard";
 
-  // Handle Auth and Dashboard routes
-  if (token) {
-    const isDashboardRoute = pathname.startsWith("/dashboard");
+  // // Handle Auth and Dashboard routes
+  // if (token) {
+  //   const isDashboardRoute = pathname.startsWith("/dashboard");
 
-    // If authenticated and trying to access auth routes or any dashboard route
-    if (isAuthRoute || isDashboardRoute) {
-      try {
-        const response = await axiosInstance.get<ApiResponse<{ user: User }>>(
-          "/auth/me",
-          {
-            headers: {
-              Cookie: `access_token=${token}`,
-            },
-          }
-        );
+  //   // If authenticated and trying to access auth routes or any dashboard route
+  //   if (isAuthRoute || isDashboardRoute) {
+  //     try {
+  //       const response = await axiosInstance.get<ApiResponse<{ user: User }>>(
+  //         "/auth/me",
+  //         {
+  //           headers: {
+  //             Cookie: `access_token=${token}`,
+  //           },
+  //         }
+  //       );
 
-        const role = response.data.data?.user?.account?.roles?.[0];
+  //       const role = response.data.data?.user?.account?.roles?.[0];
 
-        // 1. Handle Auth Route Redirection (if logged in, go to your dashboard)
-        if (isAuthRoute || isDashboardBase) {
-          if (role === "doctor") {
-            return NextResponse.redirect(
-              new URL("/dashboard/doctor", request.url)
-            );
-          } else if (role === "hospital") {
-            return NextResponse.redirect(
-              new URL("/dashboard/hospitals", request.url)
-            );
-          } else if (role === "super_admin") {
-            return NextResponse.redirect(
-              new URL("/dashboard/admin", request.url)
-            );
-          }
-        }
+  //       // 1. Handle Auth Route Redirection (if logged in, go to your dashboard)
+  //       if (isAuthRoute || isDashboardBase) {
+  //         if (role === "doctor") {
+  //           return NextResponse.redirect(
+  //             new URL("/dashboard/doctor", request.url)
+  //           );
+  //         } else if (role === "hospital") {
+  //           return NextResponse.redirect(
+  //             new URL("/dashboard/hospitals", request.url)
+  //           );
+  //         } else if (role === "super_admin") {
+  //           return NextResponse.redirect(
+  //             new URL("/dashboard/admin", request.url)
+  //           );
+  //         }
+  //       }
 
-        // 2. Handle RBAC for Dashboard Routes
-        if (isDashboardRoute) {
-          if (pathname.startsWith("/dashboard/doctor") && role !== "doctor") {
-            return NextResponse.redirect(new URL("/unauthorized", request.url));
-          }
-          if (
-            pathname.startsWith("/dashboard/hospitals") &&
-            role !== "hospital"
-          ) {
-            return NextResponse.redirect(new URL("/unauthorized", request.url));
-          }
-          if (
-            pathname.startsWith("/dashboard/admin") &&
-            role !== "super_admin"
-          ) {
-            return NextResponse.redirect(new URL("/unauthorized", request.url));
-          }
-        }
-      } catch (error) {
-        console.error("Error fetching user profile in proxy:", error);
-        // If fetch fails but we have a token, we might want to let it pass or redirect to login
-        // For now, if dashboard route, redirect to login if we can't verify role
-        if (isDashboardRoute) {
-          return NextResponse.redirect(new URL("/login", request.url));
-        }
-      }
-    }
-  }
+  //       // 2. Handle RBAC for Dashboard Routes
+  //       if (isDashboardRoute) {
+  //         if (pathname.startsWith("/dashboard/doctor") && role !== "doctor") {
+  //           return NextResponse.redirect(new URL("/unauthorized", request.url));
+  //         }
+  //         if (
+  //           pathname.startsWith("/dashboard/hospitals") &&
+  //           role !== "hospital"
+  //         ) {
+  //           return NextResponse.redirect(new URL("/unauthorized", request.url));
+  //         }
+  //         if (
+  //           pathname.startsWith("/dashboard/admin") &&
+  //           role !== "super_admin"
+  //         ) {
+  //           return NextResponse.redirect(new URL("/unauthorized", request.url));
+  //         }
+  //       }
+  //     } catch (error) {
+  //       console.error("Error fetching user profile in proxy:", error);
+  //       // If fetch fails but we have a token, we might want to let it pass or redirect to login
+  //       // For now, if dashboard route, redirect to login if we can't verify role
+  //       if (isDashboardRoute) {
+  //         return NextResponse.redirect(new URL("/login", request.url));
+  //     }
+  //     }
+  //   }
+  // }
 
-  // Protect dashboard routes - requires authentication (token check)
-  const isDashboardRoute = pathname.startsWith("/dashboard");
-  if (!token && isDashboardRoute) {
-    return NextResponse.redirect(new URL("/login", request.url));
-  }
+  // // Protect dashboard routes - requires authentication (token check)
+  // const isDashboardRoute = pathname.startsWith("/dashboard");
+  // if (!token && isDashboardRoute) {
+  //   return NextResponse.redirect(new URL("/login", request.url));
+  // }
 
   // Allow all other routes to proceed normally
   return NextResponse.next();

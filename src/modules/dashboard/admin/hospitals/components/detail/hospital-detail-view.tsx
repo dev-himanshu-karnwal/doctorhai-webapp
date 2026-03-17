@@ -17,35 +17,36 @@ import {
   TableSkeleton,
 } from "./skeleton";
 import { DeleteModal, ApproveModal } from "@/components/modals";
-import { useDeleteAccount, useVerifyAccount } from "@/modules/accounts/hooks";
+import { useVerifyAccount, useDeleteAccount } from "@/modules/accounts/hooks";
 import { usePathname, useRouter } from "next/navigation";
 
 interface HospitalDetailViewProps {
   hospitalId: string;
-  initialIsVerified?: boolean;
+  initialIsVerified: boolean;
 }
 
 export function HospitalDetailView({
   hospitalId,
   initialIsVerified,
 }: HospitalDetailViewProps) {
+  console.log(initialIsVerified);
   const router = useRouter();
   const pathname = usePathname();
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isApproveModalOpen, setIsApproveModalOpen] = useState(false);
-  const [isVerifiedState, setIsVerifiedState] = useState(
-    initialIsVerified ?? false
-  );
+  const [isVerifiedState, setIsVerifiedState] = useState(initialIsVerified);
 
   const { data: hospital, isLoading: isHospitalLoading } =
     useHospital(hospitalId);
   const { mutate: verifyAccount, isPending: isVerifying } = useVerifyAccount();
+  const { mutate: deleteAccount, isPending: isDeleting } = useDeleteAccount();
 
-  useEffect(() => {
-    if (hospital) {
-      setIsVerifiedState(hospital.isVerified);
-    }
-  }, [hospital]);
+  // console.log(hospital)
+  // useEffect(() => {
+  //   if (hospital) {
+  //     setIsVerifiedState(hospital.isVerified);
+  //   }
+  // }, [hospital]);
 
   const { doctorStats, isLoading: isStatsLoading } = useStats(hospitalId);
   const {
@@ -92,6 +93,7 @@ export function HospitalDetailView({
           isLoading={isHospitalLoading}
           isVerified={isVerifiedState}
           onApprove={() => setIsApproveModalOpen(true)}
+          onReject={() => setIsDeleteModalOpen(true)}
         />
         <HospitalStatsRow
           stats={doctorStats}
@@ -125,10 +127,21 @@ export function HospitalDetailView({
         isOpen={isDeleteModalOpen}
         onClose={() => setIsDeleteModalOpen(false)}
         onConfirm={() => {
-          setIsDeleteModalOpen(false);
+          if (hospital?.accountId) {
+            deleteAccount(hospital.accountId, {
+              onSuccess: () => {
+                setIsDeleteModalOpen(false);
+                import("sonner").then(({ toast }) =>
+                  toast.success("Account rejected successfully")
+                );
+                router.push("/dashboard/admin/approvals");
+              },
+            });
+          }
         }}
         name={hospital?.name || "this hospital"}
-        isVerified={true}
+        isVerified={isVerifiedState}
+        loading={isDeleting}
       />
 
       <ApproveModal
