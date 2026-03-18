@@ -5,12 +5,15 @@ import { useHospitals } from "./use-hospitals";
 import { Hospital } from "../types/hospital.types";
 import { useDebounce } from "@/hooks";
 
-export function useHospitalsListing(initialIsVerified?: boolean) {
+export function useHospitalsListing(
+  initialSearch?: string,
+  initialIsVerified?: boolean
+) {
   const [page, setPage] = useState(1);
   const [accumulatedHospitals, setAccumulatedHospitals] = useState<Hospital[]>(
     []
   );
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState(initialSearch);
   const debouncedSearch = useDebounce(searchQuery, 500);
 
   const { data, isLoading, isFetching, error } = useHospitals({
@@ -50,6 +53,10 @@ export function useHospitalsListing(initialIsVerified?: boolean) {
     setPage(1);
   }, []);
 
+  const handleSearchSubmit = useCallback(() => {
+    setPage(1);
+  }, []);
+
   const hasMore =
     (data?.meta?.page ?? 0) > 0 &&
     (data?.meta?.page ?? 0) < (data?.meta?.totalPages ?? 0);
@@ -64,6 +71,7 @@ export function useHospitalsListing(initialIsVerified?: boolean) {
     hasMore,
     handleLoadMore,
     handleSearch,
+    handleSearchSubmit,
     meta: data?.meta,
   };
 }

@@ -16,6 +16,7 @@ export function HospitalManagementView() {
     accumulatedHospitals: hospitals,
     searchQuery,
     handleSearch,
+    handleSearchSubmit,
     isLoading: isLoadingHospitals,
     isFetchingMore,
     hasMore,
@@ -35,6 +36,7 @@ export function HospitalManagementView() {
         <HospitalManagementFilters
           search={searchQuery}
           setSearch={handleSearch}
+          onSearchSubmit={handleSearchSubmit}
         />
 
         {/* ── Cards Grid ── */}

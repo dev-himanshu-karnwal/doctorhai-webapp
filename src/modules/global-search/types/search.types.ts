@@ -20,8 +20,9 @@ export interface Clinic {
   hours: string;
   doctorsCount: number;
   doctorsSpecialty: string;
+  specialists?: string[];
   waitTime?: string;
-  status: "available" | "busy" | "live";
+  status: "available" | "busy" | "live" | "offline" | string;
   image?: string;
 }
 

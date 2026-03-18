@@ -41,13 +41,6 @@ export function HospitalDetailView({
   const { mutate: verifyAccount, isPending: isVerifying } = useVerifyAccount();
   const { mutate: deleteAccount, isPending: isDeleting } = useDeleteAccount();
 
-  // console.log(hospital)
-  // useEffect(() => {
-  //   if (hospital) {
-  //     setIsVerifiedState(hospital.isVerified);
-  //   }
-  // }, [hospital]);
-
   const { doctorStats, isLoading: isStatsLoading } = useStats(hospitalId);
   const {
     items: doctors,
@@ -56,7 +49,7 @@ export function HospitalDetailView({
     handleSearch,
     hasMore,
     loadMore,
-  } = useDoctorsListing({ hospitalId });
+  } = useDoctorsListing({ initialSearch: "", hospitalId });
 
   const { hospitalForm, addressForm, onSubmit, isUpdating } =
     useHospitalDetailForm({

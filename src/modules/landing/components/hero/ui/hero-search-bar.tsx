@@ -12,9 +12,9 @@ export function HeroSearchBar() {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (search.trim()) {
-      router.push(`/doctors?search=${encodeURIComponent(search.trim())}`);
+      router.push(`/search?search=${encodeURIComponent(search.trim())}`);
     } else {
-      router.push("/doctors");
+      router.push("/search");
     }
   };
 

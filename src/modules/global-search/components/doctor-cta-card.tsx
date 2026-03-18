@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui";
 import { PlusSquareIcon } from "@/components/icons";
+import Link from "next/link";
 
 export function DoctorCtaCard() {
   return (
@@ -19,9 +20,11 @@ export function DoctorCtaCard() {
       </p>
 
       <div className="mt-auto w-full">
-        <Button className="h-[44px] w-full rounded-[24px] bg-white py-[12px] text-[13px] leading-[20px] font-bold tracking-[0px] text-[#3D8F87] transition-all hover:bg-gray-50 active:scale-95 sm:h-[48px] sm:text-[14px]">
-          Join Network
-        </Button>
+        <Link href="/register">
+          <Button className="h-[44px] w-full rounded-[24px] bg-white py-[12px] text-[13px] leading-[20px] font-bold tracking-[0px] text-[#3D8F87] transition-all hover:bg-gray-50 active:scale-95 sm:h-[48px] sm:text-[14px]">
+            Join Network
+          </Button>
+        </Link>
       </div>
     </div>
   );
