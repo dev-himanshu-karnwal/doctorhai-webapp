@@ -55,8 +55,9 @@ export interface HospitalQueryParams {
   distance?: number;
   specialities?: string[];
   isVerified?: boolean;
-  sortBy?: "name";
+  sortBy?: "name" | "createdAt";
   sortOrder?: "asc" | "desc";
   latitude?: number;
+
   longitude?: number;
 }

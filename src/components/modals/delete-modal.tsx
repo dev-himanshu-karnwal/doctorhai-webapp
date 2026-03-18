@@ -11,6 +11,7 @@ interface DeleteModalProps {
   name: string;
   isVerified: boolean;
   loading?: boolean;
+  key?: string;
 }
 
 export function DeleteModal({
@@ -20,8 +21,11 @@ export function DeleteModal({
   name,
   isVerified,
   loading,
+  key,
 }: DeleteModalProps) {
-  const title = isVerified ? "Delete Hospital" : "Reject Application";
+  const title = isVerified
+    ? `Delete ${key ? key : "Hospital"}`
+    : "Reject Application";
   const description = isVerified
     ? `Are you sure you want to delete ${name}? This action cannot be undone.`
     : `Are you sure you want to reject the application from ${name}?`;

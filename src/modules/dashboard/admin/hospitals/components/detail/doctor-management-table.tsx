@@ -163,6 +163,7 @@ export function DoctorManagementTable({
       <DeleteModal
         isOpen={isDeleteOpen}
         onClose={handleClose}
+        key={"Doctor"}
         onConfirm={() => {
           const targetId = selectedDoctor?.accountId;
           if (targetId) {
