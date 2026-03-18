@@ -22,7 +22,7 @@ export function HospitalsPage() {
     handleLoadMore,
     handleSearch,
     meta,
-  } = useHospitalsListing(true);
+  } = useHospitalsListing("", true);
 
   return (
     <div className="min-h-screen bg-[#F4F7F5] px-4 py-6 sm:px-6 sm:py-8">

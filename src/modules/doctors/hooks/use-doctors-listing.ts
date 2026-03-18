@@ -3,33 +3,22 @@
 import { useState, useCallback, useEffect } from "react";
 import { Doctor, DoctorQueryParams } from "../types";
 import { useDoctors } from "./use-doctors";
-import { useDebounce, useUpdateSearchParams } from "@/hooks";
+import { useDebounce } from "@/hooks";
 
 export function useDoctorsListing({
+  initialSearch = "",
   initialIsVerified,
   hospitalId,
   sortOrder = "asc",
 }: {
+  initialSearch?: string;
   initialIsVerified?: boolean;
   hospitalId?: string;
   sortOrder?: "asc" | "desc";
 }) {
-  const { searchParams, updateSearchParam } = useUpdateSearchParams();
-  const initialSearch = searchParams.get("search") || "";
-
   const [page, setPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState(initialSearch);
   const debouncedSearch = useDebounce(searchQuery, 400);
-
-  useEffect(() => {
-    updateSearchParam("search", debouncedSearch.trim());
-  }, [debouncedSearch, updateSearchParam]);
-
-  const [prevInitialSearch, setPrevInitialSearch] = useState(initialSearch);
-  if (initialSearch !== prevInitialSearch) {
-    setPrevInitialSearch(initialSearch);
-    setSearchQuery(initialSearch);
-  }
 
   const [items, setItems] = useState<Doctor[]>([]);
 

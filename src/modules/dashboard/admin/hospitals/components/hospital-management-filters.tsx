@@ -4,13 +4,15 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 interface HospitalManagementFiltersProps {
-  search: string;
+  search?: string;
   setSearch: (val: string) => void;
+  onSearchSubmit: () => void;
 }
 
 export function HospitalManagementFilters({
   search,
   setSearch,
+  onSearchSubmit,
 }: HospitalManagementFiltersProps) {
   return (
     <div
@@ -27,6 +29,7 @@ export function HospitalManagementFilters({
           placeholder="Search hospitals..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && onSearchSubmit()}
           className="h-11 w-full rounded-xl border-none bg-[#F8FAFC] pl-11 text-[13px] text-gray-600 placeholder:text-gray-400"
         />
       </div>

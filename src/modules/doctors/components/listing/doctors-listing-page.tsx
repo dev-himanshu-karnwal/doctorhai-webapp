@@ -6,9 +6,15 @@ import { DoctorFilters } from "./doctor-filters";
 import { DoctorsSearch } from "./doctors-search";
 import { DoctorsGrid } from "./doctors-grid";
 import { cn } from "@/lib/cn";
+import { useRouter } from "next/navigation";
 import { useDoctorsListing } from "../../hooks";
 
-export function DoctorsListingPage() {
+export function DoctorsListingPage({
+  initialSearch = "",
+}: {
+  initialSearch?: string;
+}) {
+  const router = useRouter();
   const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false);
 
   const {
@@ -21,7 +27,7 @@ export function DoctorsListingPage() {
     searchQuery,
     setSearchQuery,
     error,
-  } = useDoctorsListing({ initialIsVerified: true });
+  } = useDoctorsListing({ initialSearch, initialIsVerified: true });
 
   // If there's an error from the API, we won't crash the grid entirely
   // It handles it internally, but the layout remains the same
@@ -56,7 +62,10 @@ export function DoctorsListingPage() {
           <main className="flex-1">
             <DoctorsSearch
               onFilterToggle={() => setIsMobileFiltersOpen(true)}
-              onSearch={setSearchQuery}
+              onSearch={(val) => {
+                setSearchQuery(val);
+                // The user requested "direct redirect"
+              }}
               value={searchQuery}
             />
 

@@ -23,7 +23,7 @@ export function ApprovalsView() {
     hasMore: hasMoreDoctors,
     loadMore: loadMoreDoctors,
     handleSearch: handleDoctorSearch,
-  } = useDoctorsListing({ initialIsVerified: false });
+  } = useDoctorsListing({ initialSearch: "", initialIsVerified: false });
 
   const {
     accumulatedHospitals: hospitals,
@@ -33,7 +33,7 @@ export function ApprovalsView() {
     hasMore: hasMoreHospitals,
     handleLoadMore: loadMoreHospitals,
     handleSearch: handleHospitalSearch,
-  } = useHospitalsListing(false);
+  } = useHospitalsListing("", false);
 
   const isGlobalLoading = isLoadingDoctors || isLoadingHospitals;
   const isGlobalSearching = isSearchingDoctors || isSearchingHospitals;

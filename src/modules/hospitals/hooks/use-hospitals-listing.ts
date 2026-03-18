@@ -3,12 +3,12 @@
 import { useState, useEffect, useCallback } from "react";
 import { useHospitals } from "./use-hospitals";
 import { Hospital } from "../types/hospital.types";
-import { useDebounce, useUpdateSearchParams } from "@/hooks";
+import { useDebounce } from "@/hooks";
 
-export function useHospitalsListing(initialIsVerified?: boolean) {
-  const { searchParams, updateSearchParam } = useUpdateSearchParams();
-  const initialSearch = searchParams.get("search") || "";
-
+export function useHospitalsListing(
+  initialSearch?: string,
+  initialIsVerified?: boolean
+) {
   const [page, setPage] = useState(1);
   const [accumulatedHospitals, setAccumulatedHospitals] = useState<Hospital[]>(
     []
@@ -16,20 +16,10 @@ export function useHospitalsListing(initialIsVerified?: boolean) {
   const [searchQuery, setSearchQuery] = useState(initialSearch);
   const debouncedSearch = useDebounce(searchQuery, 500);
 
-  useEffect(() => {
-    updateSearchParam("search", debouncedSearch.trim());
-  }, [debouncedSearch, updateSearchParam]);
-
-  const [prevInitialSearch, setPrevInitialSearch] = useState(initialSearch);
-  if (initialSearch !== prevInitialSearch) {
-    setPrevInitialSearch(initialSearch);
-    setSearchQuery(initialSearch);
-  }
-
   const { data, isLoading, isFetching, error } = useHospitals({
     page,
     limit: 10,
-    search: debouncedSearch.trim(),
+    search: debouncedSearch,
     isVerified: initialIsVerified,
   });
 
@@ -63,6 +53,10 @@ export function useHospitalsListing(initialIsVerified?: boolean) {
     setPage(1);
   }, []);
 
+  const handleSearchSubmit = useCallback(() => {
+    setPage(1);
+  }, []);
+
   const hasMore =
     (data?.meta?.page ?? 0) > 0 &&
     (data?.meta?.page ?? 0) < (data?.meta?.totalPages ?? 0);
@@ -77,6 +71,7 @@ export function useHospitalsListing(initialIsVerified?: boolean) {
     hasMore,
     handleLoadMore,
     handleSearch,
+    handleSearchSubmit,
     meta: data?.meta,
   };
 }

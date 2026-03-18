@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SearchFilters } from "./search-filters";
 import { SearchResults } from "./search-results";
 import { SearchSideFilters } from "./search-side-filters";
@@ -7,11 +7,11 @@ import { cn } from "@/lib/cn";
 import { Button } from "@/components/ui";
 import { useGlobalSearch } from "../hooks";
 import { GlobalFilterQuery } from "../types/global-search.types";
-import { useUpdateSearchParams, useDebounce } from "@/hooks";
+import { useDebounce } from "@/hooks";
+import { useRouter } from "next/navigation";
 
-export function SearchPage() {
-  const { updateSearchParam, searchParams } = useUpdateSearchParams();
-  const initialSearch = searchParams.get("search") || "";
+export function SearchPage({ initialSearch = "" }: { initialSearch?: string }) {
+  const router = useRouter();
 
   const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false);
   const [searchInput, setSearchInput] = useState(initialSearch);
@@ -21,24 +21,21 @@ export function SearchPage() {
     limit: 12,
     sortBy: "fullName",
     sortOrder: "asc",
-    search: initialSearch,
+    search: debouncedSearchValue,
   });
 
-  // Sync debounced search to filters and URL
-  const [prevDebouncedSearch, setPrevDebouncedSearch] =
-    useState(debouncedSearchValue);
-  if (debouncedSearchValue !== prevDebouncedSearch) {
-    const trimmed = debouncedSearchValue.trim();
-    setPrevDebouncedSearch(debouncedSearchValue);
-    setFilters((prev) => ({ ...prev, search: trimmed }));
-    updateSearchParam("search", trimmed);
-  }
-
+  // Sync initialSearch from props to internal state
   const [prevInitialSearch, setPrevInitialSearch] = useState(initialSearch);
   if (initialSearch !== prevInitialSearch) {
     setPrevInitialSearch(initialSearch);
     setSearchInput(initialSearch);
+    setFilters((prev) => ({ ...prev, search: initialSearch }));
   }
+
+  // Update filters when debounced value changes (Live preview)
+  useEffect(() => {
+    setFilters((prev) => ({ ...prev, search: debouncedSearchValue.trim() }));
+  }, [debouncedSearchValue]);
 
   const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useGlobalSearch(filters);
@@ -47,7 +44,7 @@ export function SearchPage() {
     setFilters((prev) => ({
       ...prev,
       ...newFilters,
-      search: searchInput, // Keep the current search input
+      search: searchInput,
     }));
     setIsMobileFiltersOpen(false);
   };
@@ -87,7 +84,10 @@ export function SearchPage() {
               onFilterToggle={() => setIsMobileFiltersOpen(true)}
               searchQuery={searchInput}
               onSearchChange={setSearchInput}
-              onSearchSubmit={() => {}} // No longer needed as we debounce
+              onSearchSubmit={() => {
+                const trimmed = searchInput.trim();
+                router.push(`/search?search=${encodeURIComponent(trimmed)}`);
+              }}
             />
           </div>
         </header>
