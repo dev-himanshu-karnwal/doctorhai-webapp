@@ -8,7 +8,13 @@ export const metadata: Metadata = {
     "Find the best doctors and clinics near you. Book appointments instantly and track live availability.",
 };
 
-export default function Page() {
+export default async function Page({
+  searchParams,
+}: {
+  searchParams: Promise<{ search?: string }>;
+}) {
+  const { search = "" } = await searchParams;
+
   return (
     <Suspense
       fallback={
@@ -17,7 +23,7 @@ export default function Page() {
         </div>
       }
     >
-      <SearchPage />
+      <SearchPage initialSearch={search} />
     </Suspense>
   );
 }

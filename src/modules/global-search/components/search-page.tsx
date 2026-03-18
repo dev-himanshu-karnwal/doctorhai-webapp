@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { SearchFilters } from "./search-filters";
 import { SearchResults } from "./search-results";
 import { SearchSideFilters } from "./search-side-filters";
@@ -8,7 +8,7 @@ import { Button } from "@/components/ui";
 import { useGlobalSearch } from "../hooks";
 import { GlobalFilterQuery } from "../types/global-search.types";
 import { useDebounce } from "@/hooks";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export function SearchPage({ initialSearch = "" }: { initialSearch?: string }) {
   const router = useRouter();
@@ -17,11 +17,11 @@ export function SearchPage({ initialSearch = "" }: { initialSearch?: string }) {
   const [searchInput, setSearchInput] = useState(initialSearch);
   const debouncedSearchValue = useDebounce(searchInput, 500);
 
+  const [lastAppliedSearch, setLastAppliedSearch] = useState(initialSearch);
   const [filters, setFilters] = useState<GlobalFilterQuery>({
     limit: 12,
     sortBy: "fullName",
     sortOrder: "asc",
-    search: debouncedSearchValue,
   });
 
   // Sync initialSearch from props to internal state
@@ -29,23 +29,60 @@ export function SearchPage({ initialSearch = "" }: { initialSearch?: string }) {
   if (initialSearch !== prevInitialSearch) {
     setPrevInitialSearch(initialSearch);
     setSearchInput(initialSearch);
-    setFilters((prev) => ({ ...prev, search: initialSearch }));
+    setLastAppliedSearch(initialSearch);
   }
 
-  // Update filters when debounced value changes (Live preview)
-  useEffect(() => {
-    setFilters((prev) => ({ ...prev, search: debouncedSearchValue.trim() }));
-  }, [debouncedSearchValue]);
+  // Derive the search term to use for the query.
+  // We use initialSearch or lastAppliedSearch if they match the current input (instant update),
+  // otherwise we wait for the debounced value (live preview).
+  const searchToUse = useMemo(() => {
+    if (searchInput === initialSearch) return initialSearch;
+    if (searchInput === lastAppliedSearch) return lastAppliedSearch;
+    if (searchInput === "") return "";
+    return debouncedSearchValue;
+  }, [searchInput, initialSearch, lastAppliedSearch, debouncedSearchValue]);
+
+  const query = useMemo(
+    () => ({
+      ...filters,
+      search: searchToUse.trim(),
+    }),
+    [filters, searchToUse]
+  );
 
   const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    useGlobalSearch(filters);
+    useGlobalSearch(query);
+
+  const searchParams = useSearchParams();
+
+  // Sync debounced search value to URL
+  useEffect(() => {
+    const trimmed = debouncedSearchValue.trim();
+    const currentSearch = searchParams.get("search") || "";
+
+    if (trimmed !== currentSearch) {
+      const params = new URLSearchParams(searchParams.toString());
+      if (trimmed) {
+        params.set("search", trimmed);
+      } else {
+        params.delete("search");
+      }
+      const newQuery = params.toString();
+      router.replace(newQuery ? `/search?${newQuery}` : "/search", {
+        scroll: false,
+      });
+    }
+  }, [debouncedSearchValue, router, searchParams]);
 
   const handleApplyFilters = (newFilters: GlobalFilterQuery) => {
+    const otherFilters = { ...newFilters };
+    delete otherFilters.search;
+
     setFilters((prev) => ({
       ...prev,
-      ...newFilters,
-      search: searchInput,
+      ...otherFilters,
     }));
+    setLastAppliedSearch(searchInput);
     setIsMobileFiltersOpen(false);
   };
 
@@ -60,6 +97,7 @@ export function SearchPage({ initialSearch = "" }: { initialSearch?: string }) {
 
   const handleResetFilters = () => {
     setSearchInput("");
+    setLastAppliedSearch("");
     setFilters({
       limit: 10,
       sortBy: "fullName",

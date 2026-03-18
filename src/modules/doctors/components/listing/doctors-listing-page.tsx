@@ -6,7 +6,6 @@ import { DoctorFilters } from "./doctor-filters";
 import { DoctorsSearch } from "./doctors-search";
 import { DoctorsGrid } from "./doctors-grid";
 import { cn } from "@/lib/cn";
-import { useRouter } from "next/navigation";
 import { useDoctorsListing } from "../../hooks";
 
 export function DoctorsListingPage({
@@ -14,7 +13,6 @@ export function DoctorsListingPage({
 }: {
   initialSearch?: string;
 }) {
-  const router = useRouter();
   const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false);
 
   const {
