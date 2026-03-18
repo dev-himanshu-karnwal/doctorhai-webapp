@@ -28,6 +28,7 @@ export function DoctorFilters({ onApply, initialFilters }: DoctorFiltersProps) {
   // Sync with initialFilters
   useEffect(() => {
     if (initialFilters) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setFilters((prev) => ({
         ...prev,
         ...initialFilters,
@@ -58,13 +59,16 @@ export function DoctorFilters({ onApply, initialFilters }: DoctorFiltersProps) {
     );
   };
 
-  const handleFilterChange = (key: keyof DoctorQueryParams, value: any) => {
+  const handleFilterChange = <K extends keyof DoctorQueryParams>(
+    key: K,
+    value: DoctorQueryParams[K]
+  ) => {
     setFilters((prev) => ({
       ...prev,
       [key]: value,
     }));
 
-    if (key === "distance" && value > 0 && !filters.latitude) {
+    if (key === "distance" && (value as number) > 0 && !filters.latitude) {
       handleLocationFetch();
     }
   };
@@ -193,12 +197,14 @@ export function DoctorFilters({ onApply, initialFilters }: DoctorFiltersProps) {
                 className="flex items-center gap-1.5 rounded-full bg-[#E6F4F1] px-3 py-1.5 text-[12px] font-medium text-[#3D8F87] transition-all hover:bg-[#D1EBE5]"
               >
                 <span>{tag}</span>
-                <button
+                <Button
+                  variant="ghost"
+                  size="sm"
                   onClick={() => handleRemoveTag("specialities", tag)}
-                  className="flex h-4 w-4 items-center justify-center rounded-full transition-colors hover:bg-[#3D8F87] hover:text-white"
+                  className="flex h-4 w-4 items-center justify-center rounded-full p-0 transition-colors hover:bg-[#3D8F87] hover:text-white"
                 >
                   <XIcon size={12} />
-                </button>
+                </Button>
               </div>
             ))}
           </div>
@@ -236,12 +242,14 @@ export function DoctorFilters({ onApply, initialFilters }: DoctorFiltersProps) {
                 className="flex items-center gap-1.5 rounded-full bg-[#E6F4F1] px-3 py-1.5 text-[12px] font-medium text-[#3D8F87] transition-all hover:bg-[#D1EBE5]"
               >
                 <span>{tag}</span>
-                <button
+                <Button
+                  variant="ghost"
+                  size="sm"
                   onClick={() => handleRemoveTag("experience", tag)}
-                  className="flex h-4 w-4 items-center justify-center rounded-full transition-colors hover:bg-[#3D8F87] hover:text-white"
+                  className="flex h-4 w-4 items-center justify-center rounded-full p-0 transition-colors hover:bg-[#3D8F87] hover:text-white"
                 >
                   <XIcon size={12} />
-                </button>
+                </Button>
               </div>
             ))}
           </div>

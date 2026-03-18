@@ -1,9 +1,4 @@
-import {
-  SearchIcon,
-  FilterIcon,
-  MonitorIcon,
-  ClipboardListIcon,
-} from "@/components/icons";
+import { SearchIcon, MonitorIcon, ClipboardListIcon } from "@/components/icons";
 import { HospitalCard } from "./hospital-card";
 import { Input, Button, Select } from "@/components/ui";
 import type { ApprovalsQueueProps } from "../types";

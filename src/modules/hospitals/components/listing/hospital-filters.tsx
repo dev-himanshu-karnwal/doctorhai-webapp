@@ -40,6 +40,7 @@ export function HospitalFilters({
   // Sync with initialFilters if they change externally
   useEffect(() => {
     if (initialFilters) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setFilters((prev) => ({
         ...prev,
         ...initialFilters,
@@ -70,14 +71,17 @@ export function HospitalFilters({
     );
   };
 
-  const handleFilterChange = (key: keyof HospitalQueryParams, value: any) => {
+  const handleFilterChange = <K extends keyof HospitalQueryParams>(
+    key: K,
+    value: HospitalQueryParams[K]
+  ) => {
     setFilters((prev) => ({
       ...prev,
       [key]: value,
     }));
 
     // If distance is explicitly adjusted, ensure we have location
-    if (key === "distance" && value > 0 && !filters.latitude) {
+    if (key === "distance" && (value as number) > 0 && !filters.latitude) {
       handleLocationFetch();
     }
   };
@@ -201,7 +205,10 @@ export function HospitalFilters({
             <Select
               value={filters.sortBy || ""}
               onChange={(e) =>
-                handleFilterChange("sortBy", e.target.value || undefined)
+                handleFilterChange(
+                  "sortBy",
+                  (e.target.value || undefined) as HospitalQueryParams["sortBy"]
+                )
               }
               options={[
                 { value: "", label: "No Sorting" },
@@ -214,7 +221,10 @@ export function HospitalFilters({
               <Select
                 value={filters.sortOrder || "asc"}
                 onChange={(e) =>
-                  handleFilterChange("sortOrder", e.target.value)
+                  handleFilterChange(
+                    "sortOrder",
+                    e.target.value as HospitalQueryParams["sortOrder"]
+                  )
                 }
                 options={[
                   { value: "asc", label: "Ascending" },
@@ -254,12 +264,14 @@ export function HospitalFilters({
                 className="flex items-center gap-1.5 rounded-full bg-[#E6F4F1] px-3 py-1.5 text-[12px] font-medium text-[#3D8F87] transition-all hover:bg-[#D1EBE5]"
               >
                 <span>{speciality}</span>
-                <button
+                <Button
+                  variant="ghost"
+                  size="sm"
                   onClick={() => handleRemoveSpeciality(speciality)}
-                  className="flex h-4 w-4 items-center justify-center rounded-full transition-colors hover:bg-[#3D8F87] hover:text-white"
+                  className="flex h-4 w-4 items-center justify-center rounded-full p-0 transition-colors hover:bg-[#3D8F87] hover:text-white"
                 >
                   <XIcon size={12} />
-                </button>
+                </Button>
               </div>
             ))}
             {filters.specialities?.length === 0 && (
