@@ -3,20 +3,33 @@
 import { useState, useEffect, useCallback } from "react";
 import { useHospitals } from "./use-hospitals";
 import { Hospital } from "../types/hospital.types";
-import { useDebounce } from "@/hooks";
+import { useDebounce, useUpdateSearchParams } from "@/hooks";
 
 export function useHospitalsListing(initialIsVerified?: boolean) {
+  const { searchParams, updateSearchParam } = useUpdateSearchParams();
+  const initialSearch = searchParams.get("search") || "";
+
   const [page, setPage] = useState(1);
   const [accumulatedHospitals, setAccumulatedHospitals] = useState<Hospital[]>(
     []
   );
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState(initialSearch);
   const debouncedSearch = useDebounce(searchQuery, 500);
+
+  useEffect(() => {
+    updateSearchParam("search", debouncedSearch.trim());
+  }, [debouncedSearch, updateSearchParam]);
+
+  useEffect(() => {
+    if (initialSearch !== searchQuery) {
+      setSearchQuery(initialSearch);
+    }
+  }, [initialSearch]);
 
   const { data, isLoading, isFetching, error } = useHospitals({
     page,
     limit: 10,
-    search: debouncedSearch,
+    search: debouncedSearch.trim(),
     isVerified: initialIsVerified,
   });
 

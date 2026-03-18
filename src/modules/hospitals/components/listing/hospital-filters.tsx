@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ToggleSwitch } from "./toggle-switch";
+import { ToggleSwitch } from "@/components/ui";
 import { FilterCheckbox } from "./filter-checkbox";
 import { DistanceSlider } from "./distance-slider";
 import { Divider } from "../shared";

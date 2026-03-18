@@ -5,15 +5,21 @@ import { cn } from "@/lib/cn";
 interface ToggleSwitchProps {
   enabled: boolean;
   onChange: (enabled: boolean) => void;
+  className?: string;
 }
 
-export function ToggleSwitch({ enabled, onChange }: ToggleSwitchProps) {
+export function ToggleSwitch({
+  enabled,
+  onChange,
+  className,
+}: ToggleSwitchProps) {
   return (
     <div
       onClick={() => onChange(!enabled)}
       className={cn(
         "relative h-[22px] w-[40px] cursor-pointer rounded-full transition-colors",
-        enabled ? "bg-[#4DB6AC]" : "bg-[#CBD5E1]"
+        enabled ? "bg-[#4DB6AC]" : "bg-[#CBD5E1]",
+        className
       )}
     >
       <div

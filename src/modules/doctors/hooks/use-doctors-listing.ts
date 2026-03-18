@@ -3,7 +3,7 @@
 import { useState, useCallback, useEffect } from "react";
 import { Doctor, DoctorQueryParams } from "../types";
 import { useDoctors } from "./use-doctors";
-import { useDebounce } from "@/hooks";
+import { useDebounce, useUpdateSearchParams } from "@/hooks";
 
 export function useDoctorsListing({
   initialIsVerified,
@@ -14,16 +14,29 @@ export function useDoctorsListing({
   hospitalId?: string;
   sortOrder?: "asc" | "desc";
 }) {
+  const { searchParams, updateSearchParam } = useUpdateSearchParams();
+  const initialSearch = searchParams.get("search") || "";
+
   const [page, setPage] = useState(1);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState(initialSearch);
   const debouncedSearch = useDebounce(searchQuery, 400);
+
+  useEffect(() => {
+    updateSearchParam("search", debouncedSearch.trim());
+  }, [debouncedSearch, updateSearchParam]);
+
+  useEffect(() => {
+    if (initialSearch !== searchQuery) {
+      setSearchQuery(initialSearch);
+    }
+  }, [initialSearch]);
 
   const [items, setItems] = useState<Doctor[]>([]);
 
   const queryParams: DoctorQueryParams = {
     page,
     limit: 10,
-    search: debouncedSearch || undefined,
+    search: debouncedSearch.trim() || undefined,
     isVerified: initialIsVerified,
     hospitalId,
     sortOrder,
