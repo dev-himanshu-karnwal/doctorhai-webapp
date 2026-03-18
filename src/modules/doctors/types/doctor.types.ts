@@ -37,9 +37,13 @@ export interface DoctorQueryParams {
   page?: number;
   limit?: number;
   search?: string;
-  isVerified?: boolean;
-  specialty?: string;
-  isAvailableNow?: boolean;
+  isAvailable?: boolean;
   hospitalId?: string;
+  specialities?: string[];
+  experience?: string[];
+  latitude?: number;
+  longitude?: number;
+  distance?: number;
+  isVerified?: boolean;
   sortOrder?: "asc" | "desc";
 }

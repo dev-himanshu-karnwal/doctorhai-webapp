@@ -1,37 +1,34 @@
-"use client";
-
-import { useState } from "react";
 import { cn } from "@/lib/cn";
-import { Input } from "@/components/ui";
+import { Input } from "@/components/ui/input";
 
 interface FilterCheckboxProps {
   label: string;
   checked?: boolean;
+  onChange?: (checked: boolean) => void;
 }
 
 export function FilterCheckbox({
   label,
   checked = false,
+  onChange,
 }: FilterCheckboxProps) {
-  const [isChecked, setIsChecked] = useState(checked);
-
   return (
     <label className="flex cursor-pointer items-center gap-2.5">
       <Input
         type="checkbox"
         className="hidden"
-        checked={isChecked}
-        onChange={() => setIsChecked(!isChecked)}
+        checked={checked}
+        onChange={(e) => onChange?.(e.target.checked)}
       />
       <div
         className={cn(
           "flex h-[22px] w-[22px] shrink-0 items-center justify-center rounded-[8px] border transition-all",
-          isChecked
+          checked
             ? "border-[#4FB3AA] bg-[#4FB3AA]"
             : "border-[#CBD5E1] bg-white"
         )}
       >
-        {isChecked && (
+        {checked && (
           <svg width="13" height="10" viewBox="0 0 11 9" fill="none">
             <path
               d="M1 4L4 7L10 1"

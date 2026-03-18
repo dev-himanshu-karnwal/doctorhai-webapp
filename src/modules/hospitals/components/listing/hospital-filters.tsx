@@ -1,9 +1,15 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ToggleSwitch, Button, Input, Select } from "@/components/ui";
-import { DistanceSlider } from "./distance-slider";
+import {
+  ToggleSwitch,
+  Button,
+  Input,
+  Select,
+  DistanceSlider,
+} from "@/components/ui";
 import { Divider } from "../shared";
+
 import { HospitalQueryParams } from "../../types/hospital.types";
 import { XIcon } from "@/components/icons";
 
