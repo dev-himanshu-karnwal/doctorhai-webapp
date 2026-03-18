@@ -7,12 +7,14 @@ import { Input } from "@/components/ui";
 interface HospitalsSearchProps {
   onFilterToggle: () => void;
   onSearch: (value: string) => void;
+  onSubmit?: () => void;
   value?: string;
 }
 
 export function HospitalsSearch({
   onFilterToggle,
   onSearch,
+  onSubmit,
   value = "",
 }: HospitalsSearchProps) {
   const [inputValue, setInputValue] = useState(value);
@@ -23,7 +25,11 @@ export function HospitalsSearch({
 
   const handleSubmit = (e?: React.FormEvent) => {
     e?.preventDefault();
-    onSearch(inputValue);
+    if (onSubmit) {
+      onSubmit();
+    } else {
+      onSearch(inputValue);
+    }
   };
 
   return (

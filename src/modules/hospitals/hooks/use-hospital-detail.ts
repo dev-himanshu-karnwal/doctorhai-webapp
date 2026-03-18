@@ -30,6 +30,7 @@ export function useHospitalDetail(id: string) {
     limit: 10,
     search: debouncedSearchQuery,
     hospitalId: id,
+    isVerified: true,
   });
 
   useEffect(() => {
