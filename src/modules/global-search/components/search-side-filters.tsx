@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { Input, Button, ToggleSwitch } from "@/components/ui";
 import { GlobalFilterQuery } from "../types/global-search.types";
-import { cn } from "@/lib/cn";
 
 interface SearchSideFiltersProps {
   filters: GlobalFilterQuery;

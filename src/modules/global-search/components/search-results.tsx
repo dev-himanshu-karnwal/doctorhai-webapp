@@ -1,6 +1,7 @@
 import { DoctorCard } from "./doctor-card";
 import { ClinicCard } from "./clinic-card";
 import { DoctorCtaCard } from "./doctor-cta-card";
+import { SearchResult } from "../types/search.types";
 import { Button, Select, Skeleton } from "@/components/ui";
 import { ChevronDownIcon } from "@/components/icons";
 import { GlobalSearchData } from "../types/global-search.types";
@@ -47,7 +48,7 @@ export function SearchResults({
   isFetchingNextPage,
 }: SearchResultsProps) {
   // Map API items to format expected by cards to preserve styling
-  const results: any[] = [{ type: "cta" }];
+  const results: SearchResult[] = [{ type: "cta" }];
   let totalFound = 0;
 
   if (pages) {
@@ -63,15 +64,16 @@ export function SearchResults({
       if (data?.doctor) {
         results.push(
           ...data.doctor.map((d) => ({
-            type: "doctor",
+            type: "doctor" as const,
             data: {
               id: d.id,
               name: d.fullName,
               specialty: d.specialization || d.designation || "Doctor",
               experience: d.hasExperience ? Number(d.hasExperience) : 0,
-              status: d.status?.status || "available",
+              status: (d.status?.status ||
+                "available") as import("@/types/common.types").StatusKind,
               statusDetail: d.status?.status || "Available",
-              image: d.profilePhotoUrl,
+              image: d.profilePhotoUrl || "",
               location: "Delhi, India",
             },
           }))
@@ -81,7 +83,7 @@ export function SearchResults({
       if (data?.hospital) {
         results.push(
           ...data.hospital.map((h) => ({
-            type: "clinic",
+            type: "clinic" as const,
             data: {
               id: h.id,
               name: h.name,
@@ -91,7 +93,7 @@ export function SearchResults({
               doctorsSpecialty: h.specialist?.[0] || "Specialist",
               specialists: h.specialist || [],
               status: h.isActive ? "available" : "off_duty",
-              image: h.coverPhotoUrl,
+              image: h.coverPhotoUrl || "",
             },
           }))
         );

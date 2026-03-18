@@ -11,10 +11,7 @@ interface DoctorCardProps {
 }
 
 export function DoctorCard({ doctor }: DoctorCardProps) {
-  const statusStr =
-    typeof doctor.status === "string"
-      ? doctor.status
-      : (doctor.status as any)?.status;
+  const statusStr = doctor.status;
   const config = getStatusBadge(statusStr as StatusKind);
 
   return (

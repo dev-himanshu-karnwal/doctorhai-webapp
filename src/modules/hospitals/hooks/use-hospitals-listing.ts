@@ -20,11 +20,11 @@ export function useHospitalsListing(initialIsVerified?: boolean) {
     updateSearchParam("search", debouncedSearch.trim());
   }, [debouncedSearch, updateSearchParam]);
 
-  useEffect(() => {
-    if (initialSearch !== searchQuery) {
-      setSearchQuery(initialSearch);
-    }
-  }, [initialSearch]);
+  const [prevInitialSearch, setPrevInitialSearch] = useState(initialSearch);
+  if (initialSearch !== prevInitialSearch) {
+    setPrevInitialSearch(initialSearch);
+    setSearchQuery(initialSearch);
+  }
 
   const { data, isLoading, isFetching, error } = useHospitals({
     page,

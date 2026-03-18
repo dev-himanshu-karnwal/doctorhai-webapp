@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { SearchFilters } from "./search-filters";
 import { SearchResults } from "./search-results";
 import { SearchSideFilters } from "./search-side-filters";
@@ -25,18 +25,20 @@ export function SearchPage() {
   });
 
   // Sync debounced search to filters and URL
-  useEffect(() => {
+  const [prevDebouncedSearch, setPrevDebouncedSearch] =
+    useState(debouncedSearchValue);
+  if (debouncedSearchValue !== prevDebouncedSearch) {
     const trimmed = debouncedSearchValue.trim();
+    setPrevDebouncedSearch(debouncedSearchValue);
     setFilters((prev) => ({ ...prev, search: trimmed }));
     updateSearchParam("search", trimmed);
-  }, [debouncedSearchValue, updateSearchParam]);
+  }
 
-  // Handle URL change
-  useEffect(() => {
-    if (initialSearch !== searchInput) {
-      setSearchInput(initialSearch);
-    }
-  }, [initialSearch]);
+  const [prevInitialSearch, setPrevInitialSearch] = useState(initialSearch);
+  if (initialSearch !== prevInitialSearch) {
+    setPrevInitialSearch(initialSearch);
+    setSearchInput(initialSearch);
+  }
 
   const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useGlobalSearch(filters);
@@ -71,11 +73,6 @@ export function SearchPage() {
   const handleLoadMore = () => {
     fetchNextPage();
   };
-
-  const totalPages = Math.max(
-    data?.pages?.[0]?.data?.pagination?.totalPagesDoctors || 0,
-    data?.pages?.[0]?.data?.pagination?.totalPagesHospitals || 0
-  );
 
   return (
     <div className="min-h-screen bg-[#F6FAF9] px-4 py-6 sm:px-6 sm:py-8">
