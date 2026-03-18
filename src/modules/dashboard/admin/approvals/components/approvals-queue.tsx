@@ -1,9 +1,4 @@
-import {
-  SearchIcon,
-  FilterIcon,
-  MonitorIcon,
-  ClipboardListIcon,
-} from "@/components/icons";
+import { SearchIcon, MonitorIcon, ClipboardListIcon } from "@/components/icons";
 import { HospitalCard } from "./hospital-card";
 import { Input, Button, Select } from "@/components/ui";
 import type { ApprovalsQueueProps } from "../types";
@@ -63,15 +58,6 @@ export function ApprovalsQueue({
               { value: "all", label: "All Requests" },
               { value: "doctor", label: "Doctors" },
               { value: "hospital", label: "Hospitals" },
-            ]}
-          />
-
-          <Select
-            className="sm:w-[200px]"
-            icon={<FilterIcon className="h-[13px] w-[13px]" />}
-            options={[
-              { value: "newest", label: "Sort by Date (Newest)" },
-              { value: "oldest", label: "Sort by Date (Oldest)" },
             ]}
           />
         </div>

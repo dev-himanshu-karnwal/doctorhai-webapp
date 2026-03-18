@@ -21,6 +21,8 @@ export function HospitalManagementView() {
     isFetchingMore,
     hasMore,
     handleLoadMore,
+    appliedFilters,
+    handleApplyFilters,
   } = useHospitalsListing(undefined);
 
   const isLoading = isLoadingStats || isLoadingHospitals;
@@ -37,6 +39,8 @@ export function HospitalManagementView() {
           search={searchQuery}
           setSearch={handleSearch}
           onSearchSubmit={handleSearchSubmit}
+          appliedFilters={appliedFilters}
+          onApplyFilters={handleApplyFilters}
         />
 
         {/* ── Cards Grid ── */}

@@ -24,8 +24,13 @@ export function DoctorsListingPage({
     loadMore,
     searchQuery,
     setSearchQuery,
+    applyFilters,
+    appliedFilters,
     error,
-  } = useDoctorsListing({ initialSearch, initialIsVerified: true });
+  } = useDoctorsListing({
+    initialSearch,
+    initialFilters: { isVerified: true },
+  });
 
   // If there's an error from the API, we won't crash the grid entirely
   // It handles it internally, but the layout remains the same
@@ -48,13 +53,16 @@ export function DoctorsListingPage({
             <div className="mb-4 flex justify-end lg:hidden">
               <Button
                 variant="ghost"
-                className="h-10 w-10 rounded-full p-0"
+                className="h-10 w-10 rounded-full p-0 text-[#2D3748] hover:bg-white/50"
                 onClick={() => setIsMobileFiltersOpen(false)}
               >
                 ✕
               </Button>
             </div>
-            <DoctorFilters />
+            <DoctorFilters
+              onApply={applyFilters}
+              initialFilters={appliedFilters}
+            />
           </div>
 
           <main className="flex-1">

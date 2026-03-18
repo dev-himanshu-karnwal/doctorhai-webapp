@@ -23,7 +23,10 @@ export function ApprovalsView() {
     hasMore: hasMoreDoctors,
     loadMore: loadMoreDoctors,
     handleSearch: handleDoctorSearch,
-  } = useDoctorsListing({ initialSearch: "", initialIsVerified: false });
+  } = useDoctorsListing({
+    initialSearch: "",
+    initialFilters: { isVerified: false },
+  });
 
   const {
     accumulatedHospitals: hospitals,

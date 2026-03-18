@@ -21,6 +21,9 @@ export function HospitalsPage() {
     hasMore,
     handleLoadMore,
     handleSearch,
+    handleSearchSubmit,
+    handleApplyFilters,
+    appliedFilters,
     meta,
   } = useHospitalsListing("", true);
 
@@ -49,13 +52,17 @@ export function HospitalsPage() {
                 ✕
               </Button>
             </div>
-            <HospitalFilters />
+            <HospitalFilters
+              onApply={handleApplyFilters}
+              initialFilters={appliedFilters}
+            />
           </div>
 
           <main className="flex-1">
             <HospitalsSearch
               onFilterToggle={() => setIsMobileFiltersOpen(true)}
               onSearch={handleSearch}
+              onSubmit={handleSearchSubmit}
               value={searchQuery}
             />
 

@@ -10,15 +10,20 @@ export function useDoctorsListing({
   initialIsVerified,
   hospitalId,
   sortOrder = "asc",
+  initialFilters = {},
 }: {
   initialSearch?: string;
   initialIsVerified?: boolean;
   hospitalId?: string;
   sortOrder?: "asc" | "desc";
+  initialFilters?: DoctorQueryParams;
 }) {
   const [page, setPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState(initialSearch);
-  const debouncedSearch = useDebounce(searchQuery, 400);
+  const debouncedSearch = useDebounce(searchQuery, 600);
+
+  const [appliedFilters, setAppliedFilters] =
+    useState<DoctorQueryParams>(initialFilters);
 
   const [items, setItems] = useState<Doctor[]>([]);
 
@@ -29,17 +34,18 @@ export function useDoctorsListing({
     isVerified: initialIsVerified,
     hospitalId,
     sortOrder,
+    ...appliedFilters,
   };
 
   const { data, isLoading, isFetching, isPlaceholderData, error } =
     useDoctors(queryParams);
 
-  // Reset accumulation when search changes
+  // Reset accumulation when filters or search change
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setPage(1);
     setItems([]);
-  }, [debouncedSearch]);
+  }, [debouncedSearch, appliedFilters]);
 
   // Handle data accumulation
   useEffect(() => {
@@ -52,7 +58,6 @@ export function useDoctorsListing({
       } else {
         setItems((prev) => {
           const newItems = doctorsArray;
-          // Combine carefully to avoid duplicates
           const currentIds = new Set(prev.map((i) => i.id));
           const additions = newItems.filter((item) => !currentIds.has(item.id));
           return [...prev, ...additions];
@@ -73,7 +78,13 @@ export function useDoctorsListing({
 
   const handleSearch = useCallback((value: string) => {
     setSearchQuery(value);
-    setPage(1);
+  }, []);
+
+  const applyFilters = useCallback((filters: DoctorQueryParams) => {
+    setAppliedFilters((prev) => ({
+      ...prev,
+      ...filters,
+    }));
   }, []);
 
   return {
@@ -86,6 +97,8 @@ export function useDoctorsListing({
     searchQuery,
     setSearchQuery,
     handleSearch,
+    applyFilters,
+    appliedFilters,
     error,
   };
 }

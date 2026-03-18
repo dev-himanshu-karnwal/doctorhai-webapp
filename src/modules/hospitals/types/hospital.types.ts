@@ -49,9 +49,15 @@ export interface HospitalQueryParams {
   page?: number;
   limit?: number;
   search?: string;
-  isAvailableNow?: boolean;
+  name?: string;
+  isActive?: string;
+  isAvailable?: string; // isAvailable from backend DTO
   distance?: number;
-  departments?: string[];
-  type?: string[];
+  specialities?: string[];
   isVerified?: boolean;
+  sortBy?: "name" | "createdAt";
+  sortOrder?: "asc" | "desc";
+  latitude?: number;
+
+  longitude?: number;
 }

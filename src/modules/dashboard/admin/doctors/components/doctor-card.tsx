@@ -223,6 +223,7 @@ export function DoctorCard({ doc }: DoctorCardProps) {
       <DeleteModal
         isOpen={showDeleteModal}
         onClose={() => setShowDeleteModal(false)}
+        key="Doctor"
         onConfirm={handleDelete}
         name={doc.fullName}
         isVerified={doc.isVerified}

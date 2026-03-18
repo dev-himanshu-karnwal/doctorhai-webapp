@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { useHospitals } from "./use-hospitals";
-import { Hospital } from "../types/hospital.types";
+import { Hospital, HospitalQueryParams } from "../types/hospital.types";
 import { useDebounce } from "@/hooks";
 
 export function useHospitalsListing(
@@ -13,21 +13,24 @@ export function useHospitalsListing(
   const [accumulatedHospitals, setAccumulatedHospitals] = useState<Hospital[]>(
     []
   );
-  const [searchQuery, setSearchQuery] = useState(initialSearch);
-  const debouncedSearch = useDebounce(searchQuery, 500);
+  const [searchQuery, setSearchQuery] = useState(initialSearch || "");
+  const debouncedSearch = useDebounce(searchQuery, 600);
+  const [appliedFilters, setAppliedFilters] = useState<HospitalQueryParams>({
+    isVerified: initialIsVerified,
+  });
 
   const { data, isLoading, isFetching, error } = useHospitals({
     page,
     limit: 10,
+    ...appliedFilters,
     search: debouncedSearch,
-    isVerified: initialIsVerified,
   });
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setPage(1);
     setAccumulatedHospitals([]);
-  }, [debouncedSearch]);
+  }, [appliedFilters, debouncedSearch]);
 
   useEffect(() => {
     if (data?.items) {
@@ -48,14 +51,22 @@ export function useHospitalsListing(
     setPage((prev) => prev + 1);
   }, []);
 
-  const handleSearch = useCallback((value: string) => {
-    setSearchQuery(value);
+  const handleApplyFilters = useCallback((filters: HospitalQueryParams) => {
+    setAppliedFilters((prev) => ({
+      ...prev,
+      ...filters,
+    }));
     setPage(1);
   }, []);
 
-  const handleSearchSubmit = useCallback(() => {
-    setPage(1);
+  const handleSearch = useCallback((value: string) => {
+    setSearchQuery(value);
   }, []);
+
+  const handleSearchSubmit = useCallback(() => {
+    setAppliedFilters((prev) => ({ ...prev, search: searchQuery }));
+    setPage(1);
+  }, [searchQuery]);
 
   const hasMore =
     (data?.meta?.page ?? 0) > 0 &&
@@ -72,6 +83,8 @@ export function useHospitalsListing(
     handleLoadMore,
     handleSearch,
     handleSearchSubmit,
+    handleApplyFilters,
+    appliedFilters,
     meta: data?.meta,
   };
 }

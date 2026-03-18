@@ -20,7 +20,13 @@ export function DoctorsPageFilters() {
 
       <div className="flex h-9 items-center gap-2 rounded-full bg-[#E6F3F2] px-4 text-sm font-medium text-[#007664]">
         <span>Specialty: Cardiology</span>
-        <button className="text-[#007664] hover:text-[#004d40]">✕</button>
+        <Button
+          variant="ghost"
+          size="sm"
+          className="h-auto p-0 text-[#007664] hover:bg-transparent hover:text-[#004d40]"
+        >
+          ✕
+        </Button>
       </div>
 
       <Button

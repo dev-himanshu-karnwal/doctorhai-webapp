@@ -56,13 +56,15 @@ export function FacilitiesSection({
               placeholder="Facility name..."
               className="h-7 border-none bg-transparent p-0 text-[13px] font-bold text-[#0f172a] focus:ring-0"
             />
-            <button
+            <Button
+              variant="ghost"
+              size="sm"
               type="button"
               onClick={() => remove(index)}
-              className="flex h-7 w-7 items-center justify-center rounded-lg text-[#94a3b8] transition-colors hover:bg-red-50 hover:text-red-500"
+              className="flex h-7 w-7 items-center justify-center rounded-lg p-0 text-[#94a3b8] transition-colors hover:bg-red-50 hover:text-red-500"
             >
               <TrashIcon size={14} />
-            </button>
+            </Button>
           </div>
         ))}
         {fields.length === 0 && (

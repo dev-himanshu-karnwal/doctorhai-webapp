@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { HospitalDetail } from "../../types/hospital-detail.types";
 import { Divider } from "../shared";
+import { Button } from "@/components/ui";
 
 import { SidebarStatCard } from "./sidebar-utils";
 
@@ -44,9 +45,10 @@ function HospitalTimelineDropdown({
         <p className="text-[10px] font-bold tracking-widest text-[#94A3B8] uppercase">
           Today&apos;s Hours
         </p>
-        <button
+        <Button
+          variant="ghost"
           onClick={() => setIsExpanded(!isExpanded)}
-          className="flex w-full items-center justify-between transition-opacity outline-none hover:opacity-80"
+          className="flex h-auto w-full items-center justify-between p-0 transition-opacity outline-none hover:bg-transparent hover:opacity-80"
         >
           <div className="flex items-center gap-2">
             <span className="text-[15px] font-bold text-[#2D3748]">
@@ -61,7 +63,7 @@ function HospitalTimelineDropdown({
           <span className="text-[10px] text-[#94A3B8]">
             {isExpanded ? "▲" : "▼"}
           </span>
-        </button>
+        </Button>
       </div>
 
       {isExpanded && (
