@@ -127,7 +127,7 @@ export function HospitalDetailView({
                 import("sonner").then(({ toast }) =>
                   toast.success("Account rejected successfully")
                 );
-                router.push("/dashboard/admin/approvals");
+                router.push("/dashboard/admin");
               },
             });
           }
@@ -148,7 +148,9 @@ export function HospitalDetailView({
                 onSuccess: () => {
                   setIsApproveModalOpen(false);
                   setIsVerifiedState(true);
-                  router.push(`${pathname}?verified=true`, { scroll: false });
+                  router.replace(`${pathname}?verified=true`, {
+                    scroll: false,
+                  });
                 },
               }
             );

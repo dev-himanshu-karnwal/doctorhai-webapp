@@ -214,7 +214,9 @@ export default function DoctorDetailsView({
                 onSuccess: () => {
                   setIsApproveModalOpen(false);
                   setIsVerifiedState(true);
-                  router.push(`${pathname}?verified=true`, { scroll: false });
+                  router.replace(`${pathname}?verified=true`, {
+                    scroll: false,
+                  });
                 },
               }
             );
@@ -234,7 +236,7 @@ export default function DoctorDetailsView({
                 import("sonner").then(({ toast }) =>
                   toast.success("Account rejected successfully")
                 );
-                router.push("/dashboard/admin/approvals");
+                router.push("/dashboard/admin");
               },
             });
           }
