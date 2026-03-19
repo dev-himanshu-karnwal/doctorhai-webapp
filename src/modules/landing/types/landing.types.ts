@@ -21,6 +21,7 @@ export type DoctorEntry = {
   imageUrl?: string;
   status: StatusKind;
   hospitalName?: string;
+  hasExperience?: string;
 };
 
 export type FeatureCard = {

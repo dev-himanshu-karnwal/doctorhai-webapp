@@ -1,4 +1,4 @@
-import { DoctorRegistrationForm } from "@/modules/auth/components/doctor-registration-form";
+import { DoctorRegistrationForm } from "@/modules/auth";
 
 export const metadata = {
   title: "Doctor Registration | DoctorHai",

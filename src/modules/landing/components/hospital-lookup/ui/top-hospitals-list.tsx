@@ -1,0 +1,52 @@
+import Link from "next/link";
+import type { HospitalEntry } from "../../../types";
+import { HospitalSquareIcon, PulseDotIcon } from "@/components/icons";
+
+interface TopHospitalsListProps {
+  topHospitals: HospitalEntry[];
+}
+
+export function TopHospitalsList({ topHospitals }: TopHospitalsListProps) {
+  return (
+    <div className="mb-3 flex flex-col gap-2 rounded-[20px] border border-white/40 bg-white/40 p-3 sm:mb-4 sm:gap-3 sm:rounded-[24px] sm:p-4 md:mb-[14px] md:gap-[12px] md:rounded-[32px] md:p-[16px]">
+      <div className="flex items-center justify-between">
+        <h3 className="text-[10px] leading-[12px] font-bold tracking-[0.6px] text-[#718096] uppercase sm:text-[11px] sm:leading-[14px] md:text-[12px] md:leading-[16px]">
+          Top Hospitals
+        </h3>
+        <Link
+          href="/hospitals"
+          className="h-auto p-0 text-[9px] leading-[12px] font-bold text-[#3D8F87] transition-colors hover:text-[#2c6e67] hover:underline sm:text-[10px] sm:leading-[14px] md:text-[11px] md:leading-[15px]"
+        >
+          View All
+        </Link>
+      </div>
+      <div className="space-y-2 sm:space-y-3 md:space-y-4">
+        {topHospitals.slice(0, 2).map((hospital) => (
+          <div
+            key={hospital.id}
+            className="group -mx-1 flex cursor-pointer flex-wrap items-center justify-between rounded-xl p-1 transition-all hover:bg-white/30 sm:flex-nowrap sm:rounded-2xl"
+          >
+            <div className="flex min-w-[70%] flex-1 items-center gap-2 sm:gap-3 md:gap-4">
+              <div className="flex h-[24px] w-[24px] shrink-0 items-center justify-center rounded-full bg-white shadow-[0_1px_2px_rgba(0,0,0,0.05)] transition-shadow group-hover:shadow-md sm:h-[28px] sm:w-[28px] md:h-[32px] md:w-[32px]">
+                <HospitalSquareIcon className="text-[#A0AEC0]" />
+              </div>
+              <div className="w-full min-w-0 flex-1 space-y-0.5 pr-1 sm:space-y-0">
+                <p className="truncate text-[12px] leading-[16px] font-bold text-[#2D3748] transition-colors group-hover:text-[#3D8F87] sm:text-[13px] sm:leading-[18px] md:text-[14px] md:leading-[20px]">
+                  {hospital.name}
+                </p>
+              </div>
+            </div>
+            {hospital.status === "available" && (
+              <div className="flex shrink-0 items-center gap-[2px] rounded-full bg-[#DCFCE7] px-[4px] py-[2px] transition-transform group-hover:scale-105 sm:gap-[3px] sm:px-[5px] sm:py-[2px] md:gap-[4px] md:px-[8px] md:py-[4px]">
+                <PulseDotIcon size={4} className="text-[#22C55E]" />
+                <span className="text-[8px] leading-[10px] font-bold text-[#15803D] sm:text-[9px] sm:leading-[12px] md:text-[10px] md:leading-[15px]">
+                  Live
+                </span>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}

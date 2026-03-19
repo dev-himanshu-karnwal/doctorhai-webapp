@@ -1,5 +1,5 @@
-import { DoctorProfilePage } from "@/modules/doctors/components/doctor-profile-page";
+import { DoctorsListingPage } from "@/modules/doctors/components/listing/doctors-listing-page";
 
-export default function Page() {
-  return <DoctorProfilePage />;
+export default function DoctorsPage() {
+  return <DoctorsListingPage />;
 }

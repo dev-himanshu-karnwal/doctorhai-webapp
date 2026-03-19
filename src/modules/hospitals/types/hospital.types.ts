@@ -1,30 +1,63 @@
-export type HospitalStatus = "online" | "busy" | "limited";
-export type IconType =
-  | "building"
-  | "heart"
-  | "smile"
-  | "brain"
-  | "tooth"
-  | "cross";
-export type SpecialtyColor = "default" | "teal" | "purple" | "amber";
+export interface HospitalLocation {
+  latitude: number;
+  longitude: number;
+}
 
-export interface HospitalSpecialty {
-  name: string;
-  color?: SpecialtyColor;
+export interface HospitalAddress {
+  id: string;
+  addressLine1: string;
+  addressLine2?: string | null;
+  city: string;
+  state: string;
+  pincode: string;
 }
 
 export interface Hospital {
   id: string;
+  accountId: string;
+  addressId: string;
   name: string;
-  distance: string;
+  slug: string;
+  coverPhotoUrl: string;
+  imageUrl?: string; // For UI consistency
+  address?: HospitalAddress | string; // For UI consistency
+  isActive: boolean;
+  isVerified: boolean;
+  public_view_count?: number;
+  location: HospitalLocation;
   type: string;
-  status: HospitalStatus;
-  onlineCount?: number;
-  avgWaitTime: string;
-  waitTimeMinutes: number;
-  specialties: HospitalSpecialty[];
-  iconType: IconType;
-  iconBgColor: string;
-  iconColor: string;
-  featured?: boolean;
+  specialist: string[];
+  createdAt: string;
+  status?: "pending" | "approved" | "rejected"; // For UI consistency
+}
+
+export interface PaginatedMeta {
+  total: number;
+  page: number;
+  limit: number;
+  totalPages: number;
+}
+
+export interface PaginatedResponse<T> {
+  items: T[];
+  meta: PaginatedMeta;
+}
+
+export type ListingSpecialtyColor = "default" | "teal" | "purple" | "amber";
+
+export interface HospitalQueryParams {
+  page?: number;
+  limit?: number;
+  search?: string;
+  name?: string;
+  isActive?: string;
+  isAvailable?: string; // isAvailable from backend DTO
+  distance?: number;
+  specialities?: string[];
+  isVerified?: boolean;
+  sortBy?: "name" | "createdAt";
+  sortOrder?: "asc" | "desc";
+  latitude?: number;
+
+  longitude?: number;
 }

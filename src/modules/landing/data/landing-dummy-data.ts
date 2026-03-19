@@ -1,10 +1,4 @@
-import type {
-  DepartmentCategory,
-  DoctorEntry,
-  FeatureCard,
-  HospitalEntry,
-  WorkflowStep,
-} from "../types/landing.types";
+import type { DepartmentCategory, FeatureCard, WorkflowStep } from "../types";
 
 export const DUMMY_DEPARTMENTS: DepartmentCategory[] = [
   { id: "1", label: "General Physician" },
@@ -14,27 +8,6 @@ export const DUMMY_DEPARTMENTS: DepartmentCategory[] = [
   { id: "5", label: "Orthopedics" },
   { id: "6", label: "Dermatology" },
 ];
-
-export const DUMMY_TOP_HOSPITALS: HospitalEntry[] = [
-  { id: "1", name: "Mayo Clinic", status: "busy" },
-  { id: "2", name: "Cleveland Clinic", status: "open" },
-];
-
-export const DUMMY_TOP_DOCTORS: DoctorEntry[] = [
-  {
-    id: "1",
-    name: "Dr. Emily Chan",
-    specialty: "Cardiology",
-    status: "available",
-  },
-  {
-    id: "2",
-    name: "Dr. Michael Rowe",
-    specialty: "Neurosurgery",
-    status: "busy",
-  },
-];
-
 export const DUMMY_FEATURE_CARDS: FeatureCard[] = [
   {
     id: "1",
@@ -57,37 +30,6 @@ export const DUMMY_FEATURE_CARDS: FeatureCard[] = [
       "A public-facing page for every department. Patients check status before leaving home.",
     icon: "status",
     highlight: "SIMPLE SOLUTION",
-  },
-];
-
-export const DUMMY_LIVE_DOCTORS: DoctorEntry[] = [
-  {
-    id: "1",
-    name: "Dr. Sarah Smith",
-    specialty: "Cardiology",
-    hospitalName: "City General Hospital",
-    status: "available",
-  },
-  {
-    id: "2",
-    name: "Dr. James Chen",
-    specialty: "Neurosurgeon",
-    hospitalName: "St. Mary's Medical Center",
-    status: "busy",
-  },
-  {
-    id: "3",
-    name: "Dr. Emily Davis",
-    specialty: "Pediatrics",
-    hospitalName: "Children's Hospital",
-    status: "on-break",
-  },
-  {
-    id: "4",
-    name: "Dr. M. Thompson",
-    specialty: "Orthopedics",
-    hospitalName: "Westside Clinic",
-    status: "available",
   },
 ];
 

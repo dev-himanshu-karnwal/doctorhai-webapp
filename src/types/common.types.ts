@@ -1,1 +1,6 @@
-export type StatusKind = "available" | "busy" | "on-break" | "open" | "closed";
+export type StatusKind =
+  | "available"
+  | "busy"
+  | "back_soon"
+  | "off_duty"
+  | string;

@@ -1,10 +1,14 @@
-import { LoginPage } from "@/modules/auth";
+import { LoginForm, LoginWrapper } from "@/modules/auth";
 
 export const metadata = {
-  title: "Login | DocStatus",
-  description: "Sign in to access your DocStatus dashboard",
+  title: "Login | DoctorHai",
+  description: "Sign in to access your DoctorHai dashboard",
 };
 
 export default function Login() {
-  return <LoginPage />;
+  return (
+    <LoginWrapper>
+      <LoginForm />
+    </LoginWrapper>
+  );
 }

@@ -1,0 +1,115 @@
+"use client";
+
+import { useState } from "react";
+import { useForm, type FieldErrors } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { loginSchema, type LoginValues } from "../../schemas";
+import { FormInput } from "../shared/form-input";
+import { UserIcon, MailIcon, LockIcon } from "@/components/icons";
+import { AuthSubmitIcon } from "@/modules/auth/icons";
+import { Button } from "@/components/ui";
+import Link from "next/link";
+import { useLogin } from "../../hooks";
+import { LoginToggle } from "./toggle";
+
+export function LoginForm() {
+  const [loginType, setLoginType] = useState<"username" | "email">("email");
+  const { mutate, isPending } = useLogin();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<LoginValues>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: {
+      loginType: "email",
+      email: "",
+      password: "",
+    } as LoginValues,
+  });
+
+  const handleToggle = (type: "username" | "email") => {
+    setLoginType(type);
+    reset({
+      loginType: type,
+      ...(type === "username" ? { username: "" } : { email: "" }),
+      password: "",
+    } as LoginValues);
+  };
+
+  const fieldErrors = errors as FieldErrors<{
+    username?: string;
+    email?: string;
+    password?: string;
+  }>;
+
+  return (
+    <div className="w-full">
+      <LoginToggle type={loginType} onChange={handleToggle} />
+
+      <form
+        onSubmit={handleSubmit((data) => mutate(data))}
+        className="w-full space-y-6"
+      >
+        <input type="hidden" {...register("loginType")} value={loginType} />
+        {loginType === "username" ? (
+          <FormInput
+            label="Username"
+            {...register("username")}
+            placeholder="dr_arora12"
+            icon={<UserIcon size={20} className="text-[#94A3B8]" />}
+            error={fieldErrors.username?.message}
+          />
+        ) : (
+          <FormInput
+            label="Email Address"
+            {...register("email")}
+            placeholder="admin@hospital.com"
+            icon={<MailIcon size={20} className="text-[#94A3B8]" />}
+            error={fieldErrors.email?.message}
+          />
+        )}
+
+        <FormInput
+          label="Password"
+          {...register("password")}
+          type="password"
+          placeholder="••••••••"
+          icon={<LockIcon size={20} className="text-[#94A3B8]" />}
+          error={fieldErrors.password?.message}
+        />
+
+        <div className="-mt-2 flex justify-end">
+          <Link
+            href="/forgot-password"
+            className="text-[14px] font-bold text-[#4FB3AA] transition-colors hover:text-[#3D8F87]"
+          >
+            Forgot Password?
+          </Link>
+        </div>
+
+        <Button
+          type="submit"
+          disabled={isPending}
+          loading={isPending}
+          className="group mt-6 h-[64px] w-full rounded-[18px] bg-[#3D8F87] text-[18px] font-bold text-white shadow-[0_4px_6px_-4px_rgba(79,179,170,0.3),0_10px_15px_-3px_rgba(79,179,170,0.3)] transition-all active:scale-[0.98]"
+        >
+          <span>{isPending ? "Signing in..." : "Sign In"}</span>
+          {!isPending && <AuthSubmitIcon size={16} className="text-white" />}
+        </Button>
+
+        <div className="text-center text-[15px] font-medium text-[#64748B]">
+          Don&apos;t have an account?{" "}
+          <Link
+            href={`/register/${loginType === "username" ? "doctor" : "hospital"}`}
+            className="font-bold text-[#3D8F87] hover:underline"
+          >
+            Register as {loginType === "username" ? "doctor" : "hospital"}
+          </Link>
+        </div>
+      </form>
+    </div>
+  );
+}

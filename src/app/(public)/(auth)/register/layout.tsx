@@ -1,4 +1,4 @@
-import { RegistrationWrapper } from "@/modules/auth/components/registration-wrapper";
+import { RegistrationWrapper } from "@/modules/auth";
 import type { ReactNode } from "react";
 
 export default function RegisterLayout({ children }: { children: ReactNode }) {
