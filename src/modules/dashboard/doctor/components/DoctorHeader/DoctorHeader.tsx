@@ -2,10 +2,11 @@ import { useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { SettingsIcon, UserIcon, LogOutIcon } from "@/components/icons";
-import { useAuth } from "@/modules/auth";
+import { useAuth, useLogout } from "@/modules/auth";
 import { EditDoctorSlider } from "../EditDoctorSlider/EditDoctorSlider";
 import { useUpdateDoctorProfile } from "../../hooks";
 import { type DoctorProfileBaseValues } from "../../validators";
+import { LogoutModal } from "@/components/modals";
 
 interface DoctorHeaderProps {
   isSettingsOpen: boolean;
@@ -18,8 +19,10 @@ export const DoctorHeader = ({
 }: DoctorHeaderProps) => {
   const { user } = useAuth();
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
   const { mutate: updateProfile, isPending: isUpdating } =
     useUpdateDoctorProfile();
+  const { mutate: logout, isPending: isLoggingOut } = useLogout();
 
   // Extract the role from user account
   const role = user?.account?.roles?.[0];
@@ -103,6 +106,10 @@ export const DoctorHeader = ({
               </Button>
               <Button
                 variant="ghost"
+                onClick={() => {
+                  setIsSettingsOpen(false);
+                  setIsLogoutModalOpen(true);
+                }}
                 className="flex w-full items-center justify-start gap-3 rounded-xl px-4 py-3 text-left text-[14px] font-bold text-[#ef4444] transition-colors hover:bg-red-50 hover:text-[#ef4444]"
               >
                 <LogOutIcon className="h-4.5 w-4.5" />
@@ -112,6 +119,13 @@ export const DoctorHeader = ({
           </>
         )}
       </div>
+
+      <LogoutModal
+        isOpen={isLogoutModalOpen}
+        onClose={() => setIsLogoutModalOpen(false)}
+        onConfirm={() => logout()}
+        loading={isLoggingOut}
+      />
 
       <EditDoctorSlider
         isOpen={isProfileOpen}

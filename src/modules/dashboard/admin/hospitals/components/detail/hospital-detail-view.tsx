@@ -127,7 +127,7 @@ export function HospitalDetailView({
                 import("sonner").then(({ toast }) =>
                   toast.success("Account rejected successfully")
                 );
-                router.push("/dashboard/admin/approvals");
+                router.push("/dashboard/admin");
               },
             });
           }
