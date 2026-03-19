@@ -148,7 +148,9 @@ export function HospitalDetailView({
                 onSuccess: () => {
                   setIsApproveModalOpen(false);
                   setIsVerifiedState(true);
-                  router.push(`${pathname}?verified=true`, { scroll: false });
+                  router.replace(`${pathname}?verified=true`, {
+                    scroll: false,
+                  });
                 },
               }
             );

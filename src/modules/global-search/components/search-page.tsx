@@ -124,7 +124,7 @@ export function SearchPage({ initialSearch = "" }: { initialSearch?: string }) {
               onSearchChange={setSearchInput}
               onSearchSubmit={() => {
                 const trimmed = searchInput.trim();
-                router.push(`/search?search=${encodeURIComponent(trimmed)}`);
+                router.replace(`/search?search=${encodeURIComponent(trimmed)}`);
               }}
             />
           </div>
